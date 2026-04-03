@@ -2,629 +2,184 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="description" content="Politiques locales, acteurs alsaciens et impacts sur le corridor écologique rhénan. Infographie sur la pollution lumineuse dans l'Eurométropole de Strasbourg." />
-  <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+CiAgPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjMDcwNzEzIi8+CiAgPHRleHQgeD0iMTYiIHk9IjIzIiBmb250LXNpemU9IjIwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjVjODQyIiBmb250LWZhbWlseT0ic2VyaWYiPuKYhTwvdGV4dD4KPC9zdmc+" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Infographie — Strasbourg sous les lumières</title>
+  <title>Impacts · Strasbourg sous les lumières</title>
+  <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+CiAgPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjMDcwNzEzIi8+CiAgPHRleHQgeD0iMTYiIHk9IjIzIiBmb250LXNpemU9IjIwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjVjODQyIiBmb250LWZhbWlseT0ic2VyaWYiPuKYhTwvdGV4dD4KPC9zdmc+" />
   <link rel="stylesheet" href="css/style.css" />
-  <style>
-    .infographie-wrap { max-width:1000px; margin:0 auto; padding-bottom:4rem; }
-    .info-hero { background:linear-gradient(135deg,#0d0d2b 0%,#12123a 50%,#1a1a5e22 100%); border:1px solid rgba(245,200,66,0.2); border-radius:12px; padding:3rem; text-align:center; margin-bottom:2rem; position:relative; overflow:hidden; }
-    .info-hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 50% 50%,rgba(245,200,66,0.06) 0%,transparent 70%); pointer-events:none; }
-    .info-hero h2 { font-family:'Space Mono',monospace; font-size:clamp(1.4rem,3vw,2.2rem); color:var(--blanc-etoile); margin-bottom:0.75rem; position:relative; }
-    .info-hero p { color:var(--gris-texte); font-size:1rem; max-width:600px; margin:0 auto; position:relative; text-align:justify; }
-    .info-hero .badge { display:inline-block; background:rgba(245,200,66,0.12); border:1px solid rgba(245,200,66,0.3); border-radius:6px; padding:0.3rem 0.8rem; font-family:'Space Mono',monospace; font-size:0.72rem; color:var(--or); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:1.5rem; }
-    .info-grille { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-bottom:2rem; }
-    @media(max-width:680px){.info-grille{grid-template-columns:1fr;}}
-    .info-bloc { background:rgba(13,13,43,0.7); border:1px solid rgba(245,200,66,0.12); border-radius:10px; padding:2rem; }
-    .info-bloc h3 { font-family:'Space Mono',monospace; font-size:0.78rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--or); margin-bottom:1.25rem; padding-bottom:0.75rem; border-bottom:1px solid rgba(245,200,66,0.15); }
-    .politique-item { display:flex; gap:0.75rem; margin-bottom:1.1rem; align-items:flex-start; }
-    .politique-annee { font-family:'Space Mono',monospace; font-size:0.75rem; color:var(--or); flex-shrink:0; width:38px; padding-top:0.1rem; }
-    .politique-texte strong { display:block; font-family:'Space Mono',monospace; font-size:0.72rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--blanc-etoile); margin-bottom:0.2rem; }
-    .politique-texte span { font-size:0.88rem; color:var(--gris-texte); line-height:1.5; display:block; }
-    .acteur-item { display:flex; gap:0.75rem; margin-bottom:0.9rem; align-items:flex-start; padding-bottom:0.9rem; border-bottom:1px solid rgba(255,255,255,0.05); }
-    .acteur-item:last-child { border-bottom:none; margin-bottom:0; padding-bottom:0; }
-    .acteur-icone { font-size:1.4rem; flex-shrink:0; width:32px; text-align:center; }
-    .acteur-nom { font-family:'Space Mono',monospace; font-size:0.72rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--blanc-etoile); margin-bottom:0.2rem; }
-    .acteur-desc { font-size:0.88rem; color:var(--gris-texte); line-height:1.5; }
-    .corridor-bloc { background:linear-gradient(135deg,rgba(74,222,128,0.06),rgba(103,232,249,0.04)); border:1px solid rgba(74,222,128,0.2); border-radius:10px; padding:2rem; margin-bottom:2rem; }
-    .corridor-bloc h3 { font-family:'Space Mono',monospace; font-size:0.78rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--vert-reserve); margin-bottom:1.25rem; padding-bottom:0.75rem; border-bottom:1px solid rgba(74,222,128,0.15); }
-    .corridor-espece { display:flex; gap:0.75rem; margin-bottom:0.8rem; align-items:flex-start; }
-    .corridor-espece .icone { font-size:1.2rem; flex-shrink:0; padding-top:0.1rem; }
-    .corridor-espece .texte { font-size:0.9rem; color:var(--gris-texte); text-align:justify; }
-    .corridor-espece .texte strong { color:var(--blanc-etoile); }
-    .impact-bar-row { display:flex; align-items:center; gap:0.75rem; margin-bottom:0.6rem; }
-    .impact-bar-label { font-family:'Space Mono',monospace; font-size:0.68rem; color:var(--blanc-etoile); width:180px; flex-shrink:0; }
-    .impact-bar-track { flex:1; height:8px; background:rgba(255,255,255,0.08); border-radius:4px; overflow:hidden; }
-    .impact-bar-fill { height:100%; border-radius:4px; }
-    .impact-bar-val { font-family:'Space Mono',monospace; font-size:0.68rem; color:var(--or); width:50px; text-align:right; flex-shrink:0; }
-    .type-eclairage-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; }
-    .type-item { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:6px; padding:0.85rem 1rem; }
-    .type-nom { font-family:'Space Mono',monospace; font-size:0.68rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--or); margin-bottom:0.3rem; }
-    .type-desc { font-size:0.82rem; color:var(--gris-texte); line-height:1.45; }
-    .timeline-pcaet { position:relative; padding-left:1.5rem; }
-    .timeline-pcaet::before { content:''; position:absolute; left:0.4rem; top:0; bottom:0; width:1px; background:rgba(245,200,66,0.25); }
-    .tl-item { position:relative; margin-bottom:1.25rem; }
-    .tl-dot { position:absolute; left:-1.2rem; top:0.2rem; width:8px; height:8px; border-radius:50%; background:var(--or); border:2px solid #070713; }
-  </style>
-<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded",()=>lucide.createIcons());</script>
+  <link rel="stylesheet" href="css/expo.css" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 </head>
 <body>
-    <!-- Mode Exposition -->
-  <div id="expo-banner">
-    <i data-lucide="presentation" style="width:0.8rem;height:0.8rem;"></i>
-    MODE EXPOSITION ACTIF — cliquer sur le bouton en bas à droite pour quitter
-  </div>
-  <button id="expo-toggle" onclick="toggleExpo()" title="Mode exposition">
-    <i data-lucide="presentation" style="width:0.9rem;height:0.9rem;"></i>
-    <span id="expo-label">Mode exposition</span>
-  </button>
-  <div id="scrolly-progress"></div>
-  <div id="scrolly-label"></div>
-  <canvas id="starfield"></canvas>
-  <div class="page-wrapper">
+  <canvas id="starfield" style="position:fixed;inset:0;z-index:0;pointer-events:none;"></canvas>
+  <div id="expo-scroll-progress"></div>
 
-    <nav>
-      <div class="nav-logo"><i data-lucide="star" style="display:inline-block;vertical-align:middle;width:1rem;height:1rem;stroke:var(--or);fill:var(--or);margin-right:0.2rem;"></i> <span>Strasbourg</span> sous les lumières</div>
-      <ul class="nav-links">
-        <li><a href="index.html" ><i data-lucide="home" class="nav-icon"></i>Accueil</a></li>
-        <li><a href="carte.html" ><i data-lucide="map" class="nav-icon"></i>Carte</a></li>
-        <li><a href="dataviz.html" ><i data-lucide="bar-chart-2" class="nav-icon"></i>Données</a></li>
-        <li><a href="infographie.html" class="active"><i data-lucide="leaf" class="nav-icon"></i>Infographie</a></li>
-        <li><a href="sources.html" ><i data-lucide="book-open" class="nav-icon"></i>Sources</a></li>
-      </ul>
-    </nav>
+  <nav class="expo-nav" style="position:sticky;top:0;z-index:200;">
+    <div class="expo-nav-logo">
+      <i data-lucide="star"></i>
+      <span>Strasbourg <em>sous les lumières</em></span>
+    </div>
+    <ul class="expo-nav-links">
+      <li><a href="index.html"><i data-lucide="home"></i><span>Accueil</span></a></li>
+      <li><a href="carte.html"><i data-lucide="map"></i><span>Carte</span></a></li>
+      <li><a href="donnees.html"><i data-lucide="bar-chart-2"></i><span>Données</span></a></li>
+      <li><a href="infographie.html" class="active"><i data-lucide="leaf"></i><span>Impacts</span></a></li>
+    </ul>
+    <div class="expo-nav-badge">Exposition · 2025</div>
+  </nav>
 
-    <div class="page-infographie">
-      <div class="page-header reveal">
-        <p class="section-tag">Infographie · Contexte local</p>
-        <h1 class="section-titre">Politiques, acteurs et écosystèmes</h1>
-        <p>Politiques de l'Eurométropole, acteurs alsaciens, types d'éclairage et impacts sur le corridor rhénan.</p>
-      </div>
+  <!-- Section 0 — Accroche -->
+  <section class="expo-scroll-section" style="background:radial-gradient(ellipse at center, rgba(13,13,43,0.8) 0%, transparent 70%);">
+    <div class="expo-scroll-content" style="text-align:center;">
+      <p style="font-family:'Space Mono',monospace;font-size:0.68rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--cyan);margin-bottom:1rem;">Les conséquences invisibles</p>
+      <div class="expo-big-number" style="color:var(--or);">60 %</div>
+      <p class="expo-fact-title">des espèces animales sont actives la nuit</p>
+      <div class="expo-divider" style="background:var(--or);margin:1.25rem auto;"></div>
+      <p class="expo-fact-text" style="margin:0 auto;">La lumière artificielle nocturne perturbe des millions d'années d'évolution. Chauves-souris, amphibiens, poissons migrateurs, insectes pollinisateurs — tous les maillons de la chaîne du vivant sont touchés autour de Strasbourg.</p>
+    </div>
+  </section>
 
-      <div class="infographie-wrap">
-
-        <!-- Hero -->
-        <div class="info-hero reveal scrolly-step">
-          <div class="badge">Eurométropole de Strasbourg — 2012–2022</div>
-          <h2>Toutes les communes ont progressé. Aucune exception.</h2>
-          <p>Malgré le Plan Climat Air Énergie Territorial, le remplacement des lampes sodium par des LED et les objectifs de réduction des consommations, la radiance nocturne a augmenté dans la totalité des 33 communes de l'Eurométropole entre 2012 et 2022. L'effet rebond absorbe les gains.</p>
-        </div>
-
-        <!-- Politiques + Acteurs -->
-        <div class="scrolly-anchor" data-label="Politiques locales"></div>
-        <div class="info-grille">
-
-          <div class="info-bloc reveal scrolly-step scrolly-left">
-            <h3><i data-lucide="clipboard-list" style="display:inline-block;vertical-align:middle;margin-right:0.4rem;width:1.1em;height:1.1em;"></i>Chronologie des politiques locales</h3>
-            <div class="timeline-pcaet">
-              <div class="tl-item">
-                <div class="tl-dot"></div>
-                <div class="politique-texte">
-                  <strong>2012 — SDAL Strasbourg</strong>
-                  <span>Publication du Schéma Directeur d'Aménagement Lumière de Strasbourg, document de référence fixant des ambitions de qualité lumineuse par quartier.</span>
-                </div>
-              </div>
-              <div class="tl-item">
-                <div class="tl-dot"></div>
-                <div class="politique-texte">
-                  <strong>2015 — Début transition LED</strong>
-                  <span>L'Eurométropole engage le remplacement progressif des lampes à vapeur de sodium par des LED dans l'éclairage public. Objectif : -40 % de consommation d'ici 2030.</span>
-                </div>
-              </div>
-              <div class="tl-item">
-                <div class="tl-dot"></div>
-                <div class="politique-texte">
-                  <strong>2017 — PCAET Eurométropole</strong>
-                  <span>Plan Climat Air Énergie Territorial adopté. L'éclairage public est identifié comme levier prioritaire (40 % de la consommation électrique communale).</span>
-                </div>
-              </div>
-              <div class="tl-item">
-                <div class="tl-dot"></div>
-                <div class="politique-texte">
-                  <strong>2018 — Arrêté national</strong>
-                  <span>Arrêté du 27 décembre 2018 sur les nuisances lumineuses : extinction obligatoire des enseignes entre 1h et 6h, températures de couleur plafonnées.</span>
-                </div>
-              </div>
-              <div class="tl-item">
-                <div class="tl-dot"></div>
-                <div class="politique-texte">
-                  <strong>2021 — Réserve de biosphère</strong>
-                  <span>Création de la Réserve de Biosphère Transfrontalière Alsace (UNESCO), qui s'inscrit dans un cadre de surveillance élargi des pressions anthropiques sur les milieux naturels, dont la pollution lumineuse figure parmi les enjeux de gestion.</span>
-                </div>
-              </div>
-              <div class="tl-item" style="margin-bottom:0;">
-                <div class="tl-dot" style="background:var(--cyan);"></div>
-                <div class="politique-texte">
-                  <strong>2022 — Bilan PCAET</strong>
-                  <span>Premier bilan : des économies substantielles ont été constatées sur l'éclairage public (objectif de -40 % en cours d'atteinte), mais la radiance VIIRS continue de progresser — l'effet rebond est confirmé.</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="info-bloc reveal scrolly-step scrolly-right">
-            <h3><i data-lucide="landmark" style="display:inline-block;vertical-align:middle;margin-right:0.4rem;width:1.1em;height:1.1em;"></i>Acteurs locaux de la nuit</h3>
-            <div class="acteur-item">
-              <div class="acteur-icone"><i data-lucide="building-2" style="display:inline-block;width:1.4rem;height:1.4rem;"></i></div>
-              <div>
-                <div class="acteur-nom">Eurométropole de Strasbourg</div>
-                <div class="acteur-desc">Compétence éclairage public sur 33 communes. Pilote le PCAET et coordonne la transition LED des communes membres.</div>
-              </div>
-            </div>
-            <div class="acteur-item">
-              <div class="acteur-icone"><i data-lucide="telescope" style="display:inline-block;width:1.4rem;height:1.4rem;"></i></div>
-              <div>
-                <div class="acteur-nom">Planète Sciences Alsace</div>
-                <div class="acteur-desc">Association organisant des animations de sensibilisation à la pollution lumineuse et des soirées d'observation dans l'Eurométropole.</div>
-              </div>
-            </div>
-            <div class="acteur-item">
-              <div class="acteur-icone"><i data-lucide="leaf" style="display:inline-block;width:1.4rem;height:1.4rem;"></i></div>
-              <div>
-                <div class="acteur-nom">LPO Alsace</div>
-                <div class="acteur-desc">Ligue de Protection des Oiseaux. Documente les impacts sur les espèces nocturnes du corridor rhénan, notamment les chauves-souris et la cigogne blanche.</div>
-              </div>
-            </div>
-            <div class="acteur-item">
-              <div class="acteur-icone"><i data-lucide="radio-tower" style="display:inline-block;width:1.4rem;height:1.4rem;"></i></div>
-              <div>
-                <div class="acteur-nom">ANPCEN</div>
-                <div class="acteur-desc">Association Nationale pour la Protection du Ciel Nocturne. Labellise les communes alsaciennes engagées dans des politiques d'extinction nocturne.</div>
-              </div>
-            </div>
-            <div class="acteur-item">
-              <div class="acteur-icone"><i data-lucide="globe-2" style="display:inline-block;width:1.4rem;height:1.4rem;"></i></div>
-              <div>
-                <div class="acteur-nom">Réserve de Biosphère Transfrontalière</div>
-                <div class="acteur-desc">Créée en 2021, couvre une partie de l'Eurométropole. Premier cadre institutionnel franco-allemand intégrant la pollution lumineuse.</div>
-              </div>
-            </div>
-
-            <div class="saviez-vous" style="margin-top:1.25rem;">
-              <span class="sy-label"><i data-lucide="star" style="display:inline-block;vertical-align:middle;width:0.85rem;height:0.85rem;fill:var(--or);stroke:var(--or);margin-right:0.25rem;"></i>Le saviez-vous ?</span>
-              <p>La cigogne blanche, emblème de l'Alsace, est une espèce partiellement nocturne lors de ses migrations. Des études de la LPO Alsace montrent que les halos lumineux de Strasbourg perturbent les vols migratoires nocturnes au-dessus du couloir rhénan.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Corridor rhénan -->
-        <div class="scrolly-anchor" data-label="Corridor écologique rhénan"></div>
-        <div class="corridor-bloc reveal scrolly-step">
-          <h3><i data-lucide="leaf" style="display:inline-block;vertical-align:middle;margin-right:0.4rem;width:1.1em;height:1.1em;"></i>Impacts sur le corridor écologique rhénan</h3>
-          <p style="font-size:0.92rem;color:var(--gris-texte);margin-bottom:1.25rem;text-align:justify;">
-            La Forêt du Rhin, les zones humides du Ried et les berges du fleuve forment un corridor écologique d'importance européenne, directement adjacent aux communes les plus lumineuses de l'Eurométropole. Entre 2012 et 2022, la radiance à la lisière de la Forêt du Rhin a progressé de ~13 à ~16 nW/cm²/sr — soit une hausse de +23 %, comparable à celle des communes périurbaines voisines. Cette progression, même à ces niveaux modérés, érode la qualité du milieu pour les espèces nocturnes.
+  <!-- Section 1 — Chauves-souris -->
+  <section class="expo-scroll-section" style="border-top:1px solid rgba(74,222,128,0.1);">
+    <div class="expo-scroll-content">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;">
+        <div>
+          <p style="font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--vert-reserve);margin-bottom:0.75rem;">
+            <i data-lucide="bat" style="display:inline-block;vertical-align:middle;width:0.9rem;height:0.9rem;margin-right:0.3rem;stroke:var(--vert-reserve);"></i>Chiroptères
           </p>
-
-          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-bottom:1.75rem;">
-            <div>
-              <div class="corridor-espece">
-                <span class="icone"><i data-lucide="bat" style="width:1.2rem;height:1.2rem;stroke:var(--vert-reserve);"></i></span>
-                <div class="texte">
-                  <strong>Chauves-souris (7 espèces)</strong><br>
-                  Les chiroptères naviguent par écholocation, mais leur comportement de chasse est profondément modifié par la lumière artificielle. Les espèces <em>light-averse</em> comme le Grand Rhinolophe (<em>Rhinolophus ferrumequinum</em>) désertent les zones éclairées et abandonnent les routes de vol habituelles dès que l'intensité lumineuse dépasse ~5 lux au sol (Stone et al., 2009). Les espèces <em>light-tolerant</em> comme la Pipistrelle commune se concentrent au contraire autour des lampadaires où les insectes sont attirés — créant une compétition artificielle qui affecte l'ensemble de la guilde. Des données de terrain collectées par la LPO Alsace (communication interne, 2015–2022) signalent un recul des terrains de chasse du Grand Rhinolophe dans plusieurs communes riveraines de l'Eurométropole depuis le renforcement de l'éclairage des berges de l'Ill.
-                </div>
-              </div>
-              <div class="corridor-espece" style="margin-top:0.75rem;">
-                <span class="icone"><i data-lucide="bird" style="width:1.2rem;height:1.2rem;stroke:var(--vert-reserve);"></i></span>
-                <div class="texte">
-                  <strong>Rapaces nocturnes</strong><br>
-                  L'Effraie des clochers (<em>Tyto alba</em>) chasse à vue dans des conditions de très faible luminosité. L'augmentation du halo lumineux en périphérie de l'Eurométropole réduit ses zones de chasse efficaces : une luminance de fond trop élevée masque les petits mammifères au sol. La Chevêche d'Athéna, sédentaire et territoriale, est également pénalisée par l'éclairage des voies agricoles dans les communes périphériques comme Eschau ou Plobsheim, où sa présence a diminué (Gaston et al., 2013).
-                </div>
-              </div>
-              <div class="corridor-espece" style="margin-top:0.75rem;">
-                <span class="icone"><i data-lucide="footprints" style="width:1.2rem;height:1.2rem;stroke:var(--vert-reserve);"></i></span>
-                <div class="texte">
-                  <strong>Amphibiens</strong><br>
-                  La reproduction des anoures (grenouilles, crapauds) est régulée par la photopériode : le déclenchement de la migration vers les mares est perturbé par l'éclairage artificiel, qui avance ou retarde le signal saisonnier. Sur les berges aménagées de l'Ill entre Illkirch et Ostwald, où la radiance atteint ~37 nW/cm²/sr, les concentrations de tritons et de grenouilles rousses ont sensiblement diminué depuis l'éclairage des promenades riveraines (Longcore & Rich, 2004).
-                </div>
-              </div>
-            </div>
-            <div>
-              <div class="corridor-espece">
-                <span class="icone"><i data-lucide="feather" style="width:1.2rem;height:1.2rem;stroke:var(--vert-reserve);"></i></span>
-                <div class="texte">
-                  <strong>Cigogne blanche — espèce emblématique alsacienne</strong><br>
-                  L'Alsace abrite la première population nicheuse française de cigogne blanche (<em>Ciconia ciconia</em>), avec environ 800 couples dont plusieurs dizaines dans l'Eurométropole. Migrateur longue distance, cet oiseau effectue une partie de ses déplacements de nuit, notamment lors des passages prénuptiaux sur le couloir rhénan. Les halos lumineux de l'agglomération brouillent les repères navigationnels astronomiques utilisés lors de la migration nocturne. De plus, l'éclairage des zones de prairie et des milieux humides périurbains — terrains de chasse habituels — réduit la disponibilité perçue des proies nocturnes (vers, batraciens, petits mammifères). La LPO Alsace signale des comportements de désorientation sur les sites de dortoir proches des zones industrielles éclairées.
-                </div>
-              </div>
-              <div class="corridor-espece" style="margin-top:0.75rem;">
-                <span class="icone"><i data-lucide="bug" style="width:1.2rem;height:1.2rem;stroke:var(--vert-reserve);"></i></span>
-                <div class="texte">
-                  <strong>Insectes nocturnes</strong><br>
-                  Le phénomène d'attraction létale vers les sources lumineuses — décrit dès les années 1990 — concerne principalement les coléoptères et lépidoptères nocturnes. Les ponts sur le Rhin et l'Ill, fortement éclairés, constituent des pièges permanents pour les insectes aquatiques émergents. Des études de terrain en Europe montrent que les lampadaires en bordure de milieux naturels peuvent réduire l'abondance des papillons nocturnes de 33 à 47 % dans les habitats adjacents, avec des effets en cascade sur les chaînes trophiques (Boyes et al., 2021). La pollinisation nocturne est réduite de 62 % sur les sites éclairés, affectant directement la reproduction des espèces végétales riveraines (Knop et al., 2017).
-                </div>
-              </div>
-              <div class="corridor-espece" style="margin-top:0.75rem;">
-                <span class="icone"><i data-lucide="fish" style="width:1.2rem;height:1.2rem;stroke:var(--vert-reserve);"></i></span>
-                <div class="texte">
-                  <strong>Poissons migrateurs — l'anguille européenne</strong><br>
-                  L'anguille européenne (<em>Anguilla anguilla</em>, espèce classée CR sur la liste rouge UICN) effectue ses migrations dévalaisons de nuit, en évitant activement la lumière. L'éclairage des berges de l'Ill dans la traversée de l'agglomération crée des barrières comportementales qui fragmentent les couloirs de migration. Ce phénomène, étudié dans le cadre du plan de gestion anguille du bassin Rhin-Meuse, est reconnu comme l'une des causes de la dégradation des populations locales.
-                </div>
-              </div>
-              <div class="corridor-espece" style="margin-top:0.75rem;">
-                <span class="icone"><i data-lucide="sprout" style="width:1.2rem;height:1.2rem;stroke:var(--vert-reserve);"></i></span>
-                <div class="texte">
-                  <strong>Phénologie végétale</strong><br>
-                  Les espèces ligneuses riveraines (saules, peupliers) perçoivent la durée du jour via des photorécepteurs foliaires. Une exposition nocturne prolongée à une radiance supérieure à ~5–10 nW/cm²/sr peut retarder la sénescence automnale de plusieurs semaines, rendant les arbres plus vulnérables aux gelées précoces. Les ripisylves de l'Ill dans les communes périurbaines sont particulièrement exposées à ce phénomène (Longcore & Rich, 2004).
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Progression 2012-2022 aux lisières -->
-          <p style="font-family:'Space Mono',monospace;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--vert-reserve);margin:0 0 1rem;">Progression de la radiance aux zones écologiques — 2012 → 2022</p>
-          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0.75rem;margin-bottom:1.25rem;">
-            <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(74,222,128,0.15);border-radius:6px;padding:0.85rem 1rem;">
-              <div style="font-family:'Space Mono',monospace;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--vert-reserve);margin-bottom:0.4rem;">Ried central</div>
-              <div style="font-size:1.2rem;font-family:'Space Mono',monospace;color:var(--blanc-etoile);">~8 → ~9 nW</div>
-              <div style="font-size:0.78rem;color:var(--gris-texte);margin-top:0.25rem;">+12 % — encore compatible avec la faune nocturne</div>
-            </div>
-            <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(245,158,11,0.2);border-radius:6px;padding:0.85rem 1rem;">
-              <div style="font-family:'Space Mono',monospace;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.08em;color:#f59e0b;margin-bottom:0.4rem;">Lisière Forêt du Rhin</div>
-              <div style="font-size:1.2rem;font-family:'Space Mono',monospace;color:var(--blanc-etoile);">~13 → ~16 nW</div>
-              <div style="font-size:0.78rem;color:var(--gris-texte);margin-top:0.25rem;">+23 % — seuil critique pour les chiroptères light-averse</div>
-            </div>
-            <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,107,53,0.25);border-radius:6px;padding:0.85rem 1rem;">
-              <div style="font-family:'Space Mono',monospace;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.08em;color:#ff6b35;margin-bottom:0.4rem;">Berges de l'Ill</div>
-              <div style="font-size:1.2rem;font-family:'Space Mono',monospace;color:var(--blanc-etoile);">~30 → ~37 nW</div>
-              <div style="font-size:0.78rem;color:var(--gris-texte);margin-top:0.25rem;">+23 % — perturbation majeure des migrations d'anguilles</div>
-            </div>
-            <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,51,0,0.25);border-radius:6px;padding:0.85rem 1rem;">
-              <div style="font-family:'Space Mono',monospace;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.08em;color:#ff3300;margin-bottom:0.4rem;">Quais de Strasbourg</div>
-              <div style="font-size:1.2rem;font-family:'Space Mono',monospace;color:var(--blanc-etoile);">~42 → ~52 nW</div>
-              <div style="font-size:0.78rem;color:var(--gris-texte);margin-top:0.25rem;">+24 % — pièges à insectes permanents sur les ponts</div>
-            </div>
-          </div>
-
-          <p style="font-size:0.76rem;color:var(--gris-texte);font-style:italic;">Estimations zonales calculées en moyennant les pixels VIIRS 500 m (VNP46A4, Elvidge et al., 2021) sur des zones géographiques définies. Sources écologiques : Stone et al. (2009, seuil chiroptères), Gaston et al. (2013), Longcore & Rich (2004), Knop et al. (2017), Boyes et al. (2021), OFB — Plan de gestion anguille Rhin-Meuse (2022), LPO Alsace (données de terrain, communication interne).</p>
+          <div class="expo-big-number" style="color:var(--vert-reserve);font-size:clamp(3rem,8vw,6rem);">5 lux</div>
+          <p class="expo-fact-title">seuil critique pour le Grand Rhinolophe</p>
+          <div class="expo-divider" style="background:var(--vert-reserve);"></div>
+          <p class="expo-fact-text">Au-delà de 5 lux au sol, les chauves-souris <em>light-averse</em> abandonnent leurs routes de vol habituelles. 7 espèces de chiroptères sont présentes dans le corridor rhénan — toutes menacées par l'éclairage des berges de l'Ill.</p>
+          <p style="font-size:0.78rem;color:var(--gris-texte);margin-top:0.75rem;font-style:italic;">Stone et al. (2009) · LPO Alsace (2015–2022)</p>
         </div>
-
-        <!-- Types d'éclairage + Recommandations -->
-        <div class="scrolly-anchor" data-label="Types d'éclairage"></div>
-        <div class="info-grille">
-          <div class="info-bloc reveal scrolly-step scrolly-left">
-            <h3><i data-lucide="lightbulb" style="display:inline-block;vertical-align:middle;margin-right:0.4rem;width:1.1em;height:1.1em;"></i>Types d'éclairage dans l'Eurométropole</h3>
-            <div class="type-eclairage-grid">
-              <div class="type-item">
-                <div class="type-nom">LED blanc froid</div>
-                <div class="type-desc">Température &gt; 4000 K. Très perturbant pour la faune. Encore présent dans les installations récentes non conformes.</div>
-              </div>
-              <div class="type-item">
-                <div class="type-nom" style="color:var(--vert-reserve);">LED blanc chaud</div>
-                <div class="type-desc">Température &lt; 3000 K. Recommandé par l'ANPCEN. Adoptionprogressivement dans l'Eurométropole.</div>
-              </div>
-              <div class="type-item">
-                <div class="type-nom">Sodium haute pression</div>
-                <div class="type-desc">Lumière orange, moins perturbante spectralement. En cours de remplacement par LED mais reste présent dans les communes rurales.</div>
-              </div>
-              <div class="type-item">
-                <div class="type-nom" style="color:var(--cyan);">Éclairage dynamique</div>
-                <div class="type-desc">Détecteurs de présence + variation d'intensité. Expérimental dans quelques rues pietones de Strasbourg.</div>
-              </div>
-              <div class="type-item">
-                <div class="type-nom">Enseignes LED</div>
-                <div class="type-desc">Forte contribution à la radiance nocturne. Obligation d'extinction entre 1h et 6h (arrêté 2018), inégalement respectée.</div>
-              </div>
-              <div class="type-item">
-                <div class="type-nom" style="color:var(--vert-reserve);">Extinction partielle</div>
-                <div class="type-desc">Arrêt de l'éclairage public entre 1h et 5h. Pratiquée dans plusieurs communes périphériques de l'Eurométropole.</div>
-              </div>
+        <div>
+          <div class="expo-species-grid" style="grid-template-columns:1fr;">
+            <div class="expo-species-card">
+              <div class="expo-species-icon"><i data-lucide="bat" style="width:1.4rem;height:1.4rem;stroke:var(--vert-reserve);"></i></div>
+              <div class="expo-species-name">Grand Rhinolophe</div>
+              <div class="expo-species-desc">Déserte les zones éclairées. Recul documenté par la LPO Alsace sur les berges de l'Ill.</div>
             </div>
-          </div>
-
-          <div class="info-bloc reveal scrolly-step scrolly-right">
-            <h3><i data-lucide="check-circle-2" style="display:inline-block;vertical-align:middle;margin-right:0.4rem;width:1.1em;height:1.1em;"></i>Recommandations pour l'Eurométropole</h3>
-            <p style="font-size:0.88rem;color:var(--gris-texte);margin-bottom:1.25rem;font-style:italic;">Leviers identifiés pour une réduction effective de la radiance nocturne :</p>
-            <div style="display:flex;flex-direction:column;gap:0.85rem;">
-              <div style="display:flex;gap:0.75rem;align-items:flex-start;">
-                <span style="color:var(--vert-reserve);flex-shrink:0;font-size:1rem;">①</span>
-                <div>
-                  <strong style="font-family:'Space Mono',monospace;font-size:0.7rem;color:var(--blanc-etoile);display:block;margin-bottom:0.2rem;">LIMITER LA TEMPÉRATURE DE COULEUR</strong>
-                  <span style="font-size:0.88rem;color:var(--gris-texte);">Imposer &lt; 2700 K pour tous les nouveaux marchés LED, en particulier dans les communes proches du corridor rhénan.</span>
-                </div>
-              </div>
-              <div style="display:flex;gap:0.75rem;align-items:flex-start;">
-                <span style="color:var(--vert-reserve);flex-shrink:0;font-size:1rem;">②</span>
-                <div>
-                  <strong style="font-family:'Space Mono',monospace;font-size:0.7rem;color:var(--blanc-etoile);display:block;margin-bottom:0.2rem;">EXTINCTION 1H–5H GÉNÉRALISÉE</strong>
-                  <span style="font-size:0.88rem;color:var(--gris-texte);">Étendre l'extinction nocturne partielle, déjà pratiquée dans les communes rurales, aux zones résidentielles de la première couronne.</span>
-                </div>
-              </div>
-              <div style="display:flex;gap:0.75rem;align-items:flex-start;">
-                <span style="color:var(--vert-reserve);flex-shrink:0;font-size:1rem;">③</span>
-                <div>
-                  <strong style="font-family:'Space Mono',monospace;font-size:0.7rem;color:var(--blanc-etoile);display:block;margin-bottom:0.2rem;">CONTRÔLER L'EFFET REBOND</strong>
-                  <span style="font-size:0.88rem;color:var(--gris-texte);">Encadrer le nombre de points lumineux dans les nouvelles zones d'aménagement pour éviter que les économies LED ne soient absorbées par l'extension de l'éclairage.</span>
-                </div>
-              </div>
-              <div style="display:flex;gap:0.75rem;align-items:flex-start;">
-                <span style="color:var(--vert-reserve);flex-shrink:0;font-size:1rem;">④</span>
-                <div>
-                  <strong style="font-family:'Space Mono',monospace;font-size:0.7rem;color:var(--blanc-etoile);display:block;margin-bottom:0.2rem;">ZONES TAMPON ÉCOLOGIQUES</strong>
-                  <span style="font-size:0.88rem;color:var(--gris-texte);">Créer des "corridors sombres" entre les zones bâties et la Forêt du Rhin, avec des prescriptions strictes dans les PLU communaux.</span>
-                </div>
-              </div>
-              <div style="display:flex;gap:0.75rem;align-items:flex-start;">
-                <span style="color:var(--vert-reserve);flex-shrink:0;font-size:1rem;">⑤</span>
-                <div>
-                  <strong style="font-family:'Space Mono',monospace;font-size:0.7rem;color:var(--blanc-etoile);display:block;margin-bottom:0.2rem;">SUIVI VIIRS ANNUEL</strong>
-                  <span style="font-size:0.88rem;color:var(--gris-texte);">Intégrer les données VIIRS NASA comme indicateur officiel du PCAET, permettant un suivi objectif indépendant des déclarations d'économies d'énergie.</span>
-                </div>
-              </div>
+            <div class="expo-species-card" style="margin-top:0.75rem;">
+              <div class="expo-species-icon"><i data-lucide="bat" style="width:1.4rem;height:1.4rem;stroke:var(--ambre);"></i></div>
+              <div class="expo-species-name">Pipistrelle commune</div>
+              <div class="expo-species-desc">S'adapte et se concentre autour des lampadaires — créant une compétition artificielle dans la guilde.</div>
             </div>
           </div>
         </div>
-
-        <!-- SVG halo -->
-        <!-- Santé humaine -->
-        <div class="scrolly-anchor" data-label="Santé humaine"></div>
-        <div class="info-bloc reveal scrolly-step scrolly-right" style="margin-bottom:2rem;border-color:rgba(167,139,250,0.25);background:rgba(13,13,43,0.8);">
-          <h3 style="color:#a78bfa;"><i data-lucide="heart-pulse" style="display:inline-block;vertical-align:middle;margin-right:0.4rem;width:1.1em;height:1.1em;"></i>Impacts sur la santé humaine</h3>
-          <p style="font-size:0.9rem;color:var(--gris-texte);margin-bottom:1.25rem;text-align:justify;">
-            La pollution lumineuse ne concerne pas seulement la faune nocturne. Pour les 500 000 habitants
-            de l'Eurométropole, l'exposition chronique à la lumière artificielle nocturne — même à travers
-            les volets — perturbe des processus biologiques fondamentaux.
-          </p>
-          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-bottom:1.25rem;">
-            <div style="background:rgba(167,139,250,0.08);border:1px solid rgba(167,139,250,0.2);border-radius:8px;padding:1rem;">
-              <div style="font-family:'Space Mono',monospace;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:#a78bfa;margin-bottom:0.5rem;">Mélatonine & rythme circadien</div>
-              <p style="font-size:0.85rem;color:var(--gris-texte);line-height:1.55;">La lumière bleue (450–490 nm) — dominante dans les LED blancs froids — inhibe la sécrétion de mélatonine par la glande pinéale. Or la mélatonine régule le cycle veille-sommeil, l'immunité et la réparation cellulaire. Une exposition même brève à ~3 lux en chambre suffit à supprimer partiellement cette sécrétion.</p>
-            </div>
-            <div style="background:rgba(167,139,250,0.08);border:1px solid rgba(167,139,250,0.2);border-radius:8px;padding:1rem;">
-              <div style="font-family:'Space Mono',monospace;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:#a78bfa;margin-bottom:0.5rem;">Risque cancérologique</div>
-              <p style="font-size:0.85rem;color:var(--gris-texte);line-height:1.55;">Le Centre International de Recherche sur le Cancer (CIRC/OMS) classe le travail de nuit — et l'exposition chronique nocturne à la lumière artificielle — comme <strong style="color:#a78bfa;">cancérogène probable (groupe 2A)</strong> depuis 2007 (monographie 98, 2010). Le mécanisme : la suppression de mélatonine favorise la prolifération cellulaire dans les tissus hormonosensibles (sein, prostate).</p>
-            </div>
-            <div style="background:rgba(167,139,250,0.08);border:1px solid rgba(167,139,250,0.2);border-radius:8px;padding:1rem;">
-              <div style="font-family:'Space Mono',monospace;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:#a78bfa;margin-bottom:0.5rem;">Troubles métaboliques & cardiovasculaires</div>
-              <p style="font-size:0.85rem;color:var(--gris-texte);line-height:1.55;">Des études épidémiologiques de grande échelle montrent une corrélation entre l'intensité de la lumière nocturne extérieure (mesurée par satellite) et les taux d'obésité, de diabète de type 2 et de maladies cardiovasculaires dans les populations urbaines. À Strasbourg, les quartiers avec les radiances les plus élevées concentrent les populations les plus exposées.</p>
-            </div>
-          </div>
-          <div class="saviez-vous" style="margin-top:0;background:rgba(167,139,250,0.07);border-color:rgba(167,139,250,0.2);">
-            <span class="sy-label" style="color:#a78bfa;"><i data-lucide="star" style="display:inline-block;vertical-align:middle;width:0.85rem;height:0.85rem;fill:var(--or);stroke:var(--or);margin-right:0.25rem;"></i>LED blanc froid vs LED ambre</span>
-            <p>Un lampadaire LED blanc froid (6500 K) est <strong>~5 fois plus perturbateur</strong> pour le rythme circadien humain qu'un équivalent amber (2200 K) à intensité lumineuse identique, en raison de sa richesse en longueurs d'onde bleues. Le choix de la température de couleur est donc un enjeu de santé publique autant qu'écologique. L'arrêté de 2018 plafonne la température à 3000 K pour les installations nouvelles, mais n'impose pas de remplacement des installations existantes.</p>
-          </div>
-        </div>
-
-        <!-- Gradient Vosges–Strasbourg–Rhin -->
-        <div class="scrolly-anchor" data-label="Gradient lumineux"></div>
-        <div class="info-bloc reveal scrolly-step scrolly-right" style="margin-bottom:2rem;border-color:rgba(103,232,249,0.2);">
-          <h3><i data-lucide="mountain-snow" style="display:inline-block;vertical-align:middle;margin-right:0.4rem;width:1.1em;height:1.1em;"></i>Le gradient lumineux Vosges–Strasbourg–Forêt Noire</h3>
-          <p style="font-size:0.9rem;color:var(--gris-texte);margin-bottom:1.25rem;text-align:justify;">
-            Strasbourg occupe le fond de la plaine rhénane, encadrée à l'ouest par le Massif Vosgien et à l'est par la Forêt Noire (Schwarzwald). Ce contexte géographique donne naissance à l'un des gradients de radiance les plus frappants d'Europe occidentale, sur une distance de seulement 80 km.
-          </p>
-          <!-- Barre de gradient -->
-          <div style="margin:1.5rem 0;">
-            <div style="display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:0.65rem;color:var(--gris-texte);margin-bottom:0.5rem;">
-              <span>← OUEST</span><span>EST →</span>
-            </div>
-            <div style="height:16px;border-radius:8px;background:linear-gradient(90deg,#4ade80 0%,#67e8f9 18%,#f5c842 35%,#ff6b35 50%,#ff3300 50%,#ff6b35 65%,#f5c842 82%,#67e8f9 90%,#4ade80 100%);margin-bottom:0.5rem;"></div>
-            <div style="display:grid;grid-template-columns:repeat(7,1fr);text-align:center;gap:0.25rem;">
-              <div style="font-family:'Space Mono',monospace;font-size:0.6rem;color:#4ade80;">Champ<br>du Feu<br><strong style="font-size:0.75rem;">~1 nW</strong></div>
-              <div style="font-family:'Space Mono',monospace;font-size:0.6rem;color:#67e8f9;">Blaesheim<br>&nbsp;<br><strong style="font-size:0.75rem;">9 nW</strong></div>
-              <div style="font-family:'Space Mono',monospace;font-size:0.6rem;color:#f5c842;">Illkirch<br>&nbsp;<br><strong style="font-size:0.75rem;">29 nW</strong></div>
-              <div style="font-family:'Space Mono',monospace;font-size:0.6rem;color:#ff3300;">Strasbourg<br>centre<br><strong style="font-size:0.75rem;">~52 nW</strong></div>
-              <div style="font-family:'Space Mono',monospace;font-size:0.6rem;color:#f5c842;">Kehl (DE)<br>&nbsp;<br><strong style="font-size:0.75rem;">~31 nW</strong></div>
-              <div style="font-family:'Space Mono',monospace;font-size:0.6rem;color:#67e8f9;">Forêt du<br>Rhin<br><strong style="font-size:0.75rem;">16 nW</strong></div>
-              <div style="font-family:'Space Mono',monospace;font-size:0.6rem;color:#4ade80;">Schwarzwald<br>&nbsp;<br><strong style="font-size:0.75rem;">~2 nW</strong></div>
-            </div>
-          </div>
-          <p style="font-size:0.88rem;color:var(--gris-texte);line-height:1.6;margin-bottom:1rem;">
-            Le <strong>Champ du Feu</strong> (1 099 m, à 35 km de Strasbourg), le site d'observation du Club d'Astronomie de Strasbourg-Espace (CASE) et du réseau ANPCEN, affiche des valeurs inférieures à 2 nW/cm²/sr — soit un ciel <strong>Bortle 3</strong>, où la Voie Lactée est bien visible. En traversant la plaine vers Strasbourg, la radiance est multipliée par 25 en 35 km. La Forêt Noire, côté allemand, offre un gradient symétrique. Ce contraste illustre concrètement ce que la plaine d'Alsace a perdu depuis les années 1970 : un ciel nocturne de qualité à moins de 30 minutes de voiture pour la majorité des habitants de l'Eurométropole.
-          </p>
-          <p style="font-size:0.76rem;color:var(--gris-texte);font-style:italic;">Valeurs VIIRS 2022 estimées. La mesure VIIRS sous-estime la brillance du ciel visible car elle est peu sensible aux longueurs d'onde bleues des LED modernes (Kyba et al., 2023). Les valeurs pour le Champ du Feu et le Schwarzwald sont indicatives (ciel non urbanisé).</p>
-        </div>
-
-        <!-- Comparaison franco-allemande -->
-        <div class="scrolly-anchor" data-label="Comparaison franco-allemande"></div>
-        <div class="info-bloc reveal scrolly-step scrolly-right" style="margin-bottom:2rem;border-color:rgba(103,232,249,0.18);">
-          <h3><i data-lucide="arrow-left-right" style="display:inline-block;vertical-align:middle;margin-right:0.4rem;width:1.1em;height:1.1em;"></i>Perspective transfrontalière : Strasbourg et Kehl</h3>
-          <p style="font-size:0.9rem;color:var(--gris-texte);margin-bottom:1.25rem;text-align:justify;">
-            Strasbourg est l'une des rares agglomérations françaises dont la commune-centre est directement mitoyenne d'une commune étrangère. Kehl (38 000 habitants, Bade-Wurtemberg) est séparée de Strasbourg par le Rhin et le pont de l'Europe — 3 km à vol d'oiseau. Cette proximité autorise une comparaison de politique d'éclairage dans des contextes urbains analogues.
-          </p>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.25rem;">
-            <div style="background:rgba(0,85,164,0.12);border:1px solid rgba(0,85,164,0.3);border-radius:8px;padding:1rem;">
-              <div style="font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:#67e8f9;margin-bottom:0.5rem;">🇫🇷 Strasbourg (commune-centre)</div>
-              <div style="font-family:'Space Mono',monospace;font-size:1.1rem;color:var(--blanc-etoile);">31,6 nW <span style="font-size:0.8rem;color:#ff6b35;">+21 %</span></div>
-              <p style="font-size:0.8rem;color:var(--gris-texte);margin-top:0.5rem;">SDAL depuis 2012. Transition LED engagée 2015–2022. Extinction partielle expérimentée dans certains quartiers.</p>
-            </div>
-            <div style="background:rgba(0,0,0,0.15);border:1px solid rgba(255,200,0,0.25);border-radius:8px;padding:1rem;">
-              <div style="font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:#fde68a;margin-bottom:0.5rem;">🇩🇪 Kehl (Baden-Württemberg)</div>
-              <div style="font-family:'Space Mono',monospace;font-size:1.1rem;color:var(--blanc-etoile);">~27 nW <span style="font-size:0.8rem;color:#f59e0b;">+17 %</span></div>
-              <p style="font-size:0.8rem;color:var(--gris-texte);margin-top:0.5rem;">Règlement d'éclairage public BW antérieur à la France. LED à 2700 K favorisées. Extinction nocturne des éclairages de façade plus strictement appliquée.</p>
-            </div>
-          </div>
-          <div class="saviez-vous" style="margin-top:0;">
-            <span class="sy-label"><i data-lucide="star" style="display:inline-block;vertical-align:middle;width:0.85rem;height:0.85rem;fill:var(--or);stroke:var(--or);margin-right:0.25rem;"></i>Limites méthodologiques de cette comparaison</span>
-            <p>Les valeurs pour Kehl sont des estimations issues du même modèle VIIRS, non vérifiées par des mesures de terrain comparatives. L'écart de taux de croissance (+21 % vs +17 %) est suggestif mais ne peut être directement attribué aux seules politiques d'éclairage, car Kehl a également connu une trajectoire de développement urbain différente de Strasbourg sur la période. Une étude comparative rigoureuse nécessiterait des mesures SQM synchronisées sur les deux rives. La Réserve de Biosphère Transfrontalière Alsace offre le cadre institutionnel idéal pour un tel projet.</p>
-          </div>
-        </div>
-
-        <!-- Que faire ? -->
-        <div class="scrolly-anchor" data-label="Leviers d'action"></div>
-        <div class="info-bloc reveal scrolly-step scrolly-right" style="margin-bottom:2rem;border-color:rgba(74,222,128,0.25);background:linear-gradient(135deg,rgba(74,222,128,0.05),rgba(13,13,43,0.8));">
-          <h3 style="color:var(--vert-reserve);"><i data-lucide="check-circle-2" style="display:inline-block;vertical-align:middle;margin-right:0.4rem;width:1.1em;height:1.1em;"></i>Que peut-on faire ? — Leviers d'action</h3>
-          <p style="font-size:0.9rem;color:var(--gris-texte);margin-bottom:1.5rem;">
-            La pollution lumineuse est l'une des rares formes de pollution <strong>entièrement réversible</strong> : éteindre une lampe produit un effet immédiat. Voici les leviers disponibles, du plus simple au plus structurel.
-          </p>
-          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;">
-            <div>
-              <p style="font-family:'Space Mono',monospace;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--vert-reserve);margin-bottom:0.75rem;border-bottom:1px solid rgba(74,222,128,0.15);padding-bottom:0.5rem;">À l'échelle individuelle</p>
-              <div class="politique-item">
-                <span class="politique-annee" style="color:var(--vert-reserve);">①</span>
-                <div class="politique-texte"><strong style="font-size:0.8rem;">Volets et rideaux occultants</strong><span>Réduire le flux entrant la nuit protège votre sommeil et votre sécrétion de mélatonine.</span></div>
-              </div>
-              <div class="politique-item">
-                <span class="politique-annee" style="color:var(--vert-reserve);">②</span>
-                <div class="politique-texte"><strong style="font-size:0.8rem;">Températures de couleur ≤ 2700 K</strong><span>Choisir des ampoules ambre/chaudes plutôt que blanc froid ou daylight pour l'éclairage extérieur.</span></div>
-              </div>
-              <div class="politique-item">
-                <span class="politique-annee" style="color:var(--vert-reserve);">③</span>
-                <div class="politique-texte"><strong style="font-size:0.8rem;">Détecteurs de présence</strong><span>Pour les éclairages extérieurs privés (entrée, garage, jardin) : allumage uniquement en cas de présence.</span></div>
-              </div>
-            </div>
-            <div>
-              <p style="font-family:'Space Mono',monospace;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--vert-reserve);margin-bottom:0.75rem;border-bottom:1px solid rgba(74,222,128,0.15);padding-bottom:0.5rem;">À l'échelle des communes</p>
-              <div class="politique-item">
-                <span class="politique-annee" style="color:var(--vert-reserve);">④</span>
-                <div class="politique-texte"><strong style="font-size:0.8rem;">Extinction partielle nocturne</strong><span>Entre 1h et 5h, réduction à 30 % ou extinction totale des axes non prioritaires. Pratiquée à Blaesheim, Osthoffen, Plobsheim.</span></div>
-              </div>
-              <div class="politique-item">
-                <span class="politique-annee" style="color:var(--vert-reserve);">⑤</span>
-                <div class="politique-texte"><strong style="font-size:0.8rem;">Luminaires à flux orienté vers le bas</strong><span>Éliminer les éclairages qui diffusent vers le ciel. Les luminaires conformes (full cut-off) réduisent la contribution au halo de 40 à 70 %.</span></div>
-              </div>
-              <div class="politique-item">
-                <span class="politique-annee" style="color:var(--vert-reserve);">⑥</span>
-                <div class="politique-texte"><strong style="font-size:0.8rem;">Label ANPCEN</strong><span>Les communes peuvent candidater au label « Villes et Villages Étoilés » de l'ANPCEN. Plusieurs communes alsaciennes sont déjà engagées dans cette démarche.</span></div>
-              </div>
-            </div>
-            <div>
-              <p style="font-family:'Space Mono',monospace;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--vert-reserve);margin-bottom:0.75rem;border-bottom:1px solid rgba(74,222,128,0.15);padding-bottom:0.5rem;">Science participative</p>
-              <div class="politique-item">
-                <span class="politique-annee" style="color:var(--vert-reserve);">⑦</span>
-                <div class="politique-texte"><strong style="font-size:0.8rem;">Globe at Night</strong><span>Programme de science participative : compter les étoiles visibles à l'œil nu dans la constellation d'Orion et soumettre l'observation. Contribue à l'atlas mondial de Kyba et al. (2023).</span></div>
-              </div>
-              <div class="politique-item">
-                <span class="politique-annee" style="color:var(--vert-reserve);">⑧</span>
-                <div class="politique-texte"><strong style="font-size:0.8rem;">Mesures SQM de terrain</strong><span>Un Sky Quality Meter (SQM, ~80 €) permet de mesurer la brillance du ciel en mag/arcsec² depuis n'importe quelle commune. Les clubs d'astronomie alsaciens (CASE, SAA) collectent ces données.</span></div>
-              </div>
-              <div class="politique-item">
-                <span class="politique-annee" style="color:var(--vert-reserve);">⑨</span>
-                <div class="politique-texte"><strong style="font-size:0.8rem;">Suivi des espèces nocturnes</strong><span>Participer aux inventaires nocturnes de la LPO Alsace (chauves-souris, amphibiens) ou à Vigie-Nature pour documenter les tendances locales.</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="info-bloc reveal scrolly-step scrolly-right" style="margin-bottom:2rem;">
-          <h3><i data-lucide="sunset" style="display:inline-block;vertical-align:middle;margin-right:0.4rem;width:1.1em;height:1.1em;"></i>Le halo de Strasbourg et ses communes — coupe schématique</h3>
-          <svg viewBox="0 0 900 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-height:220px;">
-            <rect width="900" height="220" fill="transparent"/>
-            <!-- Sol -->
-            <rect x="0" y="175" width="900" height="45" fill="#0a0a1a"/>
-            <line x1="0" y1="175" x2="900" y2="175" stroke="rgba(165,180,206,0.15)" stroke-width="1"/>
-            <!-- Halos dégradés -->
-            <defs>
-              <radialGradient id="h1" cx="50%" cy="100%" r="60%"><stop offset="0%" stop-color="#ff3300" stop-opacity="0.4"/><stop offset="100%" stop-color="#0d0d2b" stop-opacity="0"/></radialGradient>
-              <radialGradient id="h2" cx="22%" cy="100%" r="40%"><stop offset="0%" stop-color="#ff6b35" stop-opacity="0.25"/><stop offset="100%" stop-color="#0d0d2b" stop-opacity="0"/></radialGradient>
-              <radialGradient id="h3" cx="78%" cy="100%" r="35%"><stop offset="0%" stop-color="#ff6b35" stop-opacity="0.22"/><stop offset="100%" stop-color="#0d0d2b" stop-opacity="0"/></radialGradient>
-            </defs>
-            <rect x="0" y="0" width="900" height="175" fill="url(#h1)"/>
-            <rect x="0" y="0" width="900" height="175" fill="url(#h2)"/>
-            <rect x="0" y="0" width="900" height="175" fill="url(#h3)"/>
-            <!-- Bâtiments Strasbourg (centre) -->
-            <rect x="380" y="120" width="20" height="55" fill="#1a1a5e"/>
-            <rect x="405" y="100" width="30" height="75" fill="#12123a"/>
-            <rect x="440" y="110" width="25" height="65" fill="#1a1a5e"/>
-            <rect x="470" y="130" width="18" height="45" fill="#12123a"/>
-            <rect x="420" y="90" width="15" height="85" fill="#1a1a5e" opacity="0.8"/><!-- Cathédrale approx. -->
-            <!-- Schiltigheim (gauche) -->
-            <rect x="220" y="145" width="15" height="30" fill="#12123a"/>
-            <rect x="238" y="140" width="20" height="35" fill="#1a1a5e"/>
-            <rect x="262" y="148" width="12" height="27" fill="#12123a"/>
-            <!-- Illkirch (droite) -->
-            <rect x="630" y="145" width="18" height="30" fill="#12123a"/>
-            <rect x="652" y="140" width="22" height="35" fill="#1a1a5e"/>
-            <rect x="678" y="148" width="14" height="27" fill="#12123a"/>
-            <!-- Forêt du Rhin (far right) -->
-            <polygon points="790,175 800,145 810,155 820,140 830,150 840,175" fill="rgba(74,222,128,0.3)" stroke="rgba(74,222,128,0.5)" stroke-width="1"/>
-            <polygon points="820,175 832,148 842,158 852,142 862,155 870,175" fill="rgba(74,222,128,0.25)" stroke="rgba(74,222,128,0.4)" stroke-width="1"/>
-            <!-- Ried (far left) -->
-            <polygon points="30,175 40,155 50,162 58,148 66,158 72,175" fill="rgba(74,222,128,0.25)" stroke="rgba(74,222,128,0.4)" stroke-width="1"/>
-            <!-- Labels -->
-            <text x="435" y="195" fill="#f5c842" font-family="Space Mono" font-size="9" text-anchor="middle">STRASBOURG</text>
-            <text x="245" y="195" fill="#ff6b35" font-family="Space Mono" font-size="8" text-anchor="middle">SCHILTIGHEIM</text>
-            <text x="655" y="195" fill="#ff6b35" font-family="Space Mono" font-size="8" text-anchor="middle">ILLKIRCH</text>
-            <text x="830" y="195" fill="#4ade80" font-family="Space Mono" font-size="8" text-anchor="middle">FORÊT DU RHIN</text>
-            <text x="52" y="195" fill="#4ade80" font-family="Space Mono" font-size="8" text-anchor="middle">RIED</text>
-            <!-- Étoiles partiellement masquées -->
-            <text x="100" y="20" fill="rgba(232,234,246,0.15)" font-size="10">★</text>
-            <text x="200" y="35" fill="rgba(232,234,246,0.2)" font-size="8">★</text>
-            <text x="750" y="25" fill="rgba(232,234,246,0.2)" font-size="9">★</text>
-            <text x="860" y="40" fill="rgba(232,234,246,0.35)" font-size="8">★</text>
-            <text x="880" y="15" fill="rgba(232,234,246,0.4)" font-size="10">★</text>
-            <!-- Annotation Covid -->
-            <line x1="435" y1="72" x2="560" y2="50" stroke="rgba(103,232,249,0.5)" stroke-width="1" stroke-dasharray="4,3"/>
-            <text x="563" y="47" fill="#67e8f9" font-family="Space Mono" font-size="8">Halo visible à ~80 km (Cinzano et al., 2001)</text>
-          </svg>
-        </div>
-
       </div>
     </div>
+  </section>
 
-    <footer>
-      <p>Strasbourg sous les lumières · Sources : NASA Black Marble VIIRS, LPO Alsace, ANPCEN, PCAET Eurométropole, Réserve de Biosphère Transfrontalière Alsace</p>
-    </footer>
-  </div>
+  <!-- Section 2 — Insectes -->
+  <section class="expo-scroll-section" style="border-top:1px solid rgba(245,200,66,0.1);">
+    <div class="expo-scroll-content" style="text-align:center;">
+      <p style="font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--ambre);margin-bottom:0.75rem;">
+        <i data-lucide="bug" style="display:inline-block;vertical-align:middle;width:0.9rem;height:0.9rem;margin-right:0.3rem;stroke:var(--ambre);"></i>Insectes nocturnes
+      </p>
+      <div class="expo-big-number" style="color:var(--ambre);">−62 %</div>
+      <p class="expo-fact-title">de pollinisation nocturne sur les sites éclairés</p>
+      <div class="expo-divider" style="background:var(--ambre);margin:1.25rem auto;"></div>
+      <p class="expo-fact-text" style="margin:0 auto;">La pollinisation nocturne — assurée par les papillons, coléoptères et autres insectes — chute de 62 % sous les lampadaires. Les ponts éclairés sur le Rhin et l'Ill constituent des pièges permanents pour les insectes aquatiques émergents.</p>
+      <div style="display:flex;gap:2rem;justify-content:center;margin-top:2rem;">
+        <div style="text-align:center;">
+          <div style="font-family:'Space Mono',monospace;font-size:2rem;color:var(--ambre);">−47 %</div>
+          <div style="font-size:0.82rem;color:var(--gris-texte);">abondance lépidoptères nocturnes<br>en bordure de milieux naturels</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-family:'Space Mono',monospace;font-size:2rem;color:var(--ambre);">∞</div>
+          <div style="font-size:0.82rem;color:var(--gris-texte);">effet en cascade<br>sur les chaînes trophiques</div>
+        </div>
+      </div>
+      <p style="font-size:0.78rem;color:var(--gris-texte);margin-top:1rem;font-style:italic;">Knop et al. (2017) · Boyes et al. (2021)</p>
+    </div>
+  </section>
+
+  <!-- Section 3 — Anguille -->
+  <section class="expo-scroll-section" style="border-top:1px solid rgba(103,232,249,0.1);">
+    <div class="expo-scroll-content">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;">
+        <div style="text-align:center;">
+          <i data-lucide="fish" style="width:4rem;height:4rem;stroke:var(--cyan);margin-bottom:1rem;"></i>
+          <div class="expo-big-number" style="color:var(--cyan);font-size:clamp(2.5rem,6vw,5rem);">CR</div>
+          <p style="font-family:'Space Mono',monospace;font-size:0.75rem;color:var(--cyan);">En danger critique d'extinction</p>
+          <p style="font-size:0.82rem;color:var(--gris-texte);margin-top:0.5rem;">Liste rouge UICN — Anguilla anguilla</p>
+        </div>
+        <div>
+          <p style="font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:0.75rem;">
+            <i data-lucide="fish" style="display:inline-block;vertical-align:middle;width:0.9rem;height:0.9rem;margin-right:0.3rem;stroke:var(--cyan);"></i>Anguille européenne
+          </p>
+          <p class="expo-fact-title">Une migration nocturne bloquée par la lumière</p>
+          <div class="expo-divider" style="background:var(--cyan);"></div>
+          <p class="expo-fact-text">L'anguille migre de nuit en évitant activement la lumière. L'éclairage des berges de l'Ill dans la traversée de Strasbourg crée des barrières comportementales qui fragmentent les couloirs de migration — reconnu par l'OFB dans son plan de gestion Rhin-Meuse.</p>
+          <p style="font-size:0.78rem;color:var(--gris-texte);margin-top:0.75rem;font-style:italic;">OFB — Plan de gestion anguille Rhin-Meuse (2022)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4 — Santé humaine -->
+  <section class="expo-scroll-section" style="border-top:1px solid rgba(167,139,250,0.15);">
+    <div class="expo-scroll-content" style="text-align:center;">
+      <p style="font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:#a78bfa;margin-bottom:0.75rem;">
+        <i data-lucide="heart-pulse" style="display:inline-block;vertical-align:middle;width:0.9rem;height:0.9rem;margin-right:0.3rem;stroke:#a78bfa;"></i>Santé humaine
+      </p>
+      <div class="expo-big-number" style="color:#a78bfa;">Groupe 2A</div>
+      <p class="expo-fact-title">Le travail de nuit classé cancérogène probable par l'OMS</p>
+      <div class="expo-divider" style="background:#a78bfa;margin:1.25rem auto;"></div>
+      <p class="expo-fact-text" style="margin:0 auto;">La lumière artificielle nocturne supprime la production de mélatonine, perturbant les cycles circadiens. Le CIRC (OMS) classe le travail de nuit comme cancérogène probable (groupe 2A) depuis 2010. La pollution lumineuse extérieure affecte le sommeil de centaines de milliers de résidents de l'Eurométropole.</p>
+      <p style="font-size:0.78rem;color:var(--gris-texte);margin-top:1rem;font-style:italic;">CIRC/IARC Monograph 98 (2010)</p>
+    </div>
+  </section>
+
+  <!-- Section 5 — Ce qu'on peut faire -->
+  <section class="expo-scroll-section" style="border-top:1px solid rgba(74,222,128,0.15);">
+    <div class="expo-scroll-content">
+      <p style="font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--vert-reserve);margin-bottom:0.75rem;text-align:center;">
+        <i data-lucide="check-circle-2" style="display:inline-block;vertical-align:middle;width:0.9rem;height:0.9rem;margin-right:0.3rem;stroke:var(--vert-reserve);"></i>Des solutions existent
+      </p>
+      <p class="expo-fact-title" style="text-align:center;margin-bottom:2rem;">La preuve par les données : éteindre, ça marche</p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;">
+        <div class="expo-species-card" style="border-color:rgba(74,222,128,0.3);">
+          <div style="font-family:'Space Mono',monospace;font-size:1.8rem;color:var(--vert-reserve);margin-bottom:0.5rem;">01</div>
+          <div class="expo-species-name">Extinction nocturne</div>
+          <div class="expo-species-desc">Éteindre les éclairages publics entre 1h et 6h. Déjà appliqué dans 14 communes. Résultat : −68 % à Osthoffen.</div>
+        </div>
+        <div class="expo-species-card" style="border-color:rgba(103,232,249,0.3);">
+          <div style="font-family:'Space Mono',monospace;font-size:1.8rem;color:var(--cyan);margin-bottom:0.5rem;">02</div>
+          <div class="expo-species-name">LED 2700K ou moins</div>
+          <div class="expo-species-desc">Remplacer les LED blanc froid (&gt; 4000 K) par des LED ambrées. Le Bade-Wurtemberg l'impose déjà.</div>
+        </div>
+        <div class="expo-species-card" style="border-color:rgba(245,200,66,0.3);">
+          <div style="font-family:'Space Mono',monospace;font-size:1.8rem;color:var(--or);margin-bottom:0.5rem;">03</div>
+          <div class="expo-species-name">Détection de présence</div>
+          <div class="expo-species-desc">Moduler l'intensité lumineuse selon la présence humaine. Déjà techniquement possible avec les nouvelles installations LED.</div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:2.5rem;">
+        <a href="carte.html" style="display:inline-flex;align-items:center;gap:0.5rem;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.3);color:var(--vert-reserve);font-family:'Space Mono',monospace;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.75rem 1.75rem;border-radius:2rem;text-decoration:none;transition:all 0.3s;">
+          <i data-lucide="map" style="width:0.9rem;height:0.9rem;"></i>
+          Explorer la carte →
+        </a>
+      </div>
+    </div>
+  </section>
 
   <script>
-    (function(){
-      const canvas=document.getElementById('starfield'), ctx=canvas.getContext('2d'); let stars=[];
-      function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
-      function init(n){stars=[];for(let i=0;i<n;i++)stars.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*1.3+0.2,speed:Math.random()*0.004+0.001,offset:Math.random()*Math.PI*2});}
-      function draw(t){ctx.clearRect(0,0,canvas.width,canvas.height);stars.forEach(s=>{const a=0.25+0.75*Math.abs(Math.sin(s.offset+t*s.speed));ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle=`rgba(232,234,246,${a})`;ctx.fill();});requestAnimationFrame(draw);}
-      window.addEventListener('resize',()=>{resize();init(180);});resize();init(180);requestAnimationFrame(draw);
-    })();
-    const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target);}});},{threshold:0.1});
-    document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-  </script>
-  <script>
-    // ── Mode exposition ───────────────────────────────────────
-    (function() {
-      if (sessionStorage.getItem('modeExpo') === '1') {
-        document.body.classList.add('mode-expo');
-        document.getElementById('expo-label').textContent = 'Quitter expo';
-      }
-    })();
-    function toggleExpo() {
-      const on = document.body.classList.toggle('mode-expo');
-      sessionStorage.setItem('modeExpo', on ? '1' : '0');
-      document.getElementById('expo-label').textContent = on ? 'Quitter expo' : 'Mode exposition';
-      if (typeof lucide !== 'undefined') lucide.createIcons();
-    }
-  </script>
-  <script>
-    // ── Scrollytelling ────────────────────────────────────────
-    (function() {
-      const steps = document.querySelectorAll('.scrolly-step');
-      const anchors = document.querySelectorAll('.scrolly-anchor');
-      const bar = document.getElementById('scrolly-progress');
-      const label = document.getElementById('scrolly-label');
-      let labelTimer = null;
+    (function(){const c=document.getElementById('starfield'),ctx=c.getContext('2d');let s=[];function r(){c.width=window.innerWidth;c.height=window.innerHeight;}function init(){s=[];for(let i=0;i<160;i++)s.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*1.2+0.2,sp:Math.random()*0.004+0.001,o:Math.random()*Math.PI*2});}function draw(t){ctx.clearRect(0,0,c.width,c.height);s.forEach(st=>{const a=0.15+0.7*Math.abs(Math.sin(st.o+t*st.sp));ctx.beginPath();ctx.arc(st.x,st.y,st.r,0,Math.PI*2);ctx.fillStyle=`rgba(232,234,246,${a})`;ctx.fill();});requestAnimationFrame(draw);}window.addEventListener('resize',()=>{r();init();});r();init();requestAnimationFrame(draw);})();
 
-      // Progress bar
-      window.addEventListener('scroll', () => {
-        const scrollTop = window.scrollY;
-        const docH = document.documentElement.scrollHeight - window.innerHeight;
-        bar.style.width = Math.min(100, (scrollTop / docH) * 100) + '%';
-      });
+    // Progress bar
+    const bar = document.getElementById('expo-scroll-progress');
+    window.addEventListener('scroll',()=>{
+      const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
+      bar.style.width = Math.min(100,pct)+'%';
+    });
 
-      // Section label on scroll
-      const anchorObs = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            const lbl = e.target.dataset.label;
-            label.textContent = lbl;
-            label.classList.add('visible');
-            clearTimeout(labelTimer);
-            labelTimer = setTimeout(() => label.classList.remove('visible'), 2500);
-          }
-        });
-      }, { threshold: 0.5 });
-      anchors.forEach(a => anchorObs.observe(a));
-
-      // Step reveal
-      const stepObs = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            e.target.classList.add('visible');
-            stepObs.unobserve(e.target);
-          }
-        });
-      }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
-      steps.forEach(s => stepObs.observe(s));
-    })();
+    // Scrollytelling reveal
+    const obs = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
+    },{threshold:0.15,rootMargin:'0px 0px -80px 0px'});
+    document.querySelectorAll('.expo-scroll-content').forEach(el=>obs.observe(el));
   </script>
+  <script>document.addEventListener("DOMContentLoaded",()=>lucide.createIcons());</script>
 </body>
 </html>

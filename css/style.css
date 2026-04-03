@@ -730,3 +730,159 @@ footer {
   .cards-grid { padding: 1rem; }
   #map { height: 400px; }
 }
+
+
+/* ════════════════════════════════════════════════════════════
+   MODE EXPOSITION
+   ════════════════════════════════════════════════════════════ */
+
+/* ── Bouton toggle expo ───────────────────────────────────── */
+#expo-toggle {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 9999;
+  background: rgba(13,13,43,0.95);
+  border: 1px solid rgba(245,200,66,0.35);
+  color: var(--or);
+  font-family: var(--font-titre);
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.55rem 1rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.5);
+}
+#expo-toggle:hover {
+  background: rgba(245,200,66,0.12);
+  border-color: var(--or);
+}
+#expo-toggle svg { width:0.9rem; height:0.9rem; }
+
+/* ── Navigation mode expo ────────────────────────────────── */
+body.mode-expo nav {
+  height: auto;
+  padding: 0;
+  background: rgba(7,7,19,0.98);
+  border-bottom: 2px solid rgba(245,200,66,0.3);
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+}
+
+body.mode-expo .nav-logo {
+  font-size: 1rem;
+  padding: 1rem 2rem 0.75rem;
+  border-bottom: 1px solid rgba(245,200,66,0.1);
+  text-align: center;
+  letter-spacing: 0.2em;
+}
+
+body.mode-expo .nav-links {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  padding: 0;
+}
+
+body.mode-expo .nav-links li {
+  border-right: 1px solid rgba(245,200,66,0.1);
+}
+body.mode-expo .nav-links li:last-child { border-right: none; }
+
+body.mode-expo .nav-links a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.9rem 0.5rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-align: center;
+  transition: background 0.2s;
+}
+body.mode-expo .nav-links a:hover,
+body.mode-expo .nav-links a.active {
+  background: rgba(245,200,66,0.1);
+  color: var(--or);
+  border-bottom: none;
+}
+body.mode-expo .nav-links a .nav-icon {
+  display: block;
+  width: 1.4rem;
+  height: 1.4rem;
+}
+
+/* ── Textes agrandis ─────────────────────────────────────── */
+body.mode-expo {
+  font-size: 1.2rem;
+}
+body.mode-expo .section-titre {
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+}
+body.mode-expo .section-tag {
+  font-size: 0.78rem;
+  letter-spacing: 0.25em;
+}
+body.mode-expo p {
+  font-size: 1.15rem;
+  line-height: 1.85;
+}
+body.mode-expo .saviez-vous p {
+  font-size: 1.05rem !important;
+}
+body.mode-expo .page-header h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+/* ── Carte mode expo ─────────────────────────────────────── */
+body.mode-expo #map {
+  height: 640px !important;
+}
+body.mode-expo .filtre-btn {
+  font-size: 0.72rem;
+  padding: 0.5rem 1.1rem;
+}
+body.mode-expo .slider-container {
+  padding: 1.5rem 0;
+}
+body.mode-expo input[type=range] {
+  height: 8px;
+}
+
+/* ── Graphiques mode expo ────────────────────────────────── */
+body.mode-expo .tab-btn {
+  font-size: 0.72rem;
+  padding: 0.85rem 1.75rem;
+}
+body.mode-expo .stat-nombre {
+  font-size: 2.5rem;
+}
+body.mode-expo .stat-desc {
+  font-size: 0.92rem;
+}
+
+/* ── Bannière expo active ────────────────────────────────── */
+body.mode-expo #expo-banner {
+  display: flex;
+}
+#expo-banner {
+  display: none;
+  background: linear-gradient(90deg, rgba(245,200,66,0.08), transparent);
+  border-bottom: 1px solid rgba(245,200,66,0.15);
+  padding: 0.4rem 2rem;
+  font-family: var(--font-titre);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--or);
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+}

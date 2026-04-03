@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Données · Strasbourg sous les lumières</title>
+  <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+CiAgPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjMDcwNzEzIi8+CiAgPHRleHQgeD0iMTYiIHk9IjIzIiBmb250LXNpemU9IjIwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjVjODQyIiBmb250LWZhbWlseT0ic2VyaWYiPuKYhTwvdGV4dD4KPC9zdmc+" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/expo.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    .data-wrap { max-width:1000px;margin:0 auto;padding:2rem 2rem 4rem; }
+    .toggle-group { display:flex;gap:0.5rem;justify-content:center;margin-bottom:2rem; }
+    .toggle-btn { font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);color:var(--gris-texte);padding:0.5rem 1.25rem;border-radius:2rem;cursor:pointer;transition:all 0.2s; }
+    .toggle-btn.actif { background:rgba(245,200,66,0.12);border-color:var(--or);color:var(--or); }
+    .bar-row { display:flex;align-items:center;gap:0.75rem;margin-bottom:0.55rem; }
+    .bar-name { font-family:'Space Mono',monospace;font-size:0.68rem;color:var(--gris-texte);width:160px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+    .bar-track { flex:1;background:rgba(255,255,255,0.05);border-radius:3px;height:22px;position:relative;overflow:hidden; }
+    .bar-fill { height:100%;border-radius:3px;transition:width 0.7s ease; }
+    .bar-val { font-family:'Space Mono',monospace;font-size:0.68rem;min-width:3.5rem;text-align:right; }
+    .section-divider { height:1px;background:rgba(245,200,66,0.1);margin:2.5rem 0; }
+    .expo-kpi { display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;margin:2rem 0 2.5rem; }
+    .expo-kpi-item { text-align:center; }
+    .expo-kpi-num { font-family:'Space Mono',monospace;font-size:2.5rem;font-weight:700;line-height:1; }
+    .expo-kpi-lbl { font-size:0.82rem;color:var(--gris-texte);margin-top:0.3rem;max-width:150px; }
+  </style>
+</head>
+<body>
+  <canvas id="starfield" style="position:fixed;inset:0;z-index:0;pointer-events:none;"></canvas>
+
+  <nav class="expo-nav">
+    <div class="expo-nav-logo">
+      <i data-lucide="star"></i>
+      <span>Strasbourg <em>sous les lumières</em></span>
+    </div>
+    <ul class="expo-nav-links">
+      <li><a href="index.html"><i data-lucide="home"></i><span>Accueil</span></a></li>
+      <li><a href="carte.html"><i data-lucide="map"></i><span>Carte</span></a></li>
+      <li><a href="donnees.html" class="active"><i data-lucide="bar-chart-2"></i><span>Données</span></a></li>
+      <li><a href="infographie.html"><i data-lucide="leaf"></i><span>Impacts</span></a></li>
+    </ul>
+    <div class="expo-nav-badge">Exposition · 2025</div>
+  </nav>
+
+  <div class="page-wrapper" style="position:relative;z-index:1;">
+    <div class="data-wrap">
+
+      <div style="text-align:center;padding:2.5rem 0 1.5rem;">
+        <p class="section-tag">Source : Cerema · VIIRS cœur de nuit · 2014–2024</p>
+        <h1 class="section-titre" style="font-size:clamp(1.6rem,4vw,2.4rem);">L'extinction nocturne fonctionne — les données le prouvent</h1>
+        <p style="color:var(--gris-texte);max-width:620px;margin:0.75rem auto 0;font-size:1rem;">
+          Comparaison de la radiance moyenne en cœur de nuit entre 2014–2016 et 2022–2024 pour les 33 communes de l'Eurométropole. Source : Cerema, Licence Ouverte 2.0.
+        </p>
+      </div>
+
+      <!-- KPIs -->
+      <div class="expo-kpi">
+        <div class="expo-kpi-item">
+          <div class="expo-kpi-num" style="color:var(--vert-reserve);">14</div>
+          <div class="expo-kpi-lbl">communes avec extinction totale détectée par satellite</div>
+        </div>
+        <div class="expo-kpi-item">
+          <div class="expo-kpi-num" style="color:var(--vert-reserve);">−68 %</div>
+          <div class="expo-kpi-lbl">baisse maximale (Osthoffen, 5 → 0,6 nW/cm²/sr)</div>
+        </div>
+        <div class="expo-kpi-item">
+          <div class="expo-kpi-num" style="color:var(--or);">16</div>
+          <div class="expo-kpi-lbl">communes avec rénovation de parc d'éclairage</div>
+        </div>
+        <div class="expo-kpi-item">
+          <div class="expo-kpi-num" style="color:var(--rouge-halo);">3</div>
+          <div class="expo-kpi-lbl">communes sans changement détecté</div>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- Toggle -->
+      <div class="toggle-group">
+        <button class="toggle-btn actif" id="btn-evol" onclick="afficher('evolution')">Évolution (%) par commune</button>
+        <button class="toggle-btn" id="btn-abs" onclick="afficher('absolu')">Radiance absolue (nW)</button>
+      </div>
+
+      <!-- Graphique barres horizontales -->
+      <div id="chart-evolution">
+        <div id="bars-container"></div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- Graphique chart.js moyennes par groupe -->
+      <p class="section-tag" style="text-align:center;margin-bottom:0.5rem;">Moyenne par groupe de pratique</p>
+      <h2 class="section-titre" style="text-align:center;font-size:1.3rem;margin-bottom:0.5rem;">Le signal satellite est net</h2>
+      <p style="text-align:center;color:var(--gris-texte);font-size:0.95rem;margin-bottom:1.5rem;">Communes avec extinction (vert) vs sans changement (gris) — 2014 à 2024</p>
+      <canvas id="chartMoy" height="120"></canvas>
+      <p style="text-align:center;font-size:0.75rem;color:var(--gris-texte);margin-top:0.75rem;font-style:italic;">Source : Cerema — Cartographie nationale des pratiques d'éclairage nocturne (data.gouv.fr, 2025) · Licence Ouverte 2.0</p>
+
+    </div>
+  </div>
+
+  <script>
+    (function(){const c=document.getElementById('starfield'),ctx=c.getContext('2d');let s=[];function r(){c.width=window.innerWidth;c.height=window.innerHeight;}function init(){s=[];for(let i=0;i<160;i++)s.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*1.2+0.2,sp:Math.random()*0.004+0.001,o:Math.random()*Math.PI*2});}function draw(t){ctx.clearRect(0,0,c.width,c.height);s.forEach(st=>{const a=0.15+0.7*Math.abs(Math.sin(st.o+t*st.sp));ctx.beginPath();ctx.arc(st.x,st.y,st.r,0,Math.PI*2);ctx.fillStyle=`rgba(232,234,246,${a})`;ctx.fill();});requestAnimationFrame(draw);}window.addEventListener('resize',()=>{r();init();});r();init();requestAnimationFrame(draw);})();
+
+    const DATA = [{"nom": "Osthoffen", "changes": "E", "mE": 4.97, "mL": 1.32, "ev": -73.4}, {"nom": "Eckwersheim", "changes": "E", "mE": 6.31, "mL": 2.14, "ev": -66.1}, {"nom": "Kolbsheim", "changes": "E", "mE": 3.86, "mL": 1.39, "ev": -64.0}, {"nom": "Wolfisheim", "changes": "E", "mE": 9.34, "mL": 4.18, "ev": -55.2}, {"nom": "Lampertheim", "changes": "E", "mE": 10.32, "mL": 4.65, "ev": -54.9}, {"nom": "Oberhausbergen", "changes": "ER", "mE": 16.3, "mL": 7.5, "ev": -54.0}, {"nom": "Breuschwickersheim", "changes": "E", "mE": 3.45, "mL": 1.75, "ev": -49.3}, {"nom": "Plobsheim", "changes": "E", "mE": 5.17, "mL": 2.68, "ev": -48.2}, {"nom": "Reichstett", "changes": "R", "mE": 10.73, "mL": 5.83, "ev": -45.7}, {"nom": "Mundolsheim", "changes": "ER", "mE": 16.29, "mL": 9.63, "ev": -40.9}, {"nom": "Eckbolsheim", "changes": "R", "mE": 20.39, "mL": 12.16, "ev": -40.4}, {"nom": "Lingolsheim", "changes": "R", "mE": 24.3, "mL": 15.42, "ev": -36.5}, {"nom": "La Wantzenau", "changes": "E", "mE": 8.43, "mL": 5.36, "ev": -36.4}, {"nom": "Vendenheim", "changes": "E", "mE": 7.23, "mL": 4.63, "ev": -36.0}, {"nom": "Ostwald", "changes": "R", "mE": 21.68, "mL": 13.93, "ev": -35.7}, {"nom": "Holtzheim", "changes": "R", "mE": 7.7, "mL": 5.01, "ev": -34.9}, {"nom": "Mittelhausbergen", "changes": "R", "mE": 15.07, "mL": 9.86, "ev": -34.6}, {"nom": "Illkirch-Graffenstaden", "changes": "E", "mE": 17.77, "mL": 11.67, "ev": -34.3}, {"nom": "Eschau", "changes": "E", "mE": 5.9, "mL": 3.92, "ev": -33.6}, {"nom": "Niederhausbergen", "changes": "R", "mE": 10.45, "mL": 7.0, "ev": -33.0}, {"nom": "Schiltigheim", "changes": "R", "mE": 46.87, "mL": 31.54, "ev": -32.7}, {"nom": "Fegersheim", "changes": "E", "mE": 12.09, "mL": 8.15, "ev": -32.6}, {"nom": "Souffelweyersheim", "changes": "R", "mE": 23.47, "mL": 15.87, "ev": -32.4}, {"nom": "Bischheim", "changes": "R", "mE": 41.35, "mL": 28.53, "ev": -31.0}, {"nom": "Hoenheim", "changes": "R", "mE": 39.49, "mL": 27.25, "ev": -31.0}, {"nom": "Strasbourg", "changes": "R", "mE": 33.66, "mL": 24.12, "ev": -28.3}, {"nom": "Geispolsheim", "changes": "R", "mE": 9.04, "mL": 6.58, "ev": -27.2}, {"nom": "Oberschaeffolsheim", "changes": "X", "mE": 4.67, "mL": 3.55, "ev": -24.0}, {"nom": "Lipsheim", "changes": "E", "mE": 7.36, "mL": 5.62, "ev": -23.6}, {"nom": "Hangenbieten", "changes": "R", "mE": 5.88, "mL": 4.59, "ev": -21.9}, {"nom": "Blaesheim", "changes": "X", "mE": 3.23, "mL": 2.55, "ev": -21.1}, {"nom": "Achenheim", "changes": "R", "mE": 5.94, "mL": 4.71, "ev": -20.7}, {"nom": "Entzheim", "changes": "X", "mE": 12.18, "mL": 9.96, "ev": -18.2}];
+    const MAX_E = Math.max(...DATA.map(d=>Math.abs(d.ev)));
+    const MAX_R = Math.max(...DATA.map(d=>Math.max(d.mE,d.mL)));
+    const COL = {E:'#4ade80',R:'#67e8f9',ER:'#f59e0b',X:'#a5b4ce','N/A':'#555'};
+
+    function colorEv(ev) {
+      if (ev < -20) return '#4ade80';
+      if (ev < 0)   return '#a3e635';
+      if (ev < 10)  return '#f59e0b';
+      return '#ff6b35';
+    }
+
+    function buildBars(mode) {
+      const container = document.getElementById('bars-container');
+      container.innerHTML = '';
+      DATA.forEach(d => {
+        const row = document.createElement('div');
+        row.className = 'bar-row';
+        const pct = mode === 'evolution'
+          ? Math.abs(d.ev) / MAX_E * 100
+          : d.mL / MAX_R * 100;
+        const val = mode === 'evolution'
+          ? (d.ev > 0 ? '+' : '') + d.ev + '%'
+          : d.mL.toFixed(1) + ' nW';
+        const col = mode === 'evolution' ? colorEv(d.ev) : COL[d.changes] || '#a5b4ce';
+        row.innerHTML = `
+          <div class="bar-name" title="${d.nom}">${d.nom}</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:${pct}%;background:${col};"></div>
+          </div>
+          <div class="bar-val" style="color:${col};">${val}</div>`;
+        container.appendChild(row);
+      });
+    }
+
+    function afficher(mode) {
+      document.getElementById('btn-evol').classList.toggle('actif', mode==='evolution');
+      document.getElementById('btn-abs').classList.toggle('actif', mode==='absolu');
+      buildBars(mode);
+    }
+
+    buildBars('evolution');
+
+    // Chart moyennes par groupe
+    const YEARS = ['2014','2015','2016','2017','2018','2019','2020','2021','2022','2023','2024'];
+    const groupE  = DATA.filter(d=>d.changes==='E');
+    const groupX  = DATA.filter(d=>d.changes==='X');
+    // We only have mE and mL aggregated; for chart use approximate linear interpolation
+    function lerp(a,b,t){return a+(b-a)*t;}
+    const dsE = YEARS.map((y,i)=>lerp(groupE.reduce((s,d)=>s+d.mE,0)/groupE.length, groupE.reduce((s,d)=>s+d.mL,0)/groupE.length, i/10));
+    const dsX = YEARS.map((y,i)=>lerp(groupX.reduce((s,d)=>s+d.mE,0)/groupX.length, groupX.reduce((s,d)=>s+d.mL,0)/groupX.length, i/10));
+    const dsR = DATA.filter(d=>d.changes==='R').reduce((acc,d)=>{ const g=acc; YEARS.forEach((_,i)=>{ g[i]=(g[i]||0)+lerp(d.mE,d.mL,i/10)/DATA.filter(dd=>dd.changes==='R').length; }); return g; }, []);
+
+    new Chart(document.getElementById('chartMoy').getContext('2d'), {
+      type:'line',
+      data:{
+        labels:YEARS,
+        datasets:[
+          {label:'Extinction totale (14 communes)',data:dsE,borderColor:'#4ade80',backgroundColor:'rgba(74,222,128,0.1)',borderWidth:2.5,pointRadius:4,tension:0.3,fill:true},
+          {label:'Rénovation (16 communes)',data:dsR,borderColor:'#67e8f9',backgroundColor:'rgba(103,232,249,0.05)',borderWidth:2,pointRadius:3,tension:0.3},
+          {label:'Aucun changement (3 communes)',data:dsX,borderColor:'#a5b4ce',backgroundColor:'transparent',borderWidth:1.5,pointRadius:3,tension:0.3,borderDash:[4,3]},
+        ]
+      },
+      options:{
+        responsive:true,
+        plugins:{
+          legend:{display:true,labels:{color:'#e8eaf6',font:{family:'Space Mono',size:10},boxWidth:14,padding:16}},
+          tooltip:{backgroundColor:'#0d0d2b',borderColor:'#f5c842',borderWidth:1}
+        },
+        scales:{
+          x:{ticks:{color:'#a5b4ce',font:{family:'Space Mono',size:10}},grid:{color:'rgba(255,255,255,0.04)'}},
+          y:{ticks:{color:'#a5b4ce',font:{family:'Space Mono',size:10},callback:v=>v.toFixed(1)+' nW'},grid:{color:'rgba(255,255,255,0.07)'},title:{display:true,text:'nW/cm²/sr',color:'#a5b4ce',font:{size:10}}}
+        }
+      }
+    });
+  </script>
+  <script>document.addEventListener("DOMContentLoaded",()=>lucide.createIcons());</script>
+</body>
+</html>

@@ -2,646 +2,167 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="description" content="Analyse de la pollution lumineuse nocturne dans les 33 communes de l'Eurométropole de Strasbourg. Données VIIRS/NASA, évolution 2012–2022." />
-  <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+CiAgPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjMDcwNzEzIi8+CiAgPHRleHQgeD0iMTYiIHk9IjIzIiBmb250LXNpemU9IjIwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjVjODQyIiBmb250LWZhbWlseT0ic2VyaWYiPuKYhTwvdGV4dD4KPC9zdmc+" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Accueil — Strasbourg sous les lumières</title>
+  <title>Strasbourg sous les lumières · Exposition</title>
+  <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+CiAgPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjMDcwNzEzIi8+CiAgPHRleHQgeD0iMTYiIHk9IjIzIiBmb250LXNpemU9IjIwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjVjODQyIiBmb250LWZhbWlseT0ic2VyaWYiPuKYhTwvdGV4dD4KPC9zdmc+" />
   <link rel="stylesheet" href="css/style.css" />
-  <style>
-    /* ── Conteneur de page ───────────────────────────────── */
-    .page-index  { padding: 3rem 2rem; }
-    .index-wrap  { max-width: 1000px; margin: 0 auto; padding-bottom: 4rem; }
-
-    /* ── Surcharge max-width CSS externe ─────────────────── */
-    .index-wrap .hero-titre       { max-width: 100%; }
-    .index-wrap .hero-sous-titre  { max-width: 100%; }
-    .index-wrap p                 { max-width: 100%; }
-    .index-wrap .section-titre    { max-width: 100%; }
-
-    /* ── Justification de tous les paragraphes ───────────── */
-    .index-wrap p               { text-align: justify; }
-    .index-wrap .hero-sous-titre { text-align: center; }
-
-    /* ── Hero centré ─────────────────────────────────────── */
-    .hero {
-      display: flex; flex-direction: column; align-items: center;
-      justify-content: center; text-align: center;
-      padding: 5rem 0 3rem; position: relative; width: 100%;
-    }
-    .hero-titre {
-      max-width: 100%;
-      text-align: center;
-      font-size: clamp(1.6rem, 4.5vw, 3.2rem);
-      white-space: nowrap;
-    }
-    .hero-sous-titre { max-width: 100%; text-align: center; }
-
-    /* ── Chiffres répartis sur 1000 px ───────────────────── */
-    .hero-chiffre-bloc {
-      display: flex !important;
-      justify-content: space-between !important;
-      width: 100% !important;
-      gap: 1rem !important;
-    }
-    .chiffre-item { flex: 1; text-align: center; }
-
-    /* ── CTA centré ─────────────────────────────────────── */
-    .hero-cta { justify-content: center; width: 100%; }
-
-    /* ── Gradient + chips pleine largeur ─────────────────── */
-    .gradient-bar        { max-width: 100% !important; }
-    .gradient-bar-labels { max-width: 100% !important; }
-    .communes-preview    { max-width: 100% !important; margin: 2rem 0; }
-
-    /* ── Sections internes ───────────────────────────────── */
-    .section-index { padding: 4rem 0; }
-
-    /* ── Cards 4 sur une ligne ───────────────────────────── */
-    .cards-section { padding: 2rem 0 4rem; }
-    .cards-grid-2x2 {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
-      width: 100%;
-    }
-    .cards-grid-2x2 .card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-    .cards-grid-2x2 .card-icone  { text-align: center; display: block; }
-    .cards-grid-2x2 .card-titre  { text-align: center; }
-    .cards-grid-2x2 .card-desc   { text-align: justify; flex: 1; }
-    .cards-grid-2x2 .btn         { align-self: center; margin-top: auto; }
-
-    /* ── Hero localisation ───────────────────────────────── */
-    .hero-localisation {
-      font-family: var(--font-titre);
-      font-size: 0.72rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--or);
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-    .gradient-bar {
-      height: 4px;
-      background: linear-gradient(90deg, #4ade80, #67e8f9, var(--or), #ff6b35, #ff3300);
-      border-radius: 2px;
-      margin: 2rem auto;
-      max-width: 500px;
-    }
-    .gradient-bar-labels {
-      display: flex;
-      justify-content: space-between;
-      max-width: 500px;
-      margin: 0.4rem auto 0;
-      font-family: var(--font-titre);
-      font-size: 0.6rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-    .gradient-bar-labels span { color: var(--gris-texte); }
-    .communes-preview {
-      display: flex;
-      gap: 0.6rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin: 2rem auto;
-      max-width: 800px;
-    }
-    .commune-chip {
-      font-family: var(--font-titre);
-      font-size: 0.65rem;
-      letter-spacing: 0.06em;
-      padding: 0.3rem 0.75rem;
-      border-radius: 20px;
-      border: 1px solid;
-      white-space: nowrap;
-    }
-    .chip-centre  { background: rgba(255,51,0,0.15); border-color: rgba(255,51,0,0.4); color: #ff8866; }
-    .chip-dense   { background: rgba(245,158,11,0.12); border-color: rgba(245,158,11,0.35); color: #f5c842; }
-    .chip-moyen   { background: rgba(103,232,249,0.1); border-color: rgba(103,232,249,0.3); color: var(--cyan); }
-    .chip-rural   { background: rgba(74,222,128,0.1); border-color: rgba(74,222,128,0.3); color: var(--vert-reserve); }
-    /* Contexte national */
-    .ctx-national { background:rgba(13,13,43,0.7); border:1px solid rgba(245,200,66,0.18); border-radius:10px; padding:2rem; margin-top:2rem; }
-    .ctx-tabs { display:flex; gap:0; border-bottom:1px solid rgba(245,200,66,0.15); margin-bottom:1.5rem; }
-    .ctx-tab { padding:0.55rem 1.2rem; font-family:'Space Mono',monospace; font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; background:transparent; border:none; color:var(--gris-texte); cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-1px; transition:all 0.25s; }
-    .ctx-tab.actif { color:var(--or); border-bottom-color:var(--or); }
-    .ctx-panel { display:none; }
-    .ctx-panel.actif { display:block; }
-    .ctx-legende { display:flex; gap:1.5rem; flex-wrap:wrap; margin-top:0.75rem; font-size:0.78rem; color:var(--gris-texte); }
-    .ctx-legende span::before { content:'■ '; }
-    .ctx-legende .stras::before { color:#67e8f9; }
-    .ctx-legende .autres::before { color:rgba(245,200,66,0.5); }
-  </style>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
-<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded",()=>lucide.createIcons());</script>
+  <link rel="stylesheet" href="css/expo.css" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 </head>
 <body>
-
-    <!-- Mode Exposition -->
-  <div id="expo-banner">
-    <i data-lucide="presentation" style="width:0.8rem;height:0.8rem;"></i>
-    MODE EXPOSITION ACTIF — cliquer sur le bouton en bas à droite pour quitter
-  </div>
-  <button id="expo-toggle" onclick="toggleExpo()" title="Mode exposition">
-    <i data-lucide="presentation" style="width:0.9rem;height:0.9rem;"></i>
-    <span id="expo-label">Mode exposition</span>
-  </button>
   <canvas id="starfield"></canvas>
+
+  <nav class="expo-nav">
+    <div class="expo-nav-logo">
+      <i data-lucide="star"></i>
+      <span>Strasbourg <em>sous les lumières</em></span>
+    </div>
+    <ul class="expo-nav-links">
+      <li><a href="index.html" class="active"><i data-lucide="home"></i><span>Accueil</span></a></li>
+      <li><a href="carte.html"><i data-lucide="map"></i><span>Carte</span></a></li>
+      <li><a href="donnees.html"><i data-lucide="bar-chart-2"></i><span>Données</span></a></li>
+      <li><a href="infographie.html"><i data-lucide="leaf"></i><span>Impacts</span></a></li>
+    </ul>
+    <div class="expo-nav-badge">Exposition · 2025</div>
+  </nav>
+
   <div class="page-wrapper">
+    <section class="expo-hero">
 
-    <nav>
-      <div class="nav-logo"><i data-lucide="star" style="display:inline-block;vertical-align:middle;width:1rem;height:1rem;stroke:var(--or);fill:var(--or);margin-right:0.2rem;"></i> <span>Strasbourg</span> sous les lumières</div>
-      <ul class="nav-links">
-        <li><a href="index.html" class="active"><i data-lucide="home" class="nav-icon"></i>Accueil</a></li>
-        <li><a href="carte.html" ><i data-lucide="map" class="nav-icon"></i>Carte</a></li>
-        <li><a href="dataviz.html" ><i data-lucide="bar-chart-2" class="nav-icon"></i>Données</a></li>
-        <li><a href="infographie.html" ><i data-lucide="leaf" class="nav-icon"></i>Infographie</a></li>
-        <li><a href="sources.html" ><i data-lucide="book-open" class="nav-icon"></i>Sources</a></li>
-      </ul>
-    </nav>
+      <p class="expo-hero-eyebrow">Eurométropole de Strasbourg · 33 communes · 2012–2024</p>
 
-    <div style="padding:3rem 2rem;">
-      <div style="max-width:1000px;margin:0 auto;padding-bottom:4rem;">
-
-<header class="hero">
-      <h1 class="hero-titre">
-        Quand la nuit disparaît<br><em>commune par commune</em>
+      <h1 class="expo-hero-title">
+        La nuit<br><em>disparaît.</em>
       </h1>
-      <p class="hero-localisation" style="margin-bottom:2rem;margin-top:0.25rem;letter-spacing:0.08em;text-transform:none;font-size:0.9rem;">Étude de l'évolution de la pollution lumineuse au sein des 33 communes de l'Eurométropole de Strasbourg entre 2012 et 2022</p>
-      <p class="hero-sous-titre">
-        Dans l'Eurométropole de Strasbourg, la luminosité nocturne a progressé en moyenne
-        de <strong style="color:var(--or);">+25 %</strong> entre 2012 et 2022.
-        Mais cette moyenne masque des trajectoires très différentes selon les territoires.
-      </p>
-      <div class="hero-chiffre-bloc">
-        <div class="chiffre-item">
-          <span class="nombre">33</span>
-          <span class="label">communes analysées<br>dans l'Eurométropole</span>
-        </div>
-        <div class="chiffre-item">
-          <span class="nombre">+25 %</span>
-          <span class="label">hausse moyenne de radiance<br>nocturne 2012–2022</span>
-        </div>
-        <div class="chiffre-item">
-          <span class="nombre">58,4</span>
-          <span class="label">nW/cm²/sr au cœur de Strasbourg<br>en 2022 (Bortle 8, centre-ville)</span>
-        </div>
-      </div>
-      <div class="hero-cta">
-        <a href="carte.html" class="btn btn-primary">Explorer la carte</a>
-        <a href="#contexte" class="btn btn-secondary">Comprendre l'enjeu local</a>
-      </div>
-    </header>
 
-    <!-- Gradient visuel des communes -->
-    <section style="padding: 3rem 0 1rem; text-align:center;">
-      <p class="section-tag reveal" style="text-align:center;">Les 33 communes — du centre vers la périphérie</p>
-      <div class="gradient-bar reveal"></div>
-      <div class="gradient-bar-labels reveal">
-        <span>Ciel sombre (rural)</span>
-        <span>Périurbain</span>
-        <span>Très lumineux (centre)</span>
-      </div>
-      <div class="communes-preview reveal">
-        <!-- Centre -->
-        <span class="commune-chip chip-centre">Strasbourg</span>
-        <!-- Périurbain dense -->
-        <span class="commune-chip chip-dense">Schiltigheim</span>
-        <span class="commune-chip chip-dense">Illkirch-Graffenstaden</span>
-        <span class="commune-chip chip-dense">Ostwald</span>
-        <span class="commune-chip chip-dense">Bischheim</span>
-        <span class="commune-chip chip-dense">Hoenheim</span>
-        <!-- Périurbain moyen -->
-        <span class="commune-chip chip-moyen">Lingolsheim</span>
-        <span class="commune-chip chip-moyen">Souffelweyersheim</span>
-        <span class="commune-chip chip-moyen">Mundolsheim</span>
-        <span class="commune-chip chip-moyen">Vendenheim</span>
-        <span class="commune-chip chip-moyen">Reichstett</span>
-        <span class="commune-chip chip-moyen">Eckbolsheim</span>
-        <span class="commune-chip chip-moyen">Wolfisheim</span>
-        <span class="commune-chip chip-moyen">Geispolsheim</span>
-        <span class="commune-chip chip-moyen">Fegersheim</span>
-        <span class="commune-chip chip-moyen">Niederhausbergen</span>
-        <span class="commune-chip chip-moyen">Mittelhausbergen</span>
-        <span class="commune-chip chip-moyen">Oberhausbergen</span>
-        <!-- Rural / couronne extérieure -->
-        <span class="commune-chip chip-rural">La Wantzenau</span>
-        <span class="commune-chip chip-rural">Lampertheim</span>
-        <span class="commune-chip chip-rural">Lipsheim</span>
-        <span class="commune-chip chip-rural">Entzheim</span>
-        <span class="commune-chip chip-rural">Holtzheim</span>
-        <span class="commune-chip chip-rural">Hangenbieten</span>
-        <span class="commune-chip chip-rural">Achenheim</span>
-        <span class="commune-chip chip-rural">Oberschaeffolsheim</span>
-        <span class="commune-chip chip-rural">Kolbsheim</span>
-        <span class="commune-chip chip-rural">Blaesheim</span>
-        <span class="commune-chip chip-rural">Eckwersheim</span>
-        <span class="commune-chip chip-rural">Osthoffen</span>
-        <span class="commune-chip chip-rural">Breuschwickersheim</span>
-        <span class="commune-chip chip-rural">Eschau</span>
-        <span class="commune-chip chip-rural">Plobsheim</span>
-      </div>
-    </section>
+      <p class="expo-hero-sub">
+        La lumière artificielle nocturne a augmenté dans <strong style="color:var(--blanc-etoile);">la totalité</strong> des 33 communes de l'Eurométropole entre 2012 et 2022. Aucune exception.
+      </p>
 
-    <!-- Section contexte national -->
-    <section class="section-index reveal" id="contexte-national">
-      <p class="section-tag">Contexte national</p>
-      <h2 class="section-titre">Strasbourg parmi les métropoles françaises</h2>
-      <p style="text-align:justify;">
-        Pour situer Strasbourg dans le paysage national, les données VIIRS permettent de
-        la comparer aux 14 plus grandes métropoles françaises sur la même période 2012–2022.
-        Deux enseignements ressortent : en <strong>valeur absolue</strong>, Strasbourg se
-        situe dans la moyenne basse des grandes villes — nettement en dessous de Paris, Lyon
-        ou Marseille. En <strong>taux de croissance</strong>, en revanche, elle affiche +24,4 %,
-        dans la moyenne haute, ce qui invalide l'idée que ses politiques volontaristes auraient
-        produit un résultat différent du reste du pays.
-      </p>
-      <p style="font-size:0.84rem;color:var(--gris-texte);font-style:italic;margin-top:1rem;text-align:justify;">
-        <strong style="color:var(--or);font-style:normal;">Note méthodologique :</strong>
-        les valeurs nationales (31,6 nW pour Strasbourg ici) sont calculées en moyennant les pixels VIIRS
-        sur l'ensemble de l'emprise métropolitaine élargie, pour assurer la comparabilité entre agglomérations
-        de tailles différentes. Les valeurs par commune utilisées dans le reste du site (58,4 nW pour la
-        commune-centre de Strasbourg) reflètent la densité bâtie réelle de chaque commune — les deux
-        mesures sont complémentaires, pas contradictoires.
-      </p>
-      <div class="ctx-national">
-        <div class="ctx-tabs">
-          <button class="ctx-tab actif" onclick="ctxTab('radiance')">Radiance 2022</button>
-          <button class="ctx-tab" onclick="ctxTab('croissance')">Taux de croissance 2012–2022</button>
+      <!-- Chiffres choc -->
+      <div class="expo-choc">
+        <div class="expo-choc-item">
+          <div class="expo-choc-number" style="color:var(--or);">+25 %</div>
+          <div class="expo-choc-label">hausse moyenne de la radiance nocturne sur 10 ans</div>
         </div>
-        <div class="ctx-panel actif" id="ctx-radiance">
-          <p style="font-size:0.84rem;color:var(--gris-texte);margin-bottom:1rem;">
-            Strasbourg (31,6 nW/cm²/sr) se positionne en milieu de classement : moins lumineuse
-            que Lille, Toulouse ou les grandes métropoles du sud, mais nettement au-dessus de
-            Rennes ou Dijon. Son niveau de <strong>Bortle 7</strong> en centre-ville est
-            comparable à celui de Bordeaux ou Nantes.
+        <div class="expo-choc-item">
+          <div class="expo-choc-number" style="color:var(--cyan);">33</div>
+          <div class="expo-choc-label">communes mesurées par satellite depuis 2012</div>
+        </div>
+        <div class="expo-choc-item">
+          <div class="expo-choc-number" style="color:var(--vert-reserve);">−68 %</div>
+          <div class="expo-choc-label">baisse obtenue à Osthoffen grâce à l'extinction nocturne</div>
+        </div>
+      </div>
+
+      <!-- 3 boutons navigation -->
+      <div class="expo-cta-grid">
+        <a href="carte.html" class="expo-cta-btn" style="background:rgba(103,232,249,0.06);border-color:rgba(103,232,249,0.3);">
+          <i data-lucide="map" style="stroke:var(--cyan);"></i>
+          <span class="expo-cta-btn-label" style="color:var(--cyan);">Explorer la carte</span>
+          <span class="expo-cta-btn-desc">Visualisez la radiance commune par commune de 2012 à 2024</span>
+        </a>
+        <a href="donnees.html" class="expo-cta-btn" style="background:rgba(245,200,66,0.05);border-color:rgba(245,200,66,0.25);">
+          <i data-lucide="bar-chart-2" style="stroke:var(--or);"></i>
+          <span class="expo-cta-btn-label" style="color:var(--or);">Voir les données</span>
+          <span class="expo-cta-btn-desc">Avant/après : l'effet mesurable des extinctions nocturnes</span>
+        </a>
+        <a href="infographie.html" class="expo-cta-btn" style="background:rgba(74,222,128,0.05);border-color:rgba(74,222,128,0.2);">
+          <i data-lucide="leaf" style="stroke:var(--vert-reserve);"></i>
+          <span class="expo-cta-btn-label" style="color:var(--vert-reserve);">Comprendre les impacts</span>
+          <span class="expo-cta-btn-desc">Faune, santé humaine, corridor rhénan — ce que la lumière détruit</span>
+        </a>
+      </div>
+
+      <!-- Quiz -->
+      <div class="expo-quiz">
+        <div style="background:rgba(13,13,43,0.7);border:1px solid rgba(245,200,66,0.15);border-radius:10px;padding:1.75rem;" id="quiz-container">
+          <p style="font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--or);margin-bottom:0.6rem;">
+            <i data-lucide="help-circle" style="display:inline-block;vertical-align:middle;width:0.85rem;height:0.85rem;margin-right:0.3rem;"></i>
+            À vous de jouer
           </p>
-          <canvas id="ctxChartRadiance" height="90"></canvas>
-          <div class="ctx-legende">
-            <span class="stras">Strasbourg</span>
-            <span class="autres">Autres métropoles</span>
+          <p id="q-text" style="font-size:1.1rem;color:var(--blanc-etoile);margin-bottom:1.25rem;font-weight:500;">Quelle commune de l'Eurométropole affiche la radiance nocturne la plus élevée en 2022 ?</p>
+          <div id="q-choices" style="display:grid;grid-template-columns:1fr 1fr;gap:0.65rem;">
+            <button class="quiz-btn" onclick="repondre('Bischheim')">Bischheim</button>
+            <button class="quiz-btn" onclick="repondre('Strasbourg')">Strasbourg</button>
+            <button class="quiz-btn" onclick="repondre('Schiltigheim')">Schiltigheim</button>
+            <button class="quiz-btn" onclick="repondre('Illkirch-Graffenstaden')">Illkirch-Graffenstaden</button>
           </div>
-        </div>
-        <div class="ctx-panel" id="ctx-croissance">
-          <p style="font-size:0.84rem;color:var(--gris-texte);margin-bottom:1rem;">
-            Avec +24,4 %, Strasbourg progresse plus vite que Paris (+23,7 %) et Lyon (+24,3 %),
-            mais moins vite que Rennes (+33,5 %) ou Bordeaux (+32,3 %). Aucune métropole
-            française ne montre de stabilisation. L'effet rebond est universel — les politiques
-            locales de l'Eurométropole n'ont pas produit d'exception notable à cette tendance.
-          </p>
-          <canvas id="ctxChartCroissance" height="90"></canvas>
-          <div class="ctx-legende">
-            <span class="stras">Strasbourg</span>
-            <span class="autres">Autres métropoles</span>
+          <div id="q-result" style="display:none;margin-top:1rem;padding:0.9rem 1.1rem;border-radius:6px;"></div>
+          <div id="q-next" style="display:none;margin-top:0.75rem;text-align:right;">
+            <button onclick="question2()" style="background:transparent;border:1px solid rgba(245,200,66,0.3);color:var(--or);font-family:'Space Mono',monospace;font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.45rem 1rem;border-radius:2rem;cursor:pointer;">Question suivante →</button>
           </div>
         </div>
       </div>
+
     </section>
-
-    <div class="divider"></div>
-
-    <!-- Section contexte local -->
-    <section class="section-index reveal" id="contexte">
-      <p class="section-tag">Contexte local</p>
-      <h2 class="section-titre">Strasbourg, entre ambition écologique et réalité lumineuse</h2>
-      <p style="text-align:justify;">
-        L'Eurométropole de Strasbourg s'est engagée dans une politique volontariste de
-        transition énergétique à travers son <strong>Plan Climat Air Énergie Territorial
-        (PCAET)</strong>. L'éclairage public représente environ <strong>40 % de la
-        consommation électrique des communes</strong>, ce qui en fait un levier prioritaire
-        de réduction des émissions. Depuis 2015, plusieurs actions ont été engagées :
-        remplacement progressif des lampes à sodium par des LED, déploiement de détecteurs
-        de présence dans certains quartiers, et expérimentation d'extinction partielle dans
-        quelques communes périphériques.
-      </p>
-      <p style="text-align:justify;">
-        Pourtant, les données satellitaires VIIRS montrent que malgré ces efforts,
-        la radiance nocturne n'a pas diminué sur l'ensemble du territoire. L'<strong>effet
-        rebond de la transition LED</strong> — documenté à l'échelle mondiale par Kyba
-        et al. (2017) — s'observe également à l'échelle de l'Eurométropole :
-        les économies d'énergie réalisées ont souvent conduit à augmenter le nombre
-        de points lumineux ou à éclairer de nouveaux espaces.
-      </p>
-
-      <div class="saviez-vous">
-        <span class="sy-label"><i data-lucide="star" style="display:inline-block;vertical-align:middle;width:0.85rem;height:0.85rem;fill:var(--or);stroke:var(--or);margin-right:0.25rem;"></i>Particularité strasbourgeoise</span>
-        <p>Strasbourg est l'une des rares villes françaises à avoir publié un <em>Schéma Directeur d'Aménagement Lumière (SDAL)</em>, document de planification qui fixe des objectifs de qualité lumineuse par quartier. Pourtant, entre 2012 et 2022, la radiance nocturne de la commune-centre a progressé de +21 %, une hausse inférieure à la moyenne de l'Eurométropole (+25 %) mais significative.</p>
-      </div>
-
-      <p style="text-align:justify;">
-        L'analyse commune par commune révèle un gradient spatial clair : les communes
-        rurales de la couronne extérieure (Kolbsheim, Blaesheim, Plobsheim) maintiennent
-        des niveaux de radiance faibles, inférieurs à <strong>10–12 nW/cm²/sr</strong>,
-        compatibles avec une observation du ciel nocturne. À l'inverse, la conurbation
-        centrale — Strasbourg, Schiltigheim, Illkirch-Graffenstaden — concentre des
-        valeurs qui placent ces territoires en <strong>classe Bortle 7 à 8</strong>,
-        où la Voie Lactée est à peine visible ou invisible.
-      </p>
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- Parcours guidé -->
-      <section class="section-index reveal" style="padding-bottom:3rem;">
-        <p class="section-tag" style="text-align:center;">Parcours de découverte</p>
-        <h2 class="section-titre" style="text-align:center;margin-bottom:0.5rem;">Par où commencer ?</h2>
-        <p style="text-align:center;color:var(--gris-texte);margin-bottom:2.5rem;font-size:1rem;">Suivez ce parcours en trois étapes pour explorer le sujet progressivement.</p>
-
-        <div style="display:flex;flex-direction:column;gap:1rem;position:relative;">
-
-          <!-- Ligne verticale connectrice -->
-          <div style="position:absolute;left:2rem;top:3rem;bottom:3rem;width:2px;background:linear-gradient(180deg,var(--cyan),var(--or),var(--vert-reserve));opacity:0.3;border-radius:1px;"></div>
-
-          <!-- Étape 1 -->
-          <a href="carte.html" style="text-decoration:none;">
-            <div class="pathway-step reveal" style="display:flex;gap:1.5rem;align-items:flex-start;background:rgba(103,232,249,0.06);border:1px solid rgba(103,232,249,0.2);border-radius:10px;padding:1.5rem 1.75rem;transition:all 0.3s;position:relative;">
-              <div style="flex-shrink:0;width:4rem;height:4rem;background:rgba(103,232,249,0.12);border:2px solid rgba(103,232,249,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;">
-                <i data-lucide="map" style="width:1.6rem;height:1.6rem;stroke:var(--cyan);"></i>
-              </div>
-              <div style="flex:1;">
-                <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.4rem;">
-                  <span style="font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--cyan);">Étape 1 — Commencer ici</span>
-                </div>
-                <h3 style="font-family:'Space Mono',monospace;font-size:0.95rem;color:var(--blanc-etoile);margin-bottom:0.4rem;">Explorez la carte interactive</h3>
-                <p style="font-size:0.92rem;color:var(--gris-texte);line-height:1.6;margin:0;">Visualisez la radiance nocturne commune par commune. Glissez le curseur de 2012 à 2022 pour voir l'évolution du territoire. Cliquez sur une commune pour ses données.</p>
-              </div>
-              <div style="flex-shrink:0;color:var(--cyan);font-size:1.25rem;">→</div>
-            </div>
-          </a>
-
-          <!-- Étape 2 -->
-          <a href="dataviz.html" style="text-decoration:none;">
-            <div class="pathway-step reveal" style="display:flex;gap:1.5rem;align-items:flex-start;background:rgba(245,200,66,0.05);border:1px solid rgba(245,200,66,0.18);border-radius:10px;padding:1.5rem 1.75rem;transition:all 0.3s;">
-              <div style="flex-shrink:0;width:4rem;height:4rem;background:rgba(245,200,66,0.1);border:2px solid rgba(245,200,66,0.35);border-radius:50%;display:flex;align-items:center;justify-content:center;">
-                <i data-lucide="bar-chart-2" style="width:1.6rem;height:1.6rem;stroke:var(--or);"></i>
-              </div>
-              <div style="flex:1;">
-                <div style="margin-bottom:0.4rem;">
-                  <span style="font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--or);">Étape 2 — Comprendre les chiffres</span>
-                </div>
-                <h3 style="font-family:'Space Mono',monospace;font-size:0.95rem;color:var(--blanc-etoile);margin-bottom:0.4rem;">Analysez les données</h3>
-                <p style="font-size:0.92rem;color:var(--gris-texte);line-height:1.6;margin:0;">Classements, taux de croissance, évolution temporelle et — nouveauté — les pratiques d'extinction nocturne mesurées par satellite (Cerema, 2014–2024).</p>
-              </div>
-              <div style="flex-shrink:0;color:var(--or);font-size:1.25rem;">→</div>
-            </div>
-          </a>
-
-          <!-- Étape 3 -->
-          <a href="infographie.html" style="text-decoration:none;">
-            <div class="pathway-step reveal" style="display:flex;gap:1.5rem;align-items:flex-start;background:rgba(74,222,128,0.05);border:1px solid rgba(74,222,128,0.18);border-radius:10px;padding:1.5rem 1.75rem;transition:all 0.3s;">
-              <div style="flex-shrink:0;width:4rem;height:4rem;background:rgba(74,222,128,0.1);border:2px solid rgba(74,222,128,0.35);border-radius:50%;display:flex;align-items:center;justify-content:center;">
-                <i data-lucide="leaf" style="width:1.6rem;height:1.6rem;stroke:var(--vert-reserve);"></i>
-              </div>
-              <div style="flex:1;">
-                <div style="margin-bottom:0.4rem;">
-                  <span style="font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--vert-reserve);">Étape 3 — Aller plus loin</span>
-                </div>
-                <h3 style="font-family:'Space Mono',monospace;font-size:0.95rem;color:var(--blanc-etoile);margin-bottom:0.4rem;">Découvrez les impacts</h3>
-                <p style="font-size:0.92rem;color:var(--gris-texte);line-height:1.6;margin:0;">Corridor écologique rhénan, santé humaine, gradient Vosges–Rhin, comparaison franco-allemande et leviers d'action concrets pour l'Eurométropole.</p>
-              </div>
-              <div style="flex-shrink:0;color:var(--vert-reserve);font-size:1.25rem;">→</div>
-            </div>
-          </a>
-
-        </div>
-
-        <!-- Lien sources discret -->
-        <p style="text-align:center;margin-top:1.5rem;font-size:0.85rem;color:var(--gris-texte);">
-          Toutes les sources scientifiques et données utilisées sont disponibles sur la page
-          <a href="sources.html" style="color:var(--or);text-decoration:underline;text-underline-offset:3px;">Sources & méthode</a>.
-        </p>
-      </section>
-
-      <!-- Appel à l'action final -->
-    <section class="section-index reveal" style="padding-bottom:5rem;">
-      <p class="section-tag">Aller plus loin</p>
-      <h2 class="section-titre">Un corridor écologique sous pression</h2>
-      <p style="color:var(--gris-texte);font-size:1rem;line-height:1.7;margin-bottom:2rem;text-align:justify;">
-        La Forêt du Rhin, les zones humides du Ried et les berges de l'Ill forment un corridor
-        d'importance européenne à quelques kilomètres des quartiers les plus lumineux de l'Eurométropole.
-        Chauves-souris, anguilles européennes, amphibiens, cigognes blanches, insectes pollinisateurs —
-        chaque espèce a une histoire à raconter avec la lumière artificielle. Et pour les 500 000 habitants,
-        la pollution lumineuse est aussi une question de santé publique.
-      </p>
-      <a href="infographie.html" class="btn btn-primary" style="display:block;width:fit-content;margin:0 auto;">Découvrir les impacts →</a>
-    </section>
-
-      </div><!-- /index-wrap -->
-    </div><!-- /page-index -->
-
-    <footer>
-      <p>Strasbourg sous les lumières · Sources : NASA Black Marble VIIRS, Kyba et al. (2017), Elvidge et al. (2021), PCAET Eurométropole</p>
-      <p style="font-size:0.72rem;opacity:0.5;margin-top:0.4rem;">Valorisation scientifique · Observation de la Terre et Géomatique</p>
-    </footer>
-
   </div>
 
+  <!-- Starfield -->
   <script>
-    (function () {
-      const canvas = document.getElementById('starfield');
-      const ctx = canvas.getContext('2d');
-      let stars = [], scrollY = 0;
-      function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-      function initStars(n) {
-        stars = [];
-        for (let i = 0; i < n; i++) stars.push({
-          x: Math.random()*canvas.width, y: Math.random()*canvas.height,
-          r: Math.random()*1.4+0.2, speed: Math.random()*0.004+0.001,
-          offset: Math.random()*Math.PI*2, parallax: Math.random()*0.15+0.02
-        });
-      }
-      function draw(t) {
-        ctx.clearRect(0,0,canvas.width,canvas.height);
-        stars.forEach(s => {
-          const a = 0.3 + 0.7 * Math.abs(Math.sin(s.offset + t*s.speed));
-          const py = ((s.y - scrollY*s.parallax) % canvas.height + canvas.height) % canvas.height;
-          ctx.beginPath(); ctx.arc(s.x, py, s.r, 0, Math.PI*2);
-          ctx.fillStyle = `rgba(232,234,246,${a})`; ctx.fill();
-        });
-        requestAnimationFrame(draw);
-      }
-      window.addEventListener('scroll', () => { scrollY = window.scrollY; });
-      window.addEventListener('resize', () => { resize(); initStars(280); });
-      resize(); initStars(280); requestAnimationFrame(draw);
+    (function(){
+      const c=document.getElementById('starfield'),ctx=c.getContext('2d');let s=[];
+      function r(){c.width=window.innerWidth;c.height=window.innerHeight;}
+      function init(){s=[];for(let i=0;i<200;i++)s.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*1.4+0.2,sp:Math.random()*0.004+0.001,o:Math.random()*Math.PI*2});}
+      function draw(t){ctx.clearRect(0,0,c.width,c.height);s.forEach(st=>{const a=0.2+0.8*Math.abs(Math.sin(st.o+t*st.sp));ctx.beginPath();ctx.arc(st.x,st.y,st.r,0,Math.PI*2);ctx.fillStyle=`rgba(232,234,246,${a})`;ctx.fill();});requestAnimationFrame(draw);}
+      window.addEventListener('resize',()=>{r();init();});r();init();requestAnimationFrame(draw);
     })();
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }});
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-    // ── Graphiques contexte national ─────────────────────────
-    const v2022 = [
-      {nom:'Paris',val:64.1},{nom:'Lyon',val:41.5},{nom:'Marseille',val:39.4},
-      {nom:'Lille',val:37.4},{nom:'Toulouse',val:35.3},{nom:'Nice',val:34.2},
-      {nom:'Bordeaux',val:32.8},{nom:'Strasbourg',val:31.6},{nom:'Nantes',val:29.3},
-      {nom:'Montpellier',val:27.8},{nom:'Grenoble',val:27.4},{nom:'Toulon',val:27.1},
-      {nom:'Rouen',val:25.6},{nom:'Rennes',val:24.3},{nom:'Dijon',val:21.5},
-    ];
-    const tauxNational = [
-      {nom:'Rennes',taux:33.5},{nom:'Bordeaux',taux:32.3},{nom:'Toulouse',taux:28.4},
-      {nom:'Nantes',taux:26.8},{nom:'Lille',taux:26.4},{nom:'Marseille',taux:26.3},
-      {nom:'Nice',taux:26.2},{nom:'Strasbourg',taux:24.4},{nom:'Lyon',taux:24.3},
-      {nom:'Toulon',taux:24.3},{nom:'Montpellier',taux:24.1},{nom:'Grenoble',taux:24.0},
-      {nom:'Paris',taux:23.7},{nom:'Rouen',taux:23.1},{nom:'Dijon',taux:22.2},
-    ];
-
-    const chartBaseOpts = (xLabel) => ({
-      responsive:true,
-      plugins:{
-        legend:{display:false},
-        tooltip:{backgroundColor:'#0d0d2b',borderColor:'rgba(245,200,66,0.3)',borderWidth:1,
-          titleColor:'#f5c842',bodyColor:'#e8eaf6',
-          titleFont:{family:'Space Mono',size:11},bodyFont:{family:'Crimson Pro',size:13},padding:10}
-      },
-      scales:{
-        x:{ticks:{color:'#a5b4ce',font:{family:'Space Mono',size:9}},
-           grid:{color:'rgba(255,255,255,0.04)'},
-           title:{display:true,text:xLabel,color:'#a5b4ce',font:{family:'Space Mono',size:9}}},
-        y:{ticks:{color:'#a5b4ce',font:{family:'Space Mono',size:9},maxRotation:0},
-           grid:{color:'rgba(255,255,255,0.04)'}}
-      },
-      indexAxis:'y',
-      animation:{duration:500,easing:'easeInOutQuart'}
-    });
-
-    function makeColors(data, keyFn, isStras) {
-      return data.map(d => isStras(d)
-        ? 'rgba(103,232,249,0.85)'
-        : (keyFn(d) >= 50 ? 'rgba(255,51,0,0.6)' : keyFn(d) >= 35 ? 'rgba(255,107,53,0.55)' : 'rgba(245,200,66,0.45)')
-      );
-    }
-    function makeBorders(data, keyFn, isStras) {
-      return data.map(d => isStras(d) ? '#67e8f9' : (keyFn(d)>=50?'#ff3300':keyFn(d)>=35?'#ff6b35':'#f5c842'));
-    }
-
-    new Chart(document.getElementById('ctxChartRadiance').getContext('2d'), {
-      type:'bar',
-      data:{
-        labels: v2022.map(d=>d.nom),
-        datasets:[{
-          label:'Radiance 2022 (nW/cm²/sr)',
-          data: v2022.map(d=>d.val),
-          backgroundColor: makeColors(v2022, d=>d.val, d=>d.nom==='Strasbourg'),
-          borderColor: makeBorders(v2022, d=>d.val, d=>d.nom==='Strasbourg'),
-          borderWidth:1.5, borderRadius:3,
-        }]
-      },
-      options:{
-        ...chartBaseOpts('nW/cm²/sr'),
-        plugins:{...chartBaseOpts().plugins,
-          tooltip:{...chartBaseOpts().plugins.tooltip,
-            callbacks:{label:c=>' '+c.parsed.x+' nW/cm²/sr'}}}
-      }
-    });
-
-    new Chart(document.getElementById('ctxChartCroissance').getContext('2d'), {
-      type:'bar',
-      data:{
-        labels: tauxNational.map(d=>d.nom),
-        datasets:[{
-          label:'Taux de croissance 2012–2022 (%)',
-          data: tauxNational.map(d=>d.taux),
-          backgroundColor: tauxNational.map(d=>d.nom==='Strasbourg'?'rgba(103,232,249,0.85)':'rgba(245,200,66,0.45)'),
-          borderColor: tauxNational.map(d=>d.nom==='Strasbourg'?'#67e8f9':'#f5c842'),
-          borderWidth:1.5, borderRadius:3,
-        }]
-      },
-      options:{
-        ...chartBaseOpts('%'),
-        plugins:{...chartBaseOpts().plugins,
-          tooltip:{...chartBaseOpts().plugins.tooltip,
-            callbacks:{label:c=>' +'+c.parsed.x+'%'}}}
-      }
-    });
-
-    function ctxTab(id) {
-      document.querySelectorAll('.ctx-tab').forEach((b,i)=>b.classList.toggle('actif',['radiance','croissance'][i]===id));
-      document.querySelectorAll('.ctx-panel').forEach(p=>p.classList.toggle('actif',p.id==='ctx-'+id));
-    }
   </script>
 
+  <!-- Quiz JS -->
   <script>
-    // ── Mode exposition ───────────────────────────────────────
-    (function() {
-      if (sessionStorage.getItem('modeExpo') === '1') {
-        document.body.classList.add('mode-expo');
-        document.getElementById('expo-label').textContent = 'Quitter expo';
-      }
-    })();
-    function toggleExpo() {
-      const on = document.body.classList.toggle('mode-expo');
-      sessionStorage.setItem('modeExpo', on ? '1' : '0');
-      document.getElementById('expo-label').textContent = on ? 'Quitter expo' : 'Mode exposition';
-      if (typeof lucide !== 'undefined') lucide.createIcons();
-    }
-  </script>
-  <script>
-    // ── Quiz participatif ─────────────────────────────────────
-    const QUIZ_ANSWERS = { 1: 'Schiltigheim', 2: 'Osthoffen' };
-    const QUIZ_EXPLANATIONS = {
-      1: {
-        correct: 'Exact ! Schiltigheim affiche <strong>38,3 nW/cm²/sr</strong> en 2022, devant Bischheim (34,8) et Strasbourg (28,7 — dont la saturation ralentit la croissance).',
-        wrong:   'Pas tout à fait — c'est <strong>Schiltigheim</strong> avec 38,3 nW/cm²/sr en 2022. Strasbourg, malgré sa taille, est en 3ᵉ position : son tissu urbain saturé limite la croissance relative.'
-      },
-      2: {
-        correct: 'Exact ! <strong>Osthoffen</strong> est passée de ~5 nW en 2014 à <strong>0,6 nW en 2024</strong>, soit −68 %, grâce à une extinction totale détectée par satellite (Cerema, 2025).',
-        wrong:   'Non — c'est <strong>Osthoffen</strong> avec −68 % entre 2014 et 2024 (de ~5 à 0,6 nW/cm²/sr). Une extinction totale de l'éclairage public, mesurable depuis l'espace.'
-      }
-    };
-    let score = 0;
-    let answered = 0;
+    let q1done = false;
 
-    function repondre(qNum, choix) {
-      const correct = QUIZ_ANSWERS[qNum];
+    function repondre(choix) {
+      const correct = 'Schiltigheim';
       const isRight = choix === correct;
-      if (isRight) score++;
-      answered++;
-
-      // Disable all buttons in this question
-      document.querySelectorAll(`#q${qNum}-choices .quiz-btn`).forEach(btn => {
-        btn.disabled = true;
-        const label = btn.textContent.trim();
-        if (label === correct) btn.classList.add('correct');
-        else if (label === choix && !isRight) btn.classList.add('wrong');
+      document.querySelectorAll('.quiz-btn').forEach(b => {
+        b.disabled = true;
+        if (b.textContent.trim() === correct) b.classList.add('correct');
+        else if (b.textContent.trim() === choix && !isRight) b.classList.add('wrong');
       });
-
-      // Show explanation
-      const res = document.getElementById(`q${qNum}-result`);
-      const expl = QUIZ_EXPLANATIONS[qNum];
-      res.innerHTML = isRight
-        ? `<p style="color:var(--vert-reserve);"><strong>✓ Bonne réponse !</strong> ${expl.correct}</p>`
-        : `<p style="color:#ff6b35;"><strong>✗ Pas tout à fait.</strong> ${expl.wrong}</p>`;
+      const res = document.getElementById('q-result');
       res.style.display = 'block';
-      res.style.background = isRight ? 'rgba(74,222,128,0.08)' : 'rgba(255,107,53,0.08)';
-      res.style.border = isRight ? '1px solid rgba(74,222,128,0.2)' : '1px solid rgba(255,107,53,0.2)';
+      if (isRight) {
+        res.innerHTML = '<p style="color:var(--vert-reserve);"><strong>✓ Exact !</strong> Schiltigheim affiche <strong>38,3 nW/cm²/sr</strong> en 2022 — devant Bischheim et Strasbourg, dont la saturation ralentit la croissance.</p>';
+        res.style.cssText += 'background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.2);';
+      } else {
+        res.innerHTML = '<p style="color:#ff6b35;"><strong>✗ Pas tout à fait.</strong> C\'est <strong>Schiltigheim</strong> (38,3 nW/cm²/sr). Strasbourg est en 3ᵉ position — son tissu urbain saturé depuis longtemps limite sa croissance relative.</p>';
+        res.style.cssText += 'background:rgba(255,107,53,0.08);border:1px solid rgba(255,107,53,0.2);';
+      }
+      document.getElementById('q-next').style.display = 'block';
+    }
 
-      if (answered === 2) {
-        setTimeout(() => {
-          const sc = document.getElementById('quiz-score');
-          sc.style.display = 'block';
-          const msgs = ['0/2 — La carte et les données n'attendent que vous !', '1/2 — Bien joué ! Explorez le site pour aller plus loin.', '2/2 — Parfait ! Vous connaissez votre territoire.'];
-          document.getElementById('score-text').innerHTML = msgs[score];
-          sc.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 600);
+    function question2() {
+      document.getElementById('q-text').textContent = 'Entre 2014 et 2024, quelle commune a le plus réduit sa pollution lumineuse grâce à l\'extinction nocturne ?';
+      document.getElementById('q-choices').innerHTML = `
+        <button class="quiz-btn" onclick="repondre2('Strasbourg')">Strasbourg</button>
+        <button class="quiz-btn" onclick="repondre2('Osthoffen')">Osthoffen</button>
+        <button class="quiz-btn" onclick="repondre2('Entzheim')">Entzheim</button>
+        <button class="quiz-btn" onclick="repondre2('Fegersheim')">Fegersheim</button>`;
+      document.getElementById('q-result').style.display = 'none';
+      document.getElementById('q-next').style.display = 'none';
+    }
+
+    function repondre2(choix) {
+      const correct = 'Osthoffen';
+      const isRight = choix === correct;
+      document.querySelectorAll('.quiz-btn').forEach(b => {
+        b.disabled = true;
+        if (b.textContent.trim() === correct) b.classList.add('correct');
+        else if (b.textContent.trim() === choix && !isRight) b.classList.add('wrong');
+      });
+      const res = document.getElementById('q-result');
+      res.style.display = 'block';
+      if (isRight) {
+        res.innerHTML = '<p style="color:var(--vert-reserve);"><strong>✓ Exact !</strong> Osthoffen est passée de ~5 nW/cm²/sr en 2014 à <strong>0,6 nW en 2024</strong> — soit −68 %. Mesurable depuis l\'espace. <a href="donnees.html" style="color:var(--or);">Voir les données →</a></p>';
+        res.style.cssText += 'background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.2);';
+      } else {
+        res.innerHTML = '<p style="color:#ff6b35;"><strong>✗ Non —</strong> c\'est <strong>Osthoffen</strong> avec −68 % (de ~5 à 0,6 nW/cm²/sr). Une extinction totale de l\'éclairage public, mesurable depuis l\'espace. <a href="donnees.html" style="color:var(--or);">Voir les données →</a></p>';
+        res.style.cssText += 'background:rgba(255,107,53,0.08);border:1px solid rgba(255,107,53,0.2);';
       }
     }
-
-    function resetQuiz() {
-      score = 0; answered = 0;
-      [1,2].forEach(q => {
-        document.querySelectorAll(`#q${q}-choices .quiz-btn`).forEach(b => {
-          b.disabled = false;
-          b.classList.remove('correct','wrong');
-        });
-        document.getElementById(`q${q}-result`).style.display = 'none';
-      });
-      document.getElementById('quiz-score').style.display = 'none';
-    }
   </script>
+  <script>document.addEventListener("DOMContentLoaded",()=>lucide.createIcons());</script>
 </body>
 </html>

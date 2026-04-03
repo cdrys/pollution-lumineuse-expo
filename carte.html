@@ -24,6 +24,79 @@
     .expo-filtre-btn { font-family:'Space Mono',monospace; font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); color:var(--gris-texte); padding:0.4rem 0.9rem; border-radius:2rem; cursor:pointer; transition:all 0.2s; }
     .expo-filtre-btn:hover, .expo-filtre-btn.actif { background:rgba(245,200,66,0.12); border-color:var(--or); color:var(--or); }
     .expo-filtre-btn.actif-vert { background:rgba(74,222,128,0.12); border-color:var(--vert-reserve); color:var(--vert-reserve); }
+
+    /* ── Panneau info ────────────────────────────────────────── */
+    #info-btn {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      z-index: 400;
+      width: 2.4rem;
+      height: 2.4rem;
+      background: rgba(13,13,43,0.92);
+      border: 1px solid rgba(245,200,66,0.4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.25s;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.5);
+    }
+    #info-btn:hover { background: rgba(245,200,66,0.15); border-color: var(--or); }
+    #info-btn i { width: 1rem; height: 1rem; stroke: var(--or); }
+
+    #info-panel {
+      position: absolute;
+      bottom: 5rem;
+      left: 1.5rem;
+      z-index: 400;
+      width: 340px;
+      background: rgba(10,10,30,0.96);
+      border: 1px solid rgba(245,200,66,0.25);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+      transform-origin: bottom left;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    #info-panel.hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.95) translateY(8px);
+    }
+    #info-panel-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--or);
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    #info-panel-text {
+      font-size: 0.92rem;
+      color: var(--gris-texte);
+      line-height: 1.65;
+    }
+    #info-panel-text strong { color: var(--blanc-etoile); }
+    #info-panel-close {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      background: transparent;
+      border: none;
+      color: var(--gris-texte);
+      cursor: pointer;
+      font-size: 1rem;
+      line-height: 1;
+      padding: 0.2rem;
+    }
+    #info-panel-close:hover { color: var(--blanc-etoile); }
   </style>
 </head>
 <body>
@@ -80,7 +153,22 @@
         </button>
       </div>
     </div>
-    <div id="expo-map" style="flex:1;min-height:400px;"></div>
+    <div id="expo-map" style="flex:1;min-height:400px;position:relative;">
+      <!-- Bouton info -->
+      <button id="info-btn" onclick="toggleInfo()" title="En savoir plus sur cette carte">
+        <i data-lucide="info"></i>
+      </button>
+
+      <!-- Panneau info -->
+      <div id="info-panel" class="hidden">
+        <button id="info-panel-close" onclick="toggleInfo()">✕</button>
+        <div id="info-panel-tag">
+          <i data-lucide="info" style="width:0.7rem;height:0.7rem;stroke:var(--or);"></i>
+          <span id="info-panel-year">Lecture · 2022</span>
+        </div>
+        <p id="info-panel-text"></p>
+      </div>
+</div>
   </div>
 
   <script>
@@ -211,6 +299,46 @@
     function tourNext(){step++;if(step>=STEPS.length){tourSkip();}else{tourRender();}}
     function tourSkip(){document.getElementById('expo-tour-card').classList.add('hidden');}
     tourRender();
+
+    // ── Panneau info contextuel ───────────────────────────────
+    const INFO_TEXTS = {
+      2012: "En <strong>2012</strong>, le gradient centre–périphérie est déjà marqué : Strasbourg rayonne à <strong>48 nW/cm²/sr</strong>, soit cinq fois plus que les communes rurales de l'ouest comme Kolbsheim ou Blaesheim. Ce contraste reflète une décennie d'urbanisation différenciée — le centre dense contre la couronne agricole.",
+      2014: "En <strong>2014</strong>, le gradient territorial se maintient. Les communes de la première couronne — Schiltigheim, Bischheim, Hœnheim — affichent des radiances proches de Strasbourg, signe d'une conurbation déjà fortement lumineuse au nord de l'agglomération.",
+      2016: "En <strong>2016</strong>, une première inflexion est visible : <strong>Illkirch-Graffenstaden</strong> et <strong>Vendenheim</strong> commencent à mettre en place des politiques d'extinction nocturne, détectables par satellite. La transition LED, engagée dans plusieurs communes, ne compense pas encore la hausse globale.",
+      2018: "En <strong>2018</strong>, l'arrêté du 27 décembre impose l'extinction des enseignes commerciales entre 1h et 6h. L'effet est encore limité — la radiance continue d'augmenter dans la majorité des communes — mais les premières données indiquent un léger ralentissement dans les zones d'activité.",
+      2020: "En <strong>2020</strong>, l'empreinte des confinements Covid-19 est mesurable depuis l'espace : une baisse de 2 à 4 % de la radiance s'observe dans presque toutes les communes. Ce signal montre que l'éclairage commercial et tertiaire contribue significativement à la pollution lumineuse.",
+      2022: "En <strong>2022</strong>, le gradient centre–périphérie reste net : <strong>Schiltigheim</strong> domine à 38 nW/cm²/sr, devant Bischheim et Strasbourg. Les communes rurales de l'ouest — <strong>Blaesheim (3 nW), Kolbsheim (1,7 nW), Osthoffen (2,4 nW)</strong> — ont fortement réduit leur radiance grâce aux politiques d'extinction. L'écart entre communes actives et inactives se creuse visiblement."
+    };
+
+    let infoPanelOpen = false;
+
+    function toggleInfo() {
+      infoPanelOpen = !infoPanelOpen;
+      const panel = document.getElementById('info-panel');
+      panel.classList.toggle('hidden', !infoPanelOpen);
+      if (infoPanelOpen) updateInfoText();
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+    }
+
+    function updateInfoText() {
+      if (!infoPanelOpen) return;
+      const yr = anneeActive;
+      // Find closest year in our texts
+      const years = Object.keys(INFO_TEXTS).map(Number).sort((a,b)=>a-b);
+      const closest = years.reduce((prev, curr) => Math.abs(curr-yr) < Math.abs(prev-yr) ? curr : prev);
+      document.getElementById('info-panel-year').innerHTML =
+        '<i data-lucide="info" style="width:0.7rem;height:0.7rem;stroke:var(--or);display:inline-block;vertical-align:middle;margin-right:0.3rem;"></i>Lecture · ' + yr;
+      document.getElementById('info-panel-text').innerHTML = INFO_TEXTS[closest];
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+    }
+
+    // Hook into changerAnnee to update panel when slider moves
+    const _origChangerAnnee = changerAnnee;
+    changerAnnee = function(val) {
+      _origChangerAnnee(val);
+      updateInfoText();
+    };
+
   </script>
   <script>document.addEventListener("DOMContentLoaded",()=>lucide.createIcons());</script>
 </body>

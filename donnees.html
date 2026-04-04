@@ -24,8 +24,8 @@
     .cbar-track{flex:1;background:rgba(255,255,255,.06);border-radius:3px;height:11px;overflow:hidden;}
     .cbar-fill{height:100%;width:0%;border-radius:3px;transition:width 1.2s cubic-bezier(.4,0,.2,1);}
     .cbar-val{font-family:'Space Mono',monospace;font-size:.6rem;min-width:3.2rem;text-align:right;}
-    .card-right{text-align:center;}
-    .card-ev{font-family:'Space Mono',monospace;font-size:1.8rem;font-weight:700;line-height:1;}
+    .card-right{text-align:center;display:flex;flex-direction:column;align-items:center;gap:.2rem;}
+    .card-ev-wrap{display:flex;align-items:baseline;gap:.2rem;justify-content:center;} .card-ev{font-family:'Space Mono',monospace;font-size:1.8rem;font-weight:700;line-height:1;} .card-ev-pct{font-family:'Space Mono',monospace;font-size:1rem;font-weight:700;}
     .card-ev-label{font-family:'Space Mono',monospace;font-size:.58rem;color:#a5b4ce;margin-top:.2rem;line-height:1.4;}
     .main-layout{display:grid;grid-template-columns:1fr 300px;gap:2rem;align-items:start;}
     .map-sticky{position:sticky;top:90px;}
@@ -168,7 +168,10 @@
     </div>
   </div>
   <div class="card-right">
-    <div class="card-ev" style="color:#4ade80;" data-target="-28.3">0 %</div>
+    <div class="card-ev-wrap">
+      <div class="card-ev" style="color:#4ade80;" data-target="-28.3">0</div>
+      <div class="card-ev-pct" style="color:#4ade80;">%</div>
+    </div>
     <div class="card-ev-label">2014→2024</div>
   </div>
 </div><div class="commune-card" data-nom="Osthoffen" style="--card-col:#4ade80;"
@@ -191,7 +194,10 @@
     </div>
   </div>
   <div class="card-right">
-    <div class="card-ev" style="color:#4ade80;" data-target="-73.4">0 %</div>
+    <div class="card-ev-wrap">
+      <div class="card-ev" style="color:#4ade80;" data-target="-73.4">0</div>
+      <div class="card-ev-pct" style="color:#4ade80;">%</div>
+    </div>
     <div class="card-ev-label">2014→2024</div>
   </div>
 </div><div class="commune-card" data-nom="Oberhausbergen" style="--card-col:#f59e0b;"
@@ -214,7 +220,10 @@
     </div>
   </div>
   <div class="card-right">
-    <div class="card-ev" style="color:#4ade80;" data-target="-54.0">0 %</div>
+    <div class="card-ev-wrap">
+      <div class="card-ev" style="color:#4ade80;" data-target="-54.0">0</div>
+      <div class="card-ev-pct" style="color:#4ade80;">%</div>
+    </div>
     <div class="card-ev-label">2014→2024</div>
   </div>
 </div><div class="commune-card" data-nom="Blaesheim" style="--card-col:#a5b4ce;"
@@ -237,7 +246,10 @@
     </div>
   </div>
   <div class="card-right">
-    <div class="card-ev" style="color:#4ade80;" data-target="-21.1">0 %</div>
+    <div class="card-ev-wrap">
+      <div class="card-ev" style="color:#4ade80;" data-target="-21.1">0</div>
+      <div class="card-ev-pct" style="color:#4ade80;">%</div>
+    </div>
     <div class="card-ev-label">2014→2024</div>
   </div>
 </div></div>
@@ -292,7 +304,7 @@
       document.querySelectorAll('.commune-card').forEach(c=>{c.style.opacity='1';c.classList.remove('highlighted');});
     }
 
-    function animCounter(el,target,dur){const t0=performance.now();(function s(now){const p=Math.min((now-t0)/dur,1),e=p<.5?2*p*p:-1+(4-2*p)*p,v=target*e;el.textContent=(v>=0?'+':'')+v.toFixed(1)+' %';if(p<1)requestAnimationFrame(s);else el.textContent=(target>=0?'+':'')+target+' %';})(performance.now());}
+    function animCounter(el,target,dur){const t0=performance.now();(function s(now){const p=Math.min((now-t0)/dur,1),e=p<.5?2*p*p:-1+(4-2*p)*p,v=target*e;el.textContent=(v>=0?'+':'')+v.toFixed(1);if(p<1)requestAnimationFrame(s);else el.textContent=(target>=0?'+':'')+target;})(performance.now());}
     function animBar(el,pct,dur){const t0=performance.now();(function s(now){const p=Math.min((now-t0)/dur,1),e=p<.5?2*p*p:-1+(4-2*p)*p;el.style.width=(pct*e)+'%';if(p<1)requestAnimationFrame(s);else el.style.width=pct+'%';})(performance.now());}
 
     function animSparkline(svg, dur) {

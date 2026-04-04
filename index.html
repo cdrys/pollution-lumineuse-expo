@@ -285,28 +285,49 @@
   </script>
   <script>document.addEventListener("DOMContentLoaded",()=>lucide.createIcons());</script>
 
+
   <script>
     // ── Bulles latérales ─────────────────────────────────────
     (function() {
       const bubbles = document.querySelectorAll('.side-bubble');
-      const trigger = document.getElementById('quiz-container');
-      if (!trigger) return;
-      let shown = false;
-      const obs = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-          if (e.isIntersecting && !shown) {
-            shown = true;
-            bubbles.forEach((b, i) => {
-              setTimeout(() => b.classList.add('visible'), i * 200);
-            });
-          } else if (!e.isIntersecting && e.boundingClientRect.top > 0) {
-            // scrolled back up above trigger — hide
-            shown = false;
-            bubbles.forEach(b => b.classList.remove('visible'));
-          }
-        });
-      }, { threshold: 0.3 });
-      obs.observe(trigger);
+      if (!bubbles.length) return;
+
+      // Show when user has scrolled enough to see the saviez-vous block
+      // Hide only when well past the CTA buttons
+      const showTrigger  = document.querySelector('.expo-hero-sub');   // appear early
+      const hideTrigger  = document.querySelector('.expo-cta-grid');   // disappear late
+
+      let visible = false;
+
+      function update() {
+        if (!showTrigger) return;
+        const showRect = showTrigger.getBoundingClientRect();
+        const winH = window.innerHeight;
+
+        // Show: as soon as the subtitle has scrolled 40% into view
+        const shouldShow = showRect.top < winH * 0.6;
+
+        // Hide: only when CTA grid is well past the bottom of screen
+        const hideRect = hideTrigger ? hideTrigger.getBoundingClientRect() : null;
+        const shouldHide = hideRect && hideRect.bottom < -200;
+
+        const newVisible = shouldShow && !shouldHide;
+
+        if (newVisible !== visible) {
+          visible = newVisible;
+          bubbles.forEach((b, i) => {
+            if (newVisible) {
+              setTimeout(() => b.classList.add('visible'), i * 180);
+            } else {
+              setTimeout(() => b.classList.remove('visible'), i * 100);
+            }
+          });
+        }
+      }
+
+      window.addEventListener('scroll', update, { passive: true });
+      // Also check on load in case page starts scrolled
+      update();
     })();
   </script>
 </body>

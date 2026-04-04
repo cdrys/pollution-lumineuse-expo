@@ -134,7 +134,7 @@
     </div>
   </div>
 
-  <div class="expo-map-wrap" style="position:relative;z-index:1;height:calc(100vh - 115px);display:flex;flex-direction:column;">
+  <div class="expo-map-wrap" style="position:relative;z-index:1;height:calc(100vh - 115px);display:flex;flex-direction:column;overflow:visible;">
     <!-- Barre de contrôles -->
     <div class="expo-map-controls">
       <div class="expo-slider-wrap">
@@ -281,11 +281,11 @@
 
     // Tour guide - affiche toujours en expo
     const STEPS=[
-      {tag:"Étape 1 / 4",title:"Le curseur temporel",text:"Glissez ce curseur pour voir l'évolution de la radiance nocturne de 2012 à 2022 dans les 33 communes.",pos:{top:'90px',right:'20px',left:'auto'}},
-      {tag:"Étape 2 / 4",title:"Cliquez sur une commune",text:"Chaque cercle est une commune. Cliquez dessus pour voir sa radiance exacte, son taux de hausse et sa classe Bortle.",pos:{top:'50%',left:'60%',right:'auto',transform:'translateY(-50%)'}},
-      {tag:"Étape 3 / 4",title:"Filtrer par type",text:"Ces boutons filtrent les communes : centre, périurbain dense ou moyen, rural. Comparez les dynamiques territoriales.",pos:{top:'90px',right:'20px',left:'auto'}},
-      {tag:"Étape 4 / 5",title:"La heatmap",text:"La heatmap affiche la radiance en coeur de nuit jusqu'en 2024 (source Cerema). Les zones froides montrent l'effet des extinctions nocturnes.",pos:{top:'90px',right:'20px',left:'auto'}},
-      {tag:"Étape 5 / 5",title:"Le bouton \u24d8 — Comprendre ce qu'on voit",text:"En bas à gauche de la carte, le bouton \u24d8 affiche une explication contextuelle sur ce que révèle la carte pour l'année sélectionnée. Il se met à jour automatiquement quand vous bougez le curseur.",pos:{top:'90px',right:'20px',left:'auto'}}
+      {tag:"Étape 1 / 5",title:"Le curseur temporel",text:"Glissez ce curseur pour voir l'évolution de la radiance nocturne de 2012 à 2022 dans les 33 communes.",pos:{top:'auto',bottom:'20px',left:'20px',right:'auto',transform:'none'}},
+      {tag:"Étape 2 / 5",title:"Cliquez sur une commune",text:"Chaque cercle est une commune. Cliquez dessus pour voir sa radiance exacte, son taux de hausse et sa classe Bortle.",pos:{top:'50%',left:'60%',right:'auto',bottom:'auto',transform:'translateY(-50%)'}},
+      {tag:"Étape 3 / 5",title:"Filtrer par type",text:"Ces boutons filtrent les communes : centre, périurbain dense ou moyen, rural. Comparez les dynamiques territoriales.",pos:{top:'90px',right:'20px',left:'auto',bottom:'auto',transform:'none'}},
+      {tag:"Étape 4 / 5",title:"La heatmap",text:"La heatmap affiche la radiance en coeur de nuit jusqu'en 2024 (source Cerema). Les zones froides montrent l'effet des extinctions nocturnes.",pos:{top:'140px',right:'20px',left:'auto',bottom:'auto',transform:'none'}},
+      {tag:"Étape 5 / 5",title:"Le bouton ⓘ — Comprendre ce qu'on voit",text:"En bas à gauche de la carte, le bouton ⓘ affiche une explication contextuelle sur ce que révèle la carte pour l'année sélectionnée. Il se met à jour automatiquement quand vous bougez le curseur.",pos:{top:'auto',bottom:'5.5rem',left:'5rem',right:'auto',transform:'none'}}
     ];
     let step=0;
     function tourRender(){
@@ -294,7 +294,11 @@
       document.getElementById('t-title').textContent=s.title;
       document.getElementById('t-text').textContent=s.text;
       const card=document.getElementById('expo-tour-card');
-      Object.assign(card.style,{top:s.pos.top||'auto',left:s.pos.left||'auto',right:s.pos.right||'auto',transform:s.pos.transform||'none'});
+      card.style.top=s.pos.top||'auto';
+      card.style.left=s.pos.left||'auto';
+      card.style.right=s.pos.right||'auto';
+      card.style.bottom=s.pos.bottom||'auto';
+      card.style.transform=s.pos.transform||'none';
       document.querySelectorAll('#t-dots div').forEach((d,i)=>d.style.background=i===step?'var(--or)':'rgba(255,255,255,0.2)');
       document.querySelector('.expo-tour-btn').textContent=step===STEPS.length-1?'Terminer ✓':'Suivant →';
     }

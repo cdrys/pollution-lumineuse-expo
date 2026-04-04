@@ -27,10 +27,10 @@
 
     /* ── Panneau info ────────────────────────────────────────── */
     #info-btn {
-      position: absolute;
+      position: fixed;
       bottom: 1.5rem;
       left: 1.5rem;
-      z-index: 400;
+      z-index: 1000;
       width: 2.4rem;
       height: 2.4rem;
       background: rgba(13,13,43,0.92);
@@ -48,10 +48,10 @@
     #info-btn i { width: 1rem; height: 1rem; stroke: var(--or); }
 
     #info-panel {
-      position: absolute;
+      position: fixed;
       bottom: 5rem;
       left: 1.5rem;
-      z-index: 400;
+      z-index: 1000;
       width: 340px;
       background: rgba(10,10,30,0.96);
       border: 1px solid rgba(245,200,66,0.25);
@@ -154,22 +154,22 @@
         </button>
       </div>
     </div>
-    <div id="expo-map" style="flex:1;min-height:400px;position:relative;">
-      <!-- Bouton info -->
-      <button id="info-btn" onclick="toggleInfo()" title="En savoir plus sur cette carte">
-        <i data-lucide="info"></i>
-      </button>
+    <div id="expo-map" style="flex:1;min-height:400px;"></div>
 
-      <!-- Panneau info -->
-      <div id="info-panel" class="hidden">
-        <button id="info-panel-close" onclick="toggleInfo()">✕</button>
-        <div id="info-panel-tag">
-          <i data-lucide="info" style="width:0.7rem;height:0.7rem;stroke:var(--or);"></i>
-          <span id="info-panel-year">Lecture · 2022</span>
-        </div>
-        <p id="info-panel-text"></p>
-      </div>
-</div>
+  <!-- Bouton info (position:fixed, hors Leaflet) -->
+  <button id="info-btn" onclick="toggleInfo()" title="En savoir plus sur cette carte">
+    <i data-lucide="info"></i>
+  </button>
+
+  <!-- Panneau info -->
+  <div id="info-panel" class="hidden">
+    <button id="info-panel-close" onclick="toggleInfo()">✕</button>
+    <div id="info-panel-tag">
+      <i data-lucide="info" style="width:0.7rem;height:0.7rem;stroke:var(--or);display:inline-block;vertical-align:middle;margin-right:0.3rem;"></i>
+      <span id="info-panel-year">Lecture · 2022</span>
+    </div>
+    <p id="info-panel-text"></p>
+  </div>
   </div>
 
   <script>
@@ -281,7 +281,7 @@
 
     // Tour guide - affiche toujours en expo
     const STEPS=[
-      {tag:"Étape 1 / 5",title:"Le curseur temporel",text:"Glissez ce curseur pour voir l'évolution de la radiance nocturne de 2012 à 2022 dans les 33 communes.",pos:{top:'auto',bottom:'20px',left:'20px',right:'auto',transform:'none'}},
+      {tag:"Étape 1 / 5",title:"Le curseur temporel",text:"Glissez ce curseur pour voir l'évolution de la radiance nocturne de 2012 à 2022 dans les 33 communes.",pos:{top:'90px',bottom:'auto',left:'20px',right:'auto',transform:'none'}},
       {tag:"Étape 2 / 5",title:"Cliquez sur une commune",text:"Chaque cercle est une commune. Cliquez dessus pour voir sa radiance exacte, son taux de hausse et sa classe Bortle.",pos:{top:'50%',left:'60%',right:'auto',bottom:'auto',transform:'translateY(-50%)'}},
       {tag:"Étape 3 / 5",title:"Filtrer par type",text:"Ces boutons filtrent les communes : centre, périurbain dense ou moyen, rural. Comparez les dynamiques territoriales.",pos:{top:'90px',right:'20px',left:'auto',bottom:'auto',transform:'none'}},
       {tag:"Étape 4 / 5",title:"La heatmap",text:"La heatmap affiche la radiance en coeur de nuit jusqu'en 2024 (source Cerema). Les zones froides montrent l'effet des extinctions nocturnes.",pos:{top:'140px',right:'20px',left:'auto',bottom:'auto',transform:'none'}},

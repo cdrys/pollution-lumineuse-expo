@@ -292,53 +292,63 @@
 
 
   <script>
-    // ── Bulles séquentielles au scroll ──────────────────────
+    // ── Bulles séquentielles (scroll + timer) ───────────────
     (function() {
       const b0 = document.getElementById('bub-0');
       const b1 = document.getElementById('bub-1');
       const b2 = document.getElementById('bub-2');
       if (!b0 || !b1 || !b2) return;
 
-      function setVisible(b, v) {
-        if (v) b.classList.add('visible');
-        else   b.classList.remove('visible');
-      }
+      function show(b) { b.classList.add('visible'); }
+      function hide(b) { b.classList.remove('visible'); }
+      function hideAll() { hide(b0); hide(b1); hide(b2); }
 
-      // Debug panel
-      const dbg = document.createElement('div');
-      dbg.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.85);color:#f5c842;font-family:monospace;font-size:11px;padding:8px 12px;border-radius:6px;z-index:9999;white-space:pre;pointer-events:none;';
-      document.body.appendChild(dbg);
+      let phase = 0;       // 0=none, 1=bub0, 2=bub1, 3=bub2, 4=done
+      let timerB2 = null;
+
+      function setPhase(p) {
+        if (p === phase) return;
+        phase = p;
+        clearTimeout(timerB2);
+        hideAll();
+        if (p === 1) { show(b0); }
+        if (p === 2) {
+          show(b1);
+          // After 2.2s auto-switch to bub-2
+          timerB2 = setTimeout(() => setPhase(3), 2200);
+        }
+        if (p === 3) { show(b2); }
+        if (p === 4) { hideAll(); }
+      }
 
       function update() {
         const sub  = document.querySelector('.expo-hero-sub');
         const quiz = document.getElementById('quiz-container');
         const winH = window.innerHeight;
 
-        const subTop  = sub  ? Math.round(sub.getBoundingClientRect().top)    : 9999;
-        const quizTop = quiz ? Math.round(quiz.getBoundingClientRect().top)   : 9999;
-        const quizBot = quiz ? Math.round(quiz.getBoundingClientRect().bottom) : 9999;
+        if (!sub || !quiz) return;
 
-        const showBub0 = subTop < winH * 0.6 && quizTop > winH * 0.75;
-        const showBub1 = quizTop < winH * 0.85 && quizTop > winH * 0.2;
-        const showBub2 = quizTop < winH * 0.2 && quizBot > 0;
-        const allOff   = quizBot < -50;
+        const subTop  = sub.getBoundingClientRect().top;
+        const quizTop = quiz.getBoundingClientRect().top;
+        const quizBot = quiz.getBoundingClientRect().bottom;
 
-        dbg.textContent = [
-          'winH=' + winH,
-          'subTop=' + subTop + ' (< ' + Math.round(winH*0.6) + '?)',
-          'quizTop=' + quizTop,
-          'quizBot=' + quizBot,
-          'b0=' + showBub0 + ' b1=' + showBub1 + ' b2=' + showBub2,
-          'allOff=' + allOff,
-        ].join('\n');
+        // Quiz completely off screen → done
+        if (quizBot < -50) { setPhase(4); return; }
 
-        if (allOff) {
-          setVisible(b0,false); setVisible(b1,false); setVisible(b2,false);
-        } else {
-          setVisible(b0, showBub0);
-          setVisible(b1, showBub1);
-          setVisible(b2, showBub2);
+        // Quiz entered screen → bub-1 phase (unless already at bub-2)
+        if (quizTop < winH * 0.85) {
+          if (phase < 2) setPhase(2);
+          return;
         }
+
+        // Sub visible but quiz not yet → bub-0
+        if (subTop < winH * 0.6) {
+          if (phase !== 1) setPhase(1);
+          return;
+        }
+
+        // Nothing visible yet
+        if (phase !== 0) setPhase(0);
       }
 
       window.addEventListener('scroll', update, { passive: true });

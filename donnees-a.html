@@ -3,8 +3,11 @@
   <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <link rel="stylesheet" href="css/style.css"/>
   <link rel="stylesheet" href="css/expo.css"/>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    .dw{max-width:1000px;margin:0 auto;padding:2rem 2rem 4rem;}
+    
+  </style>
 </head><body>
   <canvas id="sf" style="position:fixed;inset:0;z-index:0;pointer-events:none;"></canvas>
   <nav class="expo-nav">
@@ -19,42 +22,250 @@
     <div class="expo-nav-badge">Exposition · 2025–2026</div>
   </nav>
   <div class="page-wrapper" style="position:relative;z-index:1;">
-  <style>
-    .bar-row{display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem;}
-    .bar-name{font-family:'Space Mono',monospace;font-size:.63rem;color:var(--gris-texte);width:145px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-    .bar-pair{flex:1;display:flex;flex-direction:column;gap:2px;}
-    .bar-track{background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;}
-    .bar-fill{height:100%;border-radius:2px;}
-    .bar-val{font-family:'Space Mono',monospace;font-size:.62rem;min-width:3.2rem;text-align:right;}
-  </style>
-  <div style="max-width:1000px;margin:0 auto;padding:1.5rem 2rem 4rem;">
-    <div style="text-align:center;padding:2.5rem 0 1.5rem;">
-      <p class="section-tag">Option A — Barres avant / après</p>
-      <h1 class="section-titre" style="font-size:1.6rem;">Radiance 2014–2016 vs 2022–2024</h1>
-      <p style="color:var(--gris-texte);font-size:0.95rem;max-width:640px;margin:0.5rem auto;">Barre supérieure (pâle) = 2014–2016 · Barre inférieure (vive) = 2022–2024 · Couleur = pratique d'extinction</p>
-    </div>
-    <div style="display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.5rem;">
-      <span style="font-family:'Space Mono',monospace;font-size:0.6rem;display:flex;align-items:center;gap:5px;"><span style="width:10px;height:10px;background:#4ade80;border-radius:2px;display:inline-block;"></span>Extinction totale</span>
-      <span style="font-family:'Space Mono',monospace;font-size:0.6rem;display:flex;align-items:center;gap:5px;"><span style="width:10px;height:10px;background:#67e8f9;border-radius:2px;display:inline-block;"></span>Rénovation</span>
-      <span style="font-family:'Space Mono',monospace;font-size:0.6rem;display:flex;align-items:center;gap:5px;"><span style="width:10px;height:10px;background:#f59e0b;border-radius:2px;display:inline-block;"></span>Ext.+Rénov.</span>
-      <span style="font-family:'Space Mono',monospace;font-size:0.6rem;display:flex;align-items:center;gap:5px;"><span style="width:10px;height:10px;background:#a5b4ce;border-radius:2px;display:inline-block;"></span>Aucun changement</span>
-    </div>
-    <div id="ba"></div>
+    <div class="dw">
+<div style="text-align:center;padding:2rem 0 1.25rem;">
+  <p class="section-tag">Option A — Barres avant / après</p>
+  <h1 class="section-titre" style="font-size:1.6rem;">Radiance 2014–2016 vs 2022–2024</h1>
+  <p style="color:var(--gris-texte);font-size:.95rem;max-width:640px;margin:.5rem auto;">Barre supérieure (pâle) = 2014–2016 · Barre inférieure (vive) = 2022–2024 · Chiffre = évolution</p>
+</div><div style="display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.5rem;">
+  <span style="font-family:'Space Mono',monospace;font-size:.6rem;display:flex;align-items:center;gap:5px;"><span style="width:10px;height:10px;background:#4ade80;border-radius:2px;display:inline-block;"></span>Extinction totale</span>
+  <span style="font-family:'Space Mono',monospace;font-size:.6rem;display:flex;align-items:center;gap:5px;"><span style="width:10px;height:10px;background:#67e8f9;border-radius:2px;display:inline-block;"></span>Rénovation</span>
+  <span style="font-family:'Space Mono',monospace;font-size:.6rem;display:flex;align-items:center;gap:5px;"><span style="width:10px;height:10px;background:#f59e0b;border-radius:2px;display:inline-block;"></span>Ext.+Rénov.</span>
+  <span style="font-family:'Space Mono',monospace;font-size:.6rem;display:flex;align-items:center;gap:5px;"><span style="width:10px;height:10px;background:#a5b4ce;border-radius:2px;display:inline-block;"></span>Aucun changement</span>
+</div><div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem;">
+  <div style="font-family:'Space Mono',monospace;font-size:.63rem;color:var(--gris-texte);width:145px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Schiltigheim">Schiltigheim</div>
+  <div style="flex:1;display:flex;flex-direction:column;gap:2px;">
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:100.0%;background:#67e8f9;opacity:.4;border-radius:2px;"></div></div>
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:67.3%;background:#67e8f9;border-radius:2px;"></div></div>
   </div>
-  <script>
-    const D=[{"nom": "Strasbourg", "changes": "R", "mE": 33.66, "mL": 24.12, "ev": -28.3}, {"nom": "Schiltigheim", "changes": "R", "mE": 46.87, "mL": 31.54, "ev": -32.7}, {"nom": "Illkirch-Graffenstaden", "changes": "E", "mE": 17.77, "mL": 11.67, "ev": -34.3}, {"nom": "Ostwald", "changes": "R", "mE": 21.68, "mL": 13.93, "ev": -35.7}, {"nom": "Bischheim", "changes": "R", "mE": 41.35, "mL": 28.53, "ev": -31.0}, {"nom": "Hoenheim", "changes": "R", "mE": 39.49, "mL": 27.25, "ev": -31.0}, {"nom": "Lingolsheim", "changes": "R", "mE": 24.3, "mL": 15.42, "ev": -36.5}, {"nom": "Souffelweyersheim", "changes": "R", "mE": 23.47, "mL": 15.87, "ev": -32.4}, {"nom": "Mundolsheim", "changes": "ER", "mE": 16.29, "mL": 9.63, "ev": -40.9}, {"nom": "Vendenheim", "changes": "E", "mE": 7.23, "mL": 4.63, "ev": -36.0}, {"nom": "Reichstett", "changes": "R", "mE": 10.73, "mL": 5.83, "ev": -45.7}, {"nom": "Eckbolsheim", "changes": "R", "mE": 20.39, "mL": 12.16, "ev": -40.4}, {"nom": "Wolfisheim", "changes": "E", "mE": 9.34, "mL": 4.18, "ev": -55.2}, {"nom": "Geispolsheim", "changes": "R", "mE": 9.04, "mL": 6.58, "ev": -27.2}, {"nom": "Fegersheim", "changes": "E", "mE": 12.09, "mL": 8.15, "ev": -32.6}, {"nom": "Niederhausbergen", "changes": "R", "mE": 10.45, "mL": 7.0, "ev": -33.0}, {"nom": "Mittelhausbergen", "changes": "R", "mE": 15.07, "mL": 9.86, "ev": -34.6}, {"nom": "Oberhausbergen", "changes": "ER", "mE": 16.3, "mL": 7.5, "ev": -54.0}, {"nom": "La Wantzenau", "changes": "E", "mE": 8.43, "mL": 5.36, "ev": -36.4}, {"nom": "Lampertheim", "changes": "E", "mE": 10.32, "mL": 4.65, "ev": -54.9}, {"nom": "Lipsheim", "changes": "E", "mE": 7.36, "mL": 5.62, "ev": -23.6}, {"nom": "Entzheim", "changes": "X", "mE": 12.18, "mL": 9.96, "ev": -18.2}, {"nom": "Holtzheim", "changes": "R", "mE": 7.7, "mL": 5.01, "ev": -34.9}, {"nom": "Hangenbieten", "changes": "R", "mE": 5.88, "mL": 4.59, "ev": -21.9}, {"nom": "Achenheim", "changes": "R", "mE": 5.94, "mL": 4.71, "ev": -20.7}, {"nom": "Oberschaeffolsheim", "changes": "X", "mE": 4.67, "mL": 3.55, "ev": -24.0}, {"nom": "Kolbsheim", "changes": "E", "mE": 3.86, "mL": 1.39, "ev": -64.0}, {"nom": "Blaesheim", "changes": "X", "mE": 3.23, "mL": 2.55, "ev": -21.1}, {"nom": "Eckwersheim", "changes": "E", "mE": 6.31, "mL": 2.14, "ev": -66.1}, {"nom": "Osthoffen", "changes": "E", "mE": 4.97, "mL": 1.32, "ev": -73.4}, {"nom": "Breuschwickersheim", "changes": "E", "mE": 3.45, "mL": 1.75, "ev": -49.3}, {"nom": "Eschau", "changes": "E", "mE": 5.9, "mL": 3.92, "ev": -33.6}, {"nom": "Plobsheim", "changes": "E", "mE": 5.17, "mL": 2.68, "ev": -48.2}],C={E:'#4ade80',R:'#67e8f9',ER:'#f59e0b',X:'#a5b4ce'};
-    const mx=Math.max(...D.map(d=>d.mE));
-    D.forEach(d=>{
-      const c=C[d.changes]||'#a5b4ce';
-      document.getElementById('ba').innerHTML+=`<div class="bar-row">
-        <div class="bar-name" title="${d.nom}">${d.nom}</div>
-        <div class="bar-pair">
-          <div class="bar-track"><div class="bar-fill" style="width:${(d.mE/mx*100).toFixed(1)}%;background:${c};opacity:.4;"></div></div>
-          <div class="bar-track"><div class="bar-fill" style="width:${(d.mL/mx*100).toFixed(1)}%;background:${c};"></div></div>
-        </div>
-        <div class="bar-val" style="color:${c};">${d.mL.toFixed(1)} nW</div></div>`;
-    });
-  </script>  </div>
-  <script>(function(){const c=document.getElementById('sf'),x=c.getContext('2d');let s=[];function r(){c.width=innerWidth;c.height=innerHeight;}function i(){s=[];for(let n=0;n<160;n++)s.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*1.2+0.2,sp:Math.random()*.004+.001,o:Math.random()*Math.PI*2});}function d(t){x.clearRect(0,0,c.width,c.height);s.forEach(st=>{const a=.15+.7*Math.abs(Math.sin(st.o+t*st.sp));x.beginPath();x.arc(st.x,st.y,st.r,0,Math.PI*2);x.fillStyle=`rgba(232,234,246,${a})`;x.fill();});requestAnimationFrame(d);}window.addEventListener('resize',()=>{r();i();});r();i();requestAnimationFrame(d);})();</script>
+  <div style="font-family:'Space Mono',monospace;font-size:.62rem;color:#4ade80;min-width:4rem;text-align:right;">-32.7 %</div>
+</div><div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem;">
+  <div style="font-family:'Space Mono',monospace;font-size:.63rem;color:var(--gris-texte);width:145px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Bischheim">Bischheim</div>
+  <div style="flex:1;display:flex;flex-direction:column;gap:2px;">
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:88.2%;background:#67e8f9;opacity:.4;border-radius:2px;"></div></div>
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:60.9%;background:#67e8f9;border-radius:2px;"></div></div>
+  </div>
+  <div style="font-family:'Space Mono',monospace;font-size:.62rem;color:#4ade80;min-width:4rem;text-align:right;">-31.0 %</div>
+</div><div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem;">
+  <div style="font-family:'Space Mono',monospace;font-size:.63rem;color:var(--gris-texte);width:145px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Hoenheim">Hoenheim</div>
+  <div style="flex:1;display:flex;flex-direction:column;gap:2px;">
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:84.3%;background:#67e8f9;opacity:.4;border-radius:2px;"></div></div>
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:58.1%;background:#67e8f9;border-radius:2px;"></div></div>
+  </div>
+  <div style="font-family:'Space Mono',monospace;font-size:.62rem;color:#4ade80;min-width:4rem;text-align:right;">-31.0 %</div>
+</div><div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem;">
+  <div style="font-family:'Space Mono',monospace;font-size:.63rem;color:var(--gris-texte);width:145px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Strasbourg">Strasbourg</div>
+  <div style="flex:1;display:flex;flex-direction:column;gap:2px;">
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:71.8%;background:#67e8f9;opacity:.4;border-radius:2px;"></div></div>
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:51.5%;background:#67e8f9;border-radius:2px;"></div></div>
+  </div>
+  <div style="font-family:'Space Mono',monospace;font-size:.62rem;color:#4ade80;min-width:4rem;text-align:right;">-28.3 %</div>
+</div><div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem;">
+  <div style="font-family:'Space Mono',monospace;font-size:.63rem;color:var(--gris-texte);width:145px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Souffelweyersheim">Souffelweyersheim</div>
+  <div style="flex:1;display:flex;flex-direction:column;gap:2px;">
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:50.1%;background:#67e8f9;opacity:.4;border-radius:2px;"></div></div>
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:33.9%;background:#67e8f9;border-radius:2px;"></div></div>
+  </div>
+  <div style="font-family:'Space Mono',monospace;font-size:.62rem;color:#4ade80;min-width:4rem;text-align:right;">-32.4 %</div>
+</div><div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem;">
+  <div style="font-family:'Space Mono',monospace;font-size:.63rem;color:var(--gris-texte);width:145px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Lingolsheim">Lingolsheim</div>
+  <div style="flex:1;display:flex;flex-direction:column;gap:2px;">
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:51.8%;background:#67e8f9;opacity:.4;border-radius:2px;"></div></div>
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:32.9%;background:#67e8f9;border-radius:2px;"></div></div>
+  </div>
+  <div style="font-family:'Space Mono',monospace;font-size:.62rem;color:#4ade80;min-width:4rem;text-align:right;">-36.5 %</div>
+</div><div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem;">
+  <div style="font-family:'Space Mono',monospace;font-size:.63rem;color:var(--gris-texte);width:145px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Ostwald">Ostwald</div>
+  <div style="flex:1;display:flex;flex-direction:column;gap:2px;">
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:46.3%;background:#67e8f9;opacity:.4;border-radius:2px;"></div></div>
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:29.7%;background:#67e8f9;border-radius:2px;"></div></div>
+  </div>
+  <div style="font-family:'Space Mono',monospace;font-size:.62rem;color:#4ade80;min-width:4rem;text-align:right;">-35.7 %</div>
+</div><div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem;">
+  <div style="font-family:'Space Mono',monospace;font-size:.63rem;color:var(--gris-texte);width:145px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Eckbolsheim">Eckbolsheim</div>
+  <div style="flex:1;display:flex;flex-direction:column;gap:2px;">
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:43.5%;background:#67e8f9;opacity:.4;border-radius:2px;"></div></div>
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:25.9%;background:#67e8f9;border-radius:2px;"></div></div>
+  </div>
+  <div style="font-family:'Space Mono',monospace;font-size:.62rem;color:#4ade80;min-width:4rem;text-align:right;">-40.4 %</div>
+</div><div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem;">
+  <div style="font-family:'Space Mono',monospace;font-size:.63rem;color:var(--gris-texte);width:145px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Illkirch-Graffenstaden">Illkirch-Graffenstaden</div>
+  <div style="flex:1;display:flex;flex-direction:column;gap:2px;">
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:37.9%;background:#4ade80;opacity:.4;border-radius:2px;"></div></div>
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:24.9%;background:#4ade80;border-radius:2px;"></div></div>
+  </div>
+  <div style="font-family:'Space Mono',monospace;font-size:.62rem;color:#4ade80;min-width:4rem;text-align:right;">-34.3 %</div>
+</div><div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem;">
+  <div style="font-family:'Space Mono',monospace;font-size:.63rem;color:var(--gris-texte);width:145px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Entzheim">Entzheim</div>
+  <div style="flex:1;display:flex;flex-direction:column;gap:2px;">
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:26.0%;background:#a5b4ce;opacity:.4;border-radius:2px;"></div></div>
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:21.3%;background:#a5b4ce;border-radius:2px;"></div></div>
+  </div>
+  <div style="font-family:'Space Mono',monospace;font-size:.62rem;color:#4ade80;min-width:4rem;text-align:right;">-18.2 %</div>
+</div><div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem;">
+  <div style="font-family:'Space Mono',monospace;font-size:.63rem;color:var(--gris-texte);width:145px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Mittelhausbergen">Mittelhausbergen</div>
+  <div style="flex:1;display:flex;flex-direction:column;gap:2px;">
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:32.2%;background:#67e8f9;opacity:.4;border-radius:2px;"></div></div>
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:21.0%;background:#67e8f9;border-radius:2px;"></div></div>
+  </div>
+  <div style="font-family:'Space Mono',monospace;font-size:.62rem;color:#4ade80;min-width:4rem;text-align:right;">-34.6 %</div>
+</div><div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem;">
+  <div style="font-family:'Space Mono',monospace;font-size:.63rem;color:var(--gris-texte);width:145px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Mundolsheim">Mundolsheim</div>
+  <div style="flex:1;display:flex;flex-direction:column;gap:2px;">
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:34.8%;background:#f59e0b;opacity:.4;border-radius:2px;"></div></div>
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:20.5%;background:#f59e0b;border-radius:2px;"></div></div>
+  </div>
+  <div style="font-family:'Space Mono',monospace;font-size:.62rem;color:#4ade80;min-width:4rem;text-align:right;">-40.9 %</div>
+</div><div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem;">
+  <div style="font-family:'Space Mono',monospace;font-size:.63rem;color:var(--gris-texte);width:145px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Fegersheim">Fegersheim</div>
+  <div style="flex:1;display:flex;flex-direction:column;gap:2px;">
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:25.8%;background:#4ade80;opacity:.4;border-radius:2px;"></div></div>
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:17.4%;background:#4ade80;border-radius:2px;"></div></div>
+  </div>
+  <div style="font-family:'Space Mono',monospace;font-size:.62rem;color:#4ade80;min-width:4rem;text-align:right;">-32.6 %</div>
+</div><div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem;">
+  <div style="font-family:'Space Mono',monospace;font-size:.63rem;color:var(--gris-texte);width:145px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Oberhausbergen">Oberhausbergen</div>
+  <div style="flex:1;display:flex;flex-direction:column;gap:2px;">
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:34.8%;background:#f59e0b;opacity:.4;border-radius:2px;"></div></div>
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:16.0%;background:#f59e0b;border-radius:2px;"></div></div>
+  </div>
+  <div style="font-family:'Space Mono',monospace;font-size:.62rem;color:#4ade80;min-width:4rem;text-align:right;">-54.0 %</div>
+</div><div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem;">
+  <div style="font-family:'Space Mono',monospace;font-size:.63rem;color:var(--gris-texte);width:145px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Niederhausbergen">Niederhausbergen</div>
+  <div style="flex:1;display:flex;flex-direction:column;gap:2px;">
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:22.3%;background:#67e8f9;opacity:.4;border-radius:2px;"></div></div>
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:14.9%;background:#67e8f9;border-radius:2px;"></div></div>
+  </div>
+  <div style="font-family:'Space Mono',monospace;font-size:.62rem;color:#4ade80;min-width:4rem;text-align:right;">-33.0 %</div>
+</div><div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem;">
+  <div style="font-family:'Space Mono',monospace;font-size:.63rem;color:var(--gris-texte);width:145px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Geispolsheim">Geispolsheim</div>
+  <div style="flex:1;display:flex;flex-direction:column;gap:2px;">
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:19.3%;background:#67e8f9;opacity:.4;border-radius:2px;"></div></div>
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:14.0%;background:#67e8f9;border-radius:2px;"></div></div>
+  </div>
+  <div style="font-family:'Space Mono',monospace;font-size:.62rem;color:#4ade80;min-width:4rem;text-align:right;">-27.2 %</div>
+</div><div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem;">
+  <div style="font-family:'Space Mono',monospace;font-size:.63rem;color:var(--gris-texte);width:145px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Reichstett">Reichstett</div>
+  <div style="flex:1;display:flex;flex-direction:column;gap:2px;">
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:22.9%;background:#67e8f9;opacity:.4;border-radius:2px;"></div></div>
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:12.4%;background:#67e8f9;border-radius:2px;"></div></div>
+  </div>
+  <div style="font-family:'Space Mono',monospace;font-size:.62rem;color:#4ade80;min-width:4rem;text-align:right;">-45.7 %</div>
+</div><div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem;">
+  <div style="font-family:'Space Mono',monospace;font-size:.63rem;color:var(--gris-texte);width:145px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Lipsheim">Lipsheim</div>
+  <div style="flex:1;display:flex;flex-direction:column;gap:2px;">
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:15.7%;background:#4ade80;opacity:.4;border-radius:2px;"></div></div>
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:12.0%;background:#4ade80;border-radius:2px;"></div></div>
+  </div>
+  <div style="font-family:'Space Mono',monospace;font-size:.62rem;color:#4ade80;min-width:4rem;text-align:right;">-23.6 %</div>
+</div><div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem;">
+  <div style="font-family:'Space Mono',monospace;font-size:.63rem;color:var(--gris-texte);width:145px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="La Wantzenau">La Wantzenau</div>
+  <div style="flex:1;display:flex;flex-direction:column;gap:2px;">
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:18.0%;background:#4ade80;opacity:.4;border-radius:2px;"></div></div>
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:11.4%;background:#4ade80;border-radius:2px;"></div></div>
+  </div>
+  <div style="font-family:'Space Mono',monospace;font-size:.62rem;color:#4ade80;min-width:4rem;text-align:right;">-36.4 %</div>
+</div><div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem;">
+  <div style="font-family:'Space Mono',monospace;font-size:.63rem;color:var(--gris-texte);width:145px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Holtzheim">Holtzheim</div>
+  <div style="flex:1;display:flex;flex-direction:column;gap:2px;">
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:16.4%;background:#67e8f9;opacity:.4;border-radius:2px;"></div></div>
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:10.7%;background:#67e8f9;border-radius:2px;"></div></div>
+  </div>
+  <div style="font-family:'Space Mono',monospace;font-size:.62rem;color:#4ade80;min-width:4rem;text-align:right;">-34.9 %</div>
+</div><div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem;">
+  <div style="font-family:'Space Mono',monospace;font-size:.63rem;color:var(--gris-texte);width:145px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Achenheim">Achenheim</div>
+  <div style="flex:1;display:flex;flex-direction:column;gap:2px;">
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:12.7%;background:#67e8f9;opacity:.4;border-radius:2px;"></div></div>
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:10.0%;background:#67e8f9;border-radius:2px;"></div></div>
+  </div>
+  <div style="font-family:'Space Mono',monospace;font-size:.62rem;color:#4ade80;min-width:4rem;text-align:right;">-20.7 %</div>
+</div><div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem;">
+  <div style="font-family:'Space Mono',monospace;font-size:.63rem;color:var(--gris-texte);width:145px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Lampertheim">Lampertheim</div>
+  <div style="flex:1;display:flex;flex-direction:column;gap:2px;">
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:22.0%;background:#4ade80;opacity:.4;border-radius:2px;"></div></div>
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:9.9%;background:#4ade80;border-radius:2px;"></div></div>
+  </div>
+  <div style="font-family:'Space Mono',monospace;font-size:.62rem;color:#4ade80;min-width:4rem;text-align:right;">-54.9 %</div>
+</div><div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem;">
+  <div style="font-family:'Space Mono',monospace;font-size:.63rem;color:var(--gris-texte);width:145px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Vendenheim">Vendenheim</div>
+  <div style="flex:1;display:flex;flex-direction:column;gap:2px;">
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:15.4%;background:#4ade80;opacity:.4;border-radius:2px;"></div></div>
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:9.9%;background:#4ade80;border-radius:2px;"></div></div>
+  </div>
+  <div style="font-family:'Space Mono',monospace;font-size:.62rem;color:#4ade80;min-width:4rem;text-align:right;">-36.0 %</div>
+</div><div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem;">
+  <div style="font-family:'Space Mono',monospace;font-size:.63rem;color:var(--gris-texte);width:145px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Hangenbieten">Hangenbieten</div>
+  <div style="flex:1;display:flex;flex-direction:column;gap:2px;">
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:12.5%;background:#67e8f9;opacity:.4;border-radius:2px;"></div></div>
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:9.8%;background:#67e8f9;border-radius:2px;"></div></div>
+  </div>
+  <div style="font-family:'Space Mono',monospace;font-size:.62rem;color:#4ade80;min-width:4rem;text-align:right;">-21.9 %</div>
+</div><div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem;">
+  <div style="font-family:'Space Mono',monospace;font-size:.63rem;color:var(--gris-texte);width:145px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Wolfisheim">Wolfisheim</div>
+  <div style="flex:1;display:flex;flex-direction:column;gap:2px;">
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:19.9%;background:#4ade80;opacity:.4;border-radius:2px;"></div></div>
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:8.9%;background:#4ade80;border-radius:2px;"></div></div>
+  </div>
+  <div style="font-family:'Space Mono',monospace;font-size:.62rem;color:#4ade80;min-width:4rem;text-align:right;">-55.2 %</div>
+</div><div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem;">
+  <div style="font-family:'Space Mono',monospace;font-size:.63rem;color:var(--gris-texte);width:145px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Eschau">Eschau</div>
+  <div style="flex:1;display:flex;flex-direction:column;gap:2px;">
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:12.6%;background:#4ade80;opacity:.4;border-radius:2px;"></div></div>
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:8.4%;background:#4ade80;border-radius:2px;"></div></div>
+  </div>
+  <div style="font-family:'Space Mono',monospace;font-size:.62rem;color:#4ade80;min-width:4rem;text-align:right;">-33.6 %</div>
+</div><div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem;">
+  <div style="font-family:'Space Mono',monospace;font-size:.63rem;color:var(--gris-texte);width:145px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Oberschaeffolsheim">Oberschaeffolsheim</div>
+  <div style="flex:1;display:flex;flex-direction:column;gap:2px;">
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:10.0%;background:#a5b4ce;opacity:.4;border-radius:2px;"></div></div>
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:7.6%;background:#a5b4ce;border-radius:2px;"></div></div>
+  </div>
+  <div style="font-family:'Space Mono',monospace;font-size:.62rem;color:#4ade80;min-width:4rem;text-align:right;">-24.0 %</div>
+</div><div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem;">
+  <div style="font-family:'Space Mono',monospace;font-size:.63rem;color:var(--gris-texte);width:145px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Plobsheim">Plobsheim</div>
+  <div style="flex:1;display:flex;flex-direction:column;gap:2px;">
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:11.0%;background:#4ade80;opacity:.4;border-radius:2px;"></div></div>
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:5.7%;background:#4ade80;border-radius:2px;"></div></div>
+  </div>
+  <div style="font-family:'Space Mono',monospace;font-size:.62rem;color:#4ade80;min-width:4rem;text-align:right;">-48.2 %</div>
+</div><div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem;">
+  <div style="font-family:'Space Mono',monospace;font-size:.63rem;color:var(--gris-texte);width:145px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Blaesheim">Blaesheim</div>
+  <div style="flex:1;display:flex;flex-direction:column;gap:2px;">
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:6.9%;background:#a5b4ce;opacity:.4;border-radius:2px;"></div></div>
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:5.4%;background:#a5b4ce;border-radius:2px;"></div></div>
+  </div>
+  <div style="font-family:'Space Mono',monospace;font-size:.62rem;color:#4ade80;min-width:4rem;text-align:right;">-21.1 %</div>
+</div><div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem;">
+  <div style="font-family:'Space Mono',monospace;font-size:.63rem;color:var(--gris-texte);width:145px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Eckwersheim">Eckwersheim</div>
+  <div style="flex:1;display:flex;flex-direction:column;gap:2px;">
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:13.5%;background:#4ade80;opacity:.4;border-radius:2px;"></div></div>
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:4.6%;background:#4ade80;border-radius:2px;"></div></div>
+  </div>
+  <div style="font-family:'Space Mono',monospace;font-size:.62rem;color:#4ade80;min-width:4rem;text-align:right;">-66.1 %</div>
+</div><div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem;">
+  <div style="font-family:'Space Mono',monospace;font-size:.63rem;color:var(--gris-texte);width:145px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Breuschwickersheim">Breuschwickersheim</div>
+  <div style="flex:1;display:flex;flex-direction:column;gap:2px;">
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:7.4%;background:#4ade80;opacity:.4;border-radius:2px;"></div></div>
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:3.7%;background:#4ade80;border-radius:2px;"></div></div>
+  </div>
+  <div style="font-family:'Space Mono',monospace;font-size:.62rem;color:#4ade80;min-width:4rem;text-align:right;">-49.3 %</div>
+</div><div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem;">
+  <div style="font-family:'Space Mono',monospace;font-size:.63rem;color:var(--gris-texte);width:145px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Kolbsheim">Kolbsheim</div>
+  <div style="flex:1;display:flex;flex-direction:column;gap:2px;">
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:8.2%;background:#4ade80;opacity:.4;border-radius:2px;"></div></div>
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:3.0%;background:#4ade80;border-radius:2px;"></div></div>
+  </div>
+  <div style="font-family:'Space Mono',monospace;font-size:.62rem;color:#4ade80;min-width:4rem;text-align:right;">-64.0 %</div>
+</div><div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.4rem;">
+  <div style="font-family:'Space Mono',monospace;font-size:.63rem;color:var(--gris-texte);width:145px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="Osthoffen">Osthoffen</div>
+  <div style="flex:1;display:flex;flex-direction:column;gap:2px;">
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:10.6%;background:#4ade80;opacity:.4;border-radius:2px;"></div></div>
+    <div style="background:rgba(255,255,255,.05);border-radius:2px;height:9px;overflow:hidden;"><div style="height:100%;width:2.8%;background:#4ade80;border-radius:2px;"></div></div>
+  </div>
+  <div style="font-family:'Space Mono',monospace;font-size:.62rem;color:#4ade80;min-width:4rem;text-align:right;">-73.4 %</div>
+</div>
+    </div>
+  </div>
+  <script>(function(){const c=document.getElementById('sf'),x=c.getContext('2d');let s=[];function r(){c.width=innerWidth;c.height=innerHeight;}function i(){s=[];for(let n=0;n<140;n++)s.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*1.2+.2,sp:Math.random()*.004+.001,o:Math.random()*Math.PI*2});}function d(t){x.clearRect(0,0,c.width,c.height);s.forEach(st=>{const a=.15+.7*Math.abs(Math.sin(st.o+t*st.sp));x.beginPath();x.arc(st.x,st.y,st.r,0,Math.PI*2);x.fillStyle=`rgba(232,234,246,${a})`;x.fill();});requestAnimationFrame(d);}window.addEventListener('resize',()=>{r();i();});r();i();requestAnimationFrame(d);})();</script>
   <script>document.addEventListener("DOMContentLoaded",()=>lucide.createIcons());</script>
 </body></html>

@@ -157,15 +157,12 @@
     <div id="expo-map" style="flex:1;min-height:400px;"></div>
 
   <!-- Bouton info (position:fixed, hors Leaflet) -->
-  <button id="info-btn" onclick="toggleInfo()" title="En savoir plus sur cette carte">
-    <i data-lucide="info" style="color:var(--or);stroke:var(--or);"></i>
-  </button>
+  <button id="info-btn" onclick="toggleInfo()" title="En savoir plus sur cette carte"><span style="font-family:'Crimson Pro',serif;font-size:1.3rem;font-style:italic;font-weight:600;color:var(--or);line-height:1;">i</span></button>
 
   <!-- Panneau info -->
   <div id="info-panel" class="hidden">
     <button id="info-panel-close" onclick="toggleInfo()">✕</button>
     <div id="info-panel-tag">
-      <i data-lucide="info" style="width:0.7rem;height:0.7rem;stroke:var(--or);display:inline-block;vertical-align:middle;margin-right:0.3rem;"></i>
       <span id="info-panel-year">Lecture · 2022</span>
     </div>
     <p id="info-panel-text"></p>

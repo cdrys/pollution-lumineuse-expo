@@ -67,6 +67,40 @@
       color: var(--gris-texte);
       line-height: 1.45;
     }
+
+    /* ── Accordéon méthodologie ──────────────────────────────── */
+    #metho-panel.open { max-height: 400px; }
+
+    /* ── Pastilles tooltip ───────────────────────────────────── */
+    .pill-item { position: relative; }
+    .pill-btn {
+      display: flex; align-items: center; gap: .4rem;
+      background: rgba(255,255,255,.04);
+      border: 1px solid; border-radius: 2rem;
+      font-family: 'Space Mono', monospace; font-size: .58rem;
+      letter-spacing: .1em; text-transform: uppercase;
+      padding: .45rem 1rem; cursor: pointer; transition: all .2s;
+    }
+    .pill-btn:hover { background: rgba(255,255,255,.08); }
+    .pill-tooltip {
+      position: absolute; bottom: calc(100% + .6rem); left: 50%;
+      transform: translateX(-50%) translateY(4px);
+      width: 240px; background: rgba(13,13,43,.97);
+      border: 1px solid rgba(245,200,66,.2); border-radius: 8px;
+      padding: .85rem 1rem; font-size: .82rem; color: #a5b4ce;
+      line-height: 1.6; z-index: 100; pointer-events: none;
+      opacity: 0; transition: opacity .25s, transform .25s;
+      text-align: left; text-transform: none; letter-spacing: 0;
+    }
+    .pill-tooltip.visible {
+      opacity: 1; transform: translateX(-50%) translateY(0);
+    }
+    .pill-tooltip::after {
+      content: ''; position: absolute; top: 100%; left: 50%;
+      transform: translateX(-50%);
+      border: 5px solid transparent;
+      border-top-color: rgba(245,200,66,.2);
+    }
   </style>
 </head>
 <body>
@@ -176,6 +210,95 @@
           <span class="expo-cta-btn-label" style="color:var(--vert-reserve);">Comprendre les impacts</span>
           <span class="expo-cta-btn-desc">Faune, santé humaine, corridor rhénan — ce que la lumière détruit</span>
         </a>
+
+      <!-- Méthodologie — Accordéon -->
+      <div id="metho-wrap" style="max-width:820px;margin:1.5rem auto 0;opacity:0;animation:fadeUp 0.8s ease 1.4s forwards;">
+        <button id="metho-btn" onclick="toggleMetho()" style="
+          display:flex;align-items:center;gap:.6rem;
+          background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);
+          color:var(--gris-texte);font-family:'Space Mono',monospace;font-size:.62rem;
+          letter-spacing:.12em;text-transform:uppercase;padding:.6rem 1.2rem;
+          border-radius:2rem;cursor:pointer;transition:all .25s;width:100%;justify-content:center;
+        " onmouseover="this.style.borderColor='rgba(245,200,66,.3)';this.style.color='var(--or)'"
+           onmouseout="this.style.borderColor='rgba(255,255,255,.1)';this.style.color='var(--gris-texte)'">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 0 20"/><path d="M2 12h20"/><path d="M12 2c2.5 2.5 4 6 4 10s-1.5 7.5-4 10"/></svg>
+          Méthodologie & sources
+          <svg id="metho-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="transition:transform .3s;"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+
+        <div id="metho-panel" style="
+          max-height:0;overflow:hidden;transition:max-height .5s ease;
+          background:rgba(13,13,43,.85);border:1px solid rgba(255,255,255,.08);
+          border-radius:0 0 10px 10px;margin-top:-1px;
+        ">
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;padding:1.5rem;">
+
+            <div>
+              <div style="font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cyan);margin-bottom:.5rem;display:flex;align-items:center;gap:.4rem;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 0 20"/><path d="M2 12h20"/></svg>
+                NASA · VIIRS
+              </div>
+              <p style="font-size:.82rem;color:#a5b4ce;line-height:1.6;margin:0;">
+                Le capteur VIIRS (Visible Infrared Imaging Radiometer Suite), à bord du satellite Suomi NPP, mesure l'émission lumineuse nocturne depuis l'espace. Les données annuelles composites <em>Black Marble</em> couvrent la période <strong style="color:var(--blanc-etoile);">2012–2022</strong> à une résolution de 500 m.
+              </p>
+            </div>
+
+            <div>
+              <div style="font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--or);margin-bottom:.5rem;display:flex;align-items:center;gap:.4rem;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3l18 18"/><path d="M21 3L3 21"/></svg>
+                Cerema
+              </div>
+              <p style="font-size:.82rem;color:#a5b4ce;line-height:1.6;margin:0;">
+                Le Cerema produit une cartographie nationale des pratiques d'éclairage nocturne à partir des images VIIRS en cœur de nuit. Ces données couvrent <strong style="color:var(--blanc-etoile);">2014–2024</strong> et permettent d'identifier les communes ayant mis en place une extinction ou une rénovation de leur parc.
+              </p>
+            </div>
+
+            <div>
+              <div style="font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--vert-reserve);margin-bottom:.5rem;display:flex;align-items:center;gap:.4rem;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                Radiance
+              </div>
+              <p style="font-size:.82rem;color:#a5b4ce;line-height:1.6;margin:0;">
+                La radiance nocturne, exprimée en <strong style="color:var(--blanc-etoile);">nW/cm²/sr</strong>, quantifie l'intensité lumineuse émise ou réfléchie par une surface vers le capteur satellite. Plus la valeur est élevée, plus le territoire émet de lumière artificielle la nuit.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Méthodologie — Pastilles -->
+      <div id="pills-wrap" style="display:flex;gap:.75rem;justify-content:center;max-width:820px;margin:1.5rem auto 0;flex-wrap:wrap;opacity:0;animation:fadeUp 0.8s ease 1.4s forwards;">
+        <div class="pill-item" onclick="togglePill('pill-viirs')">
+          <button class="pill-btn" style="border-color:rgba(103,232,249,.3);color:var(--cyan);">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 0 20"/><path d="M2 12h20"/></svg>
+            NASA · VIIRS · 2012–2022
+          </button>
+          <div class="pill-tooltip" id="pill-viirs">
+            Le capteur VIIRS mesure l'émission lumineuse nocturne depuis l'espace. Les données <em>Black Marble</em> couvrent 2012–2022 à une résolution de 500 m par pixel.
+          </div>
+        </div>
+
+        <div class="pill-item" onclick="togglePill('pill-cerema')">
+          <button class="pill-btn" style="border-color:rgba(245,200,66,.3);color:var(--or);">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            Cerema · 2014–2024
+          </button>
+          <div class="pill-tooltip" id="pill-cerema">
+            Le Cerema cartographie les pratiques d'éclairage nocturne à partir des images VIIRS en cœur de nuit — extinction, rénovation, ou absence de changement — pour chaque commune de France.
+          </div>
+        </div>
+
+        <div class="pill-item" onclick="togglePill('pill-radiance')">
+          <button class="pill-btn" style="border-color:rgba(74,222,128,.3);color:var(--vert-reserve);">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            Radiance · nW/cm²/sr
+          </button>
+          <div class="pill-tooltip" id="pill-radiance">
+            Unité de mesure de la luminosité nocturne captée par satellite. Plus la valeur est élevée, plus le territoire émet de lumière artificielle. Bortle 8 à Strasbourg, Bortle 4–5 à Blaesheim.
+          </div>
+        </div>
+      </div>
       </div>
 
       <!-- Quiz -->
@@ -309,6 +432,27 @@
       window.addEventListener('resize', update);
       update();
     })();
+  </script>
+  <script>
+    // Accordéon
+    function toggleMetho() {
+      const panel = document.getElementById('metho-panel');
+      const chevron = document.getElementById('metho-chevron');
+      panel.classList.toggle('open');
+      chevron.style.transform = panel.classList.contains('open') ? 'rotate(180deg)' : '';
+    }
+    // Pastilles
+    function togglePill(id) {
+      const tt = document.getElementById(id);
+      const wasVisible = tt.classList.contains('visible');
+      document.querySelectorAll('.pill-tooltip').forEach(t => t.classList.remove('visible'));
+      if (!wasVisible) tt.classList.add('visible');
+    }
+    document.addEventListener('click', e => {
+      if (!e.target.closest('.pill-item')) {
+        document.querySelectorAll('.pill-tooltip').forEach(t => t.classList.remove('visible'));
+      }
+    });
   </script>
 </body>
 </html>

@@ -162,9 +162,7 @@
   <!-- Panneau info -->
   <div id="info-panel" class="hidden">
     <button id="info-panel-close" onclick="toggleInfo()">✕</button>
-    <div id="info-panel-tag">
-      <span id="info-panel-year">Lecture · 2022</span>
-    </div>
+    <p id="info-panel-year" style="font-family:'Space Mono',monospace;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--or);margin-bottom:0.6rem;">Lecture · 2022</p>
     <p id="info-panel-text"></p>
   </div>
   </div>
@@ -329,8 +327,7 @@
       // Find closest year in our texts
       const years = Object.keys(INFO_TEXTS).map(Number).sort((a,b)=>a-b);
       const closest = years.reduce((prev, curr) => Math.abs(curr-yr) < Math.abs(prev-yr) ? curr : prev);
-      document.getElementById('info-panel-year').innerHTML =
-        '<i data-lucide="info" style="width:0.7rem;height:0.7rem;stroke:var(--or);display:inline-block;vertical-align:middle;margin-right:0.3rem;"></i>Lecture · ' + yr;
+      document.getElementById('info-panel-year').textContent = 'Lecture · ' + yr;
       document.getElementById('info-panel-text').innerHTML = INFO_TEXTS[closest];
       if (typeof lucide !== 'undefined') lucide.createIcons();
     }

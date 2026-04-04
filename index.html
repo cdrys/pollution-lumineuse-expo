@@ -158,15 +158,9 @@
       </div>
 
         <!-- Bulle centre — 0 exception -->
-        <div class="expo-bubble" style="left:50%;transform:translateX(-50%);top:30px;animation-delay:1.5s;background:rgba(103,232,249,0.07);border-color:rgba(103,232,249,0.25);">
-          <div class="expo-bubble-number" style="color:var(--cyan);">0</div>
-          <div class="expo-bubble-label">exception — toutes les communes ont vu leur radiance augmenter</div>
         </div>
 
         <!-- Bulle droite — −68% -->
-        <div class="expo-bubble" style="right:0;top:10px;animation-delay:1.7s;background:rgba(74,222,128,0.07);border-color:rgba(74,222,128,0.25);">
-          <div class="expo-bubble-number" style="color:var(--vert-reserve);">−68 %</div>
-          <div class="expo-bubble-label">baisse maximale grâce à une politique d'extinction nocturne</div>
         </div>
 
       </div>
@@ -214,15 +208,9 @@
     
 
         <!-- Droite — 0 exception -->
-        <div class="side-bubble side-bubble-right" style="top:38%;border-color:rgba(103,232,249,0.3);background:rgba(103,232,249,0.06);">
-          <div class="side-bubble-num" style="color:var(--cyan);">0</div>
-          <div class="side-bubble-lbl">exception — toutes les communes ont vu leur radiance augmenter</div>
         </div>
 
         <!-- Gauche bas — −68% -->
-        <div class="side-bubble side-bubble-left" style="top:62%;border-color:rgba(74,222,128,0.3);background:rgba(74,222,128,0.06);">
-          <div class="side-bubble-num" style="color:var(--vert-reserve);">−68 %</div>
-          <div class="side-bubble-lbl">baisse maximale grâce à une politique d'extinction nocturne</div>
         </div>
 
       </div>
@@ -297,71 +285,66 @@
   <script>document.addEventListener("DOMContentLoaded",()=>lucide.createIcons());</script>
 
 
+
   <script>
-    // ── Bulles séquentielles ─────────────────────────────────
+    // ── Bulles séquentielles au scroll ──────────────────────
     (function() {
-      const ids = ['bub-0', 'bub-1', 'bub-2'];
-      const SHOW_MS  = 2800;  // visible duration
-      const FADE_MS  = 600;   // fade transition (matches CSS)
-      let current = 0;
-      let running = false;
+      const bubbles = [
+        document.getElementById('bub-0'),
+        document.getElementById('bub-1'),
+        document.getElementById('bub-2')
+      ].filter(Boolean);
+      if (!bubbles.length) return;
 
-      function showBubble(idx) {
-        const el = document.getElementById(ids[idx]);
-        if (el) el.classList.add('visible');
-      }
-      function hideBubble(idx) {
-        const el = document.getElementById(ids[idx]);
-        if (el) el.classList.remove('visible');
-      }
-      function hideAll() {
-        ids.forEach((_, i) => hideBubble(i));
-      }
+      // Anchors: each bubble appears when its anchor element enters viewport
+      // bub-0 appears when saviez-vous enters view
+      // bub-1 replaces bub-0 when the connector/quiz header enters view  
+      // bub-2 replaces bub-1 when the quiz choices enter view
+      const anchors = [
+        document.querySelector('.expo-hero-sub'),      // bub-0: subtitle scrolls in
+        document.getElementById('quiz-container'),     // bub-1: quiz enters view
+        document.querySelector('#q-choices'),          // bub-2: quiz choices visible
+      ];
 
-      function cycle() {
-        if (!running) return;
-        // Show current bubble
-        showBubble(current);
-        setTimeout(() => {
-          if (!running) return;
-          // Fade out current
-          hideBubble(current);
-          // Move to next after fade completes
-          setTimeout(() => {
-            if (!running) return;
-            current = (current + 1) % ids.length;
-            cycle();
-          }, FADE_MS);
-        }, SHOW_MS);
+      const FADE = 600; // ms, matches CSS transition
+
+      function getThreshold(el) {
+        if (!el) return Infinity;
+        const rect = el.getBoundingClientRect();
+        return window.scrollY + rect.top;
       }
 
-      // Start when quiz section enters viewport
-      const trigger = document.getElementById('quiz-container');
-      const stopTrigger = document.querySelector('.expo-cta-grid');
+      let thresholds = [];
+      function computeThresholds() {
+        thresholds = anchors.map(el => getThreshold(el) - window.innerHeight * 0.55);
+      }
 
-      if (!trigger) return;
-
-      function checkScroll() {
-        const rect = trigger.getBoundingClientRect();
-        const winH = window.innerHeight;
-        const inView = rect.top < winH * 0.7;
-
-        // Stop when past CTA buttons
-        const stopRect = stopTrigger ? stopTrigger.getBoundingClientRect() : null;
-        const pastStop = stopRect && stopRect.bottom < -300;
-
-        if (inView && !pastStop && !running) {
-          running = true;
-          cycle();
-        } else if ((!inView || pastStop) && running) {
-          running = false;
-          hideAll();
-          current = 0;
+      function update() {
+        const sy = window.scrollY;
+        // Find which bubble should be active
+        let active = -1;
+        for (let i = thresholds.length - 1; i >= 0; i--) {
+          if (sy >= thresholds[i]) { active = i; break; }
         }
+        // Hide once past cta-grid
+        const ctaEl = document.querySelector('.expo-cta-grid');
+        if (ctaEl) {
+          const ctaBottom = window.scrollY + ctaEl.getBoundingClientRect().bottom;
+          if (sy > ctaBottom + 100) active = -1;
+        }
+
+        bubbles.forEach((b, i) => {
+          if (i === active) b.classList.add('visible');
+          else b.classList.remove('visible');
+        });
       }
 
-      window.addEventListener('scroll', checkScroll, { passive: true });
-      checkScroll();
+      window.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', () => { computeThresholds(); update(); });
+      // Compute after fonts/images loaded
+      window.addEventListener('load', () => { computeThresholds(); update(); });
+      computeThresholds();
+      update();
     })();
   </script>
 </body>

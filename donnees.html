@@ -9,16 +9,8 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <style>
-    .commune-card {
-      display:grid;grid-template-columns:1.2fr 2fr .75fr;gap:1.25rem;align-items:center;
-      background:rgba(13,13,43,.75);border:1px solid color-mix(in srgb,var(--card-col) 20%,transparent);
-      border-left:3px solid var(--card-col);border-radius:12px;padding:1.25rem 1.4rem;
-      margin-bottom:.9rem;transition:border-color .3s,transform .3s,box-shadow .3s;cursor:default;
-    }
-    .commune-card:hover,.commune-card.highlighted {
-      border-color:var(--card-col);transform:translateX(5px);
-      box-shadow:-4px 0 20px color-mix(in srgb,var(--card-col) 15%,transparent);
-    }
+    .commune-card{display:grid;grid-template-columns:1.2fr 2fr .75fr;gap:1.25rem;align-items:center;background:rgba(13,13,43,.75);border:1px solid color-mix(in srgb,var(--card-col) 20%,transparent);border-left:3px solid var(--card-col);border-radius:12px;padding:1.25rem 1.4rem;margin-bottom:.9rem;transition:border-color .3s,transform .3s,box-shadow .3s,opacity .3s;cursor:default;}
+    .commune-card:hover,.commune-card.highlighted{border-color:var(--card-col);transform:translateX(5px);box-shadow:-4px 0 20px color-mix(in srgb,var(--card-col) 15%,transparent);}
     .card-tag{font-family:'Space Mono',monospace;font-size:.57rem;letter-spacing:.13em;text-transform:uppercase;color:var(--card-col);margin-bottom:.25rem;}
     .card-name{font-family:'Space Mono',monospace;font-size:.85rem;color:#e8eaf6;font-weight:700;margin-bottom:.35rem;}
     .card-desc{font-size:.82rem;color:#a5b4ce;line-height:1.55;margin-bottom:.4rem;}
@@ -35,14 +27,15 @@
     .card-right{text-align:center;}
     .card-ev{font-family:'Space Mono',monospace;font-size:2.1rem;font-weight:700;line-height:1;}
     .card-ev-label{font-family:'Space Mono',monospace;font-size:.58rem;color:#a5b4ce;margin-top:.2rem;line-height:1.4;}
-    /* Layout sidebar */
-    .main-layout{display:grid;grid-template-columns:1fr 320px;gap:2rem;align-items:start;}
+    .main-layout{display:grid;grid-template-columns:1fr 300px;gap:2rem;align-items:start;}
     .map-sticky{position:sticky;top:90px;}
-    #mini-map{height:460px;border-radius:12px;overflow:hidden;border:1px solid rgba(245,200,66,.15);}
-    .map-legend{background:rgba(13,13,43,.9);border:1px solid rgba(245,200,66,.15);border-radius:8px;padding:.9rem 1rem;margin-top:.75rem;}
-    .map-legend-item{display:flex;align-items:center;gap:.5rem;font-family:'Space Mono',monospace;font-size:.58rem;color:#a5b4ce;margin-bottom:.35rem;}
-    .map-legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
-    .leaflet-popup-content-wrapper{background:#0d0d2b;border:1px solid rgba(245,200,66,.3);border-radius:8px;color:#e8eaf6;}
+    #mini-map{height:440px;border-radius:12px;overflow:hidden;border:1px solid rgba(245,200,66,.15);}
+    .map-legend{background:rgba(13,13,43,.9);border:1px solid rgba(245,200,66,.15);border-radius:8px;padding:.85rem 1rem;margin-top:.75rem;}
+    .map-legend-title{font-family:'Space Mono',monospace;font-size:.57rem;letter-spacing:.12em;text-transform:uppercase;color:var(--or);margin-bottom:.6rem;}
+    .map-legend-item{display:flex;align-items:center;gap:.5rem;font-family:'Space Mono',monospace;font-size:.56rem;color:#a5b4ce;margin-bottom:.3rem;}
+    .map-legend-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+    .map-hint{font-family:'Space Mono',monospace;font-size:.52rem;color:#a5b4ce;margin-top:.5rem;line-height:1.5;border-top:1px solid rgba(255,255,255,.06);padding-top:.5rem;}
+    .leaflet-popup-content-wrapper{background:#0d0d2b;border:1px solid rgba(245,200,66,.3);border-radius:8px;color:#e8eaf6;box-shadow:0 4px 20px rgba(0,0,0,.5);}
     .leaflet-popup-tip{background:#0d0d2b;}
     .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem;margin-bottom:2.5rem;}
     .kpi{border-radius:10px;padding:1.1rem;text-align:center;}
@@ -52,7 +45,6 @@
   </style>
 </head><body>
   <canvas id="sf" style="position:fixed;inset:0;z-index:0;pointer-events:none;"></canvas>
-
   <nav class="expo-nav">
     <div class="expo-nav-logo"><i data-lucide="star"></i>
       <span style="color:var(--gris-texte);">La <em style="color:var(--or);font-style:normal;">«&nbsp;nuit&nbsp;»</em> dans l'Eurométropole d'aujourd'hui</span>
@@ -75,7 +67,6 @@
         <p style="color:#a5b4ce;max-width:600px;margin:0 auto;font-size:.95rem;line-height:1.7;">Radiance en cœur de nuit, 2014–2016 vs 2022–2024. Source : Cerema, Licence Ouverte 2.0.</p>
       </div>
 
-      <!-- KPIs -->
       <div class="kpi-grid">
         <div class="kpi" style="background:rgba(74,222,128,.07);border:1px solid rgba(74,222,128,.3);">
           <div class="kpi-num" style="color:#4ade80;">13</div>
@@ -99,24 +90,19 @@
         </div>
       </div>
 
-      <!-- Séparateur -->
       <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.75rem;">
         <div style="flex:1;height:1px;background:rgba(245,200,66,.15);"></div>
         <p style="font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--or);">Cinq communes, cinq trajectoires</p>
         <div style="flex:1;height:1px;background:rgba(245,200,66,.15);"></div>
       </div>
 
-      <!-- Layout 2 colonnes -->
       <div class="main-layout">
-
-        <!-- Cards -->
-        <div id="cards-col">
-          <div class="commune-card" id="card-Strasbourg" data-nom="Strasbourg" data-ev="-28.3" style="--card-col:#67e8f9;"
+        <div id="cards-col"><div class="commune-card" data-nom="Strasbourg" style="--card-col:#67e8f9;"
   onmouseenter="highlightMarker('Strasbourg')" onmouseleave="unhighlightMarker()">
   <div class="card-left">
-    <div class="card-tag">Centre-ville saturé</div>
+    <div class="card-tag">Centre · La référence</div>
     <div class="card-name">Strasbourg</div>
-    <div class="card-desc">Tissu urbain dense, radiance la plus élevée en valeur absolue. La transition LED n'a pas suffi à inverser la tendance.</div>
+    <div class="card-desc">La commune la plus lumineuse de l'Eurométropole. Sa radiance absolue domine toutes les autres — et malgré une rénovation du parc LED, elle reste très élevée.</div>
     <div class="card-practice">Rénovation</div>
   </div>
   <div class="card-mid">
@@ -126,12 +112,12 @@
     <div class="card-bars">
       <div class="cbar-row">
         <span class="cbar-lbl">2014–16</span>
-        <div class="cbar-track"><div class="cbar-fill" data-width="71.8" style="background:#67e8f9;opacity:.38;"></div></div>
+        <div class="cbar-track"><div class="cbar-fill" data-width="100.0" style="background:#67e8f9;opacity:.38;"></div></div>
         <span class="cbar-val" style="color:#a5b4ce;">33.7 nW</span>
       </div>
       <div class="cbar-row">
         <span class="cbar-lbl">2022–24</span>
-        <div class="cbar-track"><div class="cbar-fill" data-width="51.5" style="background:#67e8f9;"></div></div>
+        <div class="cbar-track"><div class="cbar-fill" data-width="71.7" style="background:#67e8f9;"></div></div>
         <span class="cbar-val" style="color:#67e8f9;">24.1 nW</span>
       </div>
     </div>
@@ -140,70 +126,41 @@
     <div class="card-ev" style="color:#4ade80;" data-target="-28.3">0</div>
     <div class="card-ev-label">%<br>2014→2024</div>
   </div>
-</div><div class="commune-card" id="card-Schiltigheim" data-nom="Schiltigheim" data-ev="-32.7" style="--card-col:#67e8f9;"
-  onmouseenter="highlightMarker('Schiltigheim')" onmouseleave="unhighlightMarker()">
+</div><div class="commune-card" data-nom="Vendenheim" style="--card-col:#4ade80;"
+  onmouseenter="highlightMarker('Vendenheim')" onmouseleave="unhighlightMarker()">
   <div class="card-left">
-    <div class="card-tag">Périurbain dense</div>
-    <div class="card-name">Schiltigheim</div>
-    <div class="card-desc">La commune la plus lumineuse en 2022–2024. Rénovation détectée, mais la radiance reste très élevée.</div>
-    <div class="card-practice">Rénovation</div>
-  </div>
-  <div class="card-mid">
-    <div class="card-spark"><svg viewBox="0 0 200 44" style="width:100%;height:44px;display:block;overflow:visible;"><path d="M0.0,2.0 L20.0,2.6 L40.0,6.6 L60.0,2.8 L80.0,6.3 L100.0,7.8 L120.0,11.6 L140.0,10.3 L160.0,18.3 L180.0,29.4 L200.0,42.0 L200,44 L0,44 Z" fill="#67e8f9" opacity="0.08"/><path d="M0.0,2.0 L20.0,2.6 L40.0,6.6 L60.0,2.8 L80.0,6.3 L100.0,7.8 L120.0,11.6 L140.0,10.3 L160.0,18.3 L180.0,29.4 L200.0,42.0" fill="none" stroke="#67e8f9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="200.0" cy="42.0" r="3" fill="#67e8f9"/></svg>
-      <div class="spark-labels"><span>2014</span><span>2024</span></div>
-    </div>
-    <div class="card-bars">
-      <div class="cbar-row">
-        <span class="cbar-lbl">2014–16</span>
-        <div class="cbar-track"><div class="cbar-fill" data-width="100.0" style="background:#67e8f9;opacity:.38;"></div></div>
-        <span class="cbar-val" style="color:#a5b4ce;">46.9 nW</span>
-      </div>
-      <div class="cbar-row">
-        <span class="cbar-lbl">2022–24</span>
-        <div class="cbar-track"><div class="cbar-fill" data-width="67.3" style="background:#67e8f9;"></div></div>
-        <span class="cbar-val" style="color:#67e8f9;">31.5 nW</span>
-      </div>
-    </div>
-  </div>
-  <div class="card-right">
-    <div class="card-ev" style="color:#4ade80;" data-target="-32.7">0</div>
-    <div class="card-ev-label">%<br>2014→2024</div>
-  </div>
-</div><div class="commune-card" id="card-Illkirch-Graffenstaden" data-nom="Illkirch-Graffenstaden" data-ev="-34.3" style="--card-col:#4ade80;"
-  onmouseenter="highlightMarker('Illkirch-Graffenstaden')" onmouseleave="unhighlightMarker()">
-  <div class="card-left">
-    <div class="card-tag">Extinction depuis 2016</div>
-    <div class="card-name">Illkirch-Graffenstaden</div>
-    <div class="card-desc">Pionnière de l'extinction nocturne dans l'Eurométropole. L'effet est mesurable par satellite dès l'année suivante.</div>
+    <div class="card-tag">Extinction depuis 2016 · L'histoire longue</div>
+    <div class="card-name">Vendenheim</div>
+    <div class="card-desc">Parmi les premières communes à éteindre son éclairage public. Huit ans plus tard, l'effet est toujours mesurable par satellite — preuve que l'extinction fonctionne dans la durée.</div>
     <div class="card-practice">Extinction totale</div>
   </div>
   <div class="card-mid">
-    <div class="card-spark"><svg viewBox="0 0 200 44" style="width:100%;height:44px;display:block;overflow:visible;"><path d="M0.0,5.6 L20.0,2.0 L40.0,22.1 L60.0,35.5 L80.0,36.1 L100.0,38.6 L120.0,41.4 L140.0,24.7 L160.0,27.7 L180.0,36.3 L200.0,42.0 L200,44 L0,44 Z" fill="#4ade80" opacity="0.08"/><path d="M0.0,5.6 L20.0,2.0 L40.0,22.1 L60.0,35.5 L80.0,36.1 L100.0,38.6 L120.0,41.4 L140.0,24.7 L160.0,27.7 L180.0,36.3 L200.0,42.0" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="200.0" cy="42.0" r="3" fill="#4ade80"/></svg>
+    <div class="card-spark"><svg viewBox="0 0 200 44" style="width:100%;height:44px;display:block;overflow:visible;"><path d="M0.0,2.0 L20.0,3.9 L40.0,23.7 L60.0,42.0 L80.0,39.7 L100.0,39.9 L120.0,38.9 L140.0,27.6 L160.0,30.0 L180.0,37.0 L200.0,39.7 L200,44 L0,44 Z" fill="#4ade80" opacity="0.08"/><path d="M0.0,2.0 L20.0,3.9 L40.0,23.7 L60.0,42.0 L80.0,39.7 L100.0,39.9 L120.0,38.9 L140.0,27.6 L160.0,30.0 L180.0,37.0 L200.0,39.7" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="200.0" cy="39.7" r="3" fill="#4ade80"/></svg>
       <div class="spark-labels"><span>2014</span><span>2024</span></div>
     </div>
     <div class="card-bars">
       <div class="cbar-row">
         <span class="cbar-lbl">2014–16</span>
-        <div class="cbar-track"><div class="cbar-fill" data-width="37.9" style="background:#4ade80;opacity:.38;"></div></div>
-        <span class="cbar-val" style="color:#a5b4ce;">17.8 nW</span>
+        <div class="cbar-track"><div class="cbar-fill" data-width="21.5" style="background:#4ade80;opacity:.38;"></div></div>
+        <span class="cbar-val" style="color:#a5b4ce;">7.2 nW</span>
       </div>
       <div class="cbar-row">
         <span class="cbar-lbl">2022–24</span>
-        <div class="cbar-track"><div class="cbar-fill" data-width="24.9" style="background:#4ade80;"></div></div>
-        <span class="cbar-val" style="color:#4ade80;">11.7 nW</span>
+        <div class="cbar-track"><div class="cbar-fill" data-width="13.8" style="background:#4ade80;"></div></div>
+        <span class="cbar-val" style="color:#4ade80;">4.6 nW</span>
       </div>
     </div>
   </div>
   <div class="card-right">
-    <div class="card-ev" style="color:#4ade80;" data-target="-34.3">0</div>
+    <div class="card-ev" style="color:#4ade80;" data-target="-36.0">0</div>
     <div class="card-ev-label">%<br>2014→2024</div>
   </div>
-</div><div class="commune-card" id="card-Osthoffen" data-nom="Osthoffen" data-ev="-73.4" style="--card-col:#4ade80;"
+</div><div class="commune-card" data-nom="Osthoffen" style="--card-col:#4ade80;"
   onmouseenter="highlightMarker('Osthoffen')" onmouseleave="unhighlightMarker()">
   <div class="card-left">
-    <div class="card-tag">Baisse record : −68 %</div>
+    <div class="card-tag">Baisse record · −73 %</div>
     <div class="card-name">Osthoffen</div>
-    <div class="card-desc">De ~5 nW à 0,6 nW en dix ans. Une extinction totale, mesurable depuis l'espace (Cerema, 2025).</div>
+    <div class="card-desc">La plus forte réduction de l'Eurométropole. En dix ans, la radiance est passée de ~5 à 0,6 nW/cm²/sr — une chute visible depuis l'espace.</div>
     <div class="card-practice">Extinction totale</div>
   </div>
   <div class="card-mid">
@@ -213,12 +170,12 @@
     <div class="card-bars">
       <div class="cbar-row">
         <span class="cbar-lbl">2014–16</span>
-        <div class="cbar-track"><div class="cbar-fill" data-width="10.6" style="background:#4ade80;opacity:.38;"></div></div>
+        <div class="cbar-track"><div class="cbar-fill" data-width="14.8" style="background:#4ade80;opacity:.38;"></div></div>
         <span class="cbar-val" style="color:#a5b4ce;">5.0 nW</span>
       </div>
       <div class="cbar-row">
         <span class="cbar-lbl">2022–24</span>
-        <div class="cbar-track"><div class="cbar-fill" data-width="2.8" style="background:#4ade80;"></div></div>
+        <div class="cbar-track"><div class="cbar-fill" data-width="3.9" style="background:#4ade80;"></div></div>
         <span class="cbar-val" style="color:#4ade80;">1.3 nW</span>
       </div>
     </div>
@@ -227,12 +184,41 @@
     <div class="card-ev" style="color:#4ade80;" data-target="-73.4">0</div>
     <div class="card-ev-label">%<br>2014→2024</div>
   </div>
-</div><div class="commune-card" id="card-Blaesheim" data-nom="Blaesheim" data-ev="-21.1" style="--card-col:#a5b4ce;"
+</div><div class="commune-card" data-nom="Kolbsheim" style="--card-col:#4ade80;"
+  onmouseenter="highlightMarker('Kolbsheim')" onmouseleave="unhighlightMarker()">
+  <div class="card-left">
+    <div class="card-tag">Petite commune, grand résultat</div>
+    <div class="card-name">Kolbsheim</div>
+    <div class="card-desc">Moins de 1 000 habitants, mais une trajectoire exemplaire. Extinction mise en place progressivement depuis 2020 — −64 % en dix ans, sans moyens exceptionnels.</div>
+    <div class="card-practice">Extinction totale</div>
+  </div>
+  <div class="card-mid">
+    <div class="card-spark"><svg viewBox="0 0 200 44" style="width:100%;height:44px;display:block;overflow:visible;"><path d="M0.0,4.7 L20.0,2.0 L40.0,4.0 L60.0,4.0 L80.0,4.6 L100.0,5.8 L120.0,19.8 L140.0,32.5 L160.0,32.3 L180.0,37.1 L200.0,42.0 L200,44 L0,44 Z" fill="#4ade80" opacity="0.08"/><path d="M0.0,4.7 L20.0,2.0 L40.0,4.0 L60.0,4.0 L80.0,4.6 L100.0,5.8 L120.0,19.8 L140.0,32.5 L160.0,32.3 L180.0,37.1 L200.0,42.0" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="200.0" cy="42.0" r="3" fill="#4ade80"/></svg>
+      <div class="spark-labels"><span>2014</span><span>2024</span></div>
+    </div>
+    <div class="card-bars">
+      <div class="cbar-row">
+        <span class="cbar-lbl">2014–16</span>
+        <div class="cbar-track"><div class="cbar-fill" data-width="11.5" style="background:#4ade80;opacity:.38;"></div></div>
+        <span class="cbar-val" style="color:#a5b4ce;">3.9 nW</span>
+      </div>
+      <div class="cbar-row">
+        <span class="cbar-lbl">2022–24</span>
+        <div class="cbar-track"><div class="cbar-fill" data-width="4.1" style="background:#4ade80;"></div></div>
+        <span class="cbar-val" style="color:#4ade80;">1.4 nW</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-right">
+    <div class="card-ev" style="color:#4ade80;" data-target="-64.0">0</div>
+    <div class="card-ev-label">%<br>2014→2024</div>
+  </div>
+</div><div class="commune-card" data-nom="Blaesheim" style="--card-col:#a5b4ce;"
   onmouseenter="highlightMarker('Blaesheim')" onmouseleave="unhighlightMarker()">
   <div class="card-left">
-    <div class="card-tag">Rural préservé</div>
+    <div class="card-tag">Le témoin · Aucun changement</div>
     <div class="card-name">Blaesheim</div>
-    <div class="card-desc">La moins lumineuse. Quasi inchangée depuis 2014 — un témoin de ce que le ciel pourrait être.</div>
+    <div class="card-desc">Aucune politique d'extinction détectée. Sa radiance reste quasi stable depuis 2014 — elle illustre ce que le ciel nocturne de l'Eurométropole pourrait encore être.</div>
     <div class="card-practice">Aucun changement</div>
   </div>
   <div class="card-mid">
@@ -242,12 +228,12 @@
     <div class="card-bars">
       <div class="cbar-row">
         <span class="cbar-lbl">2014–16</span>
-        <div class="cbar-track"><div class="cbar-fill" data-width="6.9" style="background:#a5b4ce;opacity:.38;"></div></div>
+        <div class="cbar-track"><div class="cbar-fill" data-width="9.6" style="background:#a5b4ce;opacity:.38;"></div></div>
         <span class="cbar-val" style="color:#a5b4ce;">3.2 nW</span>
       </div>
       <div class="cbar-row">
         <span class="cbar-lbl">2022–24</span>
-        <div class="cbar-track"><div class="cbar-fill" data-width="5.4" style="background:#a5b4ce;"></div></div>
+        <div class="cbar-track"><div class="cbar-fill" data-width="7.6" style="background:#a5b4ce;"></div></div>
         <span class="cbar-val" style="color:#a5b4ce;">2.5 nW</span>
       </div>
     </div>
@@ -256,118 +242,65 @@
     <div class="card-ev" style="color:#4ade80;" data-target="-21.1">0</div>
     <div class="card-ev-label">%<br>2014→2024</div>
   </div>
-</div>
-        </div>
-
-        <!-- Carte sticky -->
+</div></div>
         <div class="map-sticky">
           <div id="mini-map"></div>
           <div class="map-legend">
-            <div style="font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--or);margin-bottom:.6rem;">Localisation</div>
+            <div class="map-legend-title">Localisation</div>
             <div class="map-legend-item"><div class="map-legend-dot" style="background:#4ade80;"></div>Extinction totale</div>
-            <div class="map-legend-item"><div class="map-legend-dot" style="background:#67e8f9;"></div>Rénovation de parc</div>
-            <div style="font-family:'Space Mono',monospace;font-size:.54rem;color:#a5b4ce;margin-top:.5rem;line-height:1.5;">Survole une commune pour la localiser. Clique sur un marqueur pour ses données.</div>
+            <div class="map-legend-item"><div class="map-legend-dot" style="background:#67e8f9;"></div>Rénovation</div>
+            <div class="map-legend-item"><div class="map-legend-dot" style="background:#a5b4ce;"></div>Aucun changement</div>
+            <div class="map-hint">Survole une commune pour la localiser sur la carte. Clique sur un marqueur pour ses données.</div>
           </div>
         </div>
       </div>
 
-      <p style="text-align:center;font-size:.73rem;color:#a5b4ce;font-style:italic;margin-top:1.5rem;">Source : Cerema — Cartographie nationale des pratiques d'éclairage nocturne (data.gouv.fr, 2025) · Licence Ouverte 2.0</p>
+      <p style="text-align:center;font-size:.73rem;color:#a5b4ce;font-style:italic;margin-top:1.5rem;">Source : Cerema — data.gouv.fr (2025) · Licence Ouverte 2.0</p>
     </div>
   </div>
 
   <script>
-    // ── Données carte ─────────────────────────────────────────
-    const MAP_DATA = [{"nom": "Strasbourg", "lat": 48.5734, "lng": 7.7521, "col": "#67e8f9", "ev": -28.3, "mL": 24.12, "changes": "R", "id": "Strasbourg"}, {"nom": "Schiltigheim", "lat": 48.6103, "lng": 7.7453, "col": "#67e8f9", "ev": -32.7, "mL": 31.54, "changes": "R", "id": "Schiltigheim"}, {"nom": "Illkirch-Graffenstaden", "lat": 48.5283, "lng": 7.7205, "col": "#4ade80", "ev": -34.3, "mL": 11.67, "changes": "E", "id": "Illkirch-Graffenstaden"}, {"nom": "Osthoffen", "lat": 48.5851, "lng": 7.6234, "col": "#4ade80", "ev": -73.4, "mL": 1.32, "changes": "E", "id": "Osthoffen"}, {"nom": "Blaesheim", "lat": 48.5083, "lng": 7.6379, "col": "#a5b4ce", "ev": -21.1, "mL": 2.55, "changes": "X", "id": "Blaesheim"}];
-
-    // ── Carte Leaflet ─────────────────────────────────────────
-    const map = L.map('mini-map', {zoomControl:true}).setView([48.555, 7.695], 11);
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{
-      attribution:'© CARTO',subdomains:'abcd',maxZoom:19
-    }).addTo(map);
+    const MAP_DATA = [{"nom": "Strasbourg", "lat": 48.5734, "lng": 7.7521, "col": "#67e8f9", "ev": -28.3, "mL": 24.12}, {"nom": "Vendenheim", "lat": 48.6614, "lng": 7.7219, "col": "#4ade80", "ev": -36.0, "mL": 4.63}, {"nom": "Osthoffen", "lat": 48.5851, "lng": 7.6234, "col": "#4ade80", "ev": -73.4, "mL": 1.32}, {"nom": "Kolbsheim", "lat": 48.5501, "lng": 7.6617, "col": "#4ade80", "ev": -64.0, "mL": 1.39}, {"nom": "Blaesheim", "lat": 48.5083, "lng": 7.6379, "col": "#a5b4ce", "ev": -21.1, "mL": 2.55}];
+    const map = L.map('mini-map').setView([48.575, 7.685], 11);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{attribution:'© CARTO',subdomains:'abcd',maxZoom:19}).addTo(map);
 
     const markers = {};
     MAP_DATA.forEach(d => {
-      const radius = 8 + (d.mL / 50) * 14;
-      const marker = L.circleMarker([d.lat, d.lng], {
-        radius, fillColor:d.col, color:d.col,
-        fillOpacity:.55, weight:2, opacity:.9
-      }).bindPopup(`
-        <div style="font-family:'Space Mono',monospace;">
-          <div style="font-size:.78rem;font-weight:700;color:#f5c842;margin-bottom:.3rem;">${d.nom}</div>
-          <div style="font-size:.82rem;color:#e8eaf6;">Radiance 2022–24 : <strong>${d.mL.toFixed(1)} nW</strong></div>
-          <div style="font-size:.82rem;color:${d.ev<0?'#4ade80':'#ff6b35'};">Évolution : ${d.ev>0?'+':''}${d.ev} %</div>
-        </div>`).addTo(map);
-
-      marker.on('mouseover', () => highlightCard(d.nom));
-      marker.on('mouseout',  () => unhighlightCard());
-      markers[d.nom] = marker;
+      const r = 7 + Math.sqrt(d.mL / 50) * 18;
+      const m = L.circleMarker([d.lat,d.lng],{radius:r,fillColor:d.col,color:d.col,fillOpacity:.55,weight:2,opacity:.9})
+        .bindPopup(`<div style="font-family:'Space Mono',monospace;"><div style="font-size:.78rem;font-weight:700;color:#f5c842;margin-bottom:.3rem;">${d.nom}</div><div style="font-size:.82rem;color:#e8eaf6;">Radiance 2022–24 : <strong>${d.mL.toFixed(1)} nW</strong></div><div style="font-size:.82rem;color:${d.ev<0?'#4ade80':'#ff6b35'};">Évolution : ${d.ev>0?'+':''}${d.ev} %</div></div>`)
+        .addTo(map);
+      m.on('mouseover',()=>highlightCard(d.nom));
+      m.on('mouseout', ()=>unhighlightCard());
+      markers[d.nom] = {marker:m, baseR:r};
     });
 
-    // ── Interactions croisées ─────────────────────────────────
     function highlightMarker(nom) {
-      Object.entries(markers).forEach(([n, m]) => {
-        if (n === nom) {
-          m.setStyle({fillOpacity:.95,weight:3,radius:m.options.radius + 4});
-          m.openPopup();
-        } else {
-          m.setStyle({fillOpacity:.2,weight:1});
-        }
+      Object.entries(markers).forEach(([n,obj]) => {
+        if(n===nom) { obj.marker.setStyle({fillOpacity:.95,weight:3}); obj.marker.setRadius(obj.baseR+5); obj.marker.openPopup(); }
+        else obj.marker.setStyle({fillOpacity:.15,weight:1});
       });
     }
     function unhighlightMarker() {
-      MAP_DATA.forEach(d => {
-        const r = 8 + (d.mL/50)*14;
-        markers[d.nom].setStyle({fillOpacity:.55,weight:2});
-        markers[d.nom].setRadius(r);
-      });
+      Object.entries(markers).forEach(([n,obj]) => { obj.marker.setStyle({fillOpacity:.55,weight:2}); obj.marker.setRadius(obj.baseR); });
       map.closePopup();
     }
     function highlightCard(nom) {
       document.querySelectorAll('.commune-card').forEach(c => {
-        if (c.dataset.nom === nom) c.classList.add('highlighted');
-        else c.style.opacity = '.4';
+        c.style.opacity = c.dataset.nom===nom ? '1' : '.3';
+        if(c.dataset.nom===nom) c.classList.add('highlighted');
       });
     }
     function unhighlightCard() {
-      document.querySelectorAll('.commune-card').forEach(c => {
-        c.classList.remove('highlighted');
-        c.style.opacity = '1';
-      });
+      document.querySelectorAll('.commune-card').forEach(c => { c.style.opacity='1'; c.classList.remove('highlighted'); });
     }
 
-    // ── Animations scroll ─────────────────────────────────────
-    function animCounter(el, target, dur) {
-      const t0 = performance.now();
-      (function step(now) {
-        const p = Math.min((now-t0)/dur,1), e=p<.5?2*p*p:-1+(4-2*p)*p;
-        const v = target*e;
-        el.textContent = (v>=0?'+':'') + v.toFixed(1);
-        if(p<1) requestAnimationFrame(step);
-        else el.textContent = (target>=0?'+':'') + target;
-      })(performance.now());
-    }
-    function animBar(el, pct, dur) {
-      const t0 = performance.now();
-      (function step(now) {
-        const p = Math.min((now-t0)/dur,1), e=p<.5?2*p*p:-1+(4-2*p)*p;
-        el.style.width = (pct*e)+'%';
-        if(p<1) requestAnimationFrame(step);
-        else el.style.width = pct+'%';
-      })(performance.now());
-    }
+    function animCounter(el,target,dur){const t0=performance.now();(function s(now){const p=Math.min((now-t0)/dur,1),e=p<.5?2*p*p:-1+(4-2*p)*p,v=target*e;el.textContent=(v>=0?'+':'')+v.toFixed(1);if(p<1)requestAnimationFrame(s);else el.textContent=(target>=0?'+':'')+target;})(performance.now());}
+    function animBar(el,pct,dur){const t0=performance.now();(function s(now){const p=Math.min((now-t0)/dur,1),e=p<.5?2*p*p:-1+(4-2*p)*p;el.style.width=(pct*e)+'%';if(p<1)requestAnimationFrame(s);else el.style.width=pct+'%';})(performance.now());}
 
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if(!e.isIntersecting) return;
-        e.target.querySelectorAll('.cbar-fill').forEach(b => animBar(b, parseFloat(b.dataset.width), 1000+Math.random()*200));
-        const ev = e.target.querySelector('.card-ev');
-        if(ev) animCounter(ev, parseFloat(ev.dataset.target), 1200);
-        obs.unobserve(e.target);
-      });
-    }, {threshold:.3});
-    document.querySelectorAll('.commune-card').forEach(c => obs.observe(c));
+    const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;e.target.querySelectorAll('.cbar-fill').forEach(b=>animBar(b,parseFloat(b.dataset.width),1000+Math.random()*200));const ev=e.target.querySelector('.card-ev');if(ev)animCounter(ev,parseFloat(ev.dataset.target),1200);obs.unobserve(e.target);});},{threshold:.3});
+    document.querySelectorAll('.commune-card').forEach(c=>obs.observe(c));
 
-    // ── Starfield ─────────────────────────────────────────────
     (function(){const c=document.getElementById('sf'),x=c.getContext('2d');let s=[];function r(){c.width=innerWidth;c.height=innerHeight;}function i(){s=[];for(let n=0;n<150;n++)s.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*1.2+.2,sp:Math.random()*.004+.001,o:Math.random()*Math.PI*2});}function d(t){x.clearRect(0,0,c.width,c.height);s.forEach(st=>{const a=.15+.7*Math.abs(Math.sin(st.o+t*st.sp));x.beginPath();x.arc(st.x,st.y,st.r,0,Math.PI*2);x.fillStyle=`rgba(232,234,246,${a})`;x.fill();});requestAnimationFrame(d);}window.addEventListener('resize',()=>{r();i();});r();i();requestAnimationFrame(d);})();
   </script>
   <script>document.addEventListener("DOMContentLoaded",()=>lucide.createIcons());</script>

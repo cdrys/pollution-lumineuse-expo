@@ -292,7 +292,7 @@
 
 
   <script>
-    // ── Bulles séquentielles (scroll + timer) ───────────────
+    // ── Bulles séquentielles au scroll ──────────────────────
     (function() {
       const b0 = document.getElementById('bub-0');
       const b1 = document.getElementById('bub-1');
@@ -301,54 +301,19 @@
 
       function show(b) { b.classList.add('visible'); }
       function hide(b) { b.classList.remove('visible'); }
-      function hideAll() { hide(b0); hide(b1); hide(b2); }
-
-      let phase = 0;       // 0=none, 1=bub0, 2=bub1, 3=bub2, 4=done
-      let timerB2 = null;
-
-      function setPhase(p) {
-        if (p === phase) return;
-        phase = p;
-        clearTimeout(timerB2);
-        hideAll();
-        if (p === 1) { show(b0); }
-        if (p === 2) {
-          show(b1);
-          // After 2.2s auto-switch to bub-2
-          timerB2 = setTimeout(() => setPhase(3), 2200);
-        }
-        if (p === 3) { show(b2); }
-        if (p === 4) { hideAll(); }
-      }
 
       function update() {
-        const sub  = document.querySelector('.expo-hero-sub');
-        const quiz = document.getElementById('quiz-container');
-        const winH = window.innerHeight;
+        const docH = document.documentElement.scrollHeight - window.innerHeight;
+        const pct  = docH > 0 ? window.scrollY / docH : 0; // 0 to 1
 
-        if (!sub || !quiz) return;
+        // bub-0 : 1% à 25% de scroll
+        if (pct > 0.01 && pct < 0.25) show(b0); else hide(b0);
 
-        const subTop  = sub.getBoundingClientRect().top;
-        const quizTop = quiz.getBoundingClientRect().top;
-        const quizBot = quiz.getBoundingClientRect().bottom;
+        // bub-1 : 25% à 55% de scroll
+        if (pct >= 0.25 && pct < 0.55) show(b1); else hide(b1);
 
-        // Quiz completely off screen → done
-        if (quizBot < -50) { setPhase(4); return; }
-
-        // Quiz entered screen → bub-1 phase (unless already at bub-2)
-        if (quizTop < winH * 0.85) {
-          if (phase < 2) setPhase(2);
-          return;
-        }
-
-        // Sub visible but quiz not yet → bub-0
-        if (subTop < winH * 0.6) {
-          if (phase !== 1) setPhase(1);
-          return;
-        }
-
-        // Nothing visible yet
-        if (phase !== 0) setPhase(0);
+        // bub-2 : 55% à 88% de scroll (disparaît avant le bas)
+        if (pct >= 0.55 && pct < 0.88) show(b2); else hide(b2);
       }
 
       window.addEventListener('scroll', update, { passive: true });

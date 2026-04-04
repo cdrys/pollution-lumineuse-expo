@@ -29,9 +29,7 @@
   <div class="page-wrapper">
     <section class="expo-hero">
 
-      <p style="font-family:'Space Mono',monospace;font-size:0.58rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gris-texte);margin-bottom:0.5rem;opacity:0;animation:fadeUp 0.8s ease 0.1s forwards;">Utiliser les outils de la géomatique pour évaluer la qualité environnementale</p>
-      <p class="expo-hero-eyebrow" style="margin-bottom:0.5rem;">Étude de la pollution lumineuse dans l'Eurométropole de Strasbourg</p>
-      <div style="width:40px;height:1px;background:rgba(245,200,66,0.3);margin:0 auto 1rem;opacity:0;animation:fadeUp 0.8s ease 0.5s forwards;"></div>
+      <p class="expo-hero-eyebrow">Étude de la pollution lumineuse dans l'Eurométropole de Strasbourg</p>
 
       <h1 class="expo-hero-title">
         La <em>«&nbsp;nuit&nbsp;»</em><br>dans l'Eurométropole d'aujourd'hui
@@ -42,34 +40,46 @@
       </p>
 
 
-      <!-- Bloc carte choc -->
+      <!-- Connecteur visuel question → réponse -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:0;margin:0 auto 0;opacity:0;animation:fadeUp 0.8s ease 1.0s forwards;">
+        <div style="width:1px;height:2rem;background:linear-gradient(180deg,transparent,rgba(245,200,66,0.4));"></div>
+        <svg width="12" height="8" viewBox="0 0 12 8" fill="none" style="opacity:0.5;">
+          <path d="M6 8L0 0h12L6 8z" fill="#f5c842"/>
+        </svg>
+      </div>
+
+      <!-- Encadré Le saviez-vous ? -->
       <div style="
         position:relative;
         max-width:600px;
         margin:0 auto 2rem;
-        background:rgba(13,13,43,0.75);
-        border:1px solid rgba(245,200,66,0.2);
-        border-radius:12px;
-        padding:2rem 2.5rem;
-        text-align:center;
+        background:rgba(103,232,249,0.05);
+        border:1px solid rgba(103,232,249,0.2);
+        border-left:3px solid var(--cyan);
+        border-radius:0 10px 10px 0;
+        padding:1.5rem 2rem;
+        text-align:left;
         backdrop-filter:blur(10px);
         overflow:hidden;
         opacity:0;
-        animation:fadeUp 0.8s ease 1.0s forwards;
+        animation:fadeUp 0.8s ease 1.05s forwards;
       ">
         <!-- Lueur de fond -->
-        <div style="position:absolute;inset:0;background:radial-gradient(ellipse at center, rgba(245,200,66,0.06) 0%, transparent 70%);pointer-events:none;"></div>
+        <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%, rgba(103,232,249,0.04) 0%, transparent 70%);pointer-events:none;"></div>
 
-        <!-- Grand chiffre -->
-        <div style="font-family:'Space Mono',monospace;font-size:clamp(3.5rem,8vw,5.5rem);font-weight:700;color:var(--or);line-height:1;margin-bottom:0.25rem;">~40 ans</div>
-        <div style="font-family:'Space Mono',monospace;font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gris-texte);margin-bottom:1.25rem;">que les étoiles ont disparu</div>
+        <!-- Label -->
+        <div style="font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--cyan);margin-bottom:0.9rem;display:flex;align-items:center;gap:0.5rem;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          Le saviez-vous ?
+        </div>
 
-        <!-- Ligne séparatrice -->
-        <div style="width:40px;height:2px;background:linear-gradient(90deg,var(--cyan),var(--or));border-radius:1px;margin:0 auto 1.25rem;"></div>
-
-        <!-- Texte -->
-        <p style="font-size:1rem;color:var(--gris-texte);line-height:1.7;font-style:italic;">
-          Les étoiles ont progressivement été remplacées par des lumières. En 40 ans, elles ont <span style="color:var(--blanc-etoile);">«&nbsp;disparu&nbsp;»</span> de l'Eurométropole, tant et si bien que plusieurs générations ont grandi sans jamais les avoir vues.
+        <!-- Réponse à la question -->
+        <p style="font-size:1rem;color:var(--gris-texte);line-height:1.75;margin:0;">
+          Depuis les années 1980, la <span style="color:var(--blanc-etoile);font-weight:500;">Voie Lactée est invisible depuis Strasbourg</span>. 
+          Les étoiles ont progressivement été remplacées par des lumières artificielles — en 40 ans, elles ont 
+          <span style="color:var(--blanc-etoile);">«&nbsp;disparu&nbsp;»</span> de l'Eurométropole, 
+          tant et si bien que <span style="color:var(--blanc-etoile);font-weight:500;">plusieurs générations ont grandi sans jamais les avoir vues</span>. 
+          Il faut aujourd'hui rouler jusqu'aux Vosges pour retrouver un ciel vraiment noir.
         </p>
       </div>
 

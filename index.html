@@ -29,13 +29,13 @@
   <div class="page-wrapper">
     <section class="expo-hero">
 
-      <p class="expo-hero-eyebrow">Étude de la pollution lumineuse dans l'Eurométropole de Strasbourg</p>
+      <p class="expo-hero-eyebrow" style="color:var(--or);">Étude de la pollution lumineuse dans l'Eurométropole de Strasbourg</p>
 
       <h1 class="expo-hero-title">
         La <em>«&nbsp;nuit&nbsp;»</em><br>dans l'Eurométropole d'aujourd'hui
       </h1>
 
-      <p class="expo-hero-sub">
+      <p class="expo-hero-sub" style="color:var(--cyan);">
         Quand avez-vous vu les étoiles pour la dernière fois&nbsp;?
       </p>
 
@@ -82,15 +82,6 @@
           Il faut aujourd'hui rouler jusqu'aux Vosges pour retrouver un ciel vraiment noir.
         </p>
       </div>
-
-      <!-- Bulles flottantes -->
-      <div style="position:relative;width:100%;max-width:820px;height:160px;margin:0 auto 1.5rem;">
-
-        <!-- Bulle gauche — +25% -->
-        <div class="expo-bubble" style="left:0;top:10px;animation-delay:1.3s;background:rgba(245,200,66,0.08);border-color:rgba(245,200,66,0.3);">
-          <div class="expo-bubble-number" style="color:var(--or);">+25 %</div>
-          <div class="expo-bubble-label">hausse moyenne de la radiance nocturne sur 10 ans</div>
-        </div>
 
         <!-- Bulle centre — 0 exception -->
         <div class="expo-bubble" style="left:50%;transform:translateX(-50%);top:30px;animation-delay:1.5s;background:rgba(103,232,249,0.07);border-color:rgba(103,232,249,0.25);">
@@ -215,5 +206,35 @@
     }
   </script>
   <script>document.addEventListener("DOMContentLoaded",()=>lucide.createIcons());</script>
+  <script>
+    // ── Bulles latérales ─────────────────────────────────────
+    (function() {
+      // Trigger: when .expo-quiz enters the viewport, show bubbles
+      // Hide when user scrolls past them
+      const bubbles = document.querySelectorAll('.side-bubble');
+      const trigger = document.getElementById('quiz-container');
+      const hideBelow = document.querySelector('.expo-cta-grid');
+
+      if (!trigger) return;
+
+      function checkBubbles() {
+        const trigRect = trigger.getBoundingClientRect();
+        const winH = window.innerHeight;
+        // Show when trigger is in view
+        const show = trigRect.top < winH * 0.85 && trigRect.bottom > 0;
+        // Hide when we've scrolled well past cta grid
+        const pastRect = hideBelow ? hideBelow.getBoundingClientRect() : null;
+        const hide = pastRect && pastRect.bottom < -100;
+
+        bubbles.forEach(b => {
+          if (show && !hide) b.classList.add('visible');
+          else b.classList.remove('visible');
+        });
+      }
+
+      window.addEventListener('scroll', checkBubbles, { passive: true });
+      checkBubbles();
+    })();
+  </script>
 </body>
 </html>

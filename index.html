@@ -305,35 +305,32 @@
       }
 
       function update() {
-        const sy    = window.scrollY;
-        const docH  = document.documentElement.scrollHeight - window.innerHeight;
-        const pct   = docH > 0 ? sy / docH : 0;
-
-        // Anchor elements for thresholds
         const sub   = document.querySelector('.expo-hero-sub');
         const quiz  = document.getElementById('quiz-container');
         const cta   = document.querySelector('.expo-cta-grid');
         const winH  = window.innerHeight;
 
-        const subTop  = sub  ? sub.getBoundingClientRect().top  : Infinity;
-        const quizTop = quiz ? quiz.getBoundingClientRect().top : Infinity;
+        const subTop  = sub  ? sub.getBoundingClientRect().top   : Infinity;
+        const quizTop = quiz ? quiz.getBoundingClientRect().top  : Infinity;
         const ctaBot  = cta  ? cta.getBoundingClientRect().bottom : Infinity;
 
-        // bub-0: sub is in upper 60% of screen, quiz not yet
-        const showBub0 = subTop < winH * 0.6 && quizTop > winH * 0.4;
-        // bub-1: quiz in upper 70%, but not yet at bottom 20%
-        const showBub1 = quizTop < winH * 0.7 && quizTop > -winH * 0.2;
-        // bub-2: quiz is scrolling off top
-        const showBub2 = quizTop < -winH * 0.2 && ctaBot > 100;
+        // bub-0 : subtitle enters upper half of screen
+        const showBub0 = subTop < winH * 0.6 && quizTop > winH * 0.75;
+
+        // bub-1 : quiz enters screen early (top 85%) — apparaît tôt
+        const showBub1 = quizTop < winH * 0.85 && quizTop > winH * 0.1;
+
+        // bub-2 : quiz reaches top third of screen
+        const showBub2 = quizTop < winH * 0.1 && ctaBot > 0;
 
         // All off once past CTA
-        const allOff = ctaBot < -200;
+        const allOff = ctaBot < -100;
 
         if (allOff) {
           setVisible(b0, false); setVisible(b1, false); setVisible(b2, false);
         } else {
-          setVisible(b0, showBub0 && !showBub1 && !showBub2);
-          setVisible(b1, showBub1 && !showBub2);
+          setVisible(b0, showBub0);
+          setVisible(b1, showBub1);
           setVisible(b2, showBub2);
         }
       }

@@ -8,6 +8,61 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/expo.css" />
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    /* ── Quiz ───────────────────────────────────────────────── */
+    .quiz-btn {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--blanc-etoile);
+      font-family: var(--font-corps);
+      font-size: 1rem;
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.25s;
+      width: 100%;
+    }
+    .quiz-btn:hover:not(:disabled) { background:rgba(245,200,66,0.1);border-color:rgba(245,200,66,0.4);color:var(--or); }
+    .quiz-btn.correct { background:rgba(74,222,128,0.15);border-color:var(--vert-reserve);color:var(--vert-reserve); }
+    .quiz-btn.wrong   { background:rgba(255,107,53,0.12);border-color:rgba(255,107,53,0.5);color:#ff6b35; }
+    .quiz-btn:disabled { cursor:default; opacity:0.7; }
+
+    /* ── Bulles latérales ────────────────────────────────────── */
+    .side-bubble {
+      position: absolute;
+      width: 185px;
+      border: 1px solid;
+      border-radius: 14px;
+      padding: 1rem 0.9rem;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      opacity: 0;
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .side-bubble-left  { left: 1.5rem;  transform: translateX(-40px); }
+    .side-bubble-right { right: 1.5rem; transform: translateX(40px); }
+    .side-bubble-left.visible  { opacity: 1; transform: translateX(0); }
+    .side-bubble-right.visible { opacity: 1; transform: translateX(0); }
+    .side-bubble-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 1.9rem;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .side-bubble-lbl {
+      font-size: 0.73rem;
+      color: var(--gris-texte);
+      line-height: 1.45;
+    }
+
+    /* ── Pathway hover ───────────────────────────────────────── */
+    .pathway-step:hover {
+      transform: translateX(4px);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+    }
+  </style>
 </head>
 <body>
   <canvas id="starfield"></canvas>
@@ -27,7 +82,7 @@
   </nav>
 
   <div class="page-wrapper">
-    <section class="expo-hero">
+    <section class="expo-hero" style="position:relative;overflow:visible;">
 
       <p class="expo-hero-eyebrow" style="color:var(--or);">Étude de la pollution lumineuse dans l'Eurométropole de Strasbourg</p>
 
@@ -137,7 +192,30 @@
         </div>
       </div>
 
-    </section>
+    
+      <!-- Bulles latérales absolues dans le hero -->
+      <div id="side-bubbles" style="position:absolute;inset:0;pointer-events:none;overflow:visible;">
+
+        <!-- Gauche haut — +25% -->
+        <div class="side-bubble side-bubble-left" style="top:42%;border-color:rgba(245,200,66,0.35);background:rgba(245,200,66,0.07);">
+          <div class="side-bubble-num" style="color:var(--or);">+25 %</div>
+          <div class="side-bubble-lbl">hausse moyenne de la radiance nocturne sur 10 ans</div>
+        </div>
+
+        <!-- Droite — 0 exception -->
+        <div class="side-bubble side-bubble-right" style="top:38%;border-color:rgba(103,232,249,0.3);background:rgba(103,232,249,0.06);">
+          <div class="side-bubble-num" style="color:var(--cyan);">0</div>
+          <div class="side-bubble-lbl">exception — toutes les communes ont vu leur radiance augmenter</div>
+        </div>
+
+        <!-- Gauche bas — −68% -->
+        <div class="side-bubble side-bubble-left" style="top:62%;border-color:rgba(74,222,128,0.3);background:rgba(74,222,128,0.06);">
+          <div class="side-bubble-num" style="color:var(--vert-reserve);">−68 %</div>
+          <div class="side-bubble-lbl">baisse maximale grâce à une politique d'extinction nocturne</div>
+        </div>
+
+      </div>
+</section>
   </div>
 
   <!-- Starfield -->
@@ -206,34 +284,29 @@
     }
   </script>
   <script>document.addEventListener("DOMContentLoaded",()=>lucide.createIcons());</script>
+
   <script>
     // ── Bulles latérales ─────────────────────────────────────
     (function() {
-      // Trigger: when .expo-quiz enters the viewport, show bubbles
-      // Hide when user scrolls past them
       const bubbles = document.querySelectorAll('.side-bubble');
       const trigger = document.getElementById('quiz-container');
-      const hideBelow = document.querySelector('.expo-cta-grid');
-
       if (!trigger) return;
-
-      function checkBubbles() {
-        const trigRect = trigger.getBoundingClientRect();
-        const winH = window.innerHeight;
-        // Show when trigger is in view
-        const show = trigRect.top < winH * 0.85 && trigRect.bottom > 0;
-        // Hide when we've scrolled well past cta grid
-        const pastRect = hideBelow ? hideBelow.getBoundingClientRect() : null;
-        const hide = pastRect && pastRect.bottom < -100;
-
-        bubbles.forEach(b => {
-          if (show && !hide) b.classList.add('visible');
-          else b.classList.remove('visible');
+      let shown = false;
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting && !shown) {
+            shown = true;
+            bubbles.forEach((b, i) => {
+              setTimeout(() => b.classList.add('visible'), i * 200);
+            });
+          } else if (!e.isIntersecting && e.boundingClientRect.top > 0) {
+            // scrolled back up above trigger — hide
+            shown = false;
+            bubbles.forEach(b => b.classList.remove('visible'));
+          }
         });
-      }
-
-      window.addEventListener('scroll', checkBubbles, { passive: true });
-      checkBubbles();
+      }, { threshold: 0.3 });
+      obs.observe(trigger);
     })();
   </script>
 </body>

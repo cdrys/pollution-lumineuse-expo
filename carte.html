@@ -31,10 +31,10 @@
       bottom: 1.5rem;
       left: 1.5rem;
       z-index: 1000;
-      width: 2.4rem;
-      height: 2.4rem;
-      background: rgba(13,13,43,0.92);
-      border: 1px solid rgba(245,200,66,0.4);
+      width: 2.6rem;
+      height: 2.6rem;
+      background: rgba(245,200,66,0.18);
+      border: 2px solid var(--or);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -42,10 +42,10 @@
       cursor: pointer;
       transition: all 0.25s;
       backdrop-filter: blur(8px);
-      box-shadow: 0 2px 16px rgba(0,0,0,0.5);
+      box-shadow: 0 2px 20px rgba(245,200,66,0.25);
     }
-    #info-btn:hover { background: rgba(245,200,66,0.15); border-color: var(--or); }
-    #info-btn i { width: 1rem; height: 1rem; stroke: var(--or); }
+    #info-btn:hover { background: rgba(245,200,66,0.3); box-shadow: 0 2px 24px rgba(245,200,66,0.4); }
+    #info-btn i { width: 1.1rem; height: 1.1rem; stroke: var(--or); stroke-width: 2.5; }
 
     #info-panel {
       position: fixed;
@@ -281,7 +281,7 @@
 
     // Tour guide - affiche toujours en expo
     const STEPS=[
-      {tag:"Étape 1 / 5",title:"Le curseur temporel",text:"Glissez ce curseur pour voir l'évolution de la radiance nocturne de 2012 à 2022 dans les 33 communes.",pos:{top:'90px',bottom:'auto',left:'20px',right:'auto',transform:'none'}},
+      {tag:"Étape 1 / 5",title:"Le curseur temporel",text:"Glissez ce curseur pour voir l'évolution de la radiance nocturne de 2012 à 2022 dans les 33 communes.",pos:{top:'130px',bottom:'auto',left:'80px',right:'auto',transform:'none'}},
       {tag:"Étape 2 / 5",title:"Cliquez sur une commune",text:"Chaque cercle est une commune. Cliquez dessus pour voir sa radiance exacte, son taux de hausse et sa classe Bortle.",pos:{top:'50%',left:'60%',right:'auto',bottom:'auto',transform:'translateY(-50%)'}},
       {tag:"Étape 3 / 5",title:"Filtrer par type",text:"Ces boutons filtrent les communes : centre, périurbain dense ou moyen, rural. Comparez les dynamiques territoriales.",pos:{top:'90px',right:'20px',left:'auto',bottom:'auto',transform:'none'}},
       {tag:"Étape 4 / 5",title:"La heatmap",text:"La heatmap affiche la radiance en coeur de nuit jusqu'en 2024 (source Cerema). Les zones froides montrent l'effet des extinctions nocturnes.",pos:{top:'140px',right:'20px',left:'auto',bottom:'auto',transform:'none'}},

@@ -28,43 +28,62 @@
     .quiz-btn.wrong   { background:rgba(255,107,53,0.12);border-color:rgba(255,107,53,0.5);color:#ff6b35; }
     .quiz-btn:disabled { cursor:default; opacity:0.7; }
 
-    /* ── Bulles latérales ────────────────────────────────────── */
-    .side-bubble {
-      position: absolute;
-      width: 185px;
-      border: 1px solid;
-      border-radius: 14px;
-      padding: 1rem 0.9rem;
-      text-align: center;
-      backdrop-filter: blur(10px);
-      opacity: 0;
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .side-bubble-left  { left: 1.5rem;  transform: translateX(-40px); }
-    .side-bubble-right { right: 1.5rem; transform: translateX(40px); }
-    .side-bubble-left.visible  { opacity: 1; transform: translateX(0); }
-    .side-bubble-right.visible { opacity: 1; transform: translateX(0); }
-    .side-bubble-num {
-      font-family: 'Space Mono', monospace;
-      font-size: 1.9rem;
-      font-weight: 700;
-      line-height: 1;
-      margin-bottom: 0.4rem;
-    }
-    .side-bubble-lbl {
-      font-size: 0.73rem;
-      color: var(--gris-texte);
-      line-height: 1.45;
-    }
 
     /* ── Pathway hover ───────────────────────────────────────── */
     .pathway-step:hover {
       transform: translateX(4px);
       box-shadow: 0 4px 24px rgba(0,0,0,0.3);
     }
+
+    /* ── Bulles séquentielles ────────────────────────────────── */
+    .seq-bubble {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 190px;
+      border: 1px solid;
+      border-radius: 14px;
+      padding: 1.1rem 1rem;
+      text-align: center;
+      backdrop-filter: blur(12px);
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .seq-bubble.left  { left: 1.5rem;  transform: translateY(-50%) translateX(-30px); }
+    .seq-bubble.right { right: 1.5rem; transform: translateY(-50%) translateX(30px);  }
+    .seq-bubble.visible.left  { opacity: 1; transform: translateY(-50%) translateX(0); }
+    .seq-bubble.visible.right { opacity: 1; transform: translateY(-50%) translateX(0); }
+    .seq-bubble-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 0.45rem;
+    }
+    .seq-bubble-lbl {
+      font-size: 0.73rem;
+      color: var(--gris-texte);
+      line-height: 1.45;
+    }
   </style>
 </head>
 <body>
+    <!-- Bulles séquentielles (fixed, hors flux) -->
+  <div class="seq-bubble left" id="bub-0" style="top:45%;border-color:rgba(245,200,66,0.35);background:rgba(10,10,30,0.88);">
+    <div class="seq-bubble-num" style="color:var(--or);">+25 %</div>
+    <div class="seq-bubble-lbl">hausse moyenne de la radiance nocturne sur 10 ans</div>
+  </div>
+  <div class="seq-bubble right" id="bub-1" style="top:50%;border-color:rgba(103,232,249,0.3);background:rgba(10,10,30,0.88);">
+    <div class="seq-bubble-num" style="color:var(--cyan);">0</div>
+    <div class="seq-bubble-lbl">exception — toutes les communes ont vu leur radiance augmenter</div>
+  </div>
+  <div class="seq-bubble left" id="bub-2" style="top:55%;border-color:rgba(74,222,128,0.3);background:rgba(10,10,30,0.88);">
+    <div class="seq-bubble-num" style="color:var(--vert-reserve);">−68 %</div>
+    <div class="seq-bubble-lbl">baisse maximale grâce à une politique d'extinction nocturne</div>
+  </div>
+
   <canvas id="starfield"></canvas>
 
   <nav class="expo-nav">
@@ -193,14 +212,6 @@
       </div>
 
     
-      <!-- Bulles latérales absolues dans le hero -->
-      <div id="side-bubbles" style="position:absolute;inset:0;pointer-events:none;overflow:visible;">
-
-        <!-- Gauche haut — +25% -->
-        <div class="side-bubble side-bubble-left" style="top:42%;border-color:rgba(245,200,66,0.35);background:rgba(245,200,66,0.07);">
-          <div class="side-bubble-num" style="color:var(--or);">+25 %</div>
-          <div class="side-bubble-lbl">hausse moyenne de la radiance nocturne sur 10 ans</div>
-        </div>
 
         <!-- Droite — 0 exception -->
         <div class="side-bubble side-bubble-right" style="top:38%;border-color:rgba(103,232,249,0.3);background:rgba(103,232,249,0.06);">
@@ -287,47 +298,70 @@
 
 
   <script>
-    // ── Bulles latérales ─────────────────────────────────────
+    // ── Bulles séquentielles ─────────────────────────────────
     (function() {
-      const bubbles = document.querySelectorAll('.side-bubble');
-      if (!bubbles.length) return;
+      const ids = ['bub-0', 'bub-1', 'bub-2'];
+      const SHOW_MS  = 2800;  // visible duration
+      const FADE_MS  = 600;   // fade transition (matches CSS)
+      let current = 0;
+      let running = false;
 
-      // Show when user has scrolled enough to see the saviez-vous block
-      // Hide only when well past the CTA buttons
-      const showTrigger  = document.querySelector('.expo-hero-sub');   // appear early
-      const hideTrigger  = document.querySelector('.expo-cta-grid');   // disappear late
+      function showBubble(idx) {
+        const el = document.getElementById(ids[idx]);
+        if (el) el.classList.add('visible');
+      }
+      function hideBubble(idx) {
+        const el = document.getElementById(ids[idx]);
+        if (el) el.classList.remove('visible');
+      }
+      function hideAll() {
+        ids.forEach((_, i) => hideBubble(i));
+      }
 
-      let visible = false;
+      function cycle() {
+        if (!running) return;
+        // Show current bubble
+        showBubble(current);
+        setTimeout(() => {
+          if (!running) return;
+          // Fade out current
+          hideBubble(current);
+          // Move to next after fade completes
+          setTimeout(() => {
+            if (!running) return;
+            current = (current + 1) % ids.length;
+            cycle();
+          }, FADE_MS);
+        }, SHOW_MS);
+      }
 
-      function update() {
-        if (!showTrigger) return;
-        const showRect = showTrigger.getBoundingClientRect();
+      // Start when quiz section enters viewport
+      const trigger = document.getElementById('quiz-container');
+      const stopTrigger = document.querySelector('.expo-cta-grid');
+
+      if (!trigger) return;
+
+      function checkScroll() {
+        const rect = trigger.getBoundingClientRect();
         const winH = window.innerHeight;
+        const inView = rect.top < winH * 0.7;
 
-        // Show: as soon as the subtitle has scrolled 40% into view
-        const shouldShow = showRect.top < winH * 0.6;
+        // Stop when past CTA buttons
+        const stopRect = stopTrigger ? stopTrigger.getBoundingClientRect() : null;
+        const pastStop = stopRect && stopRect.bottom < -300;
 
-        // Hide: only when CTA grid is well past the bottom of screen
-        const hideRect = hideTrigger ? hideTrigger.getBoundingClientRect() : null;
-        const shouldHide = hideRect && hideRect.bottom < -200;
-
-        const newVisible = shouldShow && !shouldHide;
-
-        if (newVisible !== visible) {
-          visible = newVisible;
-          bubbles.forEach((b, i) => {
-            if (newVisible) {
-              setTimeout(() => b.classList.add('visible'), i * 180);
-            } else {
-              setTimeout(() => b.classList.remove('visible'), i * 100);
-            }
-          });
+        if (inView && !pastStop && !running) {
+          running = true;
+          cycle();
+        } else if ((!inView || pastStop) && running) {
+          running = false;
+          hideAll();
+          current = 0;
         }
       }
 
-      window.addEventListener('scroll', update, { passive: true });
-      // Also check on load in case page starts scrolled
-      update();
+      window.addEventListener('scroll', checkScroll, { passive: true });
+      checkScroll();
     })();
   </script>
 </body>

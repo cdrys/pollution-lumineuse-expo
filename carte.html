@@ -158,7 +158,7 @@
 
   <!-- Bouton info (position:fixed, hors Leaflet) -->
   <button id="info-btn" onclick="toggleInfo()" title="En savoir plus sur cette carte">
-    <i data-lucide="info"></i>
+    <i data-lucide="info" style="color:var(--or);stroke:var(--or);"></i>
   </button>
 
   <!-- Panneau info -->
@@ -283,7 +283,7 @@
     const STEPS=[
       {tag:"Étape 1 / 5",title:"Le curseur temporel",text:"Glissez ce curseur pour voir l'évolution de la radiance nocturne de 2012 à 2022 dans les 33 communes.",pos:{top:'130px',bottom:'auto',left:'80px',right:'auto',transform:'none'}},
       {tag:"Étape 2 / 5",title:"Cliquez sur une commune",text:"Chaque cercle est une commune. Cliquez dessus pour voir sa radiance exacte, son taux de hausse et sa classe Bortle.",pos:{top:'50%',left:'60%',right:'auto',bottom:'auto',transform:'translateY(-50%)'}},
-      {tag:"Étape 3 / 5",title:"Filtrer par type",text:"Ces boutons filtrent les communes : centre, périurbain dense ou moyen, rural. Comparez les dynamiques territoriales.",pos:{top:'90px',right:'20px',left:'auto',bottom:'auto',transform:'none'}},
+      {tag:"Étape 3 / 5",title:"Filtrer par type",text:"Ces boutons filtrent les communes : centre, périurbain dense ou moyen, rural. Comparez les dynamiques territoriales.",pos:{top:'140px',right:'20px',left:'auto',bottom:'auto',transform:'none'}},
       {tag:"Étape 4 / 5",title:"La heatmap",text:"La heatmap affiche la radiance en coeur de nuit jusqu'en 2024 (source Cerema). Les zones froides montrent l'effet des extinctions nocturnes.",pos:{top:'140px',right:'20px',left:'auto',bottom:'auto',transform:'none'}},
       {tag:"Étape 5 / 5",title:"Le bouton ⓘ — Comprendre ce qu'on voit",text:"En bas à gauche de la carte, le bouton ⓘ affiche une explication contextuelle sur ce que révèle la carte pour l'année sélectionnée. Il se met à jour automatiquement quand vous bougez le curseur.",pos:{top:'auto',bottom:'5.5rem',left:'5rem',right:'auto',transform:'none'}}
     ];

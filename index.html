@@ -307,24 +307,23 @@
       function update() {
         const sub   = document.querySelector('.expo-hero-sub');
         const quiz  = document.getElementById('quiz-container');
-        const cta   = document.querySelector('.expo-cta-grid');
         const winH  = window.innerHeight;
 
-        const subTop  = sub  ? sub.getBoundingClientRect().top   : Infinity;
-        const quizTop = quiz ? quiz.getBoundingClientRect().top  : Infinity;
-        const ctaBot  = cta  ? cta.getBoundingClientRect().bottom : Infinity;
+        const subTop   = sub  ? sub.getBoundingClientRect().top    : Infinity;
+        const quizTop  = quiz ? quiz.getBoundingClientRect().top   : Infinity;
+        const quizBot  = quiz ? quiz.getBoundingClientRect().bottom : Infinity;
 
-        // bub-0 : subtitle enters upper half of screen
+        // allOff: quiz completely scrolled past top of screen
+        const allOff = quizBot < -50;
+
+        // bub-0: subtitle visible, quiz not yet entered screen
         const showBub0 = subTop < winH * 0.6 && quizTop > winH * 0.75;
 
-        // bub-1 : quiz enters screen early (top 85%) — apparaît tôt
-        const showBub1 = quizTop < winH * 0.85 && quizTop > winH * 0.1;
+        // bub-1: quiz entered (top < 85% screen height), quiz top still in lower half
+        const showBub1 = quizTop < winH * 0.85 && quizTop > winH * 0.2;
 
-        // bub-2 : quiz reaches top third of screen
-        const showBub2 = quizTop < winH * 0.1 && ctaBot > 0;
-
-        // All off once past CTA
-        const allOff = ctaBot < -100;
+        // bub-2: quiz top in upper fifth of screen, quiz still partly visible
+        const showBub2 = quizTop < winH * 0.2 && quizBot > 0;
 
         if (allOff) {
           setVisible(b0, false); setVisible(b1, false); setVisible(b2, false);

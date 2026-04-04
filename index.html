@@ -304,29 +304,36 @@
         else   b.classList.remove('visible');
       }
 
+      // Debug panel
+      const dbg = document.createElement('div');
+      dbg.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.85);color:#f5c842;font-family:monospace;font-size:11px;padding:8px 12px;border-radius:6px;z-index:9999;white-space:pre;pointer-events:none;';
+      document.body.appendChild(dbg);
+
       function update() {
-        const sub   = document.querySelector('.expo-hero-sub');
-        const quiz  = document.getElementById('quiz-container');
-        const winH  = window.innerHeight;
+        const sub  = document.querySelector('.expo-hero-sub');
+        const quiz = document.getElementById('quiz-container');
+        const winH = window.innerHeight;
 
-        const subTop   = sub  ? sub.getBoundingClientRect().top    : Infinity;
-        const quizTop  = quiz ? quiz.getBoundingClientRect().top   : Infinity;
-        const quizBot  = quiz ? quiz.getBoundingClientRect().bottom : Infinity;
+        const subTop  = sub  ? Math.round(sub.getBoundingClientRect().top)    : 9999;
+        const quizTop = quiz ? Math.round(quiz.getBoundingClientRect().top)   : 9999;
+        const quizBot = quiz ? Math.round(quiz.getBoundingClientRect().bottom) : 9999;
 
-        // allOff: quiz completely scrolled past top of screen
-        const allOff = quizBot < -50;
-
-        // bub-0: subtitle visible, quiz not yet entered screen
         const showBub0 = subTop < winH * 0.6 && quizTop > winH * 0.75;
-
-        // bub-1: quiz entered (top < 85% screen height), quiz top still in lower half
         const showBub1 = quizTop < winH * 0.85 && quizTop > winH * 0.2;
-
-        // bub-2: quiz top in upper fifth of screen, quiz still partly visible
         const showBub2 = quizTop < winH * 0.2 && quizBot > 0;
+        const allOff   = quizBot < -50;
+
+        dbg.textContent = [
+          'winH=' + winH,
+          'subTop=' + subTop + ' (< ' + Math.round(winH*0.6) + '?)',
+          'quizTop=' + quizTop,
+          'quizBot=' + quizBot,
+          'b0=' + showBub0 + ' b1=' + showBub1 + ' b2=' + showBub2,
+          'allOff=' + allOff,
+        ].join('\n');
 
         if (allOff) {
-          setVisible(b0, false); setVisible(b1, false); setVisible(b2, false);
+          setVisible(b0,false); setVisible(b1,false); setVisible(b2,false);
         } else {
           setVisible(b0, showBub0);
           setVisible(b1, showBub1);

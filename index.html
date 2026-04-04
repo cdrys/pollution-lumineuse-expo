@@ -304,16 +304,11 @@
 
       function update() {
         const docH = document.documentElement.scrollHeight - window.innerHeight;
-        const pct  = docH > 0 ? window.scrollY / docH : 0; // 0 to 1
+        const pct  = docH > 0 ? window.scrollY / docH : 0;
 
-        // bub-0 : 1% à 25% de scroll
-        if (pct > 0.01 && pct < 0.25) show(b0); else hide(b0);
-
-        // bub-1 : 25% à 55% de scroll
-        if (pct >= 0.25 && pct < 0.55) show(b1); else hide(b1);
-
-        // bub-2 : 55% à 88% de scroll (disparaît avant le bas)
-        if (pct >= 0.55 && pct < 0.88) show(b2); else hide(b2);
+        if (pct > 0.01 && pct < 0.33) show(b0); else hide(b0);
+        if (pct >= 0.33 && pct < 0.66) show(b1); else hide(b1);
+        if (pct >= 0.66 && pct < 0.99) show(b2); else hide(b2);
       }
 
       window.addEventListener('scroll', update, { passive: true });

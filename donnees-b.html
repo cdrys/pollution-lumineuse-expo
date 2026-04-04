@@ -1,73 +1,60 @@
 <!DOCTYPE html>
 <html lang="fr"><head>
-  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Option B</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/expo.css" />
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/expo.css"/>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 </head><body>
-  <canvas id="starfield" style="position:fixed;inset:0;z-index:0;pointer-events:none;"></canvas>
+  <canvas id="sf" style="position:fixed;inset:0;z-index:0;pointer-events:none;"></canvas>
   <nav class="expo-nav">
     <div class="expo-nav-logo"><i data-lucide="star"></i>
-      <span style="color:var(--gris-texte);">La <em style="color:var(--or);font-style:normal;">«&nbsp;nuit&nbsp;»</em> dans l'Eurométropole d'aujourd'hui</span>
+      <span style="color:var(--gris-texte);">La <em style="color:var(--or);font-style:normal;">«&nbsp;nuit&nbsp;»</em> dans l'Eurométropole</span>
     </div>
-    <ul class="expo-nav-links" style="gap:0.1rem;"><li><a href="donnees-a.html">Option A</a></li>
-<li><a href="donnees-b.html" class="active">Option B</a></li>
-<li><a href="donnees-c.html">Option C</a></li>
-<li><a href="donnees-d.html">Option D</a></li>
+    <ul class="expo-nav-links"><li><a href="donnees-a.html"><i data-lucide="bar-chart-2"></i><span>Option A</span></a></li>
+<li><a href="donnees-b.html" class="active"><i data-lucide="circle-dot"></i><span>Option B</span></a></li>
+<li><a href="donnees-c.html"><i data-lucide="layers"></i><span>Option C</span></a></li>
+<li><a href="donnees-d.html"><i data-lucide="pie-chart"></i><span>Option D</span></a></li>
 </ul>
     <div class="expo-nav-badge">Exposition · 2025–2026</div>
   </nav>
   <div class="page-wrapper" style="position:relative;z-index:1;">
   <style>
-    .data-wrap {max-width:1000px;margin:0 auto;padding:2rem 2rem 4rem;}
-    #bubble-wrap {position:relative;width:100%;height:520px;}
-    .bubble {position:absolute;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border:1px solid rgba(255,255,255,0.15);transition:transform 0.2s;cursor:default;}
-    .bubble:hover {transform:scale(1.08);z-index:10;}
-    .bubble-num {font-family:'Space Mono',monospace;font-weight:700;line-height:1;}
-    .bubble-name {font-family:'Space Mono',monospace;line-height:1.2;}
-    .legend-item {display:flex;align-items:center;gap:0.4rem;font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.08em;}
-    .legend-dot {width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+    #bw{position:relative;width:960px;max-width:100%;height:500px;margin:0 auto;}
+    .bbl{position:absolute;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border:1px solid rgba(255,255,255,.15);cursor:default;transition:transform .2s;}
+    .bbl:hover{transform:scale(1.1);z-index:10;}
   </style>
-  <div class="data-wrap">
-    <div style="text-align:center;padding:2rem 0 1.5rem;">
+  <div style="max-width:1000px;margin:0 auto;padding:1.5rem 2rem 4rem;">
+    <div style="text-align:center;padding:2.5rem 0 1.5rem;">
       <p class="section-tag">Option B — Graphique en bulles</p>
       <h1 class="section-titre" style="font-size:1.6rem;">Radiance 2022–2024 par commune</h1>
-      <p style="color:var(--gris-texte);font-size:0.95rem;max-width:600px;margin:0.5rem auto 1.5rem;">Taille de la bulle = radiance moyenne 2022–2024 · Couleur = pratique d'extinction détectée par satellite (Cerema)</p>
+      <p style="color:var(--gris-texte);font-size:0.95rem;max-width:640px;margin:0.5rem auto;">Taille = radiance · Couleur = pratique d'extinction</p>
     </div>
     <div style="display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.5rem;">
-      <div class="legend-item"><div class="legend-dot" style="background:#4ade80;"></div>Extinction totale</div>
-      <div class="legend-item"><div class="legend-dot" style="background:#67e8f9;"></div>Rénovation</div>
-      <div class="legend-item"><div class="legend-dot" style="background:#f59e0b;"></div>Ext.+Rénov.</div>
-      <div class="legend-item"><div class="legend-dot" style="background:#a5b4ce;"></div>Aucun changement</div>
+      <span style="font-family:'Space Mono',monospace;font-size:0.6rem;display:flex;align-items:center;gap:5px;"><span style="width:10px;height:10px;background:#4ade80;border-radius:2px;display:inline-block;"></span>Extinction totale</span>
+      <span style="font-family:'Space Mono',monospace;font-size:0.6rem;display:flex;align-items:center;gap:5px;"><span style="width:10px;height:10px;background:#67e8f9;border-radius:2px;display:inline-block;"></span>Rénovation</span>
+      <span style="font-family:'Space Mono',monospace;font-size:0.6rem;display:flex;align-items:center;gap:5px;"><span style="width:10px;height:10px;background:#f59e0b;border-radius:2px;display:inline-block;"></span>Ext.+Rénov.</span>
+      <span style="font-family:'Space Mono',monospace;font-size:0.6rem;display:flex;align-items:center;gap:5px;"><span style="width:10px;height:10px;background:#a5b4ce;border-radius:2px;display:inline-block;"></span>Aucun changement</span>
     </div>
-    <div id="bubble-wrap"></div>
+    <div id="bw"></div>
   </div>
   <script>
-    const DATA = [{"nom": "Strasbourg", "changes": "R", "mE": 33.66, "mL": 24.12, "ev": -28.3}, {"nom": "Schiltigheim", "changes": "R", "mE": 46.87, "mL": 31.54, "ev": -32.7}, {"nom": "Illkirch-Graffenstaden", "changes": "E", "mE": 17.77, "mL": 11.67, "ev": -34.3}, {"nom": "Ostwald", "changes": "R", "mE": 21.68, "mL": 13.93, "ev": -35.7}, {"nom": "Bischheim", "changes": "R", "mE": 41.35, "mL": 28.53, "ev": -31.0}, {"nom": "Hoenheim", "changes": "R", "mE": 39.49, "mL": 27.25, "ev": -31.0}, {"nom": "Lingolsheim", "changes": "R", "mE": 24.3, "mL": 15.42, "ev": -36.5}, {"nom": "Souffelweyersheim", "changes": "R", "mE": 23.47, "mL": 15.87, "ev": -32.4}, {"nom": "Mundolsheim", "changes": "ER", "mE": 16.29, "mL": 9.63, "ev": -40.9}, {"nom": "Vendenheim", "changes": "E", "mE": 7.23, "mL": 4.63, "ev": -36.0}, {"nom": "Reichstett", "changes": "R", "mE": 10.73, "mL": 5.83, "ev": -45.7}, {"nom": "Eckbolsheim", "changes": "R", "mE": 20.39, "mL": 12.16, "ev": -40.4}, {"nom": "Wolfisheim", "changes": "E", "mE": 9.34, "mL": 4.18, "ev": -55.2}, {"nom": "Geispolsheim", "changes": "R", "mE": 9.04, "mL": 6.58, "ev": -27.2}, {"nom": "Fegersheim", "changes": "E", "mE": 12.09, "mL": 8.15, "ev": -32.6}, {"nom": "Niederhausbergen", "changes": "R", "mE": 10.45, "mL": 7.0, "ev": -33.0}, {"nom": "Mittelhausbergen", "changes": "R", "mE": 15.07, "mL": 9.86, "ev": -34.6}, {"nom": "Oberhausbergen", "changes": "ER", "mE": 16.3, "mL": 7.5, "ev": -54.0}, {"nom": "La Wantzenau", "changes": "E", "mE": 8.43, "mL": 5.36, "ev": -36.4}, {"nom": "Lampertheim", "changes": "E", "mE": 10.32, "mL": 4.65, "ev": -54.9}, {"nom": "Lipsheim", "changes": "E", "mE": 7.36, "mL": 5.62, "ev": -23.6}, {"nom": "Entzheim", "changes": "X", "mE": 12.18, "mL": 9.96, "ev": -18.2}, {"nom": "Holtzheim", "changes": "R", "mE": 7.7, "mL": 5.01, "ev": -34.9}, {"nom": "Hangenbieten", "changes": "R", "mE": 5.88, "mL": 4.59, "ev": -21.9}, {"nom": "Achenheim", "changes": "R", "mE": 5.94, "mL": 4.71, "ev": -20.7}, {"nom": "Oberschaeffolsheim", "changes": "X", "mE": 4.67, "mL": 3.55, "ev": -24.0}, {"nom": "Kolbsheim", "changes": "E", "mE": 3.86, "mL": 1.39, "ev": -64.0}, {"nom": "Blaesheim", "changes": "X", "mE": 3.23, "mL": 2.55, "ev": -21.1}, {"nom": "Eckwersheim", "changes": "E", "mE": 6.31, "mL": 2.14, "ev": -66.1}, {"nom": "Osthoffen", "changes": "E", "mE": 4.97, "mL": 1.32, "ev": -73.4}, {"nom": "Breuschwickersheim", "changes": "E", "mE": 3.45, "mL": 1.75, "ev": -49.3}, {"nom": "Eschau", "changes": "E", "mE": 5.9, "mL": 3.92, "ev": -33.6}, {"nom": "Plobsheim", "changes": "E", "mE": 5.17, "mL": 2.68, "ev": -48.2}];
-    const COL = {E:'#4ade80',R:'#67e8f9',ER:'#f59e0b',X:'#a5b4ce'};
-    const wrap = document.getElementById('bubble-wrap');
-    const maxR = Math.max(...DATA.map(d=>d.mL));
-    const minR = Math.min(...DATA.map(d=>d.mL));
-    // Place bubbles in a loose grid with some randomness for organic feel
-    const cols = 8; const rows = Math.ceil(DATA.length/cols);
-    const wW = 980; const wH = 500;
-    DATA.forEach((d,i) => {
-      const col = i % cols; const row = Math.floor(i/cols);
-      const size = 28 + ((d.mL - minR)/(maxR-minR)) * 90;
-      const x = (col/cols)*wW + (wW/cols/2) + (Math.random()-0.5)*20;
-      const y = (row/rows)*wH + (wH/rows/2) + (Math.random()-0.5)*15;
-      const c = COL[d.changes]||'#a5b4ce';
-      const fontSize = size > 70 ? '0.75rem' : size > 45 ? '0.62rem' : '0.52rem';
-      const numSize = size > 70 ? '1rem' : size > 45 ? '0.78rem' : '0.6rem';
-      wrap.innerHTML += `<div class="bubble" style="width:${size}px;height:${size}px;left:${x-size/2}px;top:${y-size/2}px;background:${c}18;border-color:${c}55;">
-        <span class="bubble-num" style="color:${c};font-size:${numSize};">${d.mL.toFixed(1)}</span>
-        <span class="bubble-name" style="color:var(--gris-texte);font-size:${fontSize};padding:0 2px;">${d.nom.length>10?d.nom.split('-')[0]:d.nom}</span>
+    const D=[{"nom": "Strasbourg", "changes": "R", "mE": 33.66, "mL": 24.12, "ev": -28.3}, {"nom": "Schiltigheim", "changes": "R", "mE": 46.87, "mL": 31.54, "ev": -32.7}, {"nom": "Illkirch-Graffenstaden", "changes": "E", "mE": 17.77, "mL": 11.67, "ev": -34.3}, {"nom": "Ostwald", "changes": "R", "mE": 21.68, "mL": 13.93, "ev": -35.7}, {"nom": "Bischheim", "changes": "R", "mE": 41.35, "mL": 28.53, "ev": -31.0}, {"nom": "Hoenheim", "changes": "R", "mE": 39.49, "mL": 27.25, "ev": -31.0}, {"nom": "Lingolsheim", "changes": "R", "mE": 24.3, "mL": 15.42, "ev": -36.5}, {"nom": "Souffelweyersheim", "changes": "R", "mE": 23.47, "mL": 15.87, "ev": -32.4}, {"nom": "Mundolsheim", "changes": "ER", "mE": 16.29, "mL": 9.63, "ev": -40.9}, {"nom": "Vendenheim", "changes": "E", "mE": 7.23, "mL": 4.63, "ev": -36.0}, {"nom": "Reichstett", "changes": "R", "mE": 10.73, "mL": 5.83, "ev": -45.7}, {"nom": "Eckbolsheim", "changes": "R", "mE": 20.39, "mL": 12.16, "ev": -40.4}, {"nom": "Wolfisheim", "changes": "E", "mE": 9.34, "mL": 4.18, "ev": -55.2}, {"nom": "Geispolsheim", "changes": "R", "mE": 9.04, "mL": 6.58, "ev": -27.2}, {"nom": "Fegersheim", "changes": "E", "mE": 12.09, "mL": 8.15, "ev": -32.6}, {"nom": "Niederhausbergen", "changes": "R", "mE": 10.45, "mL": 7.0, "ev": -33.0}, {"nom": "Mittelhausbergen", "changes": "R", "mE": 15.07, "mL": 9.86, "ev": -34.6}, {"nom": "Oberhausbergen", "changes": "ER", "mE": 16.3, "mL": 7.5, "ev": -54.0}, {"nom": "La Wantzenau", "changes": "E", "mE": 8.43, "mL": 5.36, "ev": -36.4}, {"nom": "Lampertheim", "changes": "E", "mE": 10.32, "mL": 4.65, "ev": -54.9}, {"nom": "Lipsheim", "changes": "E", "mE": 7.36, "mL": 5.62, "ev": -23.6}, {"nom": "Entzheim", "changes": "X", "mE": 12.18, "mL": 9.96, "ev": -18.2}, {"nom": "Holtzheim", "changes": "R", "mE": 7.7, "mL": 5.01, "ev": -34.9}, {"nom": "Hangenbieten", "changes": "R", "mE": 5.88, "mL": 4.59, "ev": -21.9}, {"nom": "Achenheim", "changes": "R", "mE": 5.94, "mL": 4.71, "ev": -20.7}, {"nom": "Oberschaeffolsheim", "changes": "X", "mE": 4.67, "mL": 3.55, "ev": -24.0}, {"nom": "Kolbsheim", "changes": "E", "mE": 3.86, "mL": 1.39, "ev": -64.0}, {"nom": "Blaesheim", "changes": "X", "mE": 3.23, "mL": 2.55, "ev": -21.1}, {"nom": "Eckwersheim", "changes": "E", "mE": 6.31, "mL": 2.14, "ev": -66.1}, {"nom": "Osthoffen", "changes": "E", "mE": 4.97, "mL": 1.32, "ev": -73.4}, {"nom": "Breuschwickersheim", "changes": "E", "mE": 3.45, "mL": 1.75, "ev": -49.3}, {"nom": "Eschau", "changes": "E", "mE": 5.9, "mL": 3.92, "ev": -33.6}, {"nom": "Plobsheim", "changes": "E", "mE": 5.17, "mL": 2.68, "ev": -48.2}],C={E:'#4ade80',R:'#67e8f9',ER:'#f59e0b',X:'#a5b4ce'};
+    const mn=Math.min(...D.map(d=>d.mL)),mx=Math.max(...D.map(d=>d.mL));
+    const cols=8,rows=Math.ceil(D.length/cols),W=960,H=480;
+    D.forEach((d,i)=>{
+      const col=i%cols,row=Math.floor(i/cols);
+      const sz=22+((d.mL-mn)/(mx-mn))*85;
+      const x=(col/cols)*W+(W/cols/2)+(Math.random()-.5)*18;
+      const y=(row/rows)*H+(H/rows/2)+(Math.random()-.5)*12;
+      const c=C[d.changes]||'#a5b4ce';
+      const fs=sz>65?'.72rem':sz>42?'.6rem':'.52rem';
+      document.getElementById('bw').innerHTML+=`<div class="bbl" style="width:${sz}px;height:${sz}px;left:${x-sz/2}px;top:${y-sz/2}px;background:${c}18;border-color:${c}55;" title="${d.nom} — ${d.mL.toFixed(1)} nW">
+        <span style="font-family:'Space Mono',monospace;font-size:${fs};font-weight:700;color:${c};line-height:1;">${d.mL.toFixed(1)}</span>
+        <span style="font-family:'Space Mono',monospace;font-size:${sz>50?.55:.45}rem;color:var(--gris-texte);padding:0 2px;line-height:1.2;">${d.nom.split('-')[0].substring(0,9)}</span>
       </div>`;
     });
-  </script>
-  </div>
-  <script>(function(){const c=document.getElementById('starfield'),ctx=c.getContext('2d');let s=[];function r(){c.width=window.innerWidth;c.height=window.innerHeight;}function init(){s=[];for(let i=0;i<160;i++)s.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*1.2+0.2,sp:Math.random()*0.004+0.001,o:Math.random()*Math.PI*2});}function draw(t){ctx.clearRect(0,0,c.width,c.height);s.forEach(st=>{const a=0.15+0.7*Math.abs(Math.sin(st.o+t*st.sp));ctx.beginPath();ctx.arc(st.x,st.y,st.r,0,Math.PI*2);ctx.fillStyle=`rgba(232,234,246,${a})`;ctx.fill();});requestAnimationFrame(draw);}window.addEventListener('resize',()=>{r();init();});r();init();requestAnimationFrame(draw);})();</script>
+  </script>  </div>
+  <script>(function(){const c=document.getElementById('sf'),x=c.getContext('2d');let s=[];function r(){c.width=innerWidth;c.height=innerHeight;}function i(){s=[];for(let n=0;n<160;n++)s.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*1.2+0.2,sp:Math.random()*.004+.001,o:Math.random()*Math.PI*2});}function d(t){x.clearRect(0,0,c.width,c.height);s.forEach(st=>{const a=.15+.7*Math.abs(Math.sin(st.o+t*st.sp));x.beginPath();x.arc(st.x,st.y,st.r,0,Math.PI*2);x.fillStyle=`rgba(232,234,246,${a})`;x.fill();});requestAnimationFrame(d);}window.addEventListener('resize',()=>{r();i();});r();i();requestAnimationFrame(d);})();</script>
   <script>document.addEventListener("DOMContentLoaded",()=>lucide.createIcons());</script>
 </body></html>

@@ -9,7 +9,7 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <style>
-    .commune-card{display:grid;grid-template-columns:1.2fr 2fr .75fr;gap:1.25rem;align-items:center;background:rgba(13,13,43,.75);border:1px solid color-mix(in srgb,var(--card-col) 20%,transparent);border-left:3px solid var(--card-col);border-radius:12px;padding:1.25rem 1.4rem;margin-bottom:2.5rem;transition:border-color .3s,transform .3s,box-shadow .3s,opacity .3s;cursor:default;}
+    .commune-card{display:grid;grid-template-columns:1.2fr 2fr .75fr;gap:1.25rem;align-items:center;background:rgba(13,13,43,.75);border:1px solid color-mix(in srgb,var(--card-col) 20%,transparent);border-left:3px solid var(--card-col);border-radius:12px;padding:1.25rem 1.4rem;margin-bottom:1.75rem;transition:border-color .3s,transform .3s,box-shadow .3s,opacity .3s;cursor:default;}
     .commune-card:hover,.commune-card.highlighted{border-color:var(--card-col);transform:translateX(5px);box-shadow:-4px 0 20px color-mix(in srgb,var(--card-col) 15%,transparent);}
     .card-tag{font-family:'Space Mono',monospace;font-size:.57rem;letter-spacing:.13em;text-transform:uppercase;color:var(--card-col);margin-bottom:.25rem;}
     .card-name{font-family:'Space Mono',monospace;font-size:.85rem;color:#e8eaf6;font-weight:700;margin-bottom:.35rem;}
@@ -37,7 +37,7 @@
     .map-hint{font-family:'Space Mono',monospace;font-size:.52rem;color:#a5b4ce;margin-top:.5rem;line-height:1.5;border-top:1px solid rgba(255,255,255,.06);padding-top:.5rem;}
     .leaflet-popup-content-wrapper{background:#0d0d2b;border:1px solid rgba(245,200,66,.3);border-radius:8px;color:#e8eaf6;box-shadow:0 4px 20px rgba(0,0,0,.5);}
     .leaflet-popup-tip{background:#0d0d2b;}
-    .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem;margin-bottom:5rem;}
+    .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem;margin-bottom:3rem;}
     .kpi{border-radius:10px;padding:1.1rem;text-align:center;}
     .kpi-num{font-family:'Space Mono',monospace;font-size:2rem;font-weight:700;line-height:1;}
     .kpi-tag{font-family:'Space Mono',monospace;font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;margin:.3rem 0 .4rem;}
@@ -112,9 +112,9 @@
   </nav>
 
   <div class="page-wrapper" style="position:relative;z-index:1;">
-    <div style="max-width:1100px;margin:0 auto;padding:5rem 2rem 7rem;">
+    <div style="max-width:1100px;margin:0 auto;padding:4rem 2rem 6rem;">
 
-      <div style="text-align:center;margin-bottom:4.5rem;">
+      <div style="text-align:center;margin-bottom:3.5rem;">
         <h1 class="section-titre" style="font-size:clamp(1.4rem,3vw,2rem);margin-bottom:.6rem;">Évolution de la radiance nocturne · 2014–2024</h1>
         <p style="color:#a5b4ce;max-width:600px;margin:0 auto;font-size:.95rem;line-height:1.7;font-style:italic;">Ce que le satellite révèle sur dix ans d'éclairage</p>
       </div>
@@ -194,7 +194,7 @@
 </div>
 </div>
 
-      <div style="display:flex;align-items:center;gap:1rem;margin-bottom:4rem;">
+      <div style="display:flex;align-items:center;gap:1rem;margin-bottom:3rem;">
         <div style="flex:1;height:1px;background:rgba(245,200,66,.15);"></div>
         <p style="font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--or);text-align:center;">De la plus lumineuse à celle qui a le plus réduit sa radiance<br>quatre trajectoires représentatives</p>
         <div style="flex:1;height:1px;background:rgba(245,200,66,.15);"></div>

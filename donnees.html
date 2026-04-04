@@ -25,7 +25,7 @@
     .cbar-fill{height:100%;width:0%;border-radius:3px;transition:width 1.2s cubic-bezier(.4,0,.2,1);}
     .cbar-val{font-family:'Space Mono',monospace;font-size:.6rem;min-width:3.2rem;text-align:right;}
     .card-right{text-align:center;}
-    .card-ev{font-family:'Space Mono',monospace;font-size:2.1rem;font-weight:700;line-height:1;}
+    .card-ev{font-family:'Space Mono',monospace;font-size:1.8rem;font-weight:700;line-height:1;}
     .card-ev-label{font-family:'Space Mono',monospace;font-size:.58rem;color:#a5b4ce;margin-top:.2rem;line-height:1.4;}
     .main-layout{display:grid;grid-template-columns:1fr 300px;gap:2rem;align-items:start;}
     .map-sticky{position:sticky;top:90px;}
@@ -168,8 +168,8 @@
     </div>
   </div>
   <div class="card-right">
-    <div class="card-ev" style="color:#4ade80;" data-target="-28.3">0</div>
-    <div class="card-ev-label">%<br>2014→2024</div>
+    <div class="card-ev" style="color:#4ade80;" data-target="-28.3">0 %</div>
+    <div class="card-ev-label">2014→2024</div>
   </div>
 </div><div class="commune-card" data-nom="Osthoffen" style="--card-col:#4ade80;"
   onmouseenter="highlightMarker('Osthoffen')" onmouseleave="unhighlightMarker()">
@@ -191,8 +191,8 @@
     </div>
   </div>
   <div class="card-right">
-    <div class="card-ev" style="color:#4ade80;" data-target="-73.4">0</div>
-    <div class="card-ev-label">%<br>2014→2024</div>
+    <div class="card-ev" style="color:#4ade80;" data-target="-73.4">0 %</div>
+    <div class="card-ev-label">2014→2024</div>
   </div>
 </div><div class="commune-card" data-nom="Oberhausbergen" style="--card-col:#f59e0b;"
   onmouseenter="highlightMarker('Oberhausbergen')" onmouseleave="unhighlightMarker()">
@@ -214,8 +214,8 @@
     </div>
   </div>
   <div class="card-right">
-    <div class="card-ev" style="color:#4ade80;" data-target="-54.0">0</div>
-    <div class="card-ev-label">%<br>2014→2024</div>
+    <div class="card-ev" style="color:#4ade80;" data-target="-54.0">0 %</div>
+    <div class="card-ev-label">2014→2024</div>
   </div>
 </div><div class="commune-card" data-nom="Blaesheim" style="--card-col:#a5b4ce;"
   onmouseenter="highlightMarker('Blaesheim')" onmouseleave="unhighlightMarker()">
@@ -237,8 +237,8 @@
     </div>
   </div>
   <div class="card-right">
-    <div class="card-ev" style="color:#4ade80;" data-target="-21.1">0</div>
-    <div class="card-ev-label">%<br>2014→2024</div>
+    <div class="card-ev" style="color:#4ade80;" data-target="-21.1">0 %</div>
+    <div class="card-ev-label">2014→2024</div>
   </div>
 </div></div>
         <div class="map-sticky">
@@ -295,32 +295,43 @@
       document.querySelectorAll('.commune-card').forEach(c=>{c.style.opacity='1';c.classList.remove('highlighted');});
     }
 
-    function animCounter(el,target,dur){const t0=performance.now();(function s(now){const p=Math.min((now-t0)/dur,1),e=p<.5?2*p*p:-1+(4-2*p)*p,v=target*e;el.textContent=(v>=0?'+':'')+v.toFixed(1);if(p<1)requestAnimationFrame(s);else el.textContent=(target>=0?'+':'')+target;})(performance.now());}
+    function animCounter(el,target,dur){const t0=performance.now();(function s(now){const p=Math.min((now-t0)/dur,1),e=p<.5?2*p*p:-1+(4-2*p)*p,v=target*e;el.textContent=(v>=0?'+':'')+v.toFixed(1)+' %';if(p<1)requestAnimationFrame(s);else el.textContent=(target>=0?'+':'')+target+' %';})(performance.now());}
     function animBar(el,pct,dur){const t0=performance.now();(function s(now){const p=Math.min((now-t0)/dur,1),e=p<.5?2*p*p:-1+(4-2*p)*p;el.style.width=(pct*e)+'%';if(p<1)requestAnimationFrame(s);else el.style.width=pct+'%';})(performance.now());}
 
     function animSparkline(svg, dur) {
       const ptsRaw = svg.dataset.points.split(' ');
       const pts = ptsRaw.map(p => p.split(',').map(Number));
-      const w = parseFloat(svg.dataset.w);
       const h = parseFloat(svg.dataset.h);
-      const t0 = performance.now();
       const line = svg.querySelector('.spark-line');
       const fill = svg.querySelector('.spark-fill');
       const dot  = svg.querySelector('.spark-dot');
-      const last = pts[pts.length-1];
+      const t0 = performance.now();
+      const totalSegments = pts.length - 1;
 
       (function step(now) {
-        const p = Math.min((now-t0)/dur, 1);
+        const p = Math.min((now - t0) / dur, 1);
         const ease = p < .5 ? 2*p*p : -1+(4-2*p)*p;
-        const count = Math.max(2, Math.round(ease * pts.length));
-        const visible = pts.slice(0, count);
-        const path = 'M' + visible.map(pt => pt.join(',')).join(' L');
-        const fillPath = path + ` L${visible[visible.length-1][0]},${h} L${visible[0][0]},${h} Z`;
+
+        // Interpolate smoothly along all segments
+        const progress = ease * totalSegments;
+        const segIdx = Math.min(Math.floor(progress), totalSegments - 1);
+        const segP = progress - segIdx;
+
+        // Build path up to current interpolated point
+        const visiblePts = pts.slice(0, segIdx + 1);
+        const interpX = pts[segIdx][0] + (pts[segIdx+1]?.[0] - pts[segIdx][0] || 0) * segP;
+        const interpY = pts[segIdx][1] + (pts[segIdx+1]?.[1] - pts[segIdx][1] || 0) * segP;
+        const allPts = [...visiblePts, [interpX, interpY]];
+
+        const path = 'M' + allPts.map(pt => pt.join(',')).join(' L');
+        const fillPath = path + ` L${interpX},${h} L${allPts[0][0]},${h} Z`;
         line.setAttribute('d', path);
         fill.setAttribute('d', fillPath);
-        // Animate dot radius
-        if (count >= pts.length) {
-          dot.setAttribute('r', 3 * ease);
+
+        if (p >= 1) {
+          dot.setAttribute('cx', pts[pts.length-1][0]);
+          dot.setAttribute('cy', pts[pts.length-1][1]);
+          dot.setAttribute('r', '3');
         }
         if (p < 1) requestAnimationFrame(step);
       })(performance.now());

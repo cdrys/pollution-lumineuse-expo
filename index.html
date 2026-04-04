@@ -69,8 +69,7 @@
     }
 
     /* ── Accordéon méthodologie ──────────────────────────────── */
-    #metho-panel.open { max-height: 400px; }
-
+    
     /* ── Pastilles tooltip ───────────────────────────────────── */
     .pill-item { position: relative; }
     .pill-btn {
@@ -438,8 +437,9 @@
     function toggleMetho() {
       const panel = document.getElementById('metho-panel');
       const chevron = document.getElementById('metho-chevron');
-      panel.classList.toggle('open');
-      chevron.style.transform = panel.classList.contains('open') ? 'rotate(180deg)' : '';
+      const isOpen = panel.style.maxHeight && panel.style.maxHeight !== '0px';
+      panel.style.maxHeight = isOpen ? '0' : panel.scrollHeight + 'px';
+      chevron.style.transform = isOpen ? '' : 'rotate(180deg)';
     }
     // Pastilles
     function togglePill(id) {

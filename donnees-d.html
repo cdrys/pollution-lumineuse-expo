@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr"><head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Option D</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/expo.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head><body>
+  <canvas id="starfield" style="position:fixed;inset:0;z-index:0;pointer-events:none;"></canvas>
+  <nav class="expo-nav">
+    <div class="expo-nav-logo"><i data-lucide="star"></i>
+      <span style="color:var(--gris-texte);">La <em style="color:var(--or);font-style:normal;">«&nbsp;nuit&nbsp;»</em> dans l'Eurométropole d'aujourd'hui</span>
+    </div>
+    <ul class="expo-nav-links" style="gap:0.1rem;"><li><a href="donnees-a.html">Option A</a></li>
+<li><a href="donnees-b.html">Option B</a></li>
+<li><a href="donnees-c.html">Option C</a></li>
+<li><a href="donnees-d.html" class="active">Option D</a></li>
+</ul>
+    <div class="expo-nav-badge">Exposition · 2025–2026</div>
+  </nav>
+  <div class="page-wrapper" style="position:relative;z-index:1;">
+  <style>
+    .data-wrap {max-width:1000px;margin:0 auto;padding:2rem 2rem 4rem;}
+    .group-grid {display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem;margin-top:2rem;}
+    .group-card {background:rgba(13,13,43,0.7);border:1px solid;border-radius:12px;padding:1.75rem;}
+    .group-num {font-family:'Space Mono',monospace;font-size:3rem;font-weight:700;line-height:1;}
+    .group-label {font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;margin:0.3rem 0 1rem;}
+    .group-ev {font-family:'Space Mono',monospace;font-size:1.6rem;font-weight:700;}
+    .group-sub {font-size:0.82rem;color:var(--gris-texte);line-height:1.5;margin-top:0.5rem;}
+    .group-communes {font-family:'Space Mono',monospace;font-size:0.58rem;color:var(--gris-texte);margin-top:0.75rem;line-height:1.6;border-top:1px solid rgba(255,255,255,0.06);padding-top:0.6rem;}
+    .donut-wrap {display:flex;justify-content:center;margin:1.5rem 0;}
+  </style>
+  <div class="data-wrap">
+    <div style="text-align:center;padding:2rem 0 1rem;">
+      <p class="section-tag">Option D — Groupes de pratiques</p>
+      <h1 class="section-titre" style="font-size:1.6rem;">Quatre pratiques, quatre résultats</h1>
+      <p style="color:var(--gris-texte);font-size:0.95rem;max-width:620px;margin:0.5rem auto;">Les 33 communes regroupées selon leur pratique d'éclairage détectée par satellite (Cerema, 2014–2024).</p>
+    </div>
+    <div class="donut-wrap">
+      <canvas id="donut" width="300" height="300"></canvas>
+    </div>
+    <div class="group-grid" id="group-grid"></div>
+  </div>
+  <script>
+    const STATS = {"E": {"count": 13, "avgE": 7.86, "avgL": 4.42, "avgEv": -46.7, "names": ["Illkirch-Graffenstaden", "Vendenheim", "Wolfisheim", "Fegersheim", "La Wantzenau", "Lampertheim", "Lipsheim", "Kolbsheim", "Eckwersheim", "Osthoffen", "Breuschwickersheim", "Eschau", "Plobsheim"]}, "R": {"count": 15, "avgE": 21.07, "avgL": 14.16, "avgEv": -32.4, "names": ["Strasbourg", "Schiltigheim", "Ostwald", "Bischheim", "Hoenheim", "Lingolsheim", "Souffelweyersheim", "Reichstett", "Eckbolsheim", "Geispolsheim", "Niederhausbergen", "Mittelhausbergen", "Holtzheim", "Hangenbieten", "Achenheim"]}, "ER": {"count": 2, "avgE": 16.3, "avgL": 8.57, "avgEv": -47.5, "names": ["Mundolsheim", "Oberhausbergen"]}, "X": {"count": 3, "avgE": 6.69, "avgL": 5.35, "avgEv": -21.1, "names": ["Entzheim", "Oberschaeffolsheim", "Blaesheim"]}};
+    const COL = {E:'#4ade80',R:'#67e8f9',ER:'#f59e0b',X:'#a5b4ce'};
+    const LABS = {E:'Extinction totale',R:'Rénovation de parc',ER:'Extinction + Rénovation',X:'Aucun changement'};
+
+    // Donut chart
+    new Chart(document.getElementById('donut').getContext('2d'), {
+      type: 'doughnut',
+      data: {
+        labels: Object.keys(STATS).map(k=>LABS[k]),
+        datasets: [{
+          data: Object.values(STATS).map(s=>s.count),
+          backgroundColor: Object.keys(STATS).map(k=>COL[k]+'99'),
+          borderColor: Object.keys(STATS).map(k=>COL[k]),
+          borderWidth: 2,
+          hoverOffset: 8
+        }]
+      },
+      options: {
+        cutout: '65%',
+        plugins: {
+          legend: {display:true,position:'right',labels:{color:'#e8eaf6',font:{family:'Space Mono',size:10},padding:12,boxWidth:12}},
+          tooltip: {backgroundColor:'#0d0d2b',borderColor:'#f5c842',borderWidth:1,callbacks:{label:i=>` ${i.raw} communes (${Math.round(i.raw/33*100)} %)`}}
+        }
+      }
+    });
+
+    // Group cards
+    const cont = document.getElementById('group-grid');
+    Object.entries(STATS).forEach(([g, s]) => {
+      const col = COL[g];
+      const evColor = s.avgEv < 0 ? '#4ade80' : '#ff6b35';
+      cont.innerHTML += `<div class="group-card" style="border-color:${col}44;">
+        <div class="group-num" style="color:${col};">${s.count}</div>
+        <div class="group-label" style="color:${col};">commune${s.count>1?'s':''} · ${LABS[g]}</div>
+        <div class="group-ev" style="color:${evColor};">${s.avgEv>0?'+':''}${s.avgEv} %</div>
+        <div class="group-sub">évolution moyenne de la radiance nocturne</div>
+        <div class="group-communes">${s.names.join(' · ')}</div>
+      </div>`;
+    });
+  </script>
+  </div>
+  <script>(function(){const c=document.getElementById('starfield'),ctx=c.getContext('2d');let s=[];function r(){c.width=window.innerWidth;c.height=window.innerHeight;}function init(){s=[];for(let i=0;i<160;i++)s.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*1.2+0.2,sp:Math.random()*0.004+0.001,o:Math.random()*Math.PI*2});}function draw(t){ctx.clearRect(0,0,c.width,c.height);s.forEach(st=>{const a=0.15+0.7*Math.abs(Math.sin(st.o+t*st.sp));ctx.beginPath();ctx.arc(st.x,st.y,st.r,0,Math.PI*2);ctx.fillStyle=`rgba(232,234,246,${a})`;ctx.fill();});requestAnimationFrame(draw);}window.addEventListener('resize',()=>{r();init();});r();init();requestAnimationFrame(draw);})();</script>
+  <script>document.addEventListener("DOMContentLoaded",()=>lucide.createIcons());</script>
+</body></html>

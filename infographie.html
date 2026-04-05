@@ -8,60 +8,7 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/expo.css" />
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-  <style>
-
-            .acc-item{background:rgba(13,13,43,.7);border:1px solid rgba(74,222,128,.15);border-radius:8px;margin-bottom:.5rem;overflow:hidden;cursor:pointer;transition:border-color .2s;}
-            .acc-item:hover{border-color:rgba(74,222,128,.4);}
-            .acc-header{display:flex;align-items:center;gap:.75rem;padding:.9rem 1.1rem;}
-            .acc-num{font-family:'Space Mono',monospace;font-size:1rem;color:var(--vert-reserve);flex-shrink:0;}
-            .acc-title{font-family:'Space Mono',monospace;font-size:.68rem;color:var(--blanc-etoile);flex:1;text-transform:uppercase;letter-spacing:.06em;}
-            .acc-chevron{width:.9rem;height:.9rem;stroke:var(--gris-texte);transition:transform .3s;flex-shrink:0;}
-            .acc-body{max-height:0;overflow:hidden;transition:max-height .4s ease;}
-            .acc-body p{padding:.1rem 1.1rem 1rem 2.85rem;font-size:.88rem;color:var(--gris-texte);line-height:1.6;margin:0;}
-            .acc-item.open .acc-chevron{transform:rotate(180deg);}
-            .acc-item.open .acc-body{max-height:120px;}
-          
-
-            .tl-wrap{display:flex;align-items:flex-start;position:relative;padding:.5rem 0 1rem;min-width:600px;}
-            .tl-line{position:absolute;top:1.25rem;left:1.5rem;right:1.5rem;height:2px;background:rgba(74,222,128,.2);}
-            .tl-item{flex:1;display:flex;flex-direction:column;align-items:center;position:relative;cursor:default;}
-            .tl-dot{width:2.2rem;height:2.2rem;border-radius:50%;background:rgba(13,13,43,.9);border:2px solid #4ade80;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:.75rem;color:var(--vert-reserve);z-index:1;transition:all .2s;}
-            .tl-item:hover .tl-dot{background:#4ade80;color:#0d0d2b;}
-            .tl-label{font-family:'Space Mono',monospace;font-size:.55rem;color:var(--gris-texte);text-align:center;margin-top:.5rem;max-width:90px;line-height:1.3;}
-            .tl-tip{display:none;position:absolute;top:3.2rem;left:50%;transform:translateX(-50%);width:200px;background:rgba(10,10,30,.97);border:1px solid rgba(74,222,128,.3);border-radius:8px;padding:.8rem 1rem;font-size:.8rem;color:var(--gris-texte);line-height:1.5;z-index:10;text-align:left;}
-            .tl-item:hover .tl-tip{display:block;}
-          
-
-            .sol-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.85rem;}
-            .sol-grid .sol-grid-card:nth-child(4){grid-column:1/span 1;margin-left:calc(50% + .425rem);}
-            .sol-grid .sol-grid-card:nth-child(5){grid-column:2/span 1;margin-right:calc(50% + .425rem);}
-            .sol-grid-card{background:rgba(13,13,43,.7);border:1px solid rgba(74,222,128,.2);border-radius:10px;padding:1.1rem;transition:border-color .2s,transform .2s;cursor:default;}
-            .sol-grid-card:hover{border-color:#4ade80;transform:translateY(-2px);}
-            .sol-grid-icon{width:1.4rem;height:1.4rem;stroke:var(--vert-reserve);margin-bottom:.4rem;}
-            .sol-grid-num{font-family:'Space Mono',monospace;font-size:1.1rem;color:var(--vert-reserve);line-height:1;}
-            .sol-grid-title{font-family:'Space Mono',monospace;font-size:.62rem;text-transform:uppercase;letter-spacing:.07em;color:var(--blanc-etoile);margin:.3rem 0;}
-            .sol-grid-desc{font-size:.8rem;color:var(--gris-texte);line-height:1.5;}
-          
-
-            .seq-item{display:flex;gap:1rem;margin-bottom:.85rem;opacity:0;transform:translateX(-30px);transition:opacity .6s,transform .6s;}
-            .seq-item.seq-right{flex-direction:row-reverse;transform:translateX(30px);}
-            .seq-item.visible{opacity:1;transform:translateX(0);}
-            .seq-num{font-family:'Space Mono',monospace;font-size:1.8rem;font-weight:700;color:var(--vert-reserve);line-height:1;flex-shrink:0;width:2rem;text-align:center;}
-            .seq-content{flex:1;background:rgba(13,13,43,.7);border:1px solid rgba(74,222,128,.15);border-radius:8px;padding:.85rem 1rem;}
-            .seq-title{font-family:'Space Mono',monospace;font-size:.65rem;text-transform:uppercase;letter-spacing:.07em;color:var(--blanc-etoile);margin-bottom:.3rem;}
-            .seq-desc{font-size:.83rem;color:var(--gris-texte);line-height:1.55;}
-          
-
-            .bar-row{display:flex;gap:1rem;align-items:flex-start;cursor:pointer;margin-bottom:.5rem;}
-            .bar-dot{width:2rem;height:2rem;border-radius:50%;border:2px solid rgba(74,222,128,.3);background:transparent;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:.7rem;color:var(--gris-texte);flex-shrink:0;transition:all .2s;}
-            .bar-dot-active{background:#4ade80;border-color:#4ade80;color:#0d0d2b;}
-            .bar-content{flex:1;padding-top:.3rem;}
-            .bar-title{font-family:'Space Mono',monospace;font-size:.67rem;text-transform:uppercase;letter-spacing:.07em;color:var(--gris-texte);transition:color .2s;}
-            .bar-active .bar-title{color:var(--blanc-etoile);}
-            .bar-desc{font-size:.85rem;color:var(--gris-texte);line-height:1.55;margin-top:.4rem;max-height:0;overflow:hidden;transition:max-height .4s ease;}
-            .bar-desc-visible{max-height:80px;}
-          
-  </style>
+  
 </head>
 <body>
   <div id="expo-scroll-progress"></div>
@@ -242,22 +189,23 @@
       <p class="expo-fact-title">Le risque de troubles du sommeil est trois fois plus élevé dans les zones très éclairées</p>
       <div class="expo-divider" style="background:#a78bfa;margin:1.25rem auto;"></div>
       <p class="expo-fact-text" style="margin:0 auto;">La lumière artificielle nocturne supprime la production de mélatonine, perturbant les cycles circadiens. La pollution lumineuse extérieure affecte le sommeil de centaines de milliers de résidents de l'Eurométropole.</p>
-      <!-- Solutions intégrées -->
+      <!-- Solutions -->
       <div style="margin-top:2.5rem;">
-        <p style="font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--vert-reserve);text-align:center;margin-bottom:1.75rem;">
+        <p style="font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--vert-reserve);text-align:center;margin-bottom:1.5rem;">
           <i data-lucide="check-circle-2" style="display:inline-block;vertical-align:middle;width:.9rem;height:.9rem;margin-right:.3rem;stroke:var(--vert-reserve);"></i>
           Des solutions existent
         </p>
-
-        <!-- ══ OPTION A — Accordéon ══ -->
-        <p style="font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gris-texte);text-align:center;margin-bottom:.75rem;">Option A — Accordéon</p>
-        <div class="sol-block" style="max-width:640px;margin:0 auto 2.5rem;">
-          <div class="acc-item" onclick="toggleAcc(this)">
-        <div class="acc-header">
-          <span class="acc-num">①</span>
-          <span class="acc-title">Limiter la température de couleur</span>
-          <i data-lucide="chevron-down" class="acc-chevron"></i>
+        <div style="max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:.85rem;">
+          <div style="display:flex;gap:.75rem;align-items:flex-start;"><span style="color:var(--vert-reserve);flex-shrink:0;font-size:1rem;">①</span><div><strong style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--blanc-etoile);display:block;margin-bottom:.2rem;">LIMITER LA TEMPÉRATURE DE COULEUR</strong><span style="font-size:.88rem;color:var(--gris-texte);">Imposer &lt; 2700 K pour tous les nouveaux marchés LED, en particulier dans les communes proches du corridor rhénan.</span></div></div>
+          <div style="display:flex;gap:.75rem;align-items:flex-start;"><span style="color:var(--vert-reserve);flex-shrink:0;font-size:1rem;">②</span><div><strong style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--blanc-etoile);display:block;margin-bottom:.2rem;">EXTINCTION 1H–5H GÉNÉRALISÉE</strong><span style="font-size:.88rem;color:var(--gris-texte);">Étendre l'extinction nocturne partielle, déjà pratiquée dans les communes rurales, aux zones résidentielles de la première couronne.</span></div></div>
+          <div style="display:flex;gap:.75rem;align-items:flex-start;"><span style="color:var(--vert-reserve);flex-shrink:0;font-size:1rem;">③</span><div><strong style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--blanc-etoile);display:block;margin-bottom:.2rem;">CONTRÔLER L'EFFET REBOND</strong><span style="font-size:.88rem;color:var(--gris-texte);">Encadrer le nombre de points lumineux dans les nouvelles zones d'aménagement pour éviter que les économies LED ne soient absorbées par l'extension de l'éclairage.</span></div></div>
+          <div style="display:flex;gap:.75rem;align-items:flex-start;"><span style="color:var(--vert-reserve);flex-shrink:0;font-size:1rem;">④</span><div><strong style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--blanc-etoile);display:block;margin-bottom:.2rem;">ZONES TAMPON ÉCOLOGIQUES</strong><span style="font-size:.88rem;color:var(--gris-texte);">Créer des corridors sombres entre les zones bâties et la Forêt du Rhin, avec des prescriptions strictes dans les PLU communaux.</span></div></div>
+          <div style="display:flex;gap:.75rem;align-items:flex-start;"><span style="color:var(--vert-reserve);flex-shrink:0;font-size:1rem;">⑤</span><div><strong style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--blanc-etoile);display:block;margin-bottom:.2rem;">SUIVI VIIRS ANNUEL</strong><span style="font-size:.88rem;color:var(--gris-texte);">Intégrer les données VIIRS NASA comme indicateur officiel du PCAET, permettant un suivi objectif indépendant des déclarations d'économies d'énergie.</span></div></div>
         </div>
+        <div style="text-align:center;margin-top:2rem;">
+          <a href="donnees.html" style="display:inline-flex;align-items:center;gap:.5rem;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.3);color:var(--vert-reserve);font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;padding:.75rem 1.75rem;border-radius:2rem;text-decoration:none;"><i data-lucide="bar-chart-2" style="width:.9rem;height:.9rem;"></i>Voir les données →</a>
+        </div>
+      </div>
         <div class="acc-panel"><p>Imposer < 2700 K pour tous les nouveaux marchés LED, en particulier dans les communes proches du corridor rhénan.</p></div>
       </div><div class="acc-item" onclick="toggleAcc(this)">
         <div class="acc-header">
@@ -432,28 +380,7 @@
         </div>
       </div>
 
-      <script>
-        // Option A
-        function toggleAcc(el){
-          el.classList.toggle('open');
-          el.querySelector('.acc-panel').style.maxHeight = el.classList.contains('open') ? '120px' : '0';
-        }
-        // Option D
-        const seqObs = new IntersectionObserver(entries=>{
-          entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');seqObs.unobserve(e.target);}});
-        },{threshold:.2});
-        document.querySelectorAll('.seq-item').forEach((el,i)=>{
-          setTimeout(()=>seqObs.observe(el), i*100);
-        });
-        // Option E
-        function selectBar(row, idx){
-          document.querySelectorAll('.bar-row').forEach((r,i)=>{
-            r.querySelector('.bar-dot').classList.toggle('bar-dot-active', i===idx);
-            r.querySelector('.bar-content').classList.toggle('bar-active', i===idx);
-            r.querySelector('.bar-desc').classList.toggle('bar-desc-visible', i===idx);
-          });
-        }
-      </script>
+      
   <script>document.addEventListener("DOMContentLoaded",()=>lucide.createIcons());</script>
 </body>
 </html>

@@ -24,6 +24,7 @@
     .expo-filtre-btn { font-family:'Space Mono',monospace; font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); color:var(--gris-texte); padding:0.4rem 0.9rem; border-radius:2rem; cursor:pointer; transition:all 0.2s; }
     .expo-filtre-btn:hover, .expo-filtre-btn.actif { background:rgba(245,200,66,0.12); border-color:var(--or); color:var(--or); }
     .expo-filtre-btn.actif-vert { background:rgba(74,222,128,0.12); border-color:var(--vert-reserve); color:var(--vert-reserve); }
+    .actif-or { background:rgba(245,200,66,0.12); border-color:var(--or); color:var(--or); }
 
     /* ── Panneau info ────────────────────────────────────────── */
     #info-btn {
@@ -149,7 +150,7 @@
         <button class="expo-filtre-btn" id="btn-dense" onclick="filtrerType('peri_dense')">Périurbain dense</button>
         <button class="expo-filtre-btn" id="btn-moyen" onclick="filtrerType('peri_moyen')">Périurbain moyen</button>
         <button class="expo-filtre-btn" id="btn-rural" onclick="filtrerType('rural')">Rural</button>
-        <button class="expo-filtre-btn actif-vert" id="btn-heat" onclick="toggleHeat()">
+        <button class="expo-filtre-btn actif-or" id="btn-heat" onclick="toggleHeat()">
           <i data-lucide="thermometer" style="display:inline-block;vertical-align:middle;width:0.75rem;height:0.75rem;margin-right:0.2rem;"></i>Heatmap
         </button>
       </div>
@@ -269,7 +270,7 @@
 
     function toggleHeat(){
       heatActif=!heatActif;
-      document.getElementById('btn-heat').classList.toggle('actif-vert',heatActif);
+      document.getElementById('btn-heat').classList.toggle('actif-or',heatActif);
       if(heatActif){heatLayer=buildHeat(anneeHeat);heatLayer.addTo(map);}
       else{if(heatLayer)map.removeLayer(heatLayer);}
     }

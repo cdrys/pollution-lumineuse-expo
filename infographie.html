@@ -8,6 +8,60 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/expo.css" />
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+
+            .acc-item{background:rgba(13,13,43,.7);border:1px solid rgba(74,222,128,.15);border-radius:8px;margin-bottom:.5rem;overflow:hidden;cursor:pointer;transition:border-color .2s;}
+            .acc-item:hover{border-color:rgba(74,222,128,.4);}
+            .acc-header{display:flex;align-items:center;gap:.75rem;padding:.9rem 1.1rem;}
+            .acc-num{font-family:'Space Mono',monospace;font-size:1rem;color:var(--vert-reserve);flex-shrink:0;}
+            .acc-title{font-family:'Space Mono',monospace;font-size:.68rem;color:var(--blanc-etoile);flex:1;text-transform:uppercase;letter-spacing:.06em;}
+            .acc-chevron{width:.9rem;height:.9rem;stroke:var(--gris-texte);transition:transform .3s;flex-shrink:0;}
+            .acc-body{max-height:0;overflow:hidden;transition:max-height .4s ease;}
+            .acc-body p{padding:.1rem 1.1rem 1rem 2.85rem;font-size:.88rem;color:var(--gris-texte);line-height:1.6;margin:0;}
+            .acc-item.open .acc-chevron{transform:rotate(180deg);}
+            .acc-item.open .acc-body{max-height:120px;}
+          
+
+            .tl-wrap{display:flex;align-items:flex-start;position:relative;padding:.5rem 0 1rem;min-width:600px;}
+            .tl-line{position:absolute;top:1.25rem;left:1.5rem;right:1.5rem;height:2px;background:rgba(74,222,128,.2);}
+            .tl-item{flex:1;display:flex;flex-direction:column;align-items:center;position:relative;cursor:default;}
+            .tl-dot{width:2.2rem;height:2.2rem;border-radius:50%;background:rgba(13,13,43,.9);border:2px solid #4ade80;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:.75rem;color:var(--vert-reserve);z-index:1;transition:all .2s;}
+            .tl-item:hover .tl-dot{background:#4ade80;color:#0d0d2b;}
+            .tl-label{font-family:'Space Mono',monospace;font-size:.55rem;color:var(--gris-texte);text-align:center;margin-top:.5rem;max-width:90px;line-height:1.3;}
+            .tl-tip{display:none;position:absolute;top:3.2rem;left:50%;transform:translateX(-50%);width:200px;background:rgba(10,10,30,.97);border:1px solid rgba(74,222,128,.3);border-radius:8px;padding:.8rem 1rem;font-size:.8rem;color:var(--gris-texte);line-height:1.5;z-index:10;text-align:left;}
+            .tl-item:hover .tl-tip{display:block;}
+          
+
+            .grid-sol{display:grid;grid-template-columns:repeat(3,1fr);gap:.85rem;}
+            .grid-sol .grid-card:nth-child(4){grid-column:1/span 1;margin-left:calc(50% + .425rem);}
+            .grid-sol .grid-card:nth-child(5){grid-column:2/span 1;margin-right:calc(50% + .425rem);}
+            .grid-card{background:rgba(13,13,43,.7);border:1px solid rgba(74,222,128,.2);border-radius:10px;padding:1.1rem;transition:border-color .2s,transform .2s;cursor:default;}
+            .grid-card:hover{border-color:#4ade80;transform:translateY(-2px);}
+            .grid-icon{width:1.4rem;height:1.4rem;stroke:var(--vert-reserve);margin-bottom:.4rem;}
+            .grid-num{font-family:'Space Mono',monospace;font-size:1.1rem;color:var(--vert-reserve);line-height:1;}
+            .grid-title{font-family:'Space Mono',monospace;font-size:.62rem;text-transform:uppercase;letter-spacing:.07em;color:var(--blanc-etoile);margin:.3rem 0;}
+            .grid-desc{font-size:.8rem;color:var(--gris-texte);line-height:1.5;}
+          
+
+            .seq-item{display:flex;gap:1rem;margin-bottom:.85rem;opacity:0;transform:translateX(-30px);transition:opacity .6s,transform .6s;}
+            .seq-item.seq-right{flex-direction:row-reverse;transform:translateX(30px);}
+            .seq-item.visible{opacity:1;transform:translateX(0);}
+            .seq-num{font-family:'Space Mono',monospace;font-size:1.8rem;font-weight:700;color:var(--vert-reserve);line-height:1;flex-shrink:0;width:2rem;text-align:center;}
+            .seq-content{flex:1;background:rgba(13,13,43,.7);border:1px solid rgba(74,222,128,.15);border-radius:8px;padding:.85rem 1rem;}
+            .seq-title{font-family:'Space Mono',monospace;font-size:.65rem;text-transform:uppercase;letter-spacing:.07em;color:var(--blanc-etoile);margin-bottom:.3rem;}
+            .seq-desc{font-size:.83rem;color:var(--gris-texte);line-height:1.55;}
+          
+
+            .bar-row{display:flex;gap:1rem;align-items:flex-start;cursor:pointer;margin-bottom:.5rem;}
+            .bar-dot{width:2rem;height:2rem;border-radius:50%;border:2px solid rgba(74,222,128,.3);background:transparent;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:.7rem;color:var(--gris-texte);flex-shrink:0;transition:all .2s;}
+            .bar-dot-active{background:#4ade80;border-color:#4ade80;color:#0d0d2b;}
+            .bar-content{flex:1;padding-top:.3rem;}
+            .bar-title{font-family:'Space Mono',monospace;font-size:.67rem;text-transform:uppercase;letter-spacing:.07em;color:var(--gris-texte);transition:color .2s;}
+            .bar-active .bar-title{color:var(--blanc-etoile);}
+            .bar-desc{font-size:.85rem;color:var(--gris-texte);line-height:1.55;margin-top:.4rem;max-height:0;overflow:hidden;transition:max-height .4s ease;}
+            .bar-desc-visible{max-height:80px;}
+          
+  </style>
 </head>
 <body>
   <div id="expo-scroll-progress"></div>
@@ -198,18 +252,6 @@
         <!-- ══ OPTION A — Accordéon ══ -->
         <p style="font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gris-texte);text-align:center;margin-bottom:.75rem;">Option A — Accordéon</p>
         <div class="sol-block" style="max-width:640px;margin:0 auto 2.5rem;">
-          <style>
-            .acc-item{background:rgba(13,13,43,.7);border:1px solid rgba(74,222,128,.15);border-radius:8px;margin-bottom:.5rem;overflow:hidden;cursor:pointer;transition:border-color .2s;}
-            .acc-item:hover{border-color:rgba(74,222,128,.4);}
-            .acc-header{display:flex;align-items:center;gap:.75rem;padding:.9rem 1.1rem;}
-            .acc-num{font-family:'Space Mono',monospace;font-size:1rem;color:var(--vert-reserve);flex-shrink:0;}
-            .acc-title{font-family:'Space Mono',monospace;font-size:.68rem;color:var(--blanc-etoile);flex:1;text-transform:uppercase;letter-spacing:.06em;}
-            .acc-chevron{width:.9rem;height:.9rem;stroke:var(--gris-texte);transition:transform .3s;flex-shrink:0;}
-            .acc-body{max-height:0;overflow:hidden;transition:max-height .4s ease;}
-            .acc-body p{padding:.1rem 1.1rem 1rem 2.85rem;font-size:.88rem;color:var(--gris-texte);line-height:1.6;margin:0;}
-            .acc-item.open .acc-chevron{transform:rotate(180deg);}
-            .acc-item.open .acc-body{max-height:120px;}
-          </style>
           <div class="acc-item" onclick="toggleAcc(this)">
         <div class="acc-header">
           <span class="acc-num">①</span>
@@ -251,16 +293,6 @@
         <!-- ══ OPTION B — Timeline horizontale ══ -->
         <p style="font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gris-texte);text-align:center;margin-bottom:.75rem;">Option B — Timeline horizontale</p>
         <div class="sol-block" style="margin:0 auto 2.5rem;overflow-x:auto;">
-          <style>
-            .tl-wrap{display:flex;align-items:flex-start;position:relative;padding:.5rem 0 1rem;min-width:600px;}
-            .tl-line{position:absolute;top:1.25rem;left:1.5rem;right:1.5rem;height:2px;background:rgba(74,222,128,.2);}
-            .tl-item{flex:1;display:flex;flex-direction:column;align-items:center;position:relative;cursor:default;}
-            .tl-dot{width:2.2rem;height:2.2rem;border-radius:50%;background:rgba(13,13,43,.9);border:2px solid #4ade80;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:.75rem;color:var(--vert-reserve);z-index:1;transition:all .2s;}
-            .tl-item:hover .tl-dot{background:#4ade80;color:#0d0d2b;}
-            .tl-label{font-family:'Space Mono',monospace;font-size:.55rem;color:var(--gris-texte);text-align:center;margin-top:.5rem;max-width:90px;line-height:1.3;}
-            .tl-tip{display:none;position:absolute;top:3.2rem;left:50%;transform:translateX(-50%);width:200px;background:rgba(10,10,30,.97);border:1px solid rgba(74,222,128,.3);border-radius:8px;padding:.8rem 1rem;font-size:.8rem;color:var(--gris-texte);line-height:1.5;z-index:10;text-align:left;}
-            .tl-item:hover .tl-tip{display:block;}
-          </style>
           <div class="tl-wrap"><div class="tl-line"></div><div class="tl-item" onmouseenter="showTip(this)" onmouseleave="hideTip(this)">
         <div class="tl-dot">①</div>
         <div class="tl-label">Limiter la température de couleur</div>
@@ -287,17 +319,6 @@
         <!-- ══ OPTION C — Grille avec icônes ══ -->
         <p style="font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gris-texte);text-align:center;margin-bottom:.75rem;">Option C — Grille avec icônes</p>
         <div class="sol-block" style="margin:0 auto 2.5rem;">
-          <style>
-            .grid-sol{display:grid;grid-template-columns:repeat(3,1fr);gap:.85rem;}
-            .grid-sol .grid-card:nth-child(4){grid-column:1/span 1;margin-left:calc(50% + .425rem);}
-            .grid-sol .grid-card:nth-child(5){grid-column:2/span 1;margin-right:calc(50% + .425rem);}
-            .grid-card{background:rgba(13,13,43,.7);border:1px solid rgba(74,222,128,.2);border-radius:10px;padding:1.1rem;transition:border-color .2s,transform .2s;cursor:default;}
-            .grid-card:hover{border-color:#4ade80;transform:translateY(-2px);}
-            .grid-icon{width:1.4rem;height:1.4rem;stroke:var(--vert-reserve);margin-bottom:.4rem;}
-            .grid-num{font-family:'Space Mono',monospace;font-size:1.1rem;color:var(--vert-reserve);line-height:1;}
-            .grid-title{font-family:'Space Mono',monospace;font-size:.62rem;text-transform:uppercase;letter-spacing:.07em;color:var(--blanc-etoile);margin:.3rem 0;}
-            .grid-desc{font-size:.8rem;color:var(--gris-texte);line-height:1.5;}
-          </style>
           <div class="grid-sol"><div class="grid-card">
         <i data-lucide="thermometer" class="grid-icon"></i>
         <div class="grid-num">①</div>
@@ -329,15 +350,6 @@
         <!-- ══ OPTION D — Séquence alternée ══ -->
         <p style="font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gris-texte);text-align:center;margin-bottom:.75rem;">Option D — Séquence alternée gauche/droite</p>
         <div class="sol-block" style="max-width:640px;margin:0 auto 2.5rem;">
-          <style>
-            .seq-item{display:flex;gap:1rem;margin-bottom:.85rem;opacity:0;transform:translateX(-30px);transition:opacity .6s,transform .6s;}
-            .seq-item.seq-right{flex-direction:row-reverse;transform:translateX(30px);}
-            .seq-item.visible{opacity:1;transform:translateX(0);}
-            .seq-num{font-family:'Space Mono',monospace;font-size:1.8rem;font-weight:700;color:var(--vert-reserve);line-height:1;flex-shrink:0;width:2rem;text-align:center;}
-            .seq-content{flex:1;background:rgba(13,13,43,.7);border:1px solid rgba(74,222,128,.15);border-radius:8px;padding:.85rem 1rem;}
-            .seq-title{font-family:'Space Mono',monospace;font-size:.65rem;text-transform:uppercase;letter-spacing:.07em;color:var(--blanc-etoile);margin-bottom:.3rem;}
-            .seq-desc{font-size:.83rem;color:var(--gris-texte);line-height:1.55;}
-          </style>
           <div class="seq-item seq-left" data-index="0">
         <div class="seq-num">①</div>
         <div class="seq-content">
@@ -374,16 +386,6 @@
         <!-- ══ OPTION E — Barre verticale ══ -->
         <p style="font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gris-texte);text-align:center;margin-bottom:.75rem;">Option E — Barre verticale interactive</p>
         <div class="sol-block" style="max-width:640px;margin:0 auto 2.5rem;">
-          <style>
-            .bar-row{display:flex;gap:1rem;align-items:flex-start;cursor:pointer;margin-bottom:.5rem;}
-            .bar-dot{width:2rem;height:2rem;border-radius:50%;border:2px solid rgba(74,222,128,.3);background:transparent;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:.7rem;color:var(--gris-texte);flex-shrink:0;transition:all .2s;}
-            .bar-dot-active{background:#4ade80;border-color:#4ade80;color:#0d0d2b;}
-            .bar-content{flex:1;padding-top:.3rem;}
-            .bar-title{font-family:'Space Mono',monospace;font-size:.67rem;text-transform:uppercase;letter-spacing:.07em;color:var(--gris-texte);transition:color .2s;}
-            .bar-active .bar-title{color:var(--blanc-etoile);}
-            .bar-desc{font-size:.85rem;color:var(--gris-texte);line-height:1.55;margin-top:.4rem;max-height:0;overflow:hidden;transition:max-height .4s ease;}
-            .bar-desc-visible{max-height:80px;}
-          </style>
           <div style="display:flex;gap:0;">
             <div style="width:2rem;display:flex;flex-direction:column;align-items:center;flex-shrink:0;">
               <div style="flex:1;width:2px;background:linear-gradient(180deg,#4ade8044,#4ade8011);margin-top:2rem;border-radius:1px;"></div>

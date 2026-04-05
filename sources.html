@@ -89,6 +89,19 @@
     .note-metho p { font-size: .9rem; color: var(--gris-texte); line-height: 1.7; margin: 0; }
     .note-metho a { color: #f472b6; }
 
+
+    /* ── Hover source-item ────────────────────────────────── */
+    .source-item {
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+      border-radius: 8px;
+      padding: .75rem .5rem;
+      margin: 0 -.5rem;
+    }
+    .source-item:hover {
+      transform: translateY(-2px);
+      background: rgba(255,255,255,.03);
+    }
+
     /* ── Filtres ──────────────────────────────────────────────── */
     .filter-bar {
       display: flex;
@@ -114,34 +127,7 @@
     .filter-btn.active { color: var(--or); border-color: rgba(245,200,66,.4); background: rgba(245,200,66,.08); }
     .sources-group { transition: opacity .3s, transform .3s; }
     .sources-group.hidden { display: none; }
-
-    /* ── Accordéon sources ────────────────────────────────────── */
     .source-item { cursor: default; }
-    .source-item.accordion { cursor: pointer; }
-    .source-item.accordion:hover { background: rgba(255,255,255,.02); border-radius: 6px; }
-    .source-desc.collapsible {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height .4s ease;
-      margin-top: 0;
-    }
-    .source-item.accordion.open .source-desc.collapsible { max-height: 300px; margin-top: .35rem; }
-    .source-chevron {
-      margin-left: auto;
-      flex-shrink: 0;
-      width: .9rem;
-      height: .9rem;
-      stroke: var(--gris-texte);
-      transition: transform .3s;
-    }
-    .source-item.accordion.open .source-chevron { transform: rotate(180deg); }
-    .source-header {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      width: 100%;
-    }
-    .source-header-text { flex: 1; }
   </style>
 </head>
 <body>
@@ -274,102 +260,91 @@
           Références scientifiques
         </div>
 
-        <div class="source-item accordion">
-          <div class="source-header"><span class="source-tag tag-biblio">Publication</span><div class="source-header-text">
+        <div class="source-item">
+          <span class="source-tag tag-biblio">Publication</span><div>
             <p class="source-titre">Falchi, F. et al. (2016) · Science Advances, 2(6), e1600377</p>
-            </div><svg class="source-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-          </div>
-          <p class="source-desc collapsible"><em>The new world atlas of artificial night sky brightness.</em> Démontre que plus de 80 % de la population mondiale — et 80 % des Français — ne peut plus observer la Voie Lactée depuis son domicile. Source du chiffre clé de la page Accueil.</p>
+            
+          <p class="source-desc"><em>The new world atlas of artificial night sky brightness.</em> Démontre que plus de 80 % de la population mondiale — et 80 % des Français — ne peut plus observer la Voie Lactée depuis son domicile. Source du chiffre clé de la page Accueil.</p>
           </div>
         </div>
 
-        <div class="source-item accordion">
-          <div class="source-header"><span class="source-tag tag-biblio">Publication</span><div class="source-header-text">
+        <div class="source-item">
+          <span class="source-tag tag-biblio">Publication</span><div>
             <p class="source-titre">Hölker, F. et al. (2010) · Trends in Ecology &amp; Evolution, 25(12), 681–682</p>
-            </div><svg class="source-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-          </div>
-          <p class="source-desc collapsible"><em>Light pollution as a biodiversity threat.</em> Évalue à environ 60 % la proportion d'espèces animales actives la nuit, directement exposées aux perturbations lumineuses artificielles. Source du chiffre d'accroche de la page Impacts.</p>
+            
+          <p class="source-desc"><em>Light pollution as a biodiversity threat.</em> Évalue à environ 60 % la proportion d'espèces animales actives la nuit, directement exposées aux perturbations lumineuses artificielles. Source du chiffre d'accroche de la page Impacts.</p>
           </div>
         </div>
 
-        <div class="source-item accordion">
-          <div class="source-header"><span class="source-tag tag-biblio">Publication</span><div class="source-header-text">
+        <div class="source-item">
+          <span class="source-tag tag-biblio">Publication</span><div>
             <p class="source-titre">Kyba, C.C.M. et al. (2017) · Science Advances, 3(11), e1701528</p>
-            </div><svg class="source-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-          </div>
-          <p class="source-desc collapsible"><em>Artificially lit surface of Earth at night increasing in radiance and extent.</em> Démontre que la surface artificielle éclairée de la Terre croît de +2,2 %/an, avec une augmentation de la radiance de 1,8 %/an — malgré la transition LED. Source principale pour la modélisation des séries temporelles et l'effet rebond.</p>
+            
+          <p class="source-desc"><em>Artificially lit surface of Earth at night increasing in radiance and extent.</em> Démontre que la surface artificielle éclairée de la Terre croît de +2,2 %/an, avec une augmentation de la radiance de 1,8 %/an — malgré la transition LED. Source principale pour la modélisation des séries temporelles et l'effet rebond.</p>
           </div>
         </div>
 
-        <div class="source-item accordion">
-          <div class="source-header"><span class="source-tag tag-biblio">Publication</span><div class="source-header-text">
+        <div class="source-item">
+          <span class="source-tag tag-biblio">Publication</span><div>
             <p class="source-titre">Elvidge, C.D. et al. (2021) · Remote Sensing, 13(5), 922</p>
-            </div><svg class="source-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-          </div>
-          <p class="source-desc collapsible"><em>Annual time series of global VIIRS nighttime lights derived from monthly averages: 2012 to 2019.</em> Source des composites annuels VNP46A4. Valeurs de radiance par commune extraites de cette publication.</p>
+            
+          <p class="source-desc"><em>Annual time series of global VIIRS nighttime lights derived from monthly averages: 2012 to 2019.</em> Source des composites annuels VNP46A4. Valeurs de radiance par commune extraites de cette publication.</p>
           </div>
         </div>
 
-        <div class="source-item accordion">
-          <div class="source-header"><span class="source-tag tag-biblio">Publication</span><div class="source-header-text">
+        <div class="source-item">
+          <span class="source-tag tag-biblio">Publication</span><div>
             <p class="source-titre">Kyba, C.C.M. et al. (2023) · Science, 379, 265–268</p>
-            </div><svg class="source-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-          </div>
-          <p class="source-desc collapsible"><em>Citizen scientists report global rapid reductions in the visibility of stars from 2011 to 2022.</em> La luminosité du ciel nocturne visible à l'œil nu augmente de 9,6 % par an — plus rapidement que ce que mesure VIIRS. Met en évidence le biais spectral de VIIRS dans un contexte de transition LED massive.</p>
+            
+          <p class="source-desc"><em>Citizen scientists report global rapid reductions in the visibility of stars from 2011 to 2022.</em> La luminosité du ciel nocturne visible à l'œil nu augmente de 9,6 % par an — plus rapidement que ce que mesure VIIRS. Met en évidence le biais spectral de VIIRS dans un contexte de transition LED massive.</p>
           </div>
         </div>
 
-        <div class="source-item accordion">
-          <div class="source-header"><span class="source-tag tag-biblio">Publication</span><div class="source-header-text">
+        <div class="source-item">
+          <span class="source-tag tag-biblio">Publication</span><div>
             <p class="source-titre">Stone, E.L., Jones, G. &amp; Harris, S. (2009) · Current Biology, 19(13), 1123–1127</p>
-            </div><svg class="source-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-          </div>
-          <p class="source-desc collapsible"><em>Street lighting disturbs commuting bats.</em> Démontre que certaines espèces de chauves-souris évitent les corridors éclairés dès ~5 lux au sol. Source du seuil comportemental du Grand Rhinolophe.</p>
+            
+          <p class="source-desc"><em>Street lighting disturbs commuting bats.</em> Démontre que certaines espèces de chauves-souris évitent les corridors éclairés dès ~5 lux au sol. Source du seuil comportemental du Grand Rhinolophe.</p>
           </div>
         </div>
 
-        <div class="source-item accordion">
-          <div class="source-header"><span class="source-tag tag-biblio">Publication</span><div class="source-header-text">
+        <div class="source-item">
+          <span class="source-tag tag-biblio">Publication</span><div>
             <p class="source-titre">Knop, E. et al. (2017) · Nature, 548, 206–209</p>
-            </div><svg class="source-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-          </div>
-          <p class="source-desc collapsible"><em>Artificial light at night as a new threat to pollination.</em> Démontre que la pollinisation nocturne est réduite de 62 % dans les sites éclairés artificiellement. Source pour les impacts des lampadaires sur les insectes nocturnes.</p>
+            
+          <p class="source-desc"><em>Artificial light at night as a new threat to pollination.</em> Démontre que la pollinisation nocturne est réduite de 62 % dans les sites éclairés artificiellement. Source pour les impacts des lampadaires sur les insectes nocturnes.</p>
           </div>
         </div>
 
-        <div class="source-item accordion">
-          <div class="source-header"><span class="source-tag tag-biblio">Publication</span><div class="source-header-text">
+        <div class="source-item">
+          <span class="source-tag tag-biblio">Publication</span><div>
             <p class="source-titre">Boyes, D.H. et al. (2021) · Science Advances, 7, eabi8322</p>
-            </div><svg class="source-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-          </div>
-          <p class="source-desc collapsible"><em>Street lighting has detrimental impacts on local insect populations.</em> Démontre que l'éclairage artificiel réduit l'abondance des chenilles de lépidoptères nocturnes de 47 % en haie et de 33 % en accotement herbeux. Les effets sont plus prononcés sous LED que sous lampadaires sodium.</p>
+            
+          <p class="source-desc"><em>Street lighting has detrimental impacts on local insect populations.</em> Démontre que l'éclairage artificiel réduit l'abondance des chenilles de lépidoptères nocturnes de 47 % en haie et de 33 % en accotement herbeux. Les effets sont plus prononcés sous LED que sous lampadaires sodium.</p>
           </div>
         </div>
 
-        <div class="source-item accordion">
-          <div class="source-header"><span class="source-tag tag-biblio">Publication</span><div class="source-header-text">
+        <div class="source-item">
+          <span class="source-tag tag-biblio">Publication</span><div>
             <p class="source-titre">Sanders, D. et al. (2021) · Nature Ecology &amp; Evolution, 5, 74–81</p>
-            </div><svg class="source-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-          </div>
-          <p class="source-desc collapsible"><em>A meta-analysis of biological impacts of artificial light at night.</em> Méta-analyse de 126 études montrant que la lumière artificielle nocturne affecte négativement la survie, la reproduction et le comportement des espèces nocturnes. Source pour les impacts sur les insectes.</p>
+            
+          <p class="source-desc"><em>A meta-analysis of biological impacts of artificial light at night.</em> Méta-analyse de 126 études montrant que la lumière artificielle nocturne affecte négativement la survie, la reproduction et le comportement des espèces nocturnes. Source pour les impacts sur les insectes.</p>
           </div>
         </div>
 
-        <div class="source-item accordion">
-          <div class="source-header"><span class="source-tag tag-biblio">Publication</span><div class="source-header-text">
+        <div class="source-item">
+          <span class="source-tag tag-biblio">Publication</span><div>
             <p class="source-titre">Longcore, T. &amp; Rich, C. (2004) · Frontiers in Ecology and the Environment, 2(4), 191–198</p>
-            </div><svg class="source-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-          </div>
-          <p class="source-desc collapsible"><em>Ecological light pollution.</em> Article fondateur du concept de pollution lumineuse écologique, mobilisé pour les impacts sur les amphibiens et la biodiversité du Ried et de la Forêt du Rhin.</p>
+            
+          <p class="source-desc"><em>Ecological light pollution.</em> Article fondateur du concept de pollution lumineuse écologique, mobilisé pour les impacts sur les amphibiens et la biodiversité du Ried et de la Forêt du Rhin.</p>
           </div>
         </div>
 
-        <div class="source-item accordion">
-          <div class="source-header"><span class="source-tag tag-biblio">Rapport</span><div class="source-header-text">
+        <div class="source-item">
+          <span class="source-tag tag-biblio">Rapport</span><div>
             <p class="source-titre">CIRC — Centre International de Recherche sur le Cancer (2010)</p>
-            </div><svg class="source-chevron" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-          </div>
-          <p class="source-desc collapsible"><em>Monographie 98 : Travail posté impliquant des perturbations circadiennes.</em> Presses de l'OMS, Lyon. Classe le travail de nuit comme cancérogène probable (groupe 2A). La suppression de la mélatonine par la lumière artificielle nocturne est le mécanisme central identifié.</p>
+            
+          <p class="source-desc"><em>Monographie 98 : Travail posté impliquant des perturbations circadiennes.</em> Presses de l'OMS, Lyon. Classe le travail de nuit comme cancérogène probable (groupe 2A). La suppression de la mélatonine par la lumière artificielle nocturne est le mécanisme central identifié.</p>
           </div>
         </div>
       </div>
@@ -459,14 +434,6 @@
         }
       });
     }
-
-    // ── Accordéon ────────────────────────────────────────────
-    document.querySelectorAll('.source-item.accordion').forEach(item => {
-      item.addEventListener('click', () => {
-        const isOpen = item.classList.contains('open');
-        document.querySelectorAll('.source-item.accordion').forEach(i => i.classList.remove('open'));
-        if (!isOpen) item.classList.add('open');
-      });
     });
   </script>
 </body>

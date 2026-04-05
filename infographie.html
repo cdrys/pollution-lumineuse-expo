@@ -188,53 +188,6 @@
       <p class="expo-fact-title">Le risque de troubles du sommeil est trois fois plus élevé dans les zones très éclairées</p>
       <div class="expo-divider" style="background:#a78bfa;margin:1.25rem auto;"></div>
       <p class="expo-fact-text" style="margin:0 auto;">La lumière artificielle nocturne supprime la production de mélatonine, perturbant les cycles circadiens. La pollution lumineuse extérieure affecte le sommeil de centaines de milliers de résidents de l'Eurométropole.</p>
-      <!-- Solutions intégrées -->
-      <div style="margin-top:2.5rem;">
-                <p style="font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--vert-reserve);text-align:center;margin-bottom:2rem;margin-top:4rem;padding-top:3rem;border-top:1px solid rgba(74,222,128,.15);">
-          <i data-lucide="check-circle-2" style="display:inline-block;vertical-align:middle;width:.9rem;height:.9rem;margin-right:.3rem;stroke:var(--vert-reserve);"></i>
-          Des solutions existent
-        </p>
-
-        <!-- Timeline B -->
-        <div style="display:flex;flex-direction:column;gap:1.5rem;max-width:760px;margin:0 auto;">
-          <!-- Dots -->
-          <div style="position:relative;display:flex;justify-content:space-between;align-items:center;padding:0 2.5rem;">
-            <div style="position:absolute;top:50%;left:5rem;right:5rem;height:3px;background:rgba(255,255,255,.08);transform:translateY(-50%);border-radius:2px;overflow:hidden;pointer-events:none;">
-              <div id="si-fill" style="height:100%;width:0%;border-radius:2px;transition:width .5s ease;"></div>
-            </div>
-            <button onclick="selSol(0)" id="si0" style="width:5rem;height:5rem;border-radius:50%;border:2px solid #67e8f9;background:rgba(13,13,43,.95);display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;z-index:2;flex-shrink:0;padding:0;box-shadow:0 0 20px #67e8f933;transition:all .3s;">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#67e8f9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>
-            </button>
-            <button onclick="selSol(1)" id="si1" style="width:5rem;height:5rem;border-radius:50%;border:2px solid #4ade8028;background:rgba(13,13,43,.95);display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;z-index:2;flex-shrink:0;padding:0;transition:all .3s;">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
-            </button>
-            <button onclick="selSol(2)" id="si2" style="width:5rem;height:5rem;border-radius:50%;border:2px solid #f5c84228;background:rgba(13,13,43,.95);display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;z-index:2;flex-shrink:0;padding:0;transition:all .3s;">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#f5c842" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/></svg>
-            </button>
-            <button onclick="selSol(3)" id="si3" style="width:5rem;height:5rem;border-radius:50%;border:2px solid #a78bfa28;background:rgba(13,13,43,.95);display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;z-index:2;flex-shrink:0;padding:0;transition:all .3s;">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 10v.2A3 3 0 0 1 8.9 16v0H5v0h0a3 3 0 0 1-1-5.8V10a3 3 0 0 1 6 0Z"/><path d="M7 16v6"/><path d="M13 19v3"/><path d="M12 19h8.3a1 1 0 0 0 .7-1.7L18 14h.3a1 1 0 0 0 .7-1.7L16 9h.2a1 1 0 0 0 .8-1.7L13 3l-1.4 1.5"/></svg>
-            </button>
-            <button onclick="selSol(4)" id="si4" style="width:5rem;height:5rem;border-radius:50%;border:2px solid #fb923c28;background:rgba(13,13,43,.95);display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;z-index:2;flex-shrink:0;padding:0;transition:all .3s;">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fb923c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 7 9 3 5 7l4 4"/><path d="m17 11 4 4-4 4-4-4"/><path d="m8 12 4 4 6-6-4-4Z"/><path d="m16 8 3-3"/><path d="M9 21a6 6 0 0 0-6-6"/></svg>
-            </button>
-          </div>
-
-          <!-- Labels -->
-          <div style="display:flex;justify-content:space-between;padding:0 1rem;">
-            <div id="sl0" style="font-family:'Space Mono',monospace;font-size:.58rem;color:#67e8f9;text-align:center;width:5rem;line-height:1.35;">Température de couleur</div>
-            <div id="sl1" style="font-family:'Space Mono',monospace;font-size:.58rem;color:var(--gris-texte);text-align:center;width:5rem;line-height:1.35;">Extinction nocturne</div>
-            <div id="sl2" style="font-family:'Space Mono',monospace;font-size:.58rem;color:var(--gris-texte);text-align:center;width:5rem;line-height:1.35;">Effet rebond</div>
-            <div id="sl3" style="font-family:'Space Mono',monospace;font-size:.58rem;color:var(--gris-texte);text-align:center;width:5rem;line-height:1.35;">Zones tampon</div>
-            <div id="sl4" style="font-family:'Space Mono',monospace;font-size:.58rem;color:var(--gris-texte);text-align:center;width:5rem;line-height:1.35;">Suivi VIIRS</div>
-          </div>
-
-          <!-- Panel -->
-          <div id="si-panel" style="background:rgba(13,13,43,.85);border:1px solid #67e8f988;border-radius:10px;padding:1.25rem 1.5rem;transition:border-color .3s;">
-            <div id="si-title" style="font-family:'Space Mono',monospace;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:#67e8f9;margin-bottom:.4rem;">Limiter la température de couleur</div>
-            <div id="si-desc" style="font-size:.92rem;color:var(--gris-texte);line-height:1.65;">Imposer &lt; 2700 K pour tous les nouveaux marchés LED, en particulier dans les communes proches du corridor rhénan.</div>
-          </div>
-        </div>
-      </div>
       </div>
     </div>
   </section>
@@ -254,6 +207,68 @@
     document.querySelectorAll('.expo-scroll-content').forEach(el=>obs.observe(el));
   </script>
   <script>document.addEventListener("DOMContentLoaded",()=>lucide.createIcons());</script>
+  <!-- Section — Des solutions existent -->
+  <section class="expo-scroll-section" style="border-top:1px solid rgba(74,222,128,0.15);">
+    <div class="expo-scroll-content">
+      <p style="font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--vert-reserve);margin-bottom:.75rem;text-align:center;">
+        <i data-lucide="check-circle-2" style="display:inline-block;vertical-align:middle;width:.9rem;height:.9rem;margin-right:.3rem;stroke:var(--vert-reserve);"></i>
+        Des solutions existent
+      </p>
+      <p class="expo-fact-title" style="text-align:center;margin-bottom:2rem;">Cinq leviers pour réduire la radiance nocturne</p>
+
+      <!-- Timeline -->
+      <div style="display:flex;flex-direction:column;gap:2rem;max-width:800px;margin:0 auto;">
+
+        <!-- Dots + ligne -->
+        <div style="position:relative;display:flex;justify-content:space-between;align-items:center;">
+          <!-- Ligne -->
+          <div style="position:absolute;top:50%;left:0;right:0;height:3px;background:rgba(255,255,255,.07);transform:translateY(-50%);border-radius:2px;overflow:hidden;pointer-events:none;">
+            <div id="si-fill" style="height:100%;width:0%;border-radius:2px;transition:width .5s ease;"></div>
+          </div>
+          <!-- Boutons — chacun dans un flex-item pour centrage avec label -->
+          <div style="display:flex;flex-direction:column;align-items:center;gap:.75rem;flex:1;">
+            <button onclick="selSol(0)" id="si0" style="width:5rem;height:5rem;border-radius:50%;border:2px solid #67e8f9;background:rgba(13,13,43,.95);display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;z-index:2;padding:0;box-shadow:0 0 20px #67e8f933;transition:all .3s;">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#67e8f9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>
+            </button>
+            <div id="sl0" style="font-family:'Space Mono',monospace;font-size:.58rem;color:#67e8f9;text-align:center;line-height:1.35;max-width:90px;">Température de couleur</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:.75rem;flex:1;">
+            <button onclick="selSol(1)" id="si1" style="width:5rem;height:5rem;border-radius:50%;border:2px solid #4ade8028;background:rgba(13,13,43,.95);display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;z-index:2;padding:0;transition:all .3s;">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+            </button>
+            <div id="sl1" style="font-family:'Space Mono',monospace;font-size:.58rem;color:var(--gris-texte);text-align:center;line-height:1.35;max-width:90px;">Extinction nocturne</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:.75rem;flex:1;">
+            <button onclick="selSol(2)" id="si2" style="width:5rem;height:5rem;border-radius:50%;border:2px solid #f5c84228;background:rgba(13,13,43,.95);display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;z-index:2;padding:0;transition:all .3s;">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#f5c842" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/></svg>
+            </button>
+            <div id="sl2" style="font-family:'Space Mono',monospace;font-size:.58rem;color:var(--gris-texte);text-align:center;line-height:1.35;max-width:90px;">Effet rebond</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:.75rem;flex:1;">
+            <button onclick="selSol(3)" id="si3" style="width:5rem;height:5rem;border-radius:50%;border:2px solid #a78bfa28;background:rgba(13,13,43,.95);display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;z-index:2;padding:0;transition:all .3s;">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 10v.2A3 3 0 0 1 8.9 16v0H5v0h0a3 3 0 0 1-1-5.8V10a3 3 0 0 1 6 0Z"/><path d="M7 16v6"/><path d="M13 19v3"/><path d="M12 19h8.3a1 1 0 0 0 .7-1.7L18 14h.3a1 1 0 0 0 .7-1.7L16 9h.2a1 1 0 0 0 .8-1.7L13 3l-1.4 1.5"/></svg>
+            </button>
+            <div id="sl3" style="font-family:'Space Mono',monospace;font-size:.58rem;color:var(--gris-texte);text-align:center;line-height:1.35;max-width:90px;">Zones tampon</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:.75rem;flex:1;">
+            <button onclick="selSol(4)" id="si4" style="width:5rem;height:5rem;border-radius:50%;border:2px solid #fb923c28;background:rgba(13,13,43,.95);display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;z-index:2;padding:0;transition:all .3s;">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fb923c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 7 9 3 5 7l4 4"/><path d="m17 11 4 4-4 4-4-4"/><path d="m8 12 4 4 6-6-4-4Z"/><path d="m16 8 3-3"/><path d="M9 21a6 6 0 0 0-6-6"/></svg>
+            </button>
+            <div id="sl4" style="font-family:'Space Mono',monospace;font-size:.58rem;color:var(--gris-texte);text-align:center;line-height:1.35;max-width:90px;">Suivi VIIRS</div>
+          </div>
+        </div>
+
+        <!-- Panneau -->
+        <div id="si-panel" style="background:rgba(13,13,43,.85);border:1px solid #67e8f988;border-radius:10px;padding:1.25rem 1.5rem;transition:border-color .3s;">
+          <div id="si-title" style="font-family:'Space Mono',monospace;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:#67e8f9;margin-bottom:.4rem;">Limiter la température de couleur</div>
+          <div id="si-desc" style="font-size:.92rem;color:var(--gris-texte);line-height:1.65;">Imposer &lt; 2700 K pour tous les nouveaux marchés LED, en particulier dans les communes proches du corridor rhénan.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
   <script>
     var SOL = [
       {col:'#67e8f9', title:'Limiter la température de couleur', desc:'Imposer < 2700 K pour tous les nouveaux marchés LED, en particulier dans les communes proches du corridor rhénan.'},

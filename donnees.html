@@ -182,10 +182,10 @@
   <div style="font-family:'Space Mono',monospace;font-size:1.9rem;font-weight:700;color:#4ade80;line-height:1;">-21.1 %</div>
   <div style="font-family:'Space Mono',monospace;font-size:.52rem;color:#a5b4ce;margin-bottom:.9rem;margin-top:.1rem;">évolution moyenne</div>
   <div style="position:relative;height:10px;background:rgba(255,255,255,.06);border-radius:5px;margin-bottom:.4rem;">
-    <div style="position:absolute;top:0;height:100%;left:76.0%;width:5.799999999999997%;background:#a5b4ce;opacity:.2;border-radius:5px;"></div>
-    <div style="position:absolute;top:0;left:76.0%;transform:translateX(-50%);width:2px;height:100%;background:#a5b4ce;opacity:.5;border-radius:1px;"></div>
-    <div style="position:absolute;top:-2px;left:78.9%;transform:translateX(-50%);width:3px;height:calc(100% + 4px);background:#a5b4ce;border-radius:2px;box-shadow:0 0 5px #a5b4ce;"></div>
-    <div style="position:absolute;top:0;left:81.8%;transform:translateX(-50%);width:2px;height:100%;background:#a5b4ce;opacity:.5;border-radius:1px;"></div>
+    <div style="position:absolute;top:0;height:100%;left:76.0%;width:5.799999999999997%;background:#a78bfa;opacity:.2;border-radius:5px;"></div>
+    <div style="position:absolute;top:0;left:76.0%;transform:translateX(-50%);width:2px;height:100%;background:#a78bfa;opacity:.5;border-radius:1px;"></div>
+    <div style="position:absolute;top:-2px;left:78.9%;transform:translateX(-50%);width:3px;height:calc(100% + 4px);background:#a78bfa;border-radius:2px;box-shadow:0 0 5px #a78bfa;"></div>
+    <div style="position:absolute;top:0;left:81.8%;transform:translateX(-50%);width:2px;height:100%;background:#a78bfa;opacity:.5;border-radius:1px;"></div>
   </div>
   <!-- Min / moy / max répartis aux extrémités et au centre -->
   <div style="display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:.5rem;color:#a5b4ce;">
@@ -320,7 +320,7 @@
   </div>
 
   <script>
-    const MAP_DATA = [{"nom": "Strasbourg", "lat": 48.5734, "lng": 7.7521, "col": "#67e8f9", "ev": -28.3, "mL": 24.12}, {"nom": "Osthoffen", "lat": 48.5851, "lng": 7.6234, "col": "#4ade80", "ev": -73.4, "mL": 1.32}, {"nom": "Oberhausbergen", "lat": 48.5966, "lng": 7.6946, "col": "#f5c842", "ev": -54.0, "mL": 7.5}, {"nom": "Blaesheim", "lat": 48.5083, "lng": 7.6379, "col": "#a5b4ce", "ev": -21.1, "mL": 2.55}];
+    const MAP_DATA = [{"nom": "Strasbourg", "lat": 48.5734, "lng": 7.7521, "col": "#67e8f9", "ev": -28.3, "mL": 24.12}, {"nom": "Osthoffen", "lat": 48.5851, "lng": 7.6234, "col": "#4ade80", "ev": -73.4, "mL": 1.32}, {"nom": "Oberhausbergen", "lat": 48.5966, "lng": 7.6946, "col": "#f5c842", "ev": -54.0, "mL": 7.5}, {"nom": "Blaesheim", "lat": 48.5083, "lng": 7.6379, "col": "#a78bfa", "ev": -21.1, "mL": 2.55}];
     const map = L.map('mini-map').setView([48.555, 7.695], 11);
     L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{attribution:'© CARTO',subdomains:'abcd',maxZoom:19}).addTo(map);
 

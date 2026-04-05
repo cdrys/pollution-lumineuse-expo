@@ -99,7 +99,6 @@
     }
     .source-item:hover {
       transform: translateY(-2px);
-      background: rgba(255,255,255,.03);
     }
 
     /* ── Filtres ──────────────────────────────────────────────── */
@@ -158,12 +157,12 @@
 
 
       <div class="filter-bar">
-        <button class="filter-btn active" onclick="filterSources('all')">Tout</button>
-        <button class="filter-btn" onclick="filterSources('donnees')" style="--fc:#67e8f9;">Données</button>
-        <button class="filter-btn" onclick="filterSources('institution')" style="--fc:#4ade80;">Institutionnel</button>
-        <button class="filter-btn" onclick="filterSources('biblio')" style="--fc:#f5c842;">Publications</button>
-        <button class="filter-btn" onclick="filterSources('loi')" style="--fc:#a78bfa;">Législation</button>
-        <button class="filter-btn" onclick="filterSources('outil')" style="--fc:#fb923c;">Outils</button>
+        <button class="filter-btn active" onclick="filterSources('all', this)">Tout</button>
+        <button class="filter-btn" onclick="filterSources('donnees', this)" style="--fc:#67e8f9;">Données</button>
+        <button class="filter-btn" onclick="filterSources('institution', this)" style="--fc:#4ade80;">Institutionnel</button>
+        <button class="filter-btn" onclick="filterSources('biblio', this)" style="--fc:#f5c842;">Publications</button>
+        <button class="filter-btn" onclick="filterSources('loi', this)" style="--fc:#a78bfa;">Législation</button>
+        <button class="filter-btn" onclick="filterSources('outil', this)" style="--fc:#fb923c;">Outils</button>
       </div>
       <!-- Données satellitaires -->
       <div class="sources-group" data-cat="donnees">
@@ -423,9 +422,9 @@
 
   <script>
     // ── Filtres ──────────────────────────────────────────────
-    function filterSources(cat) {
+    function filterSources(cat, btn) {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      event.target.classList.add('active');
+      btn.classList.add('active');
       document.querySelectorAll('.sources-group').forEach(g => {
         if (cat === 'all' || g.dataset.cat === cat) {
           g.classList.remove('hidden');

@@ -190,46 +190,56 @@
       <p class="expo-fact-text" style="margin:0 auto;">La lumière artificielle nocturne supprime la production de mélatonine, perturbant les cycles circadiens. La pollution lumineuse extérieure affecte le sommeil de centaines de milliers de résidents de l'Eurométropole.</p>
       <!-- Solutions intégrées -->
       <div style="margin-top:2.5rem;">
-        <p style="font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--vert-reserve);text-align:center;margin-bottom:1.5rem;">
+                <p style="font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--vert-reserve);text-align:center;margin-bottom:2rem;">
           <i data-lucide="check-circle-2" style="display:inline-block;vertical-align:middle;width:.9rem;height:.9rem;margin-right:.3rem;stroke:var(--vert-reserve);"></i>
           Des solutions existent
         </p>
-        <div style="max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:.85rem;">
-          <div style="display:flex;gap:.75rem;align-items:flex-start;">
-            <span style="color:var(--vert-reserve);flex-shrink:0;font-size:1rem;">①</span>
-            <div>
-              <strong style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--blanc-etoile);display:block;margin-bottom:.2rem;">LIMITER LA TEMPÉRATURE DE COULEUR</strong>
-              <span style="font-size:.88rem;color:var(--gris-texte);">Imposer &lt; 2700 K pour tous les nouveaux marchés LED, en particulier dans les communes proches du corridor rhénan.</span>
+
+        <!-- Timeline B -->
+        <div style="display:flex;flex-direction:column;gap:1.5rem;max-width:760px;margin:0 auto;">
+          <!-- Dots -->
+          <div style="position:relative;display:flex;justify-content:space-between;align-items:center;padding:0 2rem;">
+            <div style="position:absolute;top:50%;left:4rem;right:4rem;height:3px;background:rgba(255,255,255,.08);transform:translateY(-50%);border-radius:2px;overflow:hidden;pointer-events:none;">
+              <div id="si-fill" style="height:100%;width:0%;border-radius:2px;transition:width .5s ease;"></div>
             </div>
+            <button onclick="selSol(0)" id="si0" style="width:4rem;height:4rem;border-radius:50%;border:2px solid #67e8f9;background:rgba(13,13,43,.95);display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;z-index:2;flex-shrink:0;padding:0;box-shadow:0 0 20px #67e8f933;transition:all .3s;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#67e8f9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>
+            </button>
+            <button onclick="selSol(1)" id="si1" style="width:4rem;height:4rem;border-radius:50%;border:2px solid #4ade8028;background:rgba(13,13,43,.95);display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;z-index:2;flex-shrink:0;padding:0;transition:all .3s;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+            </button>
+            <button onclick="selSol(2)" id="si2" style="width:4rem;height:4rem;border-radius:50%;border:2px solid #f5c84228;background:rgba(13,13,43,.95);display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;z-index:2;flex-shrink:0;padding:0;transition:all .3s;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#f5c842" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/></svg>
+            </button>
+            <button onclick="selSol(3)" id="si3" style="width:4rem;height:4rem;border-radius:50%;border:2px solid #a78bfa28;background:rgba(13,13,43,.95);display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;z-index:2;flex-shrink:0;padding:0;transition:all .3s;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 10v.2A3 3 0 0 1 8.9 16v0H5v0h0a3 3 0 0 1-1-5.8V10a3 3 0 0 1 6 0Z"/><path d="M7 16v6"/><path d="M13 19v3"/><path d="M12 19h8.3a1 1 0 0 0 .7-1.7L18 14h.3a1 1 0 0 0 .7-1.7L16 9h.2a1 1 0 0 0 .8-1.7L13 3l-1.4 1.5"/></svg>
+            </button>
+            <button onclick="selSol(4)" id="si4" style="width:4rem;height:4rem;border-radius:50%;border:2px solid #fb923c28;background:rgba(13,13,43,.95);display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;z-index:2;flex-shrink:0;padding:0;transition:all .3s;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fb923c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 7 9 3 5 7l4 4"/><path d="m17 11 4 4-4 4-4-4"/><path d="m8 12 4 4 6-6-4-4Z"/><path d="m16 8 3-3"/><path d="M9 21a6 6 0 0 0-6-6"/></svg>
+            </button>
           </div>
-          <div style="display:flex;gap:.75rem;align-items:flex-start;">
-            <span style="color:var(--vert-reserve);flex-shrink:0;font-size:1rem;">②</span>
-            <div>
-              <strong style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--blanc-etoile);display:block;margin-bottom:.2rem;">EXTINCTION 1H–5H GÉNÉRALISÉE</strong>
-              <span style="font-size:.88rem;color:var(--gris-texte);">Étendre l'extinction nocturne partielle, déjà pratiquée dans les communes rurales, aux zones résidentielles de la première couronne.</span>
-            </div>
+
+          <!-- Labels -->
+          <div style="display:flex;justify-content:space-between;padding:0 1rem;">
+            <div id="sl0" style="font-family:'Space Mono',monospace;font-size:.58rem;color:#67e8f9;text-align:center;width:5rem;line-height:1.35;">Température de couleur</div>
+            <div id="sl1" style="font-family:'Space Mono',monospace;font-size:.58rem;color:var(--gris-texte);text-align:center;width:5rem;line-height:1.35;">Extinction nocturne</div>
+            <div id="sl2" style="font-family:'Space Mono',monospace;font-size:.58rem;color:var(--gris-texte);text-align:center;width:5rem;line-height:1.35;">Effet rebond</div>
+            <div id="sl3" style="font-family:'Space Mono',monospace;font-size:.58rem;color:var(--gris-texte);text-align:center;width:5rem;line-height:1.35;">Zones tampon</div>
+            <div id="sl4" style="font-family:'Space Mono',monospace;font-size:.58rem;color:var(--gris-texte);text-align:center;width:5rem;line-height:1.35;">Suivi VIIRS</div>
           </div>
-          <div style="display:flex;gap:.75rem;align-items:flex-start;">
-            <span style="color:var(--vert-reserve);flex-shrink:0;font-size:1rem;">③</span>
-            <div>
-              <strong style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--blanc-etoile);display:block;margin-bottom:.2rem;">CONTRÔLER L'EFFET REBOND</strong>
-              <span style="font-size:.88rem;color:var(--gris-texte);">Encadrer le nombre de points lumineux dans les nouvelles zones d'aménagement pour éviter que les économies LED ne soient absorbées par l'extension de l'éclairage.</span>
-            </div>
+
+          <!-- Panel -->
+          <div id="si-panel" style="background:rgba(13,13,43,.85);border:1px solid #67e8f988;border-radius:10px;padding:1.25rem 1.5rem;transition:border-color .3s;">
+            <div id="si-title" style="font-family:'Space Mono',monospace;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:#67e8f9;margin-bottom:.4rem;">Limiter la température de couleur</div>
+            <div id="si-desc" style="font-size:.92rem;color:var(--gris-texte);line-height:1.65;">Imposer &lt; 2700 K pour tous les nouveaux marchés LED, en particulier dans les communes proches du corridor rhénan.</div>
           </div>
-          <div style="display:flex;gap:.75rem;align-items:flex-start;">
-            <span style="color:var(--vert-reserve);flex-shrink:0;font-size:1rem;">④</span>
-            <div>
-              <strong style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--blanc-etoile);display:block;margin-bottom:.2rem;">ZONES TAMPON ÉCOLOGIQUES</strong>
-              <span style="font-size:.88rem;color:var(--gris-texte);">Créer des corridors sombres entre les zones bâties et la Forêt du Rhin, avec des prescriptions strictes dans les PLU communaux.</span>
-            </div>
-          </div>
-          <div style="display:flex;gap:.75rem;align-items:flex-start;">
-            <span style="color:var(--vert-reserve);flex-shrink:0;font-size:1rem;">⑤</span>
-            <div>
-              <strong style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--blanc-etoile);display:block;margin-bottom:.2rem;">SUIVI VIIRS ANNUEL</strong>
-              <span style="font-size:.88rem;color:var(--gris-texte);">Intégrer les données VIIRS NASA comme indicateur officiel du PCAET, permettant un suivi objectif indépendant des déclarations d'économies d'énergie.</span>
-            </div>
-          </div>
+        </div>
+
+        <div style="text-align:center;margin-top:2rem;">
+          <a href="donnees.html" style="display:inline-flex;align-items:center;gap:.5rem;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.3);color:var(--vert-reserve);font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;padding:.75rem 1.75rem;border-radius:2rem;text-decoration:none;">
+            <i data-lucide="bar-chart-2" style="width:.9rem;height:.9rem;"></i>
+            Voir les données →
+          </a>
         </div>
         <div style="text-align:center;margin-top:2rem;">
           <a href="donnees.html" style="display:inline-flex;align-items:center;gap:.5rem;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.3);color:var(--vert-reserve);font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;padding:.75rem 1.75rem;border-radius:2rem;text-decoration:none;">
@@ -263,5 +273,30 @@
     document.querySelectorAll('.expo-scroll-content').forEach(el=>obs.observe(el));
   </script>
   <script>document.addEventListener("DOMContentLoaded",()=>lucide.createIcons());</script>
+  <script>
+    var SOL = [
+      {col:'#67e8f9', title:'Limiter la température de couleur', desc:'Imposer < 2700 K pour tous les nouveaux marchés LED, en particulier dans les communes proches du corridor rhénan.'},
+      {col:'#4ade80', title:'Extinction 1h–5h généralisée', desc:"Étendre l'extinction nocturne partielle, déjà pratiquée dans les communes rurales, aux zones résidentielles de la première couronne."},
+      {col:'#f5c842', title:"Contrôler l'effet rebond", desc:"Encadrer le nombre de points lumineux dans les nouvelles zones d'aménagement pour éviter que les économies LED ne soient absorbées."},
+      {col:'#a78bfa', title:'Zones tampon écologiques', desc:"Créer des corridors sombres entre les zones bâties et la Forêt du Rhin, avec des prescriptions strictes dans les PLU communaux."},
+      {col:'#fb923c', title:'Suivi VIIRS annuel', desc:"Intégrer les données VIIRS NASA comme indicateur officiel du PCAET, permettant un suivi objectif indépendant."},
+    ];
+    function selSol(n) {
+      SOL.forEach(function(d,i) {
+        var btn = document.getElementById('si'+i);
+        var lbl = document.getElementById('sl'+i);
+        btn.style.borderColor = i === n ? d.col : (i < n ? d.col+'66' : d.col+'28');
+        btn.style.boxShadow = i === n ? '0 0 20px '+d.col+'44' : '';
+        lbl.style.color = i === n ? d.col : '';
+      });
+      var fill = document.getElementById('si-fill');
+      fill.style.width = (n/4*100)+'%';
+      fill.style.background = n === 0 ? SOL[0].col : 'linear-gradient(90deg,'+SOL.slice(0,n+1).map(function(d){return d.col;}).join(',')+')';
+      document.getElementById('si-panel').style.borderColor = SOL[n].col+'88';
+      document.getElementById('si-title').textContent = SOL[n].title;
+      document.getElementById('si-title').style.color = SOL[n].col;
+      document.getElementById('si-desc').textContent = SOL[n].desc;
+    }
+  </script>
 </body>
 </html>

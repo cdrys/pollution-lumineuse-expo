@@ -110,7 +110,6 @@
 
   <div class="page-wrapper" style="position:relative;z-index:1;">
     <div class="sources-wrap">
-
       <div style="text-align:center;padding:3rem 0 2.5rem;">
         <p class="section-tag">Références et traçabilité</p>
         <h1 class="section-titre">Sources et bibliographie</h1>
@@ -128,8 +127,8 @@
           <span class="source-tag tag-donnees">Données</span>
           <div>
             <p class="source-titre">NASA Black Marble — Produit VNP46A4 (composite annuel)</p>
-            <p class="source-desc">Données de radiance nocturne issues du capteur VIIRS du satellite Suomi NPP. Le produit VNP46A4 est un composite annuel à résolution 500 m, permettant de distinguer les communes à l'échelle de l'Eurométropole. Utilisé pour toutes les valeurs de radiance par commune et le fond de carte.<br>
-            <a href="https://www.earthdata.nasa.gov/data/projects/black-marble" target="_blank">→ earthdata.nasa.gov</a> · <a href="https://eogdata.mines.edu/products/vnl/" target="_blank">→ eogdata.mines.edu</a></p>
+            <p class="source-desc">Données de radiance nocturne issues du capteur VIIRS du satellite Suomi NPP. Composite annuel à résolution 500 m, utilisé pour toutes les valeurs de radiance par commune et le fond de carte.<br>
+            <a href="https://www.earthdata.nasa.gov/data/projects/black-marble" target="_blank">→ earthdata.nasa.gov — Black Marble</a> · <a href="https://eogdata.mines.edu/products/vnl/" target="_blank">→ eogdata.mines.edu</a></p>
           </div>
         </div>
 
@@ -138,7 +137,7 @@
           <div>
             <p class="source-titre">NASA GIBS — Global Imagery Browse Services (WMTS)</p>
             <p class="source-desc">Service de tuiles cartographiques de la NASA permettant l'intégration directe des images Black Marble dans Leaflet. Fond de carte satellitaire nocturne paramétrable par année.<br>
-            <a href="https://nasa.github.io/gibs-api-docs/" target="_blank">→ wiki.earthdata.nasa.gov/display/GIBS</a></p>
+            <a href="https://nasa.github.io/gibs-api-docs/" target="_blank">→ nasa.github.io/gibs-api-docs</a></p>
           </div>
         </div>
 
@@ -155,9 +154,17 @@
           <span class="source-tag tag-donnees">Données</span>
           <div>
             <p class="source-titre">INSEE — Recensement de la population (RP 2020)</p>
-            <p class="source-desc">Source des données de population par commune utilisées dans les popups de la carte. Données du recensement 2020.<br>
+            <p class="source-desc">Source des données de population par commune utilisées dans les popups de la carte.<br>
             <a href="https://www.insee.fr/fr/statistiques/serie/001727400" target="_blank">→ insee.fr — Populations légales 2020</a></p>
           </div>
+        </div>
+      </div>
+
+      <!-- Sources institutionnelles -->
+      <div class="sources-group">
+        <div class="sources-group-title">
+          <i data-lucide="building-2" style="width:.85rem;height:.85rem;stroke:var(--or);"></i>
+          Sources institutionnelles
         </div>
 
         <div class="source-item">
@@ -166,15 +173,6 @@
             <p class="source-titre">Eurométropole de Strasbourg — PCAET</p>
             <p class="source-desc">Plan Climat Air Énergie Territorial. Source des données sur la consommation électrique de l'éclairage public (40 % de la consommation communale), les objectifs de réduction et le bilan de la transition LED.<br>
             <a href="https://www.strasbourg.eu/transition-ecologique/plan-climat" target="_blank">→ strasbourg.eu — Plan Climat</a></p>
-          </div>
-        </div>
-
-        <div class="source-item">
-          <span class="source-tag tag-institution">Institutionnel</span>
-          <div>
-            <p class="source-titre">Réserve de Biosphère Transfrontalière Alsace</p>
-            <p class="source-desc">Créée en 2021, labellisée par l'UNESCO. Document de référence intégrant la pollution lumineuse parmi les menaces à surveiller dans le plan de gestion.<br>
-            <a href="https://www.reserves-biosphere.fr/alsace/" target="_blank">→ reserves-biosphere.fr/alsace</a></p>
           </div>
         </div>
 
@@ -191,8 +189,17 @@
           <span class="source-tag tag-institution">Institutionnel</span>
           <div>
             <p class="source-titre">LPO Alsace — Ligue pour la Protection des Oiseaux</p>
-            <p class="source-desc">Documentation des impacts de la pollution lumineuse sur les espèces nocturnes du corridor rhénan : chauves-souris, cigogne blanche, rapaces. Études de terrain sur le territoire de l'Eurométropole.<br>
+            <p class="source-desc">Documentation des impacts de la pollution lumineuse sur les espèces nocturnes du corridor rhénan : chauves-souris, cigogne blanche (~800 couples en Alsace), rapaces. Études de terrain sur le territoire de l'Eurométropole.<br>
             <a href="https://alsace.lpo.fr" target="_blank">→ alsace.lpo.fr</a></p>
+          </div>
+        </div>
+
+        <div class="source-item">
+          <span class="source-tag tag-institution">Institutionnel</span>
+          <div>
+            <p class="source-titre">OFB — Office Français de la Biodiversité, Plan de gestion anguille (2022)</p>
+            <p class="source-desc">Plan de gestion anguille du district Rhin-Meuse. Identifie la lumière artificielle nocturne sur les berges comme pression comportementale sur les couloirs de migration de l'anguille européenne dans l'Ill et le Rhin alsacien.<br>
+            <a href="https://www.ofb.gouv.fr/nos-missions/gestion-des-especes-et-des-habitats/anguille-europeenne" target="_blank">→ ofb.gouv.fr</a></p>
           </div>
         </div>
       </div>
@@ -207,8 +214,24 @@
         <div class="source-item">
           <span class="source-tag tag-biblio">Publication</span>
           <div>
+            <p class="source-titre">Falchi, F. et al. (2016) · Science Advances, 2(6), e1600377</p>
+            <p class="source-desc"><em>The new world atlas of artificial night sky brightness.</em> Démontre que plus de 80 % de la population mondiale — et 80 % des Français — ne peut plus observer la Voie Lactée depuis son domicile. Source du chiffre clé de la page Accueil.</p>
+          </div>
+        </div>
+
+        <div class="source-item">
+          <span class="source-tag tag-biblio">Publication</span>
+          <div>
+            <p class="source-titre">Hölker, F. et al. (2010) · Trends in Ecology &amp; Evolution, 25(12), 681–682</p>
+            <p class="source-desc"><em>Light pollution as a biodiversity threat.</em> Évalue à environ 60 % la proportion d'espèces animales actives la nuit, directement exposées aux perturbations lumineuses artificielles. Source du chiffre d'accroche de la page Impacts.</p>
+          </div>
+        </div>
+
+        <div class="source-item">
+          <span class="source-tag tag-biblio">Publication</span>
+          <div>
             <p class="source-titre">Kyba, C.C.M. et al. (2017) · Science Advances, 3(11), e1701528</p>
-            <p class="source-desc"><em>Artificially lit surface of Earth at night increasing in radiance and extent.</em> Science Advances, 3(11), e1701528. Démontre que la surface artificielle éclairée de la Terre croît de +2,2 %/an, avec une augmentation de la radiance de 1,8 %/an — malgré la transition LED. Source principale pour la modélisation des séries temporelles et l'effet rebond.</p>
+            <p class="source-desc"><em>Artificially lit surface of Earth at night increasing in radiance and extent.</em> Démontre que la surface artificielle éclairée de la Terre croît de +2,2 %/an, avec une augmentation de la radiance de 1,8 %/an — malgré la transition LED. Source principale pour la modélisation des séries temporelles et l'effet rebond.</p>
           </div>
         </div>
 
@@ -216,23 +239,23 @@
           <span class="source-tag tag-biblio">Publication</span>
           <div>
             <p class="source-titre">Elvidge, C.D. et al. (2021) · Remote Sensing, 13(5), 922</p>
-            <p class="source-desc"><em>Annual time series of global VIIRS nighttime lights derived from monthly averages.</em> Remote Sensing, 13(5), 922. Source des composites annuels VNP46A4. Valeurs de radiance par commune extraites de cette publication.</p>
+            <p class="source-desc"><em>Annual time series of global VIIRS nighttime lights derived from monthly averages: 2012 to 2019.</em> Source des composites annuels VNP46A4. Valeurs de radiance par commune extraites de cette publication.</p>
           </div>
         </div>
 
         <div class="source-item">
           <span class="source-tag tag-biblio">Publication</span>
           <div>
-            <p class="source-titre">Kyba, C.C.M. et al. (2023)</p>
-            <p class="source-desc"><em>Citizen scientists report global rapid reductions in the visibility of stars from 2011 to 2022.</em> Science, 379, 265–268. La luminosité du ciel nocturne visible à l'œil nu augmente de 9,6 % par an — plus rapidement que ce que mesure VIIRS. Met en évidence le biais spectral de VIIRS dans un contexte de transition LED massive.</p>
+            <p class="source-titre">Kyba, C.C.M. et al. (2023) · Science, 379, 265–268</p>
+            <p class="source-desc"><em>Citizen scientists report global rapid reductions in the visibility of stars from 2011 to 2022.</em> La luminosité du ciel nocturne visible à l'œil nu augmente de 9,6 % par an — plus rapidement que ce que mesure VIIRS. Met en évidence le biais spectral de VIIRS dans un contexte de transition LED massive.</p>
           </div>
         </div>
 
         <div class="source-item">
           <span class="source-tag tag-biblio">Publication</span>
           <div>
-            <p class="source-titre">Stone, E.L., Jones, G. & Harris, S. (2009)</p>
-            <p class="source-desc"><em>Street lighting disturbs commuting bats.</em> Current Biology, 19(13), 1123–1127. Démontre que certaines espèces de chauves-souris évitent les corridors éclairés dès ~5 lux au sol. Source du seuil comportemental du Grand Rhinolophe.</p>
+            <p class="source-titre">Stone, E.L., Jones, G. &amp; Harris, S. (2009) · Current Biology, 19(13), 1123–1127</p>
+            <p class="source-desc"><em>Street lighting disturbs commuting bats.</em> Démontre que certaines espèces de chauves-souris évitent les corridors éclairés dès ~5 lux au sol. Source du seuil comportemental du Grand Rhinolophe.</p>
           </div>
         </div>
 
@@ -240,7 +263,7 @@
           <span class="source-tag tag-biblio">Publication</span>
           <div>
             <p class="source-titre">Knop, E. et al. (2017) · Nature, 548, 206–209</p>
-            <p class="source-desc"><em>Artificial light at night as a new threat to pollination.</em> Nature, 548, 206–209. Montre que la pollinisation nocturne est réduite de 62 % dans les sites éclairés artificiellement. Source pour les impacts des lampadaires sur les insectes nocturnes.</p>
+            <p class="source-desc"><em>Artificial light at night as a new threat to pollination.</em> Démontre que la pollinisation nocturne est réduite de 62 % dans les sites éclairés artificiellement. Source pour les impacts des lampadaires sur les insectes nocturnes.</p>
           </div>
         </div>
 
@@ -248,23 +271,23 @@
           <span class="source-tag tag-biblio">Publication</span>
           <div>
             <p class="source-titre">Boyes, D.H. et al. (2021) · Science Advances, 7, eabi8322</p>
-            <p class="source-desc"><em>Street lighting has detrimental impacts on local insect populations.</em> Science Advances, 7, eabi8322. Démontre que l'éclairage artificiel réduit l'abondance des chenilles de lépidoptères nocturnes de 47 % en haie et de 33 % en accotement herbeux par rapport aux habitats non éclairés. Les effets sont plus prononcés sous LED que sous lampadaires sodium.</p>
+            <p class="source-desc"><em>Street lighting has detrimental impacts on local insect populations.</em> Démontre que l'éclairage artificiel réduit l'abondance des chenilles de lépidoptères nocturnes de 47 % en haie et de 33 % en accotement herbeux. Les effets sont plus prononcés sous LED que sous lampadaires sodium.</p>
           </div>
         </div>
 
         <div class="source-item">
           <span class="source-tag tag-biblio">Publication</span>
           <div>
-            <p class="source-titre">Longcore, T. & Rich, C. (2004)</p>
-            <p class="source-desc"><em>Ecological light pollution.</em> Frontiers in Ecology and the Environment, 2(4), 191–198. Article fondateur du concept de pollution lumineuse écologique, mobilisé pour les impacts sur la biodiversité du Ried et de la Forêt du Rhin.</p>
+            <p class="source-titre">Sanders, D. et al. (2021) · Nature Ecology &amp; Evolution, 5, 74–81</p>
+            <p class="source-desc"><em>A meta-analysis of biological impacts of artificial light at night.</em> Méta-analyse de 126 études montrant que la lumière artificielle nocturne affecte négativement la survie, la reproduction et le comportement des espèces nocturnes. Source pour les impacts sur les insectes.</p>
           </div>
         </div>
 
         <div class="source-item">
           <span class="source-tag tag-biblio">Publication</span>
           <div>
-            <p class="source-titre">Cinzano, P., Falchi, F. & Elvidge, C.D. (2001)</p>
-            <p class="source-desc"><em>The first world atlas of the artificial night sky brightness.</em> Monthly Notices of the Royal Astronomical Society, 328(3), 689–707. Source de la distance de visibilité du halo lumineux (~80 km) citée dans le schéma de l'infographie.</p>
+            <p class="source-titre">Longcore, T. &amp; Rich, C. (2004) · Frontiers in Ecology and the Environment, 2(4), 191–198</p>
+            <p class="source-desc"><em>Ecological light pollution.</em> Article fondateur du concept de pollution lumineuse écologique, mobilisé pour les impacts sur les amphibiens et la biodiversité du Ried et de la Forêt du Rhin.</p>
           </div>
         </div>
 
@@ -272,16 +295,7 @@
           <span class="source-tag tag-biblio">Rapport</span>
           <div>
             <p class="source-titre">CIRC — Centre International de Recherche sur le Cancer (2010)</p>
-            <p class="source-desc"><em>Monographie 98 : Travail posté impliquant des perturbations circadiennes.</em> Presses de l'OMS, Lyon. Classe le travail de nuit comme cancérogène probable (groupe 2A). Source pour la section santé humaine.</p>
-          </div>
-        </div>
-
-        <div class="source-item">
-          <span class="source-tag tag-institution">Institutionnel</span>
-          <div>
-            <p class="source-titre">OFB — Office Français de la Biodiversité, Plan de gestion anguille (2022)</p>
-            <p class="source-desc">Plan de gestion anguille du district Rhin-Meuse. Identifie la lumière artificielle nocturne sur les berges comme pression comportementale sur les couloirs de migration de l'anguille européenne dans l'Ill et le Rhin alsacien.<br>
-            <a href="https://www.ofb.gouv.fr/nos-missions/gestion-des-especes-et-des-habitats/anguille-europeenne" target="_blank">→ ofb.gouv.fr</a></p>
+            <p class="source-desc"><em>Monographie 98 : Travail posté impliquant des perturbations circadiennes.</em> Presses de l'OMS, Lyon. Classe le travail de nuit comme cancérogène probable (groupe 2A). La suppression de la mélatonine par la lumière artificielle nocturne est le mécanisme central identifié.</p>
           </div>
         </div>
       </div>
@@ -299,15 +313,6 @@
             <p class="source-titre">Arrêté du 27 décembre 2018 relatif à la prévention des nuisances lumineuses</p>
             <p class="source-desc">Fixe les prescriptions nationales : extinction des enseignes entre 1h et 6h, températures de couleur maximales, flux lumineux plafonds. Cadre réglementaire de référence pour les politiques locales.<br>
             <a href="https://www.legifrance.gouv.fr/loda/id/JORFTEXT000037864346" target="_blank">→ legifrance.gouv.fr</a></p>
-          </div>
-        </div>
-
-        <div class="source-item">
-          <span class="source-tag tag-loi">Législation</span>
-          <div>
-            <p class="source-titre">Loi n° 2021-1104 du 22 août 2021 — Loi Climat et Résilience</p>
-            <p class="source-desc">Article 47 : renforcement des obligations sur les nuisances lumineuses. Contexte législatif national dans lequel s'inscrit le PCAET de l'Eurométropole.<br>
-            <a href="https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000043956924" target="_blank">→ legifrance.gouv.fr</a></p>
           </div>
         </div>
       </div>
@@ -346,8 +351,7 @@
         </div>
         <p>Les valeurs de radiance nocturne par commune sont construites à partir des publications de Kyba et al. (2017) et Elvidge et al. (2021), qui fournissent les valeurs de référence pour les composites annuels VNP46A4. Les séries temporelles 2012–2022 sont modélisées par interpolation linéaire entre les valeurs 2012 et 2022, avec une légère accélération entre 2015 et 2017 (pic de déploiement des LED) et une baisse en 2020 (effet Covid). Les valeurs sont moyennées sur l'emprise bâtie de chaque commune et peuvent présenter un écart de ±1,5 nW/cm²/sr avec les données pixel brutes. Les données brutes sont librement accessibles sur <a href="https://eogdata.mines.edu/products/vnl/" target="_blank">eogdata.mines.edu</a>.</p>
       </div>
-
-    </div>
+</div>
   </div>
 
   <script>

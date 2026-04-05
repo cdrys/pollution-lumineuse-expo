@@ -37,37 +37,6 @@
     </div>
   </section>
 
-  <!-- Section 1 — Chauves-souris -->
-  <section class="expo-scroll-section" style="border-top:1px solid rgba(74,222,128,0.1);">
-    <div class="expo-scroll-content">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;">
-        <div>
-          <p style="font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--vert-reserve);margin-bottom:.75rem;">
-            <i data-lucide="zap" style="display:inline-block;vertical-align:middle;width:.9rem;height:.9rem;margin-right:.3rem;stroke:var(--vert-reserve);"></i>Chiroptères
-          </p>
-          <div class="expo-big-number" style="color:var(--vert-reserve);font-size:clamp(3rem,8vw,6rem);">5 lux</div>
-          <p class="expo-fact-title">seuil critique pour le Grand Rhinolophe</p>
-          <div class="expo-divider" style="background:var(--vert-reserve);"></div>
-          <p class="expo-fact-text">Au-delà de 5 lux au sol, les chauves-souris <em>light-averse</em> abandonnent leurs routes de vol habituelles. 7 espèces de chiroptères sont présentes dans le corridor rhénan — toutes affectées par l'éclairage des berges de l'Ill et du Rhin.</p>
-          <p style="font-size:.78rem;color:var(--gris-texte);margin-top:.75rem;font-style:italic;">Stone et al. (2009) · LPO Alsace (2015–2022)</p>
-        </div>
-        <div>
-          <div class="expo-species-grid" style="grid-template-columns:1fr;">
-            <div class="expo-species-card">
-              <div class="expo-species-icon"><i data-lucide="zap" style="width:1.4rem;height:1.4rem;stroke:var(--vert-reserve);"></i></div>
-              <div class="expo-species-name">Grand Rhinolophe</div>
-              <div class="expo-species-desc">Déserte les zones éclairées dès 5 lux. Recul documenté par la LPO Alsace sur les berges de l'Ill.</div>
-            </div>
-            <div class="expo-species-card" style="margin-top:.75rem;">
-              <div class="expo-species-icon"><i data-lucide="zap" style="width:1.4rem;height:1.4rem;stroke:var(--ambre);"></i></div>
-              <div class="expo-species-name">Pipistrelle commune</div>
-              <div class="expo-species-desc">S'adapte et se concentre autour des lampadaires — créant une compétition artificielle dans la guilde des chiroptères.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- Section 2 — Insectes -->
   <section class="expo-scroll-section" style="border-top:1px solid rgba(245,200,66,0.1);">
@@ -114,7 +83,7 @@
     </div>
   </section>
 
-  <!-- Section — Faune locale -->
+    <!-- Section — Faune locale -->
   <section class="expo-scroll-section" style="border-top:1px solid rgba(74,222,128,0.12);">
     <div class="expo-scroll-content">
       <p style="font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--vert-reserve);margin-bottom:.75rem;text-align:center;">
@@ -123,47 +92,127 @@
       <p class="expo-fact-title" style="text-align:center;margin-bottom:.75rem;">Des espèces alsaciennes directement touchées</p>
       <div class="expo-divider" style="background:var(--vert-reserve);margin:0 auto 2rem;"></div>
 
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;">
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;">
 
-        <!-- Amphibiens -->
-        <div class="expo-species-card" style="border-color:rgba(103,232,249,0.3);padding:1.5rem;">
-          <div style="font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:.6rem;display:flex;align-items:center;gap:.4rem;">
-            <i data-lucide="droplets" style="width:.85rem;height:.85rem;stroke:var(--cyan);"></i>
-            Amphibiens
-          </div>
-          <div class="expo-species-name" style="font-size:.82rem;margin-bottom:.5rem;">Grenouilles, tritons, crapauds</div>
-          <div class="expo-species-desc" style="line-height:1.6;">
-            Leur migration vers les mares est déclenchée par la photopériode — la lumière artificielle avance ou retarde ce signal saisonnier. Sur les berges de l'Ill entre Illkirch et Ostwald, les concentrations de tritons et de grenouilles rousses ont <strong style="color:var(--blanc-etoile);">sensiblement diminué</strong> depuis l'éclairage des promenades riveraines.
+        <!-- Chauves-souris -->
+        <div class="expo-species-card" style="border-color:rgba(74,222,128,0.3);padding:1.4rem;text-align:center;">
+          <div style="color:var(--vert-reserve);margin-bottom:.75rem;display:flex;justify-content:center;"><svg viewBox="0 0 64 64" width="56" height="56" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Corps central -->
+  <ellipse cx="32" cy="36" rx="7" ry="9" fill="currentColor" opacity=".9"/>
+  <!-- Tête -->
+  <circle cx="32" cy="26" r="6" fill="currentColor" opacity=".9"/>
+  <!-- Oreilles pointues -->
+  <path d="M27 22 L22 12 L30 20Z" fill="currentColor" opacity=".9"/>
+  <path d="M37 22 L42 12 L34 20Z" fill="currentColor" opacity=".9"/>
+  <!-- Yeux -->
+  <circle cx="29" cy="25" r="1.5" fill="#0d0d2b"/>
+  <circle cx="35" cy="25" r="1.5" fill="#0d0d2b"/>
+  <!-- Grandes ailes membraneuses -->
+  <path d="M25 30 Q16 22 6 26 Q4 32 10 34 Q16 36 22 34Z" fill="currentColor" opacity=".8"/>
+  <path d="M39 30 Q48 22 58 26 Q60 32 54 34 Q48 36 42 34Z" fill="currentColor" opacity=".8"/>
+  <!-- Nervures ailes gauche -->
+  <path d="M25 30 Q18 28 10 30" stroke="#0d0d2b" stroke-width="1" opacity=".4"/>
+  <path d="M24 32 Q16 32 8 34" stroke="#0d0d2b" stroke-width="1" opacity=".4"/>
+  <!-- Nervures ailes droite -->
+  <path d="M39 30 Q46 28 54 30" stroke="#0d0d2b" stroke-width="1" opacity=".4"/>
+  <path d="M40 32 Q48 32 56 34" stroke="#0d0d2b" stroke-width="1" opacity=".4"/>
+  <!-- Pattes accrochées -->
+  <path d="M29 45 L26 54 L30 52 L28 58" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M35 45 L38 54 L34 52 L36 58" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+</svg></div>
+          <div class="expo-species-name" style="font-size:.78rem;margin-bottom:.5rem;text-align:left;">Chauves-souris · 7 espèces</div>
+          <div class="expo-species-desc" style="line-height:1.6;text-align:left;">
+            Au-delà de <strong style="color:var(--blanc-etoile);">5 lux</strong> au sol, les espèces <em>light-averse</em> comme le Grand Rhinolophe abandonnent leurs routes de vol. Les berges de l'Ill et du Rhin sont directement touchées.
           </div>
         </div>
 
-        <!-- Rapaces nocturnes -->
-        <div class="expo-species-card" style="border-color:rgba(245,200,66,0.3);padding:1.5rem;">
-          <div style="font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--or);margin-bottom:.6rem;display:flex;align-items:center;gap:.4rem;">
-            <i data-lucide="eye" style="width:.85rem;height:.85rem;stroke:var(--or);"></i>
-            Rapaces nocturnes
-          </div>
-          <div class="expo-species-name" style="font-size:.82rem;margin-bottom:.5rem;">Effraie des clochers · Chevêche d'Athéna</div>
-          <div class="expo-species-desc" style="line-height:1.6;">
-            L'Effraie chasse à vue dans le noir absolu — un halo trop élevé masque ses proies au sol. La Chevêche, sédentaire et territoriale, est pénalisée par l'éclairage des voies agricoles dans les communes périphériques comme <strong style="color:var(--blanc-etoile);">Eschau et Plobsheim</strong>.
+        <!-- Grenouilles -->
+        <div class="expo-species-card" style="border-color:rgba(103,232,249,0.3);padding:1.4rem;text-align:center;">
+          <div style="color:var(--cyan);margin-bottom:.75rem;display:flex;justify-content:center;"><svg viewBox="0 0 64 64" width="56" height="56" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Corps -->
+  <ellipse cx="32" cy="38" rx="14" ry="10" fill="currentColor" opacity=".9"/>
+  <!-- Tête -->
+  <ellipse cx="32" cy="26" rx="10" ry="8" fill="currentColor" opacity=".9"/>
+  <!-- Yeux -->
+  <circle cx="26" cy="22" r="4" fill="currentColor"/>
+  <circle cx="38" cy="22" r="4" fill="currentColor"/>
+  <circle cx="26" cy="21" r="1.5" fill="#0d0d2b"/>
+  <circle cx="38" cy="21" r="1.5" fill="#0d0d2b"/>
+  <!-- Pattes avant -->
+  <path d="M22 34 Q14 32 10 36 M22 34 Q16 38 12 44" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M42 34 Q50 32 54 36 M42 34 Q48 38 52 44" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Pattes arrière -->
+  <path d="M24 46 Q18 52 14 54 M24 46 Q20 56 16 60" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M40 46 Q46 52 50 54 M40 46 Q44 56 48 60" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+</svg></div>
+          <div class="expo-species-name" style="font-size:.78rem;margin-bottom:.5rem;text-align:left;">Amphibiens</div>
+          <div class="expo-species-desc" style="line-height:1.6;text-align:left;">
+            Leur migration vers les mares est déclenchée par la photopériode. La lumière artificielle perturbe ce signal. Sur les berges de l'Ill entre <strong style="color:var(--blanc-etoile);">Illkirch et Ostwald</strong>, les concentrations ont sensiblement diminué.
           </div>
         </div>
 
-        <!-- Cigogne blanche -->
-        <div class="expo-species-card" style="border-color:rgba(167,139,250,0.3);padding:1.5rem;">
-          <div style="font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:#a78bfa;margin-bottom:.6rem;display:flex;align-items:center;gap:.4rem;">
-            <i data-lucide="feather" style="width:.85rem;height:.85rem;stroke:#a78bfa;"></i>
-            Cigogne blanche
+        <!-- Rapaces -->
+        <div class="expo-species-card" style="border-color:rgba(245,200,66,0.3);padding:1.4rem;text-align:center;">
+          <div style="color:var(--or);margin-bottom:.75rem;display:flex;justify-content:center;"><svg viewBox="0 0 64 64" width="56" height="56" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Corps -->
+  <ellipse cx="32" cy="36" rx="9" ry="13" fill="currentColor" opacity=".9"/>
+  <!-- Tête -->
+  <circle cx="32" cy="20" r="8" fill="currentColor" opacity=".9"/>
+  <!-- Bec crochu -->
+  <path d="M32 24 L28 28 L32 27 Z" fill="#0d0d2b"/>
+  <!-- Yeux -->
+  <circle cx="29" cy="19" r="2.5" fill="#0d0d2b"/>
+  <circle cx="35" cy="19" r="2.5" fill="#0d0d2b"/>
+  <circle cx="29" cy="18.5" r="1" fill="currentColor" opacity=".3"/>
+  <circle cx="35" cy="18.5" r="1" fill="currentColor" opacity=".3"/>
+  <!-- Ailes déployées -->
+  <path d="M23 32 Q10 24 4 28 Q8 36 16 34 Q20 38 23 36Z" fill="currentColor" opacity=".85"/>
+  <path d="M41 32 Q54 24 60 28 Q56 36 48 34 Q44 38 41 36Z" fill="currentColor" opacity=".85"/>
+  <!-- Queue -->
+  <path d="M27 48 L32 58 L37 48" fill="currentColor" opacity=".8"/>
+  <!-- Serres -->
+  <path d="M27 49 Q22 52 20 56 M27 49 Q24 54 22 58" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M37 49 Q42 52 44 56 M37 49 Q40 54 42 58" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+</svg></div>
+          <div class="expo-species-name" style="font-size:.78rem;margin-bottom:.5rem;text-align:left;">Rapaces nocturnes</div>
+          <div class="expo-species-desc" style="line-height:1.6;text-align:left;">
+            L'Effraie des clochers chasse à vue dans le noir absolu — un halo trop élevé masque ses proies. La Chevêche d'Athéna est pénalisée par l'éclairage des voies agricoles à <strong style="color:var(--blanc-etoile);">Eschau et Plobsheim</strong>.
           </div>
-          <div class="expo-species-name" style="font-size:.82rem;margin-bottom:.5rem;">Ciconia ciconia · ~800 couples en Alsace</div>
-          <div class="expo-species-desc" style="line-height:1.6;">
-            Espèce emblématique alsacienne, elle migre de nuit sur le couloir rhénan. Les halos lumineux de Strasbourg perturbent ses vols migratoires nocturnes. Plusieurs dizaines de couples nichent dans l'Eurométropole même.
+        </div>
+
+        <!-- Cigogne -->
+        <div class="expo-species-card" style="border-color:rgba(167,139,250,0.3);padding:1.4rem;text-align:center;">
+          <div style="color:#a78bfa;margin-bottom:.75rem;display:flex;justify-content:center;"><svg viewBox="0 0 64 64" width="56" height="56" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Long cou -->
+  <path d="M32 36 Q30 28 28 20 Q27 14 30 10" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+  <!-- Tête -->
+  <circle cx="30" cy="8" r="5" fill="currentColor"/>
+  <!-- Long bec -->
+  <path d="M30 8 L18 6 L30 10Z" fill="currentColor" opacity=".9"/>
+  <!-- Corps -->
+  <ellipse cx="34" cy="40" rx="11" ry="8" fill="currentColor" opacity=".9"/>
+  <!-- Aile -->
+  <path d="M30 38 Q20 34 14 40 Q18 46 26 44Z" fill="currentColor" opacity=".8"/>
+  <path d="M38 38 Q48 32 54 36 Q52 44 44 44Z" fill="currentColor" opacity=".75"/>
+  <!-- Longues pattes -->
+  <line x1="29" y1="48" x2="25" y2="62" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  <line x1="37" y1="48" x2="41" y2="62" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  <!-- Pieds -->
+  <path d="M25 62 L20 64 M25 62 L25 65 M25 62 L30 64" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M41 62 L36 64 M41 62 L41 65 M41 62 L46 64" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+</svg></div>
+          <div class="expo-species-name" style="font-size:.78rem;margin-bottom:.5rem;text-align:left;">Cigogne blanche · ~800 couples</div>
+          <div class="expo-species-desc" style="line-height:1.6;text-align:left;">
+            Espèce emblématique alsacienne, elle migre de nuit sur le couloir rhénan. Les halos de Strasbourg perturbent ses vols nocturnes. Plusieurs dizaines de couples nichent dans <strong style="color:var(--blanc-etoile);">l'Eurométropole</strong>.
           </div>
         </div>
 
       </div>
     </div>
   </section>
+
+
+
 
   <!-- Section 4 — Corridor rhénan -->
   <section class="expo-scroll-section" style="border-top:1px solid rgba(74,222,128,0.12);">

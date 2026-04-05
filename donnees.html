@@ -97,6 +97,8 @@
     #data-info-close:hover { color: var(--blanc-etoile); }
   </style>
 </head><body>
+  <div id="expo-scroll-progress"></div>
+
   <canvas id="sf" style="position:fixed;inset:0;z-index:0;pointer-events:none;"></canvas>
   <nav class="expo-nav">
     <div class="expo-nav-logo"><i data-lucide="star"></i>
@@ -428,4 +430,11 @@
     }
   </script>
 
+  <script>
+    const bar = document.getElementById('expo-scroll-progress');
+    window.addEventListener('scroll',()=>{
+      const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
+      bar.style.width = Math.min(100,pct)+'%';
+    });
+  </script>
 </body></html>

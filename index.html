@@ -51,6 +51,8 @@
   </style>
 </head>
 <body>
+  <div id="expo-scroll-progress"></div>
+
 
   <!-- Bulles séquentielles -->
   <div class="seq-bubble left" id="bub-0" style="top:45%;border-color:rgba(245,200,66,0.35);background:rgba(10,10,30,0.88);">
@@ -272,5 +274,12 @@
   </script>
 
   <script>document.addEventListener("DOMContentLoaded",()=>lucide.createIcons());</script>
+  <script>
+    const bar = document.getElementById('expo-scroll-progress');
+    window.addEventListener('scroll',()=>{
+      const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
+      bar.style.width = Math.min(100,pct)+'%';
+    });
+  </script>
 </body>
 </html>

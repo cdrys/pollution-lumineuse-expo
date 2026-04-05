@@ -150,19 +150,19 @@
   <div class="page-wrapper" style="position:relative;z-index:1;">
     <div class="sources-wrap">
       <div style="text-align:center;padding:3rem 0 2.5rem;">
-        <p class="section-tag">Références et traçabilité</p>
-        <h1 class="section-titre">Sources et bibliographie</h1>
-        <p style="color:var(--gris-texte);font-size:.95rem;max-width:600px;margin:.75rem auto 0;">Données satellitaires, sources institutionnelles, références scientifiques, textes législatifs et outils mobilisés pour la construction de ce site.</p>
+        <p class="section-tag">Références bibliographiques</p>
+        <h1 class="section-titre" style="font-size:clamp(1rem,2.5vw,1.4rem);max-width:720px;margin:0 auto;">Données satellitaires, sources institutionnelles, références scientifiques, textes législatifs et outils mobilisés pour la construction de ce site.</h1>
       </div>
 
 
       <div class="filter-bar">
-        <button class="filter-btn active" onclick="filterSources('all', this)">Tout</button>
+        <button class="filter-btn active" onclick="filterSources('all', this)">Toutes les données</button>
         <button class="filter-btn" onclick="filterSources('donnees', this)" style="--fc:#67e8f9;">Données</button>
-        <button class="filter-btn" onclick="filterSources('institution', this)" style="--fc:#4ade80;">Institutionnel</button>
-        <button class="filter-btn" onclick="filterSources('biblio', this)" style="--fc:#f5c842;">Publications</button>
-        <button class="filter-btn" onclick="filterSources('loi', this)" style="--fc:#a78bfa;">Législation</button>
+        <button class="filter-btn" onclick="filterSources('institution', this)" style="--fc:#4ade80;">Institutionnelles</button>
+        <button class="filter-btn" onclick="filterSources('biblio', this)" style="--fc:#f5c842;">Scientifiques</button>
+        <button class="filter-btn" onclick="filterSources('loi', this)" style="--fc:#a78bfa;">Législatives</button>
         <button class="filter-btn" onclick="filterSources('outil', this)" style="--fc:#fb923c;">Outils</button>
+        <button class="filter-btn" onclick="filterSources('metho', this)" style="--fc:#f472b6;">Méthodologie</button>
       </div>
       <!-- Données satellitaires -->
       <div class="sources-group" data-cat="donnees">
@@ -216,7 +216,7 @@
         </div>
 
         <div class="source-item">
-          <span class="source-tag tag-institution">Institutionnel</span>
+          <span class="source-tag tag-institution">Institutionnelles</span>
           <div>
             <p class="source-titre">ANPCEN — Association Nationale pour la Protection du Ciel et de l'Environnement Nocturnes</p>
             <p class="source-desc">Données sur les communes alsaciennes engagées dans des politiques d'extinction nocturne, label "Villes et villages étoilés", indicateurs nationaux.<br>
@@ -225,7 +225,7 @@
         </div>
 
         <div class="source-item">
-          <span class="source-tag tag-institution">Institutionnel</span>
+          <span class="source-tag tag-institution">Institutionnelles</span>
           <div>
             <p class="source-titre">Eurométropole de Strasbourg — PCAET</p>
             <p class="source-desc">Plan Climat Air Énergie Territorial. Source des données sur la consommation électrique de l'éclairage public (40 % de la consommation communale), les objectifs de réduction et le bilan de la transition LED.<br>
@@ -234,7 +234,7 @@
         </div>
 
         <div class="source-item">
-          <span class="source-tag tag-institution">Institutionnel</span>
+          <span class="source-tag tag-institution">Institutionnelles</span>
           <div>
             <p class="source-titre">LPO Alsace — Ligue pour la Protection des Oiseaux</p>
             <p class="source-desc">Documentation des impacts de la pollution lumineuse sur les espèces nocturnes du corridor rhénan : chauves-souris, cigogne blanche (~800 couples en Alsace), rapaces. Études de terrain sur le territoire de l'Eurométropole.<br>
@@ -243,7 +243,7 @@
         </div>
 
         <div class="source-item">
-          <span class="source-tag tag-institution">Institutionnel</span>
+          <span class="source-tag tag-institution">Institutionnelles</span>
           <div>
             <p class="source-titre">OFB — Office Français de la Biodiversité, Plan de gestion anguille (2022)</p>
             <p class="source-desc">Plan de gestion anguille du district Rhin-Meuse. Identifie la lumière artificielle nocturne sur les berges comme pression comportementale sur les couloirs de migration de l'anguille européenne dans l'Ill et le Rhin alsacien.<br>
@@ -356,7 +356,7 @@
         </div>
 
         <div class="source-item">
-          <span class="source-tag tag-loi">Législation</span>
+          <span class="source-tag tag-loi">Législatives</span>
           <div>
             <p class="source-titre">Arrêté du 27 décembre 2018 relatif à la prévention des nuisances lumineuses</p>
             <p class="source-desc">Fixe les prescriptions nationales : extinction des enseignes entre 1h et 6h, températures de couleur maximales, flux lumineux plafonds. Cadre réglementaire de référence pour les politiques locales.<br>
@@ -392,7 +392,7 @@
       </div>
 
       <!-- Note méthodologique -->
-      <div class="note-metho">
+      <div class="note-metho sources-group" data-cat="metho">
         <div class="note-metho-label">
           Note méthodologique
         </div>

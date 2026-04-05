@@ -17,9 +17,11 @@
     .tl-progress{height:100%;width:0%;background:linear-gradient(90deg,var(--cyan),var(--vert-reserve));border-radius:2px;transition:width .4s ease;}
     .tl-items{display:flex;justify-content:space-between;}
     .tl-item{flex:1;display:flex;flex-direction:column;align-items:center;position:relative;cursor:pointer;}
-    .tl-dot{width:3rem;height:3rem;border-radius:50%;background:rgba(13,13,43,.95);border:2px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:.9rem;color:var(--gris-texte);z-index:2;transition:all .3s;}
-    .tl-item.active .tl-dot{border-color:var(--vert-reserve);color:var(--vert-reserve);box-shadow:0 0 16px rgba(74,222,128,.3);}
-    .tl-item.done .tl-dot{background:#4ade80;border-color:#4ade80;color:#0d0d2b;}
+    .tl-dot{width:3rem;height:3rem;border-radius:50%;background:rgba(13,13,43,.95);border:2px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;z-index:2;transition:all .3s;}
+    .tl-item.active .tl-dot{border-color:var(--dot-col);box-shadow:0 0 16px color-mix(in srgb,var(--dot-col) 40%,transparent);background:rgba(13,13,43,.98);}
+    .tl-item.active .tl-dot i{stroke:var(--dot-col) !important;}
+    .tl-item.done .tl-dot{background:var(--dot-col);border-color:var(--dot-col);}
+    .tl-item.done .tl-dot i{stroke:#0d0d2b !important;}
     .tl-lbl{font-family:'Space Mono',monospace;font-size:.58rem;color:var(--gris-texte);text-align:center;margin-top:.6rem;max-width:100px;line-height:1.35;transition:color .3s;}
     .tl-item.active .tl-lbl,.tl-item.done .tl-lbl{color:var(--blanc-etoile);}
     .tl-panel{min-height:80px;margin-top:1.5rem;background:rgba(13,13,43,.8);border:1px solid rgba(74,222,128,.2);border-radius:10px;padding:1.25rem 1.5rem;opacity:0;transform:translateY(8px);transition:opacity .35s,transform .35s;}
@@ -86,11 +88,36 @@
     <div class="tl-outer">
       <div class="tl-track"><div class="tl-progress" id="tlprog"></div></div>
       <div class="tl-items">
-        <div class="tl-item active" onclick="selectTl(0)"><div class="tl-dot">①</div><div class="tl-lbl">Température de couleur</div></div>
-        <div class="tl-item" onclick="selectTl(1)"><div class="tl-dot">②</div><div class="tl-lbl">Extinction nocturne</div></div>
-        <div class="tl-item" onclick="selectTl(2)"><div class="tl-dot">③</div><div class="tl-lbl">Effet rebond</div></div>
-        <div class="tl-item" onclick="selectTl(3)"><div class="tl-dot">④</div><div class="tl-lbl">Zones tampon</div></div>
-        <div class="tl-item" onclick="selectTl(4)"><div class="tl-dot">⑤</div><div class="tl-lbl">Suivi VIIRS</div></div>
+        <div class="tl-item active" onclick="selectTl(0)">
+          <div class="tl-dot" style="--dot-col:#67e8f9;">
+            <i data-lucide="thermometer" style="width:1.2rem;height:1.2rem;stroke:#67e8f9;transition:stroke .3s;"></i>
+          </div>
+          <div class="tl-lbl">Température de couleur</div>
+        </div>
+<div class="tl-item" onclick="selectTl(1)">
+          <div class="tl-dot" style="--dot-col:#4ade80;">
+            <i data-lucide="moon" style="width:1.2rem;height:1.2rem;stroke:#4ade80;transition:stroke .3s;"></i>
+          </div>
+          <div class="tl-lbl">Extinction 1h–5h</div>
+        </div>
+<div class="tl-item" onclick="selectTl(2)">
+          <div class="tl-dot" style="--dot-col:#f5c842;">
+            <i data-lucide="trending-down" style="width:1.2rem;height:1.2rem;stroke:#f5c842;transition:stroke .3s;"></i>
+          </div>
+          <div class="tl-lbl">Effet rebond</div>
+        </div>
+<div class="tl-item" onclick="selectTl(3)">
+          <div class="tl-dot" style="--dot-col:#a78bfa;">
+            <i data-lucide="trees" style="width:1.2rem;height:1.2rem;stroke:#a78bfa;transition:stroke .3s;"></i>
+          </div>
+          <div class="tl-lbl">Zones tampon</div>
+        </div>
+<div class="tl-item" onclick="selectTl(4)">
+          <div class="tl-dot" style="--dot-col:#fb923c;">
+            <i data-lucide="satellite" style="width:1.2rem;height:1.2rem;stroke:#fb923c;transition:stroke .3s;"></i>
+          </div>
+          <div class="tl-lbl">Suivi VIIRS</div>
+        </div>
       </div>
       <div class="tl-panel show" id="tlpanel">
         <div class="tl-panel-title" id="tlptitle">① Limiter la température de couleur</div>
@@ -128,34 +155,6 @@
         <div class="ccard-desc" style="color:#a5b4ce;">VIIRS NASA comme indicateur officiel du PCAET — suivi objectif et indépendant.</div>
       </div>
     </div>
-
-    <!-- ═══ OPTION F ═══ -->
-    <p class="opt-label">Option F — Cartes retournables (survoler)</p>
-    <p class="opt-sub">Face recto : numéro et titre · Face verso : explication</p>
-    <div class="fgrid">
-      <div class="fcard-wrap"><div class="fcard"><div class="fface ffront"><div class="fnum">①</div><div class="ftitle">Température de couleur</div></div><div class="fface fback"><i data-lucide="thermometer" class="ficon"></i><div class="fdesc">Imposer &lt; 2700 K pour tous les nouveaux marchés LED, en particulier près du corridor rhénan.</div></div></div></div>
-      <div class="fcard-wrap"><div class="fcard"><div class="fface ffront"><div class="fnum">②</div><div class="ftitle">Extinction 1h–5h</div></div><div class="fface fback"><i data-lucide="moon" class="ficon"></i><div class="fdesc">Étendre l'extinction nocturne aux zones résidentielles de la première couronne.</div></div></div></div>
-      <div class="fcard-wrap"><div class="fcard"><div class="fface ffront"><div class="fnum">③</div><div class="ftitle">Effet rebond</div></div><div class="fface fback"><i data-lucide="trending-down" class="ficon"></i><div class="fdesc">Encadrer les points lumineux dans les nouvelles zones d'aménagement.</div></div></div></div>
-      <div class="fcard-wrap"><div class="fcard"><div class="fface ffront"><div class="fnum">④</div><div class="ftitle">Zones tampon</div></div><div class="fface fback"><i data-lucide="trees" class="ficon"></i><div class="fdesc">Corridors sombres entre zones bâties et Forêt du Rhin, prescrits dans les PLU.</div></div></div></div>
-      <div class="fcard-wrap"><div class="fcard"><div class="fface ffront"><div class="fnum">⑤</div><div class="ftitle">Suivi VIIRS</div></div><div class="fface fback"><i data-lucide="satellite" class="ficon"></i><div class="fdesc">VIIRS NASA comme indicateur officiel du PCAET — suivi objectif annuel.</div></div></div></div>
-    </div>
-
-    <!-- ═══ OPTION G ═══ -->
-    <p class="opt-label">Option G — Slider une carte à la fois</p>
-    <p class="opt-sub">Navigation par flèches ou points</p>
-    <div class="slider-wrap">
-      <div class="slider-track" id="strack">
-        <div class="slide"><div class="slide-num">01</div><i data-lucide="thermometer" class="slide-icon"></i><div class="slide-body"><div class="slide-title">Limiter la température de couleur</div><div class="slide-desc">Imposer &lt; 2700 K pour tous les nouveaux marchés LED, en particulier dans les communes proches du corridor rhénan.</div></div></div>
-        <div class="slide"><div class="slide-num">02</div><i data-lucide="moon" class="slide-icon"></i><div class="slide-body"><div class="slide-title">Extinction 1h–5h généralisée</div><div class="slide-desc">Étendre l'extinction nocturne partielle, déjà pratiquée dans les communes rurales, aux zones résidentielles de la première couronne.</div></div></div>
-        <div class="slide"><div class="slide-num">03</div><i data-lucide="trending-down" class="slide-icon"></i><div class="slide-body"><div class="slide-title">Contrôler l'effet rebond</div><div class="slide-desc">Encadrer le nombre de points lumineux dans les nouvelles zones d'aménagement pour éviter que les économies LED ne soient absorbées.</div></div></div>
-        <div class="slide"><div class="slide-num">04</div><i data-lucide="trees" class="slide-icon"></i><div class="slide-body"><div class="slide-title">Zones tampon écologiques</div><div class="slide-desc">Créer des corridors sombres entre les zones bâties et la Forêt du Rhin, avec des prescriptions strictes dans les PLU communaux.</div></div></div>
-        <div class="slide"><div class="slide-num">05</div><i data-lucide="satellite" class="slide-icon"></i><div class="slide-body"><div class="slide-title">Suivi VIIRS annuel</div><div class="slide-desc">Intégrer les données VIIRS NASA comme indicateur officiel du PCAET, permettant un suivi objectif indépendant des déclarations d'économies d'énergie.</div></div></div>
-      </div>
-    </div>
-    <div class="slider-nav">
-      <button class="slider-btn" onclick="slide(-1)">←</button>
-      <div class="slider-dots" id="sdots">
-        <div class="sdot on" onclick="goSlide(0)"></div>
         <div class="sdot" onclick="goSlide(1)"></div>
         <div class="sdot" onclick="goSlide(2)"></div>
         <div class="sdot" onclick="goSlide(3)"></div>
@@ -191,8 +190,10 @@
       panel.classList.remove('show');
       setTimeout(() => {
         document.getElementById('tlptitle').textContent = TL_DATA[idx][0];
+        document.getElementById('tlptitle').style.color = TL_DATA[idx][2];
         document.getElementById('tlpdesc').textContent = TL_DATA[idx][1];
         panel.classList.add('show');
+        panel.style.borderColor = TL_DATA[idx][2].replace(')', ',0.4)').replace('rgb', 'rgba') || TL_DATA[idx][2]+'66';
       }, 200);
       tlCurrent = idx;
     }

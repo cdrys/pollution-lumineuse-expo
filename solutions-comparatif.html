@@ -17,12 +17,12 @@
     .tl-progress{height:100%;width:0%;background:linear-gradient(90deg,var(--cyan),var(--vert-reserve));border-radius:2px;transition:width .4s ease;}
     .tl-items{display:flex;justify-content:space-between;}
     .tl-item{flex:1;display:flex;flex-direction:column;align-items:center;position:relative;cursor:pointer;}
-    .tl-dot{width:3rem;height:3rem;border-radius:50%;background:rgba(13,13,43,.95);border:2px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;z-index:2;transition:all .3s;}
+    .tl-dot{width:3.8rem;height:3.8rem;border-radius:50%;background:rgba(13,13,43,.95);border:2px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;z-index:2;transition:all .3s;}
     .tl-item.active .tl-dot{border-color:var(--dot-col);box-shadow:0 0 16px color-mix(in srgb,var(--dot-col) 40%,transparent);background:rgba(13,13,43,.98);}
     .tl-item.active .tl-dot i{stroke:var(--dot-col) !important;}
-    .tl-item.done .tl-dot{background:var(--dot-col);border-color:var(--dot-col);}
-    .tl-item.done .tl-dot i{stroke:#0d0d2b !important;}
-    .tl-lbl{font-family:'Space Mono',monospace;font-size:.58rem;color:var(--gris-texte);text-align:center;margin-top:.6rem;max-width:100px;line-height:1.35;transition:color .3s;}
+    .tl-item.done .tl-dot{background:transparent;border-color:var(--dot-col);opacity:.65;}
+    .tl-item.done .tl-dot i{stroke:var(--dot-col) !important;}
+    .tl-lbl{font-family:'Space Mono',monospace;font-size:.65rem;color:var(--gris-texte);text-align:center;margin-top:.6rem;max-width:100px;line-height:1.35;transition:color .3s;}
     .tl-item.active .tl-lbl,.tl-item.done .tl-lbl{color:var(--blanc-etoile);}
     .tl-panel{min-height:80px;margin-top:1.5rem;background:rgba(13,13,43,.8);border:1px solid rgba(74,222,128,.2);border-radius:10px;padding:1.25rem 1.5rem;opacity:0;transform:translateY(8px);transition:opacity .35s,transform .35s;}
     .tl-panel.show{opacity:1;transform:translateY(0);}
@@ -86,35 +86,35 @@
     <p class="opt-label">Option B — Timeline cliquable</p>
     <p class="opt-sub">Cliquez sur chaque étape pour révéler l'explication</p>
     <div class="tl-outer">
-      <div class="tl-track"><div class="tl-progress" id="tlprog"></div></div>
+      <div class="tl-track"><div id="tlprog" style="height:100%;display:flex;border-radius:2px;overflow:hidden;width:100%;"></div></div>
       <div class="tl-items">
         <div class="tl-item active" onclick="selectTl(0)">
           <div class="tl-dot" style="--dot-col:#67e8f9;">
-            <i data-lucide="thermometer" style="width:1.2rem;height:1.2rem;stroke:#67e8f9;transition:stroke .3s;"></i>
+            <i data-lucide="thermometer" style="width:1.5rem;height:1.5rem;stroke:#67e8f9;transition:stroke .3s;"></i>
           </div>
           <div class="tl-lbl">Température de couleur</div>
         </div>
 <div class="tl-item" onclick="selectTl(1)">
           <div class="tl-dot" style="--dot-col:#4ade80;">
-            <i data-lucide="moon" style="width:1.2rem;height:1.2rem;stroke:#4ade80;transition:stroke .3s;"></i>
+            <i data-lucide="moon" style="width:1.5rem;height:1.5rem;stroke:#4ade80;transition:stroke .3s;"></i>
           </div>
           <div class="tl-lbl">Extinction 1h–5h</div>
         </div>
 <div class="tl-item" onclick="selectTl(2)">
           <div class="tl-dot" style="--dot-col:#f5c842;">
-            <i data-lucide="trending-down" style="width:1.2rem;height:1.2rem;stroke:#f5c842;transition:stroke .3s;"></i>
+            <i data-lucide="trending-down" style="width:1.5rem;height:1.5rem;stroke:#f5c842;transition:stroke .3s;"></i>
           </div>
           <div class="tl-lbl">Effet rebond</div>
         </div>
 <div class="tl-item" onclick="selectTl(3)">
           <div class="tl-dot" style="--dot-col:#a78bfa;">
-            <i data-lucide="trees" style="width:1.2rem;height:1.2rem;stroke:#a78bfa;transition:stroke .3s;"></i>
+            <i data-lucide="trees" style="width:1.5rem;height:1.5rem;stroke:#a78bfa;transition:stroke .3s;"></i>
           </div>
           <div class="tl-lbl">Zones tampon</div>
         </div>
 <div class="tl-item" onclick="selectTl(4)">
           <div class="tl-dot" style="--dot-col:#fb923c;">
-            <i data-lucide="satellite" style="width:1.2rem;height:1.2rem;stroke:#fb923c;transition:stroke .3s;"></i>
+            <i data-lucide="satellite" style="width:1.5rem;height:1.5rem;stroke:#fb923c;transition:stroke .3s;"></i>
           </div>
           <div class="tl-lbl">Suivi VIIRS</div>
         </div>
@@ -175,16 +175,39 @@
       ['⑤ Suivi VIIRS annuel', 'Intégrer les données VIIRS NASA comme indicateur officiel du PCAET, permettant un suivi objectif indépendant.'],
     ];
     let tlCurrent = 0;
-    function selectTl(idx) {
+    function selectTl(n) {
       const items = document.querySelectorAll('.tl-item');
       items.forEach((el,i) => {
-        el.classList.toggle('done', i < idx);
-        el.classList.toggle('active', i === idx);
-        el.classList.remove('done');
-        if (i < idx) el.classList.add('done');
-        if (i === idx) el.classList.add('active');
-        else el.classList.remove('active');
+        el.classList.remove('done','active');
+        if (i < n) el.classList.add('done');
+        if (i === n) el.classList.add('active');
       });
+      const COLS = ['#67e8f9','#4ade80','#f5c842','#a78bfa','#fb923c'];
+      const prog = document.getElementById('tlprog');
+      prog.innerHTML = '';
+      if (n > 0) {
+        const filled = document.createElement('div');
+        // Show gradient of colors up to n
+        const grad = 'linear-gradient(90deg,' + COLS.slice(0,n).join(',') + ')';
+        filled.style.cssText = 'flex:' + n + ';background:' + grad + ';border-radius:2px;';
+        prog.appendChild(filled);
+      }
+      if (n < 4) {
+        const empty = document.createElement('div');
+        empty.style.cssText = 'flex:' + (4-n) + ';background:rgba(255,255,255,.07);';
+        prog.appendChild(empty);
+      }
+      const panel = document.getElementById('tlpanel');
+      panel.classList.remove('show');
+      setTimeout(function() {
+        document.getElementById('tlptitle').textContent = TL_DATA[n][0];
+        document.getElementById('tlptitle').style.color = TL_DATA[n][2];
+        document.getElementById('tlpdesc').textContent = TL_DATA[n][1];
+        panel.style.borderColor = TL_DATA[n][2] + '88';
+        panel.classList.add('show');
+      }, 200);
+      tlCurrent = n;
+    });
       document.getElementById('tlprog').style.width = (idx / 4 * 100) + '%';
       const panel = document.getElementById('tlpanel');
       panel.classList.remove('show');

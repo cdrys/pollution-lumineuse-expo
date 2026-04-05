@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/expo.css" />
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-  
 </head>
 <body>
   <div id="expo-scroll-progress"></div>
@@ -189,198 +188,80 @@
       <p class="expo-fact-title">Le risque de troubles du sommeil est trois fois plus élevé dans les zones très éclairées</p>
       <div class="expo-divider" style="background:#a78bfa;margin:1.25rem auto;"></div>
       <p class="expo-fact-text" style="margin:0 auto;">La lumière artificielle nocturne supprime la production de mélatonine, perturbant les cycles circadiens. La pollution lumineuse extérieure affecte le sommeil de centaines de milliers de résidents de l'Eurométropole.</p>
-      <!-- Solutions -->
+      <!-- Solutions intégrées -->
       <div style="margin-top:2.5rem;">
         <p style="font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--vert-reserve);text-align:center;margin-bottom:1.5rem;">
           <i data-lucide="check-circle-2" style="display:inline-block;vertical-align:middle;width:.9rem;height:.9rem;margin-right:.3rem;stroke:var(--vert-reserve);"></i>
           Des solutions existent
         </p>
         <div style="max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:.85rem;">
-          <div style="display:flex;gap:.75rem;align-items:flex-start;"><span style="color:var(--vert-reserve);flex-shrink:0;font-size:1rem;">①</span><div><strong style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--blanc-etoile);display:block;margin-bottom:.2rem;">LIMITER LA TEMPÉRATURE DE COULEUR</strong><span style="font-size:.88rem;color:var(--gris-texte);">Imposer &lt; 2700 K pour tous les nouveaux marchés LED, en particulier dans les communes proches du corridor rhénan.</span></div></div>
-          <div style="display:flex;gap:.75rem;align-items:flex-start;"><span style="color:var(--vert-reserve);flex-shrink:0;font-size:1rem;">②</span><div><strong style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--blanc-etoile);display:block;margin-bottom:.2rem;">EXTINCTION 1H–5H GÉNÉRALISÉE</strong><span style="font-size:.88rem;color:var(--gris-texte);">Étendre l'extinction nocturne partielle, déjà pratiquée dans les communes rurales, aux zones résidentielles de la première couronne.</span></div></div>
-          <div style="display:flex;gap:.75rem;align-items:flex-start;"><span style="color:var(--vert-reserve);flex-shrink:0;font-size:1rem;">③</span><div><strong style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--blanc-etoile);display:block;margin-bottom:.2rem;">CONTRÔLER L'EFFET REBOND</strong><span style="font-size:.88rem;color:var(--gris-texte);">Encadrer le nombre de points lumineux dans les nouvelles zones d'aménagement pour éviter que les économies LED ne soient absorbées par l'extension de l'éclairage.</span></div></div>
-          <div style="display:flex;gap:.75rem;align-items:flex-start;"><span style="color:var(--vert-reserve);flex-shrink:0;font-size:1rem;">④</span><div><strong style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--blanc-etoile);display:block;margin-bottom:.2rem;">ZONES TAMPON ÉCOLOGIQUES</strong><span style="font-size:.88rem;color:var(--gris-texte);">Créer des corridors sombres entre les zones bâties et la Forêt du Rhin, avec des prescriptions strictes dans les PLU communaux.</span></div></div>
-          <div style="display:flex;gap:.75rem;align-items:flex-start;"><span style="color:var(--vert-reserve);flex-shrink:0;font-size:1rem;">⑤</span><div><strong style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--blanc-etoile);display:block;margin-bottom:.2rem;">SUIVI VIIRS ANNUEL</strong><span style="font-size:.88rem;color:var(--gris-texte);">Intégrer les données VIIRS NASA comme indicateur officiel du PCAET, permettant un suivi objectif indépendant des déclarations d'économies d'énergie.</span></div></div>
-        </div>
-        <div style="text-align:center;margin-top:2rem;">
-          <a href="donnees.html" style="display:inline-flex;align-items:center;gap:.5rem;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.3);color:var(--vert-reserve);font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;padding:.75rem 1.75rem;border-radius:2rem;text-decoration:none;"><i data-lucide="bar-chart-2" style="width:.9rem;height:.9rem;"></i>Voir les données →</a>
-        </div>
-      </div>
-        <div class="acc-panel"><p>Imposer < 2700 K pour tous les nouveaux marchés LED, en particulier dans les communes proches du corridor rhénan.</p></div>
-      </div><div class="acc-item" onclick="toggleAcc(this)">
-        <div class="acc-header">
-          <span class="acc-num">②</span>
-          <span class="acc-title">Extinction 1h–5h généralisée</span>
-          <i data-lucide="chevron-down" class="acc-chevron"></i>
-        </div>
-        <div class="acc-panel"><p>Étendre l'extinction nocturne partielle, déjà pratiquée dans les communes rurales, aux zones résidentielles de la première couronne.</p></div>
-      </div><div class="acc-item" onclick="toggleAcc(this)">
-        <div class="acc-header">
-          <span class="acc-num">③</span>
-          <span class="acc-title">Contrôler l'effet rebond</span>
-          <i data-lucide="chevron-down" class="acc-chevron"></i>
-        </div>
-        <div class="acc-panel"><p>Encadrer le nombre de points lumineux dans les nouvelles zones d'aménagement pour éviter que les économies LED ne soient absorbées par l'extension de l'éclairage.</p></div>
-      </div><div class="acc-item" onclick="toggleAcc(this)">
-        <div class="acc-header">
-          <span class="acc-num">④</span>
-          <span class="acc-title">Zones tampon écologiques</span>
-          <i data-lucide="chevron-down" class="acc-chevron"></i>
-        </div>
-        <div class="acc-panel"><p>Créer des corridors sombres entre les zones bâties et la Forêt du Rhin, avec des prescriptions strictes dans les PLU communaux.</p></div>
-      </div><div class="acc-item" onclick="toggleAcc(this)">
-        <div class="acc-header">
-          <span class="acc-num">⑤</span>
-          <span class="acc-title">Suivi VIIRS annuel</span>
-          <i data-lucide="chevron-down" class="acc-chevron"></i>
-        </div>
-        <div class="acc-panel"><p>Intégrer les données VIIRS NASA comme indicateur officiel du PCAET, permettant un suivi objectif indépendant des déclarations d'économies d'énergie.</p></div>
-      </div>
-        </div>
-
-        <!-- ══ OPTION B — Timeline horizontale ══ -->
-        <p style="font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gris-texte);text-align:center;margin-bottom:.75rem;">Option B — Timeline horizontale</p>
-        <div class="sol-block" style="margin:0 auto 2.5rem;overflow-x:auto;">
-          <div class="tl-wrap"><div class="tl-line"></div><div class="tl-item" onmouseenter="showTip(this)" onmouseleave="hideTip(this)">
-        <div class="tl-dot">①</div>
-        <div class="tl-label">Limiter la température de couleur</div>
-        <div class="tl-tip">Imposer < 2700 K pour tous les nouveaux marchés LED, en particulier dans les communes proches du corridor rhénan.</div>
-      </div><div class="tl-item" onmouseenter="showTip(this)" onmouseleave="hideTip(this)">
-        <div class="tl-dot">②</div>
-        <div class="tl-label">Extinction 1h–5h généralisée</div>
-        <div class="tl-tip">Étendre l'extinction nocturne partielle, déjà pratiquée dans les communes rurales, aux zones résidentielles de la première couronne.</div>
-      </div><div class="tl-item" onmouseenter="showTip(this)" onmouseleave="hideTip(this)">
-        <div class="tl-dot">③</div>
-        <div class="tl-label">Contrôler l'effet rebond</div>
-        <div class="tl-tip">Encadrer le nombre de points lumineux dans les nouvelles zones d'aménagement pour éviter que les économies LED ne soient absorbées par l'extension de l'éclairage.</div>
-      </div><div class="tl-item" onmouseenter="showTip(this)" onmouseleave="hideTip(this)">
-        <div class="tl-dot">④</div>
-        <div class="tl-label">Zones tampon écologiques</div>
-        <div class="tl-tip">Créer des corridors sombres entre les zones bâties et la Forêt du Rhin, avec des prescriptions strictes dans les PLU communaux.</div>
-      </div><div class="tl-item" onmouseenter="showTip(this)" onmouseleave="hideTip(this)">
-        <div class="tl-dot">⑤</div>
-        <div class="tl-label">Suivi VIIRS annuel</div>
-        <div class="tl-tip">Intégrer les données VIIRS NASA comme indicateur officiel du PCAET, permettant un suivi objectif indépendant des déclarations d'économies d'énergie.</div>
-      </div></div>
-        </div>
-
-        <!-- ══ OPTION C — Grille avec icônes ══ -->
-        <p style="font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gris-texte);text-align:center;margin-bottom:.75rem;">Option C — Grille avec icônes</p>
-        <div class="sol-block" style="margin:0 auto 2.5rem;">
-          <div class="sol-grid"><div class="sol-grid-card">
-        <i data-lucide="thermometer" class="sol-grid-icon"></i>
-        <div class="sol-grid-num">①</div>
-        <div class="sol-grid-title">Limiter la température de couleur</div>
-        <div class="sol-grid-desc">Imposer < 2700 K pour tous les nouveaux marchés LED, en particulier dans les communes proches du corridor rhénan.</div>
-      </div><div class="sol-grid-card">
-        <i data-lucide="moon" class="sol-grid-icon"></i>
-        <div class="sol-grid-num">②</div>
-        <div class="sol-grid-title">Extinction 1h–5h généralisée</div>
-        <div class="sol-grid-desc">Étendre l'extinction nocturne partielle, déjà pratiquée dans les communes rurales, aux zones résidentielles de la première couronne.</div>
-      </div><div class="sol-grid-card">
-        <i data-lucide="trending-down" class="sol-grid-icon"></i>
-        <div class="sol-grid-num">③</div>
-        <div class="sol-grid-title">Contrôler l'effet rebond</div>
-        <div class="sol-grid-desc">Encadrer le nombre de points lumineux dans les nouvelles zones d'aménagement pour éviter que les économies LED ne soient absorbées par l'extension de l'éclairage.</div>
-      </div><div class="sol-grid-card">
-        <i data-lucide="trees" class="sol-grid-icon"></i>
-        <div class="sol-grid-num">④</div>
-        <div class="sol-grid-title">Zones tampon écologiques</div>
-        <div class="sol-grid-desc">Créer des corridors sombres entre les zones bâties et la Forêt du Rhin, avec des prescriptions strictes dans les PLU communaux.</div>
-      </div><div class="sol-grid-card">
-        <i data-lucide="satellite" class="sol-grid-icon"></i>
-        <div class="sol-grid-num">⑤</div>
-        <div class="sol-grid-title">Suivi VIIRS annuel</div>
-        <div class="sol-grid-desc">Intégrer les données VIIRS NASA comme indicateur officiel du PCAET, permettant un suivi objectif indépendant des déclarations d'économies d'énergie.</div>
-      </div></div>
-        </div>
-
-        <!-- ══ OPTION D — Séquence alternée ══ -->
-        <p style="font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gris-texte);text-align:center;margin-bottom:.75rem;">Option D — Séquence alternée gauche/droite</p>
-        <div class="sol-block" style="max-width:640px;margin:0 auto 2.5rem;">
-          <div class="seq-item seq-left" data-index="0">
-        <div class="seq-num">①</div>
-        <div class="seq-content">
-          <div class="seq-title">Limiter la température de couleur</div>
-          <div class="seq-desc">Imposer < 2700 K pour tous les nouveaux marchés LED, en particulier dans les communes proches du corridor rhénan.</div>
-        </div>
-      </div><div class="seq-item seq-right" data-index="1">
-        <div class="seq-num">②</div>
-        <div class="seq-content">
-          <div class="seq-title">Extinction 1h–5h généralisée</div>
-          <div class="seq-desc">Étendre l'extinction nocturne partielle, déjà pratiquée dans les communes rurales, aux zones résidentielles de la première couronne.</div>
-        </div>
-      </div><div class="seq-item seq-left" data-index="2">
-        <div class="seq-num">③</div>
-        <div class="seq-content">
-          <div class="seq-title">Contrôler l'effet rebond</div>
-          <div class="seq-desc">Encadrer le nombre de points lumineux dans les nouvelles zones d'aménagement pour éviter que les économies LED ne soient absorbées par l'extension de l'éclairage.</div>
-        </div>
-      </div><div class="seq-item seq-right" data-index="3">
-        <div class="seq-num">④</div>
-        <div class="seq-content">
-          <div class="seq-title">Zones tampon écologiques</div>
-          <div class="seq-desc">Créer des corridors sombres entre les zones bâties et la Forêt du Rhin, avec des prescriptions strictes dans les PLU communaux.</div>
-        </div>
-      </div><div class="seq-item seq-left" data-index="4">
-        <div class="seq-num">⑤</div>
-        <div class="seq-content">
-          <div class="seq-title">Suivi VIIRS annuel</div>
-          <div class="seq-desc">Intégrer les données VIIRS NASA comme indicateur officiel du PCAET, permettant un suivi objectif indépendant des déclarations d'économies d'énergie.</div>
-        </div>
-      </div>
-        </div>
-
-        <!-- ══ OPTION E — Barre verticale ══ -->
-        <p style="font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gris-texte);text-align:center;margin-bottom:.75rem;">Option E — Barre verticale interactive</p>
-        <div class="sol-block" style="max-width:640px;margin:0 auto 2.5rem;">
-          <div style="display:flex;gap:0;">
-            <div style="width:2rem;display:flex;flex-direction:column;align-items:center;flex-shrink:0;">
-              <div style="flex:1;width:2px;background:linear-gradient(180deg,#4ade8044,#4ade8011);margin-top:2rem;border-radius:1px;"></div>
+          <div style="display:flex;gap:.75rem;align-items:flex-start;">
+            <span style="color:var(--vert-reserve);flex-shrink:0;font-size:1rem;">①</span>
+            <div>
+              <strong style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--blanc-etoile);display:block;margin-bottom:.2rem;">LIMITER LA TEMPÉRATURE DE COULEUR</strong>
+              <span style="font-size:.88rem;color:var(--gris-texte);">Imposer &lt; 2700 K pour tous les nouveaux marchés LED, en particulier dans les communes proches du corridor rhénan.</span>
             </div>
-            <div style="flex:1;"><div class="bar-row" onclick="selectBar(this, 0)">
-        <div class="bar-dot bar-dot-active">①</div>
-        <div class="bar-content bar-active">
-          <div class="bar-title">Limiter la température de couleur</div>
-          <div class="bar-desc bar-desc-visible">Imposer < 2700 K pour tous les nouveaux marchés LED, en particulier dans les communes proches du corridor rhénan.</div>
-        </div>
-      </div><div class="bar-row" onclick="selectBar(this, 1)">
-        <div class="bar-dot ">②</div>
-        <div class="bar-content ">
-          <div class="bar-title">Extinction 1h–5h généralisée</div>
-          <div class="bar-desc ">Étendre l'extinction nocturne partielle, déjà pratiquée dans les communes rurales, aux zones résidentielles de la première couronne.</div>
-        </div>
-      </div><div class="bar-row" onclick="selectBar(this, 2)">
-        <div class="bar-dot ">③</div>
-        <div class="bar-content ">
-          <div class="bar-title">Contrôler l'effet rebond</div>
-          <div class="bar-desc ">Encadrer le nombre de points lumineux dans les nouvelles zones d'aménagement pour éviter que les économies LED ne soient absorbées par l'extension de l'éclairage.</div>
-        </div>
-      </div><div class="bar-row" onclick="selectBar(this, 3)">
-        <div class="bar-dot ">④</div>
-        <div class="bar-content ">
-          <div class="bar-title">Zones tampon écologiques</div>
-          <div class="bar-desc ">Créer des corridors sombres entre les zones bâties et la Forêt du Rhin, avec des prescriptions strictes dans les PLU communaux.</div>
-        </div>
-      </div><div class="bar-row" onclick="selectBar(this, 4)">
-        <div class="bar-dot ">⑤</div>
-        <div class="bar-content ">
-          <div class="bar-title">Suivi VIIRS annuel</div>
-          <div class="bar-desc ">Intégrer les données VIIRS NASA comme indicateur officiel du PCAET, permettant un suivi objectif indépendant des déclarations d'économies d'énergie.</div>
-        </div>
-      </div></div>
+          </div>
+          <div style="display:flex;gap:.75rem;align-items:flex-start;">
+            <span style="color:var(--vert-reserve);flex-shrink:0;font-size:1rem;">②</span>
+            <div>
+              <strong style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--blanc-etoile);display:block;margin-bottom:.2rem;">EXTINCTION 1H–5H GÉNÉRALISÉE</strong>
+              <span style="font-size:.88rem;color:var(--gris-texte);">Étendre l'extinction nocturne partielle, déjà pratiquée dans les communes rurales, aux zones résidentielles de la première couronne.</span>
+            </div>
+          </div>
+          <div style="display:flex;gap:.75rem;align-items:flex-start;">
+            <span style="color:var(--vert-reserve);flex-shrink:0;font-size:1rem;">③</span>
+            <div>
+              <strong style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--blanc-etoile);display:block;margin-bottom:.2rem;">CONTRÔLER L'EFFET REBOND</strong>
+              <span style="font-size:.88rem;color:var(--gris-texte);">Encadrer le nombre de points lumineux dans les nouvelles zones d'aménagement pour éviter que les économies LED ne soient absorbées par l'extension de l'éclairage.</span>
+            </div>
+          </div>
+          <div style="display:flex;gap:.75rem;align-items:flex-start;">
+            <span style="color:var(--vert-reserve);flex-shrink:0;font-size:1rem;">④</span>
+            <div>
+              <strong style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--blanc-etoile);display:block;margin-bottom:.2rem;">ZONES TAMPON ÉCOLOGIQUES</strong>
+              <span style="font-size:.88rem;color:var(--gris-texte);">Créer des corridors sombres entre les zones bâties et la Forêt du Rhin, avec des prescriptions strictes dans les PLU communaux.</span>
+            </div>
+          </div>
+          <div style="display:flex;gap:.75rem;align-items:flex-start;">
+            <span style="color:var(--vert-reserve);flex-shrink:0;font-size:1rem;">⑤</span>
+            <div>
+              <strong style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--blanc-etoile);display:block;margin-bottom:.2rem;">SUIVI VIIRS ANNUEL</strong>
+              <span style="font-size:.88rem;color:var(--gris-texte);">Intégrer les données VIIRS NASA comme indicateur officiel du PCAET, permettant un suivi objectif indépendant des déclarations d'économies d'énergie.</span>
+            </div>
           </div>
         </div>
-
-        <div style="text-align:center;margin-top:1rem;">
+        <div style="text-align:center;margin-top:2rem;">
           <a href="donnees.html" style="display:inline-flex;align-items:center;gap:.5rem;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.3);color:var(--vert-reserve);font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;padding:.75rem 1.75rem;border-radius:2rem;text-decoration:none;">
             <i data-lucide="bar-chart-2" style="width:.9rem;height:.9rem;"></i>
             Voir les données →
           </a>
         </div>
       </div>
+        <div style="text-align:center;margin-top:2rem;">
+          <a href="donnees.html" style="display:inline-flex;align-items:center;gap:.5rem;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.3);color:var(--vert-reserve);font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;padding:.75rem 1.75rem;border-radius:2rem;text-decoration:none;">
+            <i data-lucide="bar-chart-2" style="width:.9rem;height:.9rem;"></i>
+            Voir les données →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      
+  <script>
+    (function(){const c=document.getElementById('starfield'),ctx=c.getContext('2d');let s=[];function r(){c.width=window.innerWidth;c.height=window.innerHeight;}function init(){s=[];for(let i=0;i<160;i++)s.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*1.2+.2,sp:Math.random()*.004+.001,o:Math.random()*Math.PI*2});}function draw(t){ctx.clearRect(0,0,c.width,c.height);s.forEach(st=>{const a=.15+.7*Math.abs(Math.sin(st.o+t*st.sp));ctx.beginPath();ctx.arc(st.x,st.y,st.r,0,Math.PI*2);ctx.fillStyle=`rgba(232,234,246,${a})`;ctx.fill();});requestAnimationFrame(draw);}window.addEventListener('resize',()=>{r();init();});r();init();requestAnimationFrame(draw);})();
+
+    const bar = document.getElementById('expo-scroll-progress');
+    window.addEventListener('scroll',()=>{
+      const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
+      bar.style.width = Math.min(100,pct)+'%';
+    });
+
+    const obs = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
+    },{threshold:.15,rootMargin:'0px 0px -80px 0px'});
+    document.querySelectorAll('.expo-scroll-content').forEach(el=>obs.observe(el));
+  </script>
   <script>document.addEventListener("DOMContentLoaded",()=>lucide.createIcons());</script>
 </body>
 </html>

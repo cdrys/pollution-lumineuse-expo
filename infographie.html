@@ -10,7 +10,7 @@
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <style>
     /* Kehl */
-    .kehl-cols{display:grid;grid-template-columns:1fr auto 1fr;gap:2rem;align-items:center;}
+    .kehl-cols{display:grid;grid-template-columns:1fr auto 1fr;gap:2rem;align-items:center;width:100%;}
     .kehl-side{display:flex;flex-direction:column;gap:.75rem;}
     .kehl-divider{width:1px;background:linear-gradient(180deg,transparent,rgba(255,255,255,.2),transparent);align-self:stretch;min-height:8rem;}
     .kehl-city{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;}
@@ -262,9 +262,9 @@
       <div style="display:flex;flex-direction:column;gap:3rem;margin:0 auto;">
 
         <!-- Dots + ligne -->
-        <div style="position:relative;display:flex;justify-content:space-between;align-items:center;">
+        <div style="position:relative;display:flex;justify-content:space-between;align-items:flex-start;">
           <!-- Ligne -->
-          <div style="position:absolute;top:2.5rem;left:2.5rem;right:2.5rem;height:3px;background:rgba(255,255,255,.07);transform:translateY(-50%);border-radius:2px;overflow:hidden;pointer-events:none;">
+          <div style="position:absolute;top:2.5rem;left:10%;right:10%;height:3px;background:rgba(255,255,255,.07);transform:translateY(-50%);border-radius:2px;overflow:hidden;pointer-events:none;">
             <div id="si-fill" style="height:100%;width:0%;border-radius:2px;transition:width .5s ease;"></div>
           </div>
           <!-- Boutons — chacun dans un flex-item pour centrage avec label -->
@@ -342,14 +342,14 @@
       <p class="expo-fact-title" style="text-align:center;margin-bottom:1.5rem;">Strasbourg et Kehl : des politiques et des résultats différents</p>
       <div class="expo-divider" style="background:var(--or);margin:0 auto 1.75rem;"></div>
       <div class="kehl-cols">
-        <div class="kehl-side" style="text-align:right;padding:1.75rem 2rem;">
+        <div class="kehl-side" style="text-align:right;padding:1.75rem 2rem;background:rgba(103,232,249,.04);border:1px solid rgba(103,232,249,.15);border-radius:10px;">
           <div class="kehl-city" style="color:#67e8f9;">Strasbourg</div>
           <div class="kehl-nw" style="color:#67e8f9;">~52 <span style="font-size:1.2rem;">nW</span></div>
           <div class="kehl-label" style="flex:1;">Tissu urbain dense, éclairage résidentiel et commercial intense. Aucune politique d'extinction généralisée.</div>
           <div class="kehl-politique" style="background:rgba(103,232,249,.1);border:1px solid rgba(103,232,249,.3);color:#67e8f9;">Pas d'extinction nocturne</div>
         </div>
         <div class="kehl-divider"></div>
-        <div class="kehl-side" style="padding:1.75rem 2rem;">
+        <div class="kehl-side" style="padding:1.75rem 2rem;background:rgba(74,222,128,.04);border:1px solid rgba(74,222,128,.15);border-radius:10px;">
           <div class="kehl-city" style="color:#4ade80;">Kehl</div>
           <div class="kehl-nw" style="color:#4ade80;">~31 <span style="font-size:1.2rem;">nW</span></div>
           <div class="kehl-label" style="flex:1;">Le Bade-Wurtemberg impose des températures de couleur &lt; 3000 K depuis 2021. Résultat : −40 % d'écart sur la même plaine rhénane.</div>

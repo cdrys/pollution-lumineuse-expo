@@ -13,8 +13,7 @@
     .opt-section{background:rgba(13,13,43,.6);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:2.5rem;margin-bottom:1.5rem;}
 
     /* ── Kehl A — Deux colonnes ────────────────────────── */
-    .kehl-cols{display:grid;grid-template-columns:1fr auto 1fr;gap:0;align-items:center;}
-    .kehl-side{padding:1.75rem;}
+        .kehl-cols{display:grid;grid-template-columns:1fr auto 1fr;gap:0;align-items:stretch;}
     .kehl-divider{width:1px;background:linear-gradient(180deg,transparent,rgba(255,255,255,.2),transparent);align-self:stretch;}
     .kehl-city{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.5rem;}
     .kehl-nw{font-family:'Space Mono',monospace;font-size:2.8rem;font-weight:700;line-height:1;margin-bottom:.5rem;}
@@ -44,6 +43,7 @@
     .sante-col-icon{width:1.6rem;height:1.6rem;stroke:#a78bfa;margin-bottom:.75rem;}
     .sante-col-title{font-family:'Space Mono',monospace;font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:#a78bfa;margin-bottom:.5rem;}
     .sante-col-text{font-size:.9rem;color:var(--gris-texte);line-height:1.65;}
+    .sante-cols{grid-template-rows:auto;}
 
     /* ── Santé C — Timeline causale ─────────────────────── */
     .causal{display:flex;flex-direction:column;gap:0;max-width:580px;margin:0 auto;}
@@ -94,14 +94,14 @@
         <div class="kehl-side" style="text-align:right;">
           <div class="kehl-city" style="color:#ff6b35;">🇫🇷 Strasbourg</div>
           <div class="kehl-nw" style="color:#ff6b35;">~52 <span style="font-size:1.2rem;">nW</span></div>
-          <div class="kehl-label">Tissu urbain dense, éclairage résidentiel et commercial intense. Aucune politique d'extinction généralisée.</div>
+          <div class="kehl-label" style="flex:1;">Tissu urbain dense, éclairage résidentiel et commercial intense. Aucune politique d'extinction généralisée.</div>
           <div class="kehl-politique" style="background:rgba(255,107,53,.1);border:1px solid rgba(255,107,53,.3);color:#ff6b35;">Pas d'extinction nocturne</div>
         </div>
         <div class="kehl-divider"></div>
         <div class="kehl-side">
           <div class="kehl-city" style="color:#67e8f9;">🇩🇪 Kehl</div>
           <div class="kehl-nw" style="color:#67e8f9;">~31 <span style="font-size:1.2rem;">nW</span></div>
-          <div class="kehl-label">Le Bade-Wurtemberg impose des températures de couleur &lt; 3000 K depuis 2021. Résultat : −40 % d'écart sur la même plaine rhénane.</div>
+          <div class="kehl-label" style="flex:1;">Le Bade-Wurtemberg impose des températures de couleur &lt; 3000 K depuis 2021. Résultat : −40 % d'écart sur la même plaine rhénane.</div>
           <div class="kehl-politique" style="background:rgba(103,232,249,.1);border:1px solid rgba(103,232,249,.3);color:#67e8f9;">LED &lt; 3000 K imposé</div>
         </div>
       </div>
@@ -156,7 +156,7 @@
       <p class="expo-fact-text" style="margin:0 auto;text-align:center;">La lumière artificielle nocturne supprime la production de mélatonine, perturbant les cycles circadiens. La pollution lumineuse extérieure affecte le sommeil de centaines de milliers de résidents de l'Eurométropole.</p>
     </div>
 
-    <p class="opt-sub">Option B — Deux colonnes mécanisme / conséquence</p>
+        <p class="opt-sub">Option B — Deux colonnes (mise en forme B, textes C)</p>
     <div class="opt-section">
       <p style="font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--or);text-align:center;margin-bottom:.75rem;">
         <i data-lucide="heart-pulse" style="display:inline-block;vertical-align:middle;width:.9rem;height:.9rem;margin-right:.3rem;stroke:var(--or);"></i>Santé humaine
@@ -166,18 +166,23 @@
       <div class="sante-cols">
         <div class="sante-col">
           <i data-lucide="moon" class="sante-col-icon"></i>
-          <div class="sante-col-title">Le mécanisme</div>
-          <div class="sante-col-text">La lumière artificielle nocturne supprime la production de <strong style="color:#a78bfa;">mélatonine</strong>, l'hormone qui régule le sommeil. Sans obscurité réelle, les cycles circadiens se dérèglent.</div>
+          <div class="sante-col-title">① Lumière artificielle nocturne</div>
+          <div class="sante-col-text">L'éclairage extérieur — lampadaires, enseignes, fenêtres — pénètre dans les habitations et stimule la rétine même pendant le sommeil.</div>
         </div>
         <div class="sante-col">
+          <i data-lucide="activity" class="sante-col-icon"></i>
+          <div class="sante-col-title">② Suppression de la mélatonine</div>
+          <div class="sante-col-text">Le signal lumineux bloque la production de <strong style="color:#a78bfa;">mélatonine</strong> par la glande pinéale — l'hormone qui déclenche et maintient le sommeil.</div>
+        </div>
+        <div class="sante-col" style="grid-column:1 / -1;">
           <i data-lucide="users" class="sante-col-icon"></i>
-          <div class="sante-col-title">La conséquence</div>
-          <div class="sante-col-text">Des <strong style="color:#a78bfa;">centaines de milliers</strong> de résidents de l'Eurométropole sont exposés à une pollution lumineuse extérieure qui affecte la qualité de leur sommeil chaque nuit.</div>
+          <div class="sante-col-title">③ Perturbation des cycles circadiens</div>
+          <div class="sante-col-text">Sans mélatonine suffisante, les cycles biologiques se dérèglent. Des <strong style="color:#a78bfa;">centaines de milliers</strong> de résidents de l'Eurométropole sont exposés à ce risque chaque nuit.</div>
         </div>
       </div>
     </div>
 
-    <p class="opt-sub">Option C — Timeline causale en 3 étapes</p>
+<p class="opt-sub">Option C — Timeline causale en 3 étapes</p>
     <div class="opt-section">
       <p style="font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--or);text-align:center;margin-bottom:.75rem;">
         <i data-lucide="heart-pulse" style="display:inline-block;vertical-align:middle;width:.9rem;height:.9rem;margin-right:.3rem;stroke:var(--or);"></i>Santé humaine

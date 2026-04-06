@@ -13,7 +13,7 @@
     .opt-section{background:rgba(13,13,43,.6);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:2.5rem;margin-bottom:1.5rem;}
 
     /* ── Kehl A — Deux colonnes ────────────────────────── */
-        .kehl-cols{display:grid;grid-template-columns:1fr auto 1fr;gap:0;align-items:stretch;}
+        .kehl-cols{display:grid;grid-template-columns:1fr auto 1fr;gap:2rem;align-items:center;}
     .kehl-divider{width:1px;background:linear-gradient(180deg,transparent,rgba(255,255,255,.2),transparent);align-self:stretch;}
     .kehl-city{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.5rem;}
     .kehl-nw{font-family:'Space Mono',monospace;font-size:2.8rem;font-weight:700;line-height:1;margin-bottom:.5rem;}
@@ -91,15 +91,15 @@
       <p class="expo-fact-title" style="text-align:center;margin-bottom:1.5rem;">Strasbourg et Kehl — deux politiques, deux résultats</p>
       <div class="expo-divider" style="background:var(--or);margin:0 auto 1.75rem;"></div>
       <div class="kehl-cols">
-        <div class="kehl-side" style="text-align:right;">
-          <div class="kehl-city" style="color:#ff6b35;">🇫🇷 Strasbourg</div>
+        <div class="kehl-side" style="text-align:right;padding:1.75rem 2rem;">
+          <div class="kehl-city" style="color:#ff6b35;">Strasbourg</div>
           <div class="kehl-nw" style="color:#ff6b35;">~52 <span style="font-size:1.2rem;">nW</span></div>
           <div class="kehl-label" style="flex:1;">Tissu urbain dense, éclairage résidentiel et commercial intense. Aucune politique d'extinction généralisée.</div>
           <div class="kehl-politique" style="background:rgba(255,107,53,.1);border:1px solid rgba(255,107,53,.3);color:#ff6b35;">Pas d'extinction nocturne</div>
         </div>
         <div class="kehl-divider"></div>
-        <div class="kehl-side">
-          <div class="kehl-city" style="color:#67e8f9;">🇩🇪 Kehl</div>
+        <div class="kehl-side" style="padding:1.75rem 2rem;">
+          <div class="kehl-city" style="color:#67e8f9;">Kehl</div>
           <div class="kehl-nw" style="color:#67e8f9;">~31 <span style="font-size:1.2rem;">nW</span></div>
           <div class="kehl-label" style="flex:1;">Le Bade-Wurtemberg impose des températures de couleur &lt; 3000 K depuis 2021. Résultat : −40 % d'écart sur la même plaine rhénane.</div>
           <div class="kehl-politique" style="background:rgba(103,232,249,.1);border:1px solid rgba(103,232,249,.3);color:#67e8f9;">LED &lt; 3000 K imposé</div>
@@ -108,113 +108,36 @@
       <p style="text-align:center;font-size:.8rem;color:var(--gris-texte);margin-top:1.25rem;">Séparés par 500 mètres d'eau — un écart de 40 % de radiance.</p>
     </div>
 
-    <p class="opt-sub">Option B — Barre comparative "versus"</p>
-    <div class="opt-section">
-      <p style="font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--or);text-align:center;margin-bottom:.75rem;">Perspective transfrontalière</p>
-      <p class="expo-fact-title" style="text-align:center;margin-bottom:1.5rem;">Strasbourg et Kehl — deux politiques, deux résultats</p>
-      <div class="expo-divider" style="background:var(--or);margin:0 auto 2rem;"></div>
-      <div class="versus-wrap">
-        <div class="versus-side">
-          <div class="versus-city" style="color:#ff6b35;">🇫🇷 Strasbourg</div>
-          <div class="versus-nw" style="color:#ff6b35;">~52 <span style="font-size:1.4rem;">nW</span></div>
-          <div class="versus-sub">Pas d'extinction</div>
-        </div>
-        <div class="versus-bar-wrap">
-          <div style="display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:.5rem;color:var(--gris-texte);margin-bottom:.3rem;">
-            <span>0 nW</span><span>52 nW</span>
-          </div>
-          <div class="versus-bar-track" style="height:12px;">
-            <div class="versus-bar-stbg" style="width:100%;"></div>
-          </div>
-          <div class="versus-bar-track" style="height:12px;margin-top:.4rem;">
-            <div class="versus-bar-kehl" style="width:59.6%;"></div>
-          </div>
-          <div style="display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:.5rem;color:var(--gris-texte);margin-top:.3rem;">
-            <span style="color:#67e8f9;">~31 nW · Kehl</span><span style="color:#ff6b35;">~52 nW · Stbg</span>
-          </div>
-          <div class="versus-ecart" style="margin-top:.75rem;">← écart de 40 % sur la même plaine rhénane →</div>
-        </div>
-        <div class="versus-side">
-          <div class="versus-city" style="color:#67e8f9;">🇩🇪 Kehl</div>
-          <div class="versus-nw" style="color:#67e8f9;">~31 <span style="font-size:1.4rem;">nW</span></div>
-          <div class="versus-sub">LED &lt; 3000 K</div>
-        </div>
-      </div>
-      <p style="text-align:center;font-size:.82rem;color:var(--gris-texte);margin-top:1.5rem;max-width:600px;margin-left:auto;margin-right:auto;">De part et d'autre du Rhin, deux approches coexistent. Séparés par 500 mètres d'eau, Strasbourg et Kehl illustrent ce que la réglementation peut produire en quelques années.</p>
-    </div>
-
     <!-- ══════════ SANTÉ ══════════ -->
     <p class="opt-label">Section Santé humaine</p>
 
-    <p class="opt-sub">Option A — Format simple, cohérent avec le reste</p>
+    <p class="opt-sub">Option B — Trois encadrés (textes C)</p>
     <div class="opt-section">
       <p style="font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--or);text-align:center;margin-bottom:.75rem;">
         <i data-lucide="heart-pulse" style="display:inline-block;vertical-align:middle;width:.9rem;height:.9rem;margin-right:.3rem;stroke:var(--or);"></i>Santé humaine
       </p>
-      <p class="expo-fact-title" style="text-align:center;margin-bottom:1.25rem;">La lumière artificielle perturbe nos cycles biologiques</p>
-      <div class="expo-divider" style="background:var(--or);margin:0 auto 1.5rem;"></div>
-      <p class="expo-fact-text" style="margin:0 auto;text-align:center;">La lumière artificielle nocturne supprime la production de mélatonine, perturbant les cycles circadiens. La pollution lumineuse extérieure affecte le sommeil de centaines de milliers de résidents de l'Eurométropole.</p>
-    </div>
-
-            <p class="opt-sub">Option B — Trois encadrés (textes C)</p>
-    <div class="opt-section">
-      <p style="font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--or);text-align:center;margin-bottom:.75rem;">
-        <i data-lucide="heart-pulse" style="display:inline-block;vertical-align:middle;width:.9rem;height:.9rem;margin-right:.3rem;stroke:var(--or);"></i>Santé humaine
-      </p>
-      <p class="expo-fact-title" style="text-align:center;margin-bottom:1.25rem;">La lumière artificielle perturbe nos cycles biologiques</p>
+      <p class="expo-fact-title" style="text-align:center;margin-bottom:1.25rem;">La lumière artificielle perturbe les cycles biologiques</p>
       <div class="expo-divider" style="background:var(--or);margin:0 auto 1.5rem;"></div>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;">
         <div class="sante-col">
           <i data-lucide="sun" class="sante-col-icon"></i>
-          <div class="sante-col-title">① Lumière artificielle</div>
+          <div class="sante-col-title">Lumière artificielle</div>
           <div class="sante-col-text">L'éclairage extérieur — lampadaires, enseignes, fenêtres — pénètre dans les habitations et stimule la rétine même pendant le sommeil.</div>
         </div>
         <div class="sante-col">
           <i data-lucide="moon" class="sante-col-icon"></i>
-          <div class="sante-col-title">② Suppression mélatonine</div>
+          <div class="sante-col-title">Suppression de la mélatonine</div>
           <div class="sante-col-text">Le signal lumineux bloque la production de <strong style="color:#a78bfa;">mélatonine</strong> par la glande pinéale — l'hormone qui déclenche et maintient le sommeil.</div>
         </div>
         <div class="sante-col">
           <i data-lucide="users" class="sante-col-icon"></i>
-          <div class="sante-col-title">③ Cycles circadiens perturbés</div>
+          <div class="sante-col-title">Cycles circadiens perturbés</div>
           <div class="sante-col-text">Sans mélatonine suffisante, les cycles biologiques se dérèglent. Des <strong style="color:#a78bfa;">centaines de milliers</strong> de résidents de l'Eurométropole sont exposés à ce risque chaque nuit.</div>
         </div>
       </div>
     </div>
 
-<p class="opt-sub">Option C — Timeline causale en 3 étapes</p>
-    <div class="opt-section">
-      <p style="font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--or);text-align:center;margin-bottom:.75rem;">
-        <i data-lucide="heart-pulse" style="display:inline-block;vertical-align:middle;width:.9rem;height:.9rem;margin-right:.3rem;stroke:var(--or);"></i>Santé humaine
-      </p>
-      <p class="expo-fact-title" style="text-align:center;margin-bottom:1.25rem;">La lumière artificielle perturbe nos cycles biologiques</p>
-      <div class="expo-divider" style="background:var(--or);margin:0 auto 1.75rem;"></div>
-      <div class="causal">
-        <div class="causal-step">
-          <div class="causal-left"><div class="causal-num">①</div><div class="causal-line"></div></div>
-          <div class="causal-content">
-            <div class="causal-title">Lumière artificielle nocturne</div>
-            <div class="causal-text">L'éclairage extérieur — lampadaires, enseignes, fenêtres — pénètre dans les habitations et stimule la rétine même pendant le sommeil.</div>
-          </div>
-        </div>
-        <div class="causal-step">
-          <div class="causal-left"><div class="causal-num">②</div><div class="causal-line"></div></div>
-          <div class="causal-content">
-            <div class="causal-title">Suppression de la mélatonine</div>
-            <div class="causal-text">Le signal lumineux bloque la production de mélatonine par la glande pinéale — l'hormone qui déclenche et maintient le sommeil.</div>
-          </div>
-        </div>
-        <div class="causal-step">
-          <div class="causal-left"><div class="causal-num">③</div></div>
-          <div class="causal-content">
-            <div class="causal-title">Perturbation des cycles circadiens</div>
-            <div class="causal-text">Sans mélatonine suffisante, les cycles biologiques se dérèglent. Des centaines de milliers de résidents de l'Eurométropole sont exposés à ce risque chaque nuit.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ══════════ POLLINISATION ══════════ -->
+<!-- ══════════ POLLINISATION ══════════ -->
     <p class="opt-label">Section Pollinisation nocturne</p>
 
     <p class="opt-sub">Option A — Deux colonnes : grand chiffre + texte</p>

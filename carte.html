@@ -451,11 +451,11 @@
             <span>Faible baisse</span>
           </div>
         </div>
-        <div class="leg-section">
-          <div class="leg-label">Taille — radiance absolue</div>
+        <div class="leg-section" id="leg-taille-section">
+          <div class="leg-label">Taille — type de territoire</div>
           <div class="leg-row">
             <div class="leg-circle" style="width:20px;height:20px;border:2px solid #ff6b35;background:rgba(255,107,53,.4);"></div>
-            <span class="leg-text">Centre-ville (&gt; 35 nW)</span>
+            <span class="leg-text">Centre-ville</span>
           </div>
           <div class="leg-row">
             <div class="leg-circle" style="width:14px;height:14px;border:2px solid #f59e0b;background:rgba(245,158,11,.4);"></div>
@@ -467,18 +467,19 @@
           </div>
           <div class="leg-row">
             <div class="leg-circle" style="width:7px;height:7px;border:2px solid #4ade80;background:rgba(74,222,128,.4);"></div>
-            <span class="leg-text">Rural (&lt; 8 nW)</span>
+            <span class="leg-text">Rural</span>
           </div>
         </div>
         <div class="leg-section" style="margin-bottom:0;">
-          <div class="leg-label">Classes Bortle</div>
-          <div class="leg-row"><span class="leg-text" style="color:#a5b4ce;">4–5 Rural · 5–6 Semi-rural · 6–7 Suburbain</span></div>
-          <div class="leg-row"><span class="leg-text" style="color:#a5b4ce;">7–8 Transition · 8 Ciel clair · 8–9 Ciel gris/blanc</span></div>
+          <div class="leg-label">Classe Bortle (échelle 1–9)</div>
+          <div class="leg-row"><span class="leg-text" style="color:#a5b4ce;">1–2 : ciel naturel, voie lactée visible</span></div>
+          <div class="leg-row"><span class="leg-text" style="color:#a5b4ce;">4–6 : périurbain, ciel orangé</span></div>
+          <div class="leg-row"><span class="leg-text" style="color:#a5b4ce;">8–9 : ciel urbain saturé</span></div>
         </div>
       </div>
 
       <!-- Vue heatmap -->
-      <div id="legende-heat">
+      <div id="legende-heat" style="display:none;">
         <div class="leg-section" style="margin-bottom:0;">
           <div class="leg-label">Intensité lumineuse nocturne</div>
           <div class="leg-gradient-heat"></div>
@@ -491,6 +492,22 @@
 
     </div>
   </div>
+
+  <script>
+    function toggleLegende() {
+      document.getElementById('legende').classList.toggle('collapsed');
+    }
+
+    // Adapter la légende aux filtres géographiques
+    const _origFiltrerType = filtrerType;
+    filtrerType = function(type) {
+      _origFiltrerType(type);
+      const taille = document.getElementById('leg-taille-section');
+      if (!taille) return;
+      // Si un seul type affiché, masquer la légende taille (elle devient évidente)
+      taille.style.display = (type === 'tous') ? 'block' : 'none';
+    };
+  </script>
 
 </body>
 </html>

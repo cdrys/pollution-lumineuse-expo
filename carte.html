@@ -366,8 +366,7 @@
 
     function toggleHeat(){
       heatActif=!heatActif;
-      document.getElementById('legende-markers').style.display = heatActif ? 'none'  : 'block';
-      document.getElementById('legende-heat').style.display    = heatActif ? 'block' : 'none';
+      // legende gérée dans updateLegende()
       document.getElementById('btn-heat').classList.toggle('actif-or',heatActif);
       if(heatActif){heatLayer=buildHeat(anneeHeat);heatLayer.addTo(map);}
       else{if(heatLayer)map.removeLayer(heatLayer);}
@@ -449,65 +448,61 @@
     </div>
     <div id="legende-body">
 
-      <!-- Vue marqueurs -->
-      <div id="legende-markers">
-
-        <!-- Gradient couleur -->
-        <div class="leg-section">
-          <div class="leg-label">Évolution de la radiance 2012–2022</div>
-          <div class="leg-gradient"></div>
-          <div class="leg-gradient-labels">
-            <span>Forte baisse</span>
-            <span>Faible baisse</span>
-          </div>
+      <!-- Gradient évolution (marqueurs) -->
+      <div class="leg-section" id="leg-gradient-section">
+        <div class="leg-label">Évolution de la radiance 2012–2022</div>
+        <div class="leg-gradient"></div>
+        <div class="leg-gradient-labels">
+          <span>Forte baisse</span>
+          <span>Faible baisse</span>
         </div>
-
-        <!-- Taille cercles -->
-        <div class="leg-section" id="leg-taille-section">
-          <div class="leg-label">Type de territoire</div>
-          <div class="leg-row">
-            <div class="leg-circle" style="width:20px;height:20px;border:2px solid #a5b4ce;background:rgba(165,180,206,.35);"></div>
-            <span class="leg-text">Centre-ville</span>
-          </div>
-          <div class="leg-row">
-            <div class="leg-circle" style="width:14px;height:14px;border:2px solid #a5b4ce;background:rgba(165,180,206,.35);"></div>
-            <span class="leg-text">Périurbain dense</span>
-          </div>
-          <div class="leg-row">
-            <div class="leg-circle" style="width:10px;height:10px;border:2px solid #a5b4ce;background:rgba(165,180,206,.35);"></div>
-            <span class="leg-text">Périurbain moyen</span>
-          </div>
-          <div class="leg-row">
-            <div class="leg-circle" style="width:7px;height:7px;border:2px solid #a5b4ce;background:rgba(165,180,206,.35);"></div>
-            <span class="leg-text">Rural</span>
-          </div>
-        </div>
-
-        <!-- Bortle -->
-        <div class="leg-section" style="margin-bottom:0;">
-          <div class="leg-label">Classe Bortle</div>
-          <div class="leg-row"><span class="leg-bortle" style="color:#4ade80;">1</span><span class="leg-text">Ciel naturel parfait</span></div>
-          <div class="leg-row"><span class="leg-bortle" style="color:#67e8f9;">2</span><span class="leg-text">Ciel naturel vrai</span></div>
-          <div class="leg-row"><span class="leg-bortle" style="color:#67e8f9;">3</span><span class="leg-text">Ciel rural</span></div>
-          <div class="leg-row"><span class="leg-bortle" style="color:#fde68a;">4</span><span class="leg-text">Transition rural-suburbain</span></div>
-          <div class="leg-row"><span class="leg-bortle" style="color:#fde68a;">5</span><span class="leg-text">Ciel suburbain</span></div>
-          <div class="leg-row"><span class="leg-bortle" style="color:#f59e0b;">6</span><span class="leg-text">Banlieue lumineuse</span></div>
-          <div class="leg-row"><span class="leg-bortle" style="color:#ff6b35;">7</span><span class="leg-text">Transition ville-banlieue</span></div>
-          <div class="leg-row"><span class="leg-bortle" style="color:#ff6b35;">8</span><span class="leg-text">Ciel de ville</span></div>
-          <div class="leg-row"><span class="leg-bortle" style="color:#ff3300;">9</span><span class="leg-text">Ciel urbain saturé</span></div>
-        </div>
-
       </div>
 
-      <!-- Vue heatmap -->
-      <div id="legende-heat" style="display:none;">
-        <div class="leg-section" style="margin-bottom:0;">
-          <div class="leg-label">Intensité lumineuse nocturne</div>
-          <div class="leg-gradient-heat"></div>
-          <div class="leg-gradient-labels">
-            <span>Faible</span>
-            <span>Forte</span>
-          </div>
+      <!-- Taille = type territoire -->
+      <div class="leg-section" id="leg-taille-section">
+        <div class="leg-label">Type de territoire</div>
+        <div class="leg-row">
+          <div class="leg-circle" style="width:20px;height:20px;border:2px solid #f5c842;background:rgba(245,200,66,.3);"></div>
+          <span class="leg-text">Centre-ville</span>
+        </div>
+        <div class="leg-row">
+          <div class="leg-circle" style="width:14px;height:14px;border:2px solid #f5c842;background:rgba(245,200,66,.3);"></div>
+          <span class="leg-text">Périurbain dense</span>
+        </div>
+        <div class="leg-row">
+          <div class="leg-circle" style="width:10px;height:10px;border:2px solid #f5c842;background:rgba(245,200,66,.3);"></div>
+          <span class="leg-text">Périurbain moyen</span>
+        </div>
+        <div class="leg-row">
+          <div class="leg-circle" style="width:7px;height:7px;border:2px solid #f5c842;background:rgba(245,200,66,.3);"></div>
+          <span class="leg-text">Rural</span>
+        </div>
+      </div>
+
+      <!-- Bortle groupé -->
+      <div class="leg-section" id="leg-bortle-section" style="margin-bottom:0;">
+        <div class="leg-label">Classe Bortle</div>
+        <div class="leg-row">
+          <span class="leg-bortle" style="color:#4ade80;">1–3</span>
+          <span class="leg-text">Ciel naturel à rural</span>
+        </div>
+        <div class="leg-row">
+          <span class="leg-bortle" style="color:#fde68a;">4–6</span>
+          <span class="leg-text">Suburbain à banlieue</span>
+        </div>
+        <div class="leg-row">
+          <span class="leg-bortle" style="color:#ff3300;">7–9</span>
+          <span class="leg-text">Urbain à saturé</span>
+        </div>
+      </div>
+
+      <!-- Heatmap — toujours visible si heatmap active -->
+      <div class="leg-section" id="leg-heat-section" style="display:none;border-top:1px solid rgba(255,255,255,.08);padding-top:.65rem;margin-bottom:0;">
+        <div class="leg-label">Heatmap — intensité lumineuse</div>
+        <div class="leg-gradient-heat"></div>
+        <div class="leg-gradient-labels">
+          <span>Faible</span>
+          <span>Forte</span>
         </div>
       </div>
 
@@ -519,13 +514,42 @@
       document.getElementById('legende').classList.toggle('collapsed');
     }
 
-    // Adapter taille selon filtre actif
+    function updateLegende() {
+      const heat    = heatActif;
+      const filtre  = filtreActif; // 'tous','centre','peri_dense','peri_moyen','rural'
+
+      // Gradient évolution et Bortle : visibles seulement si marqueurs affichés
+      const showMarkers = true; // marqueurs toujours visibles
+      document.getElementById('leg-gradient-section').style.display = 'block';
+      document.getElementById('leg-bortle-section').style.display   = 'block';
+
+      // Taille : visible seulement si plusieurs types affichés
+      document.getElementById('leg-taille-section').style.display =
+        (filtre === 'tous') ? 'block' : 'none';
+
+      // Heatmap : visible si heatmap active
+      document.getElementById('leg-heat-section').style.display =
+        heat ? 'block' : 'none';
+    }
+
+    // Patch filtrerType
     const _origFiltrerType = filtrerType;
     filtrerType = function(type) {
       _origFiltrerType(type);
-      const taille = document.getElementById('leg-taille-section');
-      if (taille) taille.style.display = (type === 'tous') ? 'block' : 'none';
+      updateLegende();
     };
+
+    // Patch toggleHeat
+    const _origToggleHeat = toggleHeat;
+    toggleHeat = function() {
+      _origToggleHeat();
+      updateLegende();
+    };
+
+    // Init légende au chargement
+    document.addEventListener('DOMContentLoaded', function() {
+      updateLegende();
+    });
   </script>
 
 </body>

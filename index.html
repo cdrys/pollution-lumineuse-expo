@@ -56,15 +56,15 @@
 
   <!-- Bulles séquentielles -->
   <div class="seq-bubble left" id="bub-0" style="top:45%;border-color:rgba(103,232,249,0.35);background:rgba(10,10,30,0.88);">
-    <div class="seq-bubble-num" style="color:var(--cyan);">+25 %</div>
-    <div class="seq-bubble-lbl">Hausse moyenne de la radiance nocturne sur 10 ans</div>
+    <div class="seq-bubble-num" style="color:var(--cyan);">−45 %</div>
+    <div class="seq-bubble-lbl">Évolution moyenne de la radiance nocturne sur 10 ans</div>
   </div>
   <div class="seq-bubble right" id="bub-1" style="top:50%;border-color:rgba(74,222,128,0.3);background:rgba(10,10,30,0.88);">
     <div class="seq-bubble-num" style="color:var(--vert-reserve);">×25</div>
     <div class="seq-bubble-lbl">À 35 km de Strasbourg, dans les Vosges, le ciel est 25 fois plus sombre</div>
   </div>
   <div class="seq-bubble left" id="bub-2" style="top:55%;border-color:rgba(245,200,66,0.3);background:rgba(10,10,30,0.88);">
-    <div class="seq-bubble-num" style="color:var(--or);">−73 %</div>
+    <div class="seq-bubble-num" style="color:var(--or);">−81 %</div>
     <div class="seq-bubble-lbl">Baisse maximale grâce à une politique d'extinction nocturne</div>
   </div>
 
@@ -161,7 +161,7 @@
           <p style="font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--or);margin-bottom:0.6rem;">
             À vous de jouer
           </p>
-          <p id="q-text" style="font-size:1.1rem;color:var(--blanc-etoile);margin-bottom:1.25rem;font-weight:500;">Quelle commune de l'Eurométropole affiche la radiance nocturne la plus élevée en 2022 ?</p>
+          <p id="q-text" style="font-size:1.1rem;color:var(--blanc-etoile);margin-bottom:1.25rem;font-weight:500;">Quelle commune de l'Eurométropole affiche la radiance nocturne la plus élevée en 2025 ?</p>
           <div id="q-choices" style="display:grid;grid-template-columns:1fr 1fr;gap:0.65rem;">
             <button class="quiz-btn" onclick="repondre('Bischheim')">Bischheim</button>
             <button class="quiz-btn" onclick="repondre('Strasbourg')">Strasbourg</button>
@@ -203,17 +203,17 @@
       const res = document.getElementById('q-result');
       res.style.display = 'block';
       if (isRight) {
-        res.innerHTML = '<p style="color:var(--vert-reserve);"><strong>✓ Exact !</strong> Schiltigheim affiche environ <strong>38 nW/cm²/sr</strong> en 2022 — devant Bischheim et Strasbourg, dont la saturation ralentit la croissance.</p>';
+        res.innerHTML = '<p style="color:var(--vert-reserve);"><strong>✓ Exact !</strong> Schiltigheim affiche environ <strong>22,5 nW/cm²/sr</strong> en 2025 — devant Strasbourg (21,0 nW) et Bischheim (20,4 nW).</p>';
         res.style.cssText += 'background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.2);';
       } else {
-        res.innerHTML = '<p style="color:#ff6b35;"><strong>✗ Pas tout à fait.</strong> C\'est <strong>Schiltigheim</strong> (environ 38 nW/cm²/sr). Strasbourg est en 3ᵉ position — son tissu urbain saturé depuis longtemps limite sa croissance relative.</p>';
+        res.innerHTML = '<p style="color:#ff6b35;"><strong>✗ Pas tout à fait.</strong> C\'est <strong>Schiltigheim</strong> (environ 22,5 nW/cm²/sr en 2025). Strasbourg est en 2ᵉ position (21,0 nW), devant Bischheim (20,4 nW).</p>';
         res.style.cssText += 'background:rgba(255,107,53,0.08);border:1px solid rgba(255,107,53,0.2);';
       }
       document.getElementById('q-next').style.display = 'block';
     }
 
     function question2() {
-      document.getElementById('q-text').textContent = 'Entre 2012 et 2022, quelle commune a le plus réduit sa pollution lumineuse grâce à l\'extinction nocturne ?';
+      document.getElementById('q-text').textContent = 'Entre 2016 et 2025, quelle commune a le plus réduit sa pollution lumineuse grâce à l\'extinction nocturne ?';
       document.getElementById('q-choices').innerHTML = `
         <button class="quiz-btn" onclick="repondre2('Strasbourg')">Strasbourg</button>
         <button class="quiz-btn" onclick="repondre2('Osthoffen')">Osthoffen</button>
@@ -234,7 +234,7 @@
       const res = document.getElementById('q-result');
       res.style.display = 'block';
       if (isRight) {
-        res.innerHTML = '<p style="color:var(--vert-reserve);"><strong>✓ Exact !</strong> Osthoffen est passée de <strong>4,9 nW/cm²/sr en 2012</strong> à <strong>1,3 nW en 2022</strong> — soit <strong>−73,4 %</strong>. Mesurable depuis l\'espace. <a href="donnees.html" style="color:var(--or);">Voir les données →</a></p>';
+        res.innerHTML = '<p style="color:var(--vert-reserve);"><strong>✓ Exact !</strong> Osthoffen est passée de <strong>1,24 nW/cm²/sr en 2016</strong> à <strong>0,23 nW en 2025</strong> — soit <strong>−81,5 %</strong>. Mesurable depuis l\'espace. <a href="donnees.html" style="color:var(--or);">Voir les données →</a></p>';
         res.style.cssText += 'background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.2);';
       } else {
         res.innerHTML = '<p style="color:#ff6b35;"><strong>✗ Non —</strong> c\'est <strong>Osthoffen</strong> avec −73,4 % (de 4,9 à 1,3 nW/cm²/sr entre 2012 et 2022). Une extinction totale de l\'éclairage public, mesurable depuis l\'espace. <a href="donnees.html" style="color:var(--or);">Voir les données →</a></p>';
